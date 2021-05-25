@@ -1,11 +1,17 @@
-# TO CONFIGURE...
-#spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/myunivaq?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-#    username: myunivaq
-#   password: myunivaq
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-  
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/myhealth?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      authentication-database: admin
+      username: 
+      password: 
+      database: myhealth 
+      port: 27017
+      host: localhost
 
 ###############################################
 ########### MYHEALTH PROPERTIES ###############
