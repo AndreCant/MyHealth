@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +28,10 @@ public class Visit extends AbstractEntity implements Serializable{
 //	private Reservation reservation;
 //	private Diagnosis diagnosis;
 //	private Payment payment;
-//	private User doctor;
+	
+	@ManyToOne
+    @JsonBackReference
+	private User doctor;
 	
 	public Visit() {}
 
