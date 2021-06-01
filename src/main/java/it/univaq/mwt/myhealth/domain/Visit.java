@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -23,11 +24,19 @@ public class Visit extends AbstractEntity implements Serializable{
 	private LocalDateTime startHour;
 	private LocalDateTime endHour;
 	private boolean isCompleted;
+		
+	@ManyToOne
+    @JsonBackReference
+    private Diagnosis diagnosis;
+		
+	@OneToOne
+	private Reservation reservation;
+
+	@OneToOne
+	private Review review;
 	
-//	private Review review;
-//	private Reservation reservation;
-//	private Diagnosis diagnosis;
-//	private Payment payment;
+	@OneToOne
+	private Payment payment;
 	
 	@ManyToOne
     @JsonBackReference
