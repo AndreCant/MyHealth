@@ -6,9 +6,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
@@ -26,8 +28,10 @@ public class Convention extends AbstractEntity implements Serializable{
 	private String name;
 	private String country;
 	private int refundPercentage;
-	
-	//private Payment payment;
+		
+	@ManyToOne
+    @JsonBackReference
+    private Payment payment;
 	
 	@OneToMany(mappedBy = "convention")
     @JsonManagedReference

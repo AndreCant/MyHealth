@@ -56,6 +56,5 @@ public class User extends AbstractEntity implements Serializable{
     private List<Visit> visits;
 	
 	public User() {}
-	
-	
+		
 }

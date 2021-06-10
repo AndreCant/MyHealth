@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -32,8 +33,12 @@ public class Reservation extends AbstractEntity implements Serializable{
 	private String type;
 	private String name;
 
-//	private FrontOffice frontOffice;
-//	private Visit visit;
+	@ManyToOne
+    @JsonBackReference
+	private FrontOffice frontOffice;
+	
+	@OneToOne
+	private Visit visit;
 	
 	@ManyToOne
     @JsonBackReference

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -22,9 +23,10 @@ public class Review extends AbstractEntity implements Serializable{
 	private String title;
 	private String body;
 	private int vote;
-	
-//	private Visit visit;
-	
+		
+	@OneToOne
+	private Visit visit;
+		
 	@ManyToOne
     @JsonBackReference
 	private User patient;
