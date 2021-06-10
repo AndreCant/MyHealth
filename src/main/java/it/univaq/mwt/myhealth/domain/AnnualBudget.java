@@ -27,7 +27,7 @@ public class AnnualBudget extends AbstractEntity implements Serializable{
 	private Year year;
 	private boolean isAtLoss;
 	
-	@OneToMany(mappedBy = "annualbudget")
+	@OneToMany(mappedBy = "annualBudget")
     @JsonManagedReference
 	private List<Expense> expenses;
 	

@@ -12,6 +12,7 @@ import javax.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
 
+@SuppressWarnings("serial")
 @Getter
 @Setter
 @MappedSuperclass

@@ -7,10 +7,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
@@ -39,19 +37,19 @@ public class User extends AbstractEntity implements Serializable{
 	private Blob curriculum;
 	
 //	OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "patient")
     @JsonManagedReference
     private List<PatientConvention> patientConventions;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "patient")
     @JsonManagedReference
     private List<Reservation> reservations;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "patient")
     @JsonManagedReference
     private List<Review> reviews;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "doctor")
     @JsonManagedReference
     private List<Visit> visits;
 	
