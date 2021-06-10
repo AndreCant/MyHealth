@@ -11,11 +11,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "user")
 public class User extends AbstractEntity implements Serializable{
@@ -36,7 +38,6 @@ public class User extends AbstractEntity implements Serializable{
 	private String skills;
 	private Blob curriculum;
 	
-//	OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@OneToMany(mappedBy = "patient")
     @JsonManagedReference
     private List<PatientConvention> patientConventions;
