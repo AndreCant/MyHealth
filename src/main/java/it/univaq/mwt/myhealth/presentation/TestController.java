@@ -23,4 +23,7 @@ public class TestController {
 		user.setPassword("admin123");
 		userService.save(user);
 	}
+	
+//	@GetMapping("/pippo")
+//	public void pippo() {}
 }
