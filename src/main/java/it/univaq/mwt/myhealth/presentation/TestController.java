@@ -24,6 +24,10 @@ public class TestController {
 		userService.save(user);
 	}
 	
-//	@GetMapping("/pippo")
-//	public void pippo() {}
+	@GetMapping("/pippo")
+	public void pippo() {}
+	
+	@GetMapping("/page-about")
+	public void about() {}
+	
 }
