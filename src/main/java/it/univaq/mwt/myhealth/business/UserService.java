@@ -2,15 +2,23 @@ package it.univaq.mwt.myhealth.business;
 
 import java.util.List;
 
+import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
+import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
 public interface UserService {
 	
-	public List<User> findAllUsers();
+	List<User> findAllUsers() throws BusinessException;
 	   
-	public void save(User user);
+	void saveUser(User user) throws BusinessException;
  
-	public void update(User user);
+	void updateUser(User user) throws BusinessException;
   
-	public void delete(Long uid);
+	void deleteUser(Long uid) throws BusinessException;
+	
+	User findUserByUsername(String username) throws BusinessException;
+	
+	void saveRole(Role role) throws BusinessException;
+	
+	Role findRoleByName(String name) throws BusinessException;
 }

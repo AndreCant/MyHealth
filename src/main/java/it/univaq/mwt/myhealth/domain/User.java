@@ -6,9 +6,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -31,12 +33,15 @@ public class User extends AbstractEntity implements Serializable{
 	private String surname;
 	private String fiscalCode;
 	private LocalDate dateOfBirth;
-	private String type;
 	private boolean hasVisitToComplete;
 	private int register;
 	private String specialization;
 	private String skills;
 	private Blob curriculum;
+	
+	@ManyToOne
+    @JsonBackReference
+	private Role role;
 	
 	@OneToMany(mappedBy = "patient")
     @JsonManagedReference

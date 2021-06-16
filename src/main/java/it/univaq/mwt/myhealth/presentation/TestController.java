@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Invoice;
+import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
 @Controller
@@ -23,20 +25,22 @@ public class TestController {
 	
 	@GetMapping("/test-view")
 	public void all() {
-		User user = new User();
-		user.setUsername("admin");
-		user.setEmail("admin@test.com");
-		user.setPassword("admin123");
-		userService.save(user);
+//		User user = new User();
+//		user.setUsername("umberto456");
+//		user.setEmail("umberto456@test.com");
+//		user.setPassword("admin123");
+//		try {
+//			user.setRole(userService.findRoleByName("doctor"));
+//			userService.saveUser(user);
+//		} catch (BusinessException e) {
+//			e.printStackTrace();
+//		}
 	}
-	
 	
 	@GetMapping(value="/about")
 	public String about (){
 		return "about";
 	}
-	
-	
 	
 	@GetMapping(value="/doctor")
 	public String doctorView (){
@@ -53,7 +57,6 @@ public class TestController {
 		return "login";
 	}
 	
-
 	@GetMapping(value="/sign-up")
 	public String signUp (){
 		return "signUp";
@@ -71,9 +74,12 @@ public class TestController {
 	
 	@GetMapping("/connection")
 	public void connection() {
-		Invoice invoice = new Invoice();
-		invoice.setTax(25);
-		invoice.setCode(1000);
-		documentService.saveInvoice(invoice);
+//		Role role = new Role();
+//		role.setName("patient");
+//		try {
+//			userService.saveRole(role);
+//		} catch (BusinessException e) {
+//			e.printStackTrace();
+//		}
 	}
 }

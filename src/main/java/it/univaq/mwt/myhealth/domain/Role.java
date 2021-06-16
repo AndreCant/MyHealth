@@ -15,20 +15,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "medicine")
-public class Medicine extends AbstractEntity implements Serializable{
+@Table(name = "role")
+public class Role extends AbstractEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String code;
 	private String name;
-	private String activePrinciple;
 	private String description;
-	private Double weight;
 	
-	@OneToMany(mappedBy = "medicine")
+	@OneToMany(mappedBy = "role")
     @JsonManagedReference
-	private List<MedicineDiagnosis> medicineDiagnosis;
-	
-	public Medicine() {}
+	private List<User> users;
 }
