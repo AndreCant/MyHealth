@@ -7,6 +7,7 @@
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>it.univaq.mwt.myhealth.domain.User</class>
+        <class>it.univaq.mwt.myhealth.domain.Invoice</class>
     </persistence-unit>
 
 </persistence>

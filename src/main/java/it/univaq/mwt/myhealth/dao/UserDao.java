@@ -6,7 +6,9 @@ import it.univaq.mwt.myhealth.domain.User;
 
 public interface UserDao {
 	
-	public List<User> findAllUsers();
+	public List<User> findAll();
+	
+	public User findById(Long uid);
    
 	public void save(User user);
  

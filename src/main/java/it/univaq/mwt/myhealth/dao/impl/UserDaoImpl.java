@@ -17,27 +17,28 @@ public class UserDaoImpl implements UserDao{
 	private EntityManager entityManager;
 
 	@Override
-	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> findAll() {
+		return (List<User>) entityManager.createQuery("FROM User").getResultList();
+	}
+	
+	@Override
+	public User findById(Long uid) {
+		return (User) entityManager.find(User.class, uid);
 	}
 
 	@Override
 	public void save(User user) {
-		System.out.println("Success");
 		 entityManager.persist(user);
 	}
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
-		
+		entityManager.merge(user);
 	}
 
 	@Override
 	public void delete(Long uid) {
-		// TODO Auto-generated method stub
-		
+		entityManager.remove(this.findById(uid));
 	}
 	
 }

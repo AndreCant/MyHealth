@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.User;
 
 @Controller
@@ -16,7 +18,10 @@ public class TestController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping(value="/test-view")
+	@Autowired
+	private DocumentService documentService;
+	
+	@GetMapping("/test-view")
 	public void all() {
 		User user = new User();
 		user.setUsername("admin");
@@ -62,5 +67,13 @@ public class TestController {
 	@GetMapping(value="/home")
 	public String home (){
 		return "home";
+	}
+	
+	@GetMapping("/connection")
+	public void connection() {
+		Invoice invoice = new Invoice();
+		invoice.setTax(25);
+		invoice.setCode(1000);
+		documentService.saveInvoice(invoice);
 	}
 }

@@ -1,9 +1,9 @@
 spring:
   data:
     mongodb:
-      authentication-database: admin
-      username: 
-      password: 
+      authentication-database: test
+      username: admin
+      password: admin
       database: myhealth 
       port: 27017
       host: localhost

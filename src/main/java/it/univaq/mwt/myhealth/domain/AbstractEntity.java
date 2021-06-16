@@ -24,5 +24,5 @@ public abstract class AbstractEntity implements Serializable {
     protected Long id;
 
     @Version
-    public int version;
+    protected int version;
 }
