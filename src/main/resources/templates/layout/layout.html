@@ -28,7 +28,7 @@
     <!-- colors -->
     <link rel="stylesheet" href="../static/dist/css/colors/main.css" th:href="@{/dist/css/colors/main.css}">
     <!-- elegant icon -->
-    <link rel="stylesheet" href="../static/dist/css/elegant_icon.css" th:href="@{/dist/css/elegant_icon.css}">>
+    <link rel="stylesheet" href="../static/dist/css/elegant_icon.css" th:href="@{/dist/css/elegant_icon.css}">
 
     <!-- jquery library  -->
     <script src="../static/dist/js/jquery-3.2.1.min.js" th:src="@{/dist/js/jquery-3.2.1.min.js}"></script>
@@ -36,17 +36,16 @@
     <script defer  src="../static/dist/js/all.js" th:src="@{/dist/js/all.js}"></script>
 </head>
 
-<body class="hold-transition sidebar-mini accent-info">
-<div class="wrapper">
+<body>
+<div>
   <header th:replace="~{layout/header :: header}"></header>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  
     <!-- Main content -->
     <div class="content">
-      <div class="container-fluid" layout:fragment="content"></div>
+      <div layout:fragment="content"></div>
     </div>
-  </div>
   <footer th:replace="~{layout/footer :: footer}"></footer>
 </div>
 </body>

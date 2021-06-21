@@ -23,6 +23,7 @@ public class TestController {
 	@Autowired
 	private DocumentService documentService;
 	
+
 	@GetMapping("/test-view")
 	public void all() {
 //		User user = new User();
@@ -36,10 +37,21 @@ public class TestController {
 //			e.printStackTrace();
 //		}
 	}
+
+//	@GetMapping("/test-view")
+//	public void all() {
+//		User user = new User();
+//		user.setUsername("admin");
+//		user.setEmail("admin@test.com");
+//		user.setPassword("admin123");
+//		userService.save(user);
+//	}
+//	
+
 	
 	@GetMapping(value="/about")
 	public String about (){
-		return "about";
+		return "common/about";
 	}
 	
 	@GetMapping(value="/doctor")
@@ -49,27 +61,27 @@ public class TestController {
 	
 	@GetMapping(value="/contact")
 	public String contactUs (){
-		return "contactUs";
+		return "common/contactUs";
 	}
 	
 	@GetMapping(value="/login")
 	public String login (){
-		return "login";
+		return "common/login";
 	}
 	
 	@GetMapping(value="/sign-up")
 	public String signUp (){
-		return "signUp";
+		return "common/signUp";
 	}
 	
 	@GetMapping(value="/listing")
 	public String listing (){
-		return "listings";
+		return "common/listings";
 	}
 	
 	@GetMapping(value="/home")
 	public String home (){
-		return "home";
+		return "common/home";
 	}
 	
 	@GetMapping("/connection")
@@ -81,5 +93,46 @@ public class TestController {
 //		} catch (BusinessException e) {
 //			e.printStackTrace();
 //		}
+	}
+	
+	
+	@GetMapping(value="/addListing")
+	public String addListing () {
+		return "common/admin/dashboardListing";
+	}
+	
+	@GetMapping(value="/dashboardHome")
+	public String dashboardHome () {
+		return "common/admin/dashboardHome";
+	}
+	
+	@GetMapping(value="/dashboardFavorites")
+	public String dashboardFavorites () {
+		return "common/admin/dashboardFavorites";
+	}
+	
+	@GetMapping(value="/dashboardMyListings")
+	public String dashboardMyListings () {
+		return "common/admin/dashboardMyListings";
+	}
+	
+	@GetMapping(value="/myprofile")
+	public String myProfile () {
+		return "common/admin/myProfile";
+	}
+
+	@GetMapping(value="/reviews")
+	public String reviews () {
+		return "common/admin/dashboardReviews";
+	}
+	
+	@GetMapping(value="/packages")
+	public String packages () {
+		return "common/admin/dashboardPackages";
+	}
+	
+	@GetMapping(value="/bookings")
+	public String bookings () {
+		return "common/admin/bookings";
 	}
 }

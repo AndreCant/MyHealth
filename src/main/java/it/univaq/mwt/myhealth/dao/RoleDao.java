@@ -1,4 +1,4 @@
-package it.univaq.mwt.myhealth.dao;
+ package it.univaq.mwt.myhealth.dao;
 
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.domain.Role;

@@ -4,7 +4,7 @@
 	  layout:decorate="~{layout/layout}">
 <body>
    <div layout:fragment="content">
-    <section class="banner padding-tb-200px sm-ptb-80px background-overlay" style="background-image: url('assets/img/banner_1.jpg');">
+    <section class="banner padding-tb-200px sm-ptb-80px background-overlay" style="background-image: url('../dist/img/banner_1.jpg');">
         <div class="container z-index-2 position-relative">
             <div class="title">
                 <h1 class="text-title-large text-main-color font-weight-300 margin-bottom-15px">Health Directory</h1>
@@ -49,7 +49,7 @@
                             <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px opacity-7">
-                                        <img src="assets/img/icon/categorie-1.png" alt="">
+                                        <img th:src="@{/dist/img/categorie-1.png}" alt="">
                                     </div>
                                     Doctors
                                 </div>
@@ -59,7 +59,7 @@
                             <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px opacity-7">
-                                        <img src="assets/img/icon/categorie-2.png" alt="">
+                                        <img th:src="@{/dist/img/categorie-2.png}" alt="">
                                     </div>
                                     Clinics
                                 </div>
@@ -69,7 +69,7 @@
                             <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px">
-                                        <img src="assets/img/icon/categorie-3.png" alt="">
+                                        <img th:src="@{/dist/img/categorie-3.png}" alt="">
                                     </div>
                                     Labs
                                 </div>
@@ -79,7 +79,7 @@
                             <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px opacity-7">
-                                        <img src="assets/img/icon/categorie-4.png" alt="">
+                                        <img th:src="@{/dist/img/categorie-4.png}" alt="">
                                     </div>
                                     Pharmacies
                                 </div>
@@ -100,7 +100,7 @@
                 <div class="col-lg-3 col-md-6 sm-mb-30px wow fadeInUp">
                     <div class="service text-center opacity-hover-7 hvr-bob">
                         <div class="icon margin-bottom-10px">
-                            <img src="assets/img/icon/service-1.png" alt="">
+                            <img th:src="@{/dist/img/service-1.png}" alt="">
                         </div>
                         <h3 class="text-second-color">Reliable Places</h3>
                         <p class="text-grey-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
@@ -111,7 +111,7 @@
                 <div class="col-lg-3 col-md-6 sm-mb-30px wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service text-center opacity-hover-7 hvr-bob">
                         <div class="icon margin-bottom-10px">
-                            <img src="assets/img/icon/service-2.png" alt="">
+                            <img th:src="@{/dist/img/service-2.png}"  alt="">
                         </div>
                         <h3 class="text-second-color">High Credibility</h3>
                         <p class="text-grey-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
@@ -122,7 +122,7 @@
                 <div class="col-lg-3 col-md-6 sm-mb-30px wow fadeInUp" data-wow-delay="0.4s">
                     <div class="service text-center opacity-hover-7 hvr-bob">
                         <div class="icon margin-bottom-10px">
-                            <img src="assets/img/icon/service-3.png" alt="">
+                            <img th:src="@{/dist/img/service-3.png}" alt="">
                         </div>
                         <h3 class="text-second-color">Quick search</h3>
                         <p class="text-grey-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
@@ -133,7 +133,7 @@
                 <div class="col-lg-3 col-md-6 sm-mb-30px wow fadeInUp" data-wow-delay="0.6s">
                     <div class="service text-center opacity-hover-7 hvr-bob">
                         <div class="icon margin-bottom-10px">
-                            <img src="assets/img/icon/service-4.png" alt="">
+                            <img th:src="@{/dist/img/service-4.png}" alt="">
                         </div>
                         <h3 class="text-second-color">Know better</h3>
                         <p class="text-grey-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
@@ -172,7 +172,7 @@
                 <div class="col-lg-3 col-md-6 hvr-bob sm-mb-45px">
                     <div class="background-white box-shadow wow fadeInUp" data-wow-delay="0.2s">
                         <div class="thum">
-                            <a href="#"><img src="assets/img/doctor-1.jpg" alt=""></a>
+                            <a href="#"><img  th:src="@{/dist/img/doctor-1.jpg}" alt=""></a>
                         </div>
                         <div class="padding-30px">
                             <span class="text-grey-2">Internal</span>
@@ -196,7 +196,7 @@
                 <div class="col-lg-3 col-md-6 hvr-bob sm-mb-45px">
                     <div class="background-white box-shadow wow fadeInUp" data-wow-delay="0.4s">
                         <div class="thum">
-                            <a href="#"><img src="assets/img/doctor-2.jpg" alt=""></a>
+                            <a href="#"><img th:src="@{/dist/img/doctor-2.jpg}" alt=""></a>
                         </div>
                         <div class="padding-30px">
                             <span class="text-grey-2">Internal</span>
@@ -220,7 +220,7 @@
                 <div class="col-lg-3 col-md-6 hvr-bob sm-mb-45px">
                     <div class="background-white box-shadow wow fadeInUp" data-wow-delay="0.6s">
                         <div class="thum">
-                            <a href="#"><img src="assets/img/doctor-3.jpg" alt=""></a>
+                            <a href="#"><img th:src="@{/dist/img/doctor-3.jpg}"  alt=""></a>
                         </div>
                         <div class="padding-30px">
                             <span class="text-grey-2">Internal</span>
@@ -244,7 +244,7 @@
                 <div class="col-lg-3 col-md-6 hvr-bob sm-mb-45px">
                     <div class="background-white box-shadow wow fadeInUp" data-wow-delay="0.8s">
                         <div class="thum">
-                            <a href="#"><img src="assets/img/doctor-4.jpg" alt=""></a>
+                            <a href="#"><img th:src="@{/dist/img/doctor-4.jpg}" alt=""></a>
                         </div>
                         <div class="padding-30px">
                             <span class="text-grey-2">Internal</span>
@@ -268,128 +268,9 @@
         </div>
     </section>
 
+     <!-- cliniche -->
 
-
-    <section class="padding-tb-100px">
-        <div class="container">
-            <!-- Title -->
-            <div class="row justify-content-center margin-bottom-45px">
-                <div class="col-lg-10">
-                    <div class="row">
-                        <div class="col-md-4 wow fadeInUp">
-                            <h1 class="text-second-color font-weight-300 text-sm-center text-lg-right margin-tb-15px">Popular Clinic</h1>
-                        </div>
-                        <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                            <p class="text-grey-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                        </div>
-                        <div class="col-md-2 wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="#" class="text-main-color margin-tb-15px d-inline-block"><span class="d-block float-left margin-right-10px margin-top-5px">Show All</span> <i class="far fa-arrow-alt-circle-right text-large margin-top-7px"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- // Title -->
-
-
-            <div class="row">
-
-                <!-- clinic -->
-                <div class="col-lg-4 col-md-6 sm-mb-45px">
-                    <div class="background-white full-width thum-hover box-shadow hvr-float wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="item-thumbnail thum background-white">
-                            <a href="#"><img src="assets/img/clinic-1.jpg" alt=""></a>
-                        </div>
-                        <div class="padding-30px">
-                            <h5 class="margin-bottom-20px"><a class="text-dark" href="#">Alrayan Eye Clinic</a></h5>
-                            <div class="rating clearfix">
-                                <span class="float-left text-grey-2"><i class="far fa-map"></i>  California</span>
-                                <ul class="float-right">
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="padding-lr-30px padding-tb-15px background-light-grey">
-                            <div class="row no-gutters">
-                                <div class="col-4"><a href="#" class="text-lime"><i class="far fa-bookmark"></i> Open Now!</a></div>
-                                <div class="col-4 text-center"><a href="#" class="text-red"><i class="far fa-heart"></i> Save</a></div>
-                                <div class="col-4 text-right"><a href="#" class="text-blue"><i class="far fa-hospital"></i> Hospital</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- // clinic -->
-
-
-                <!-- clinic -->
-                <div class="col-lg-4 col-md-6 sm-mb-45px">
-                    <div class="background-white full-width thum-hover box-shadow hvr-float wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="item-thumbnail thum background-white">
-                            <a href="#"><img src="assets/img/clinic-2.jpg" alt=""></a>
-                        </div>
-                        <div class="padding-30px">
-                            <h5 class="margin-bottom-20px"><a class="text-dark" href="#">Alrayan Eye Clinic</a></h5>
-                            <div class="rating clearfix">
-                                <span class="float-left text-grey-2"><i class="far fa-map"></i>  California</span>
-                                <ul class="float-right">
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="padding-lr-30px padding-tb-15px background-light-grey">
-                            <div class="row no-gutters">
-                                <div class="col-4"><a href="#" class="text-lime"><i class="far fa-bookmark"></i> Open Now!</a></div>
-                                <div class="col-4 text-center"><a href="#" class="text-red"><i class="far fa-heart"></i> Save</a></div>
-                                <div class="col-4 text-right"><a href="#" class="text-blue"><i class="far fa-hospital"></i> Hospital</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- // clinic -->
-
-
-                <!-- clinic -->
-                <div class="col-lg-4 col-md-6 sm-mb-45px">
-                    <div class="background-white full-width thum-hover box-shadow hvr-float wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="item-thumbnail thum background-white">
-                            <a href="#"><img src="assets/img/clinic-3.jpg" alt=""></a>
-                        </div>
-                        <div class="padding-30px">
-                            <h5 class="margin-bottom-20px"><a class="text-dark" href="#">Alrayan Eye Clinic</a></h5>
-                            <div class="rating clearfix">
-                                <span class="float-left text-grey-2"><i class="far fa-map"></i>  California</span>
-                                <ul class="float-right">
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li class="active"></li>
-                                    <li></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="padding-lr-30px padding-tb-15px background-light-grey">
-                            <div class="row no-gutters">
-                                <div class="col-4"><a href="#" class="text-lime"><i class="far fa-bookmark"></i> Open Now!</a></div>
-                                <div class="col-4 text-center"><a href="#" class="text-red"><i class="far fa-heart"></i> Save</a></div>
-                                <div class="col-4 text-right"><a href="#" class="text-blue"><i class="far fa-hospital"></i> Hospital</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- // clinic -->
-
-            </div>
-
-        </div>
-    </section>
-
+    
 
     <section class="padding-tb-100px background-grey-1">
         <div class="container">
