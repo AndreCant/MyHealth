@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d03471a-0db5-4b29-adf6-5f9f19393c2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/it.univaq.mwt/myhealth/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/it.univaq.mwt/myhealth/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +24,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../2 - Web Programming/eCommerce_Laravel_Server" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2d03471a-0db5-4b29-adf6-5f9f19393c2b" name="Default Changelist" comment="" />
@@ -33,6 +35,7 @@
       <option name="presentableId" value="Default" />
       <updated>1623861715921</updated>
       <workItem from="1623861717817" duration="5000" />
+      <workItem from="1624304962664" duration="136000" />
     </task>
     <servers />
   </component>

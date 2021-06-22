@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("home")
-public class HomeController {
+@RequestMapping("auth")
+public class AuthController {
 	
-	@GetMapping("")
-	public String home() {
-		return "common/home";
+	@GetMapping(value="signIn")
+	public String signIn() {
+		return "common/signIn";
 	}
 }

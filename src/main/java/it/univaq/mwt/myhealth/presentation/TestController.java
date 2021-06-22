@@ -1,6 +1,8 @@
 package it.univaq.mwt.myhealth.presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +26,8 @@ public class TestController {
 	private DocumentService documentService;
 	
 
-	@GetMapping("/test-view")
-	public void all() {
+//	@GetMapping("/test-view")
+//	public void all() {
 //		User user = new User();
 //		user.setUsername("umberto456");
 //		user.setEmail("umberto456@test.com");
@@ -36,17 +38,23 @@ public class TestController {
 //		} catch (BusinessException e) {
 //			e.printStackTrace();
 //		}
-	}
-
-//	@GetMapping("/test-view")
-//	public void all() {
-//		User user = new User();
-//		user.setUsername("admin");
-//		user.setEmail("admin@test.com");
-//		user.setPassword("admin123");
-//		userService.save(user);
 //	}
-//	
+
+	@GetMapping("/test-view")
+	public void all() {
+		User user = new User();
+		user.setUsername("admin");
+		user.setEmail("admin@test.com");
+		user.setPassword((new BCryptPasswordEncoder()).encode("admin123"));
+		try {
+			user.setRole(userService.findRoleByName("admin"));
+			userService.saveUser(user);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 	
 	@GetMapping(value="/about")

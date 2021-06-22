@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.UserDao;
+import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
 @Repository
@@ -39,6 +40,13 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public void delete(Long uid) {
 		entityManager.remove(this.findById(uid));
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		List<User> users = entityManager.createQuery("FROM User where username = :username", User.class).setParameter("username", username).getResultList();
+		if(!users.isEmpty()) return users.get(0);
+		return null;
 	}
 	
 }

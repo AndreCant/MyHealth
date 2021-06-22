@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService{
 	@Transactional(readOnly = true)
 	@Override
 	public User findUserByUsername(String username) throws BusinessException {
-		return null;
+		return userDao.findByUsername(username);
 	}
 
 	@Override

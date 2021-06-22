@@ -9,6 +9,8 @@ public interface UserDao {
 	public List<User> findAll();
 	
 	public User findById(Long uid);
+	
+	public User findByUsername(String username);
    
 	public void save(User user);
  
