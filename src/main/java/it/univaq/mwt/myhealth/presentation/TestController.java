@@ -143,4 +143,9 @@ public class TestController {
 	public String bookings () {
 		return "common/admin/bookings";
 	}
+	
+	@GetMapping(value="/test")
+	public String page () {
+		return "page";
+	}
 }
