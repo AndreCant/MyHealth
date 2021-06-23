@@ -37,8 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.and().exceptionHandling().accessDeniedPage("/common/accessdenied")
 					.and().authorizeRequests()
 					// Specificare le url che sono soggette ad autenticazione ed autorizzazione
-					.antMatchers("/", "/static/**", "/favicon.ico").permitAll()
-					.antMatchers("/common/**").authenticated();
+					.antMatchers("/", "/static/**", "/favicon.ico").permitAll();
+//					.antMatchers("/common/**").authenticated();
 //					.antMatchers("/areessd/**", "/ssds/**").hasAnyRole("amministratore")
 //					.antMatchers("/insegnamenti/**", "/appelli/**").hasAnyRole("docente");
 	}

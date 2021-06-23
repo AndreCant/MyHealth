@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -32,12 +34,14 @@ public class User extends AbstractEntity implements Serializable{
 	private String name;
 	private String surname;
 	private String fiscalCode;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
 	private boolean hasVisitToComplete;
 	private int register;
 	private String specialization;
 	private String skills;
 	private Blob curriculum;
+	private String gender;
 	
 	@ManyToOne
     @JsonBackReference
