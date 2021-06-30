@@ -21,17 +21,10 @@ public class Reservation extends AbstractEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String code;
 	private LocalDate reservationDate;
-	private String description;
-	private String specialization;
-	private String subSpecialization;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private int session;
-	private String type;
-	private String name;
-
+	
 	@ManyToOne
     @JsonBackReference
 	private FrontOffice frontOffice;
@@ -42,6 +35,10 @@ public class Reservation extends AbstractEntity implements Serializable{
 	@ManyToOne
     @JsonBackReference
 	private User patient;
+	
+	@ManyToOne
+    @JsonBackReference
+	private Exam exam;
 	
 	public Reservation() {}
 }
