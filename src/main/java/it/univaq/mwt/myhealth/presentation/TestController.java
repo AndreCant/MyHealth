@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
+import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.RoleDao;
+import it.univaq.mwt.myhealth.dao.impl.RoleDaoImpl;
 import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
@@ -36,6 +39,21 @@ public class TestController {
 //			user.setRole(userService.findRoleByName("doctor"));
 //			userService.saveUser(user);
 //		} catch (BusinessException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+//	@GetMapping("/addRoles")
+//	public void addRoles() {
+//		RoleDao roleDao = new RoleDaoImpl();
+//		Role role1 = new Role("admin");
+//		Role role2 = new Role("doctor");
+//		Role role3 = new Role("patient");
+//		try {
+//			roleDao.save(role1);
+//			roleDao.save(role2);
+//			roleDao.save(role3);
+//		} catch (DaoException e) {
 //			e.printStackTrace();
 //		}
 //	}
