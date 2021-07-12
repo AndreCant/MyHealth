@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ReservationDao;
 import it.univaq.mwt.myhealth.domain.Reservation;
 @Repository
@@ -17,32 +18,34 @@ public class ReservationDaoImpl implements ReservationDao{
 
 	@Override
 	public List<Reservation> findAll() {
-	   List<Reservation> listReservation = (List<Reservation>) entityManager.createQuery("SELECT * FROM Reservation");
-		return listReservation;
+	   return (List<Reservation>) entityManager.createQuery("FROM Reservation").getResultList();
 	}
 
 	@Override
 	public Reservation findById(Long uid) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Reservation) entityManager.find(Reservation.class, uid);
 	}
 
 	@Override
 	public void save(Reservation reservation) {
-		// TODO Auto-generated method stub
-		
+		entityManager.persist(reservation);
 	}
 
 	@Override
 	public void update(Reservation reservation) {
-		// TODO Auto-generated method stub
-		
+		entityManager.merge(reservation);
 	}
 
 	@Override
 	public void delete(Long uid) {
-		// TODO Auto-generated method stub
-		
+		entityManager.remove(this.findById(uid));
+	}
+
+	@Override
+	public List<Reservation> findReservationByPatient(Long patientId) throws DaoException {
+		return (List<Reservation>) entityManager.createQuery("FROM Reservation WHERE patient_id = :patientId", Reservation.class)
+		        .setParameter("patientId", patientId)
+		        .getResultList();
 	}
 
 }
