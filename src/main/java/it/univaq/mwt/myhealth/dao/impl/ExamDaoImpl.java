@@ -5,12 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ExamDao;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
-
+@Repository
 public class ExamDaoImpl implements ExamDao{
 	
 	@PersistenceContext(unitName = "persistenceUnit")
@@ -18,7 +20,9 @@ public class ExamDaoImpl implements ExamDao{
 
 	@Override
 	public List<Exam> findAll() throws DaoException {
-		return (List<Exam>) entityManager.createQuery("FROM Exam").getResultList();
+		
+		List<Exam> resultList = (List<Exam>) entityManager.createQuery("FROM Exam").getResultList();
+		return resultList;
 	}
 
 	@Override
@@ -34,6 +38,13 @@ public class ExamDaoImpl implements ExamDao{
 		        .setParameter("specialization", specialization)
 		        .getResultList();
 	}
+	
+
+	@Override
+	public Exam findByName(String name) throws DaoException {
+		return (Exam) entityManager.find(Exam.class, name);
+	}
+
 
 	@Override
 	public Exam findById(Long uid) throws DaoException {

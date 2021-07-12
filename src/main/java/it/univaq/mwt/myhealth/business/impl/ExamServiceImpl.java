@@ -3,18 +3,21 @@ package it.univaq.mwt.myhealth.business.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ExamDao;
 import it.univaq.mwt.myhealth.domain.Exam;
-
+@Service
 public class ExamServiceImpl implements ExamService{
 	
 	@Autowired
 	private ExamDao examDao;
-
+	
+	@Transactional(readOnly = true)
 	@Override
 	public List<Exam> findAllExams() throws BusinessException{
 		try {
@@ -24,7 +27,7 @@ public class ExamServiceImpl implements ExamService{
 			throw new BusinessException(e.getMessage());
 		}
 	}
-
+	
 	@Override
 	public List<Exam> findExamsByType(String type) throws BusinessException {
 		try {
@@ -49,6 +52,16 @@ public class ExamServiceImpl implements ExamService{
 	public Exam findById(Long uid) throws BusinessException {
 		try {
 			return examDao.findById(uid);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+	
+	@Override
+	public Exam findByName(String name) throws BusinessException {
+		try {
+			return examDao.findByName(name);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());

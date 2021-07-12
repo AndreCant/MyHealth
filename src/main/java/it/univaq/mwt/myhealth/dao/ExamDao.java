@@ -20,4 +20,6 @@ public interface ExamDao {
 	public void update(Exam exam) throws DaoException;
   
 	public void delete(Long uid) throws DaoException;
+
+	public Exam findByName(String name) throws DaoException;
 }

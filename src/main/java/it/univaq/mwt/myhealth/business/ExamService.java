@@ -14,6 +14,8 @@ public interface ExamService {
 	List<Exam> findExamsBySpecialization(String specialization) throws BusinessException;
 	
 	Exam findById(Long uid) throws BusinessException;
+	
+	Exam findByName (String name) throws BusinessException;
 	   
 	void save(Exam exam) throws BusinessException;
  

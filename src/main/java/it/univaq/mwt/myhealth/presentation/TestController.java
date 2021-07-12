@@ -1,14 +1,20 @@
 package it.univaq.mwt.myhealth.presentation;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import antlr.collections.List;
 import it.univaq.mwt.myhealth.business.DocumentService;
+import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
@@ -24,6 +30,9 @@ public class TestController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ExamService examService;
 	
 	@Autowired
 	private DocumentService documentService;
@@ -82,7 +91,7 @@ public class TestController {
 	
 	@GetMapping(value="/doctor")
 	public String doctorView (){
-		return "doctor";
+		return "common/doctor";
 	}
 	
 	@GetMapping(value="/contact")
@@ -166,4 +175,17 @@ public class TestController {
 	public String page () {
 		return "page";
 	}
+	
+	@GetMapping(value="/exams")
+	public String exams (Model model) throws BusinessException {
+		model.addAttribute("exams", examService.findAllExams());	
+		return "/common/exams";
+	}
+	
+	@GetMapping(value="/exams/{name}")
+	public String exam (Model model, @PathVariable("name") String name) throws BusinessException {
+		model.addAttribute("exam", examService.findByName(name));	
+		return "/common/blog-single";
+	}
+	
 }
