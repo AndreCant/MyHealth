@@ -27,28 +27,53 @@ public class UserServiceImpl implements UserService{
 	@Transactional(readOnly = true)
 	@Override
 	public List<User> findAllUsers() throws BusinessException {
-		return userDao.findAll();
+		try {
+			return userDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 	
 	@Transactional(readOnly = true)
 	@Override
 	public User findUserByUsername(String username) throws BusinessException {
-		return userDao.findByUsername(username);
+		try {
+			return userDao.findByUsername(username);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override
 	public void saveUser(User user) throws BusinessException {
-		userDao.save(user);
+		try {
+			userDao.save(user);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override
 	public void updateUser(User user) throws BusinessException {
-		userDao.update(user);
+		try {
+			userDao.update(user);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override
 	public void deleteUser(Long uid) throws BusinessException {
-		userDao.delete(uid);
+		try {
+			userDao.delete(uid);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -68,6 +93,25 @@ public class UserServiceImpl implements UserService{
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException("getRoleByName", e);
+		}
+	}
+
+	@Override
+	public void saveRoles(List<Role> roles) throws BusinessException {
+		try {
+			roleDao.saveAll(roles);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void saveUsers(List<User> users) throws BusinessException {
+		try {
+			userDao.saveAll(users);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
 		}
 	}
 }

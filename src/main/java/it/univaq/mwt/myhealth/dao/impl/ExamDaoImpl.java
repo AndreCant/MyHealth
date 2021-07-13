@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ExamDao;
 import it.univaq.mwt.myhealth.domain.Exam;
-import it.univaq.mwt.myhealth.domain.Role;
-import it.univaq.mwt.myhealth.domain.User;
 @Repository
 public class ExamDaoImpl implements ExamDao{
 	

@@ -27,6 +27,7 @@ public class Exam extends AbstractEntity implements Serializable{
 	private String specialization;
 	private String subSpecialization;
 	private String description;
+	private Double price;
 	
 	@OneToMany(mappedBy = "exam")
     @JsonManagedReference
