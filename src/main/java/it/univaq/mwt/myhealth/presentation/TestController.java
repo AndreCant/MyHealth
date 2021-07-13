@@ -2,6 +2,10 @@ package it.univaq.mwt.myhealth.presentation;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import antlr.collections.List;
 import it.univaq.mwt.myhealth.business.DocumentService;
@@ -186,6 +191,17 @@ public class TestController {
 	public String exam (Model model, @PathVariable("name") String name) throws BusinessException {
 		model.addAttribute("exam", examService.findByName(name));	
 		return "/common/blog-single";
+	}
+	
+	@GetMapping(value="/exams/{name}/reservation")
+	public String reservation (Model model, @PathVariable("name") String name, HttpServletRequest request) throws BusinessException {
+		if ( request.getSession().getAttribute("user") != null) {
+			model.addAttribute("exam", examService.findByName(name));
+			return "/common/blog-single";
+		} else {
+			return "/common/signUp";
+		}
+		
 	}
 	
 }
