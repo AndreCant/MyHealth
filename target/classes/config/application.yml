@@ -16,7 +16,6 @@ spring:
     encoding: UTF-8
     use-code-as-default-message: true
   main:    allow-bean-definition-overriding: true
-    
 ###############################################
 ############# MYHEALTH PROPERTIES #############
 ###############################################

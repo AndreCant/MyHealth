@@ -20,9 +20,7 @@ public class ExamDaoImpl implements ExamDao{
 
 	@Override
 	public List<Exam> findAll() throws DaoException {
-		
-		List<Exam> resultList = (List<Exam>) entityManager.createQuery("FROM Exam").getResultList();
-		return resultList;
+		return (List<Exam>) entityManager.createQuery("FROM Exam").getResultList();
 	}
 
 	@Override
@@ -39,7 +37,6 @@ public class ExamDaoImpl implements ExamDao{
 		        .getResultList();
 	}
 	
-
 	@Override
 	public Exam findByName(String name) throws DaoException {
 		return (Exam) entityManager.createQuery("FROM Exam WHERE name = :name", Exam.class)
