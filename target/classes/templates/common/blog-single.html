@@ -85,7 +85,7 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Blog</a></li>
             </ol>
-            <h1 class="font-weight-300">Blog Post Title</h1>
+            <h1 class="font-weight-300">Esame</h1>
         </div>
     </div>
 
@@ -96,7 +96,7 @@
 
                 <div class="col-lg-8">
                     <div class="border-radius-10 background-white  margin-bottom-35px padding-30px">
-                        <h4><i class="fas fa-file-alt margin-right-10px text-main-color"></i> Blog Post Title</h4>
+                        <h2 th:text="${exam.name}"><i class="fas fa-file-alt margin-right-10px text-main-color" ></i> Esame</h2>
                         <hr>
 
                         <div class="meta">
@@ -105,25 +105,39 @@
                         </div>
                         <hr>
 
-                        <div class="thumbnail margin-bottom-20px"><img src="assets/img/blog-9.jpg" alt=""></div>
+                        <div class="thumbnail margin-bottom-20px"><img src="https://lh3.googleusercontent.com/proxy/IYRntXNcKQQGLIOuJie77Y76d5zzRTtgxSmMz_REfWQ-ITA10tPbzO2eWyYTq8tr8uNPlm1nBWrFHm_ymIyEcjYeip_VyQ7FTzpNwd49nrdvjT4EPHQE0rEEfYY" alt=""></div>
                         <div class="entry-content">
-                            <p>Mauris fermentum porta sem, non hendrerit enim bibendum consectetur. Fusce diam est, porttitor vehicula gravida at, accumsan bibendum tincidunt imperdiet. Maecenas quis magna faucibus, varius ante sit amet, varius augue. Praesent aliquam, augue ac pulvinar accumsan</p>
-                            <h5>Where can I get some?</h5>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+                            <p th:text="${exam.description}"></p>
                         </div>
                         <!-- .entry-content -->
 
                         <!-- Post tags -->
                         <hr>
-                        <div class="post-tags">
-                            <a href="#" rel="tag">chemicals</a>
-                            <a href="#" rel="tag">chemicals</a>
-                            <a href="#" rel="tag">chemicals</a>
-                            <a href="#" rel="tag">chemicals</a>
-                            <a href="#" rel="tag">chemicals</a>
-                            <a href="#" rel="tag">chemicals</a>
-                            <!-- // Post tags -->
-                        </div>
+                        <div class="post-tags" style="width: 100%;">
+				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%">
+				               <div class="pricing hover-effect">
+				                    <div class="pricing-head text-center">
+				                        <h3 class="font-weight-700 padding-40px background-main-color margin-0px text-white">
+				                            <span class=" z-index-2 position-relative d-block">
+				                                    Prenota<span class="d-block text-small font-weight-300"> </span>
+				                            </span>
+				                        </h3>
+				                        <h2 class="background-grey-1 margin-0px padding-15px">
+				                            <i class="text-up-small">$</i>5<span class="text-up-small">.49</span>
+				                            <span class="d-block text-small">Costo visita </span>
+				                        </h2>
+				                    </div>
+				                    <ul class="pricing-content text-center list-unstyled background-white">
+				                        <li><strong>1</strong> Website</li>
+				                        <li><strong>25</strong> EmailAddresses</li>
+				                        <li><strong>100</strong> GBStorage</li>
+				                    </ul>
+				                    <div class="pricing-footer">
+				                        <a th:href="@{'/test/exams/' + ${exam.name} + '/reservation'}" class="btn btn-block background-grey-1 text-dark rounded-0">Prenota</a>
+				                    </div>
+				               </div>
+				          </div>
+                       </div>
                     </div>
 
                     <div class="margin-bottom-30px">

@@ -42,7 +42,9 @@ public class ExamDaoImpl implements ExamDao{
 
 	@Override
 	public Exam findByName(String name) throws DaoException {
-		return (Exam) entityManager.find(Exam.class, name);
+		return (Exam) entityManager.createQuery("FROM Exam WHERE name = :name", Exam.class)
+				.setParameter("name", name)
+				.getSingleResult();
 	}
 
 
