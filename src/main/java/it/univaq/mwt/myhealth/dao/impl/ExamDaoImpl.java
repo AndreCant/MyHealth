@@ -42,7 +42,6 @@ public class ExamDaoImpl implements ExamDao{
 				.getSingleResult();
 	}
 
-
 	@Override
 	public Exam findById(Long uid) throws DaoException {
 		return (Exam) entityManager.find(Exam.class, uid);
@@ -61,6 +60,13 @@ public class ExamDaoImpl implements ExamDao{
 	@Override
 	public void delete(Long uid) throws DaoException {
 		entityManager.remove(this.findById(uid));
+	}
+
+	@Override
+	public void saveAll(List<Exam> exams) throws DaoException {
+		for (Exam exam : exams) {
+			entityManager.persist(exam);
+		}
 	}
 
 }

@@ -22,4 +22,6 @@ public interface ExamDao {
 	public void delete(Long uid) throws DaoException;
 
 	public Exam findByName(String name) throws DaoException;
+	
+	public void saveAll(List<Exam> exams) throws DaoException;
 }

@@ -3,6 +3,8 @@ package it.univaq.mwt.myhealth.business.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
@@ -10,6 +12,8 @@ import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ReservationDao;
 import it.univaq.mwt.myhealth.domain.Reservation;
 
+@Service
+@Transactional
 public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
@@ -76,4 +80,13 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 	}
 
+	@Override
+	public void saveReservations(List<Reservation> reservations) throws BusinessException {
+		try {
+			reservationDao.saveAll(reservations);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

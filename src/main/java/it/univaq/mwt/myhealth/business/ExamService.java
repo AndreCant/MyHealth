@@ -22,4 +22,6 @@ public interface ExamService {
 	void update(Exam exam) throws BusinessException;
   
 	void delete(Long uid) throws BusinessException;
+	
+	void saveExams(List<Exam> exams) throws BusinessException;
 }
