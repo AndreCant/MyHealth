@@ -12,6 +12,10 @@ import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ReservationDao;
 import it.univaq.mwt.myhealth.domain.Reservation;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ad6523c4fe21a9b8393bc5cc439f5c58f26abc45
 @Service
 @Transactional
 public class ReservationServiceImpl implements ReservationService{
@@ -80,4 +84,13 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 	}
 
+	@Override
+	public void saveReservations(List<Reservation> reservations) throws BusinessException {
+		try {
+			reservationDao.saveAll(reservations);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

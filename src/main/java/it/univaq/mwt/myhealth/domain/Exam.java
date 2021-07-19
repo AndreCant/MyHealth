@@ -10,11 +10,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "exam")
 public class Exam extends AbstractEntity implements Serializable{
 	
@@ -27,6 +29,7 @@ public class Exam extends AbstractEntity implements Serializable{
 	private String specialization;
 	private String subSpecialization;
 	private String description;
+	private Double price;
 	
 	@OneToMany(mappedBy = "exam")
     @JsonManagedReference

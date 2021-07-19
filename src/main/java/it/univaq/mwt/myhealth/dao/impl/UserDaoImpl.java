@@ -1,5 +1,6 @@
 package it.univaq.mwt.myhealth.dao.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.UserDao;
-import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
 @Repository
@@ -47,6 +47,13 @@ public class UserDaoImpl implements UserDao{
 		List<User> users = entityManager.createQuery("FROM User where username = :username", User.class).setParameter("username", username).getResultList();
 		if(!users.isEmpty()) return users.get(0);
 		return null;
+	}
+
+	@Override
+	public void saveAll(List<User> users) {
+		for (User user : users) {
+			entityManager.persist(user);
+		}
 	}
 	
 }

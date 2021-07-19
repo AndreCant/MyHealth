@@ -18,4 +18,6 @@ public interface ReservationDao {
 	public void update(Reservation reservation) throws DaoException;
   
 	public void delete(Long uid) throws DaoException;
+	
+	public void saveAll(List<Reservation> reservations) throws DaoException;
 }

@@ -9,12 +9,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "role")
 public class Role extends AbstractEntity implements Serializable{
 	
@@ -26,4 +29,9 @@ public class Role extends AbstractEntity implements Serializable{
 	@OneToMany(mappedBy = "role")
     @JsonManagedReference
 	private List<User> users;
+	
+	public Role(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
 }

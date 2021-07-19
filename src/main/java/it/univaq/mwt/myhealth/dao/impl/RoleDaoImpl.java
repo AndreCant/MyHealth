@@ -1,5 +1,7 @@
 package it.univaq.mwt.myhealth.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -25,6 +27,13 @@ public class RoleDaoImpl implements RoleDao{
 		return (Role) entityManager.createQuery("FROM Role where name = :name", Role.class)
         .setParameter("name", name)
         .getResultList().get(0);
+	}
+
+	@Override
+	public void saveAll(List<Role> roles) throws DaoException {
+		for (Role role : roles) {
+			entityManager.persist(role);
+		}
 	}
 	
 }

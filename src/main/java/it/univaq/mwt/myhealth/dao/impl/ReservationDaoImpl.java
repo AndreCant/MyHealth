@@ -48,4 +48,11 @@ public class ReservationDaoImpl implements ReservationDao{
 		        .getResultList();
 	}
 
+	@Override
+	public void saveAll(List<Reservation> reservations) throws DaoException {
+		for (Reservation reservation : reservations) {
+			entityManager.persist(reservation);
+		}
+	}
+
 }

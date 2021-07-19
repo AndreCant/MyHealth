@@ -11,7 +11,9 @@ import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ExamDao;
 import it.univaq.mwt.myhealth.domain.Exam;
+
 @Service
+@Transactional
 public class ExamServiceImpl implements ExamService{
 	
 	@Autowired
@@ -98,4 +100,13 @@ public class ExamServiceImpl implements ExamService{
 		}
 	}
 
+	@Override
+	public void saveExams(List<Exam> exams) throws BusinessException {
+		try {
+			examDao.saveAll(exams);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

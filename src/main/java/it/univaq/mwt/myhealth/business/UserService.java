@@ -11,6 +11,8 @@ public interface UserService {
 	List<User> findAllUsers() throws BusinessException;
 	   
 	void saveUser(User user) throws BusinessException;
+	
+	void saveUsers(List<User> users) throws BusinessException;
  
 	void updateUser(User user) throws BusinessException;
   
@@ -19,6 +21,8 @@ public interface UserService {
 	User findUserByUsername(String username) throws BusinessException;
 	
 	void saveRole(Role role) throws BusinessException;
+	
+	void saveRoles(List<Role> roles) throws BusinessException;
 	
 	Role findRoleByName(String name) throws BusinessException;
 }

@@ -18,4 +18,6 @@ public interface ReservationService {
 	void update(Reservation reservation) throws BusinessException;
   
 	void delete(Long uid) throws BusinessException;
+	
+	void saveReservations(List<Reservation> reservations) throws BusinessException;
 }
