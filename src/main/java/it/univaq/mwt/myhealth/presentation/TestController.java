@@ -199,7 +199,7 @@ public class TestController {
 			model.addAttribute("exam", examService.findByName(name));
 			return "/common/blog-single";
 		} else {
-			return "/common/signUp";
+			return "/common/signIn";
 		}
 		
 	}

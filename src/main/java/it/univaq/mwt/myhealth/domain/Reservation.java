@@ -2,11 +2,17 @@ package it.univaq.mwt.myhealth.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -21,9 +27,11 @@ public class Reservation extends AbstractEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate reservationDate;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")	
+	private LocalDateTime startDate;
+	private LocalDateTime endDate;
 	
 	@ManyToOne
     @JsonBackReference
@@ -41,4 +49,6 @@ public class Reservation extends AbstractEntity implements Serializable{
 	private Exam exam;
 	
 	public Reservation() {}
+	
+
 }

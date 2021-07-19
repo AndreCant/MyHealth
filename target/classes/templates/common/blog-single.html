@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US"  mlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en-US"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  xmlns:th="http://www.thymeleaf.org"
 	  layout:decorate="~{layout/layout}">
 <body>
@@ -112,11 +112,12 @@
                         <!-- .entry-content -->
 
                         <!-- Post tags -->
-                        <hr>
+                        <hr>                       
                         <div class="post-tags" style="width: 100%;">
-				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%">
+				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%;">
+				            <form action="#" th:action="${exam.name}" method="POST" th:object="${reservation}" id="reservationForm">
 				               <div class="pricing hover-effect">
-				                    <div class="pricing-head text-center">
+				                    <div class="pricing-head text-center" style="background:white;">
 				                        <h3 class="font-weight-700 padding-40px background-main-color margin-0px text-white">
 				                            <span class=" z-index-2 position-relative d-block">
 				                                    Prenota<span class="d-block text-small font-weight-300"> </span>
@@ -128,15 +129,32 @@
 				                        </h2>
 				                    </div>
 				                    <ul class="pricing-content text-center list-unstyled background-white">
-				                        <li><strong>1</strong> Website</li>
-				                        <li><strong>25</strong> EmailAddresses</li>
-				                        <li><strong>100</strong> GBStorage</li>
+				                        <li>
+				                         <input type="text"  id="picker2" class="form-control" th:field="*{startDate}" placeholder="inserisci data">				                           
+				                           <script>
+												$(document).ready(function(){
+													         var today = new Date();
+														    $('#picker2').datetimepicker({
+														      format:"Y-m-d H:m",
+														      minDate: today,
+														      onSelect: function(selectedDate) {
+														       var option = this.id == "from" ? "minDate" : "maxDate",
+																            instance = $(this).data("datepicker"),
+																            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+																        dates.not(this).datepicker("option", option, date);
+															  }
+															})
+														});
+											</script>			                          
+										</li>
 				                    </ul>
-				                    <div class="pricing-footer">
-				                        <a th:href="@{'/test/exams/' + ${exam.name} + '/reservation'}" class="btn btn-block background-grey-1 text-dark rounded-0">Prenota</a>
+				                    <div class="pricing-footer" style="height:50px;">
+				                        <button type="submit" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px;"> Prenota</button>
 				                    </div>
 				               </div>
+				             </form>
 				          </div>
+				        
                        </div>
                     </div>
 

@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Getter
 @Setter
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
