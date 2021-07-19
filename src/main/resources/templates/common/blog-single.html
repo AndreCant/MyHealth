@@ -124,7 +124,7 @@
 				                            </span>
 				                        </h3>
 				                        <h2 class="background-grey-1 margin-0px padding-15px">
-				                            <i class="text-up-small">$</i>5<span class="text-up-small">.49</span>
+				                            <i class="text-up-small">$</i>5<span class="text-up-small" th:text="${exam.price}">.49</span>
 				                            <span class="d-block text-small">Costo visita </span>
 				                        </h2>
 				                    </div>
@@ -135,7 +135,7 @@
 												$(document).ready(function(){
 													         var today = new Date();
 														    $('#picker2').datetimepicker({
-														      format:"Y-m-d H:m",
+														      format:"Y-m-d",
 														      minDate: today,
 														      onSelect: function(selectedDate) {
 														       var option = this.id == "from" ? "minDate" : "maxDate",

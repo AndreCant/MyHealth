@@ -76,7 +76,7 @@ public class ExamsController {
 			reservationService.save(reservation);
 			return "common/blog-single";
 		  }else {
-			  return "redirect:/home";
+			  return "redirect:/common/signUp";
 		  }
 	}
 	

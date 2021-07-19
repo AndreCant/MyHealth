@@ -12,10 +12,7 @@ import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ReservationDao;
 import it.univaq.mwt.myhealth.domain.Reservation;
-<<<<<<< HEAD
-=======
 
->>>>>>> ad6523c4fe21a9b8393bc5cc439f5c58f26abc45
 @Service
 @Transactional
 public class ReservationServiceImpl implements ReservationService{
