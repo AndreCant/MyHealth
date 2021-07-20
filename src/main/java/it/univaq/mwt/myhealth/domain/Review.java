@@ -3,6 +3,7 @@ package it.univaq.mwt.myhealth.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,7 +29,7 @@ public class Review extends AbstractEntity implements Serializable{
 	private Visit visit;
 		
 	@ManyToOne
-    @JsonBackReference
+    @JsonBackReference 
 	private User patient;
 	
 	public Review() {}

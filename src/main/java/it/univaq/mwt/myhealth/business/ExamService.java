@@ -1,9 +1,11 @@
 package it.univaq.mwt.myhealth.business;
 
 import java.util.List;
+import java.util.Set;
 
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Review;
 
 public interface ExamService {
 	
@@ -24,4 +26,6 @@ public interface ExamService {
 	void delete(Long uid) throws BusinessException;
 	
 	void saveExams(List<Exam> exams) throws BusinessException;
+	
+	List<Review> findExamReview(Set<Long> examIds) throws BusinessException;
 }

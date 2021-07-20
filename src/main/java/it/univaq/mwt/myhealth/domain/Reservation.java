@@ -30,8 +30,8 @@ public class Reservation extends AbstractEntity implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate reservationDate;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")	
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private LocalDateTime startHour;
+	private LocalDateTime endHour;
 	
 	@ManyToOne
     @JsonBackReference

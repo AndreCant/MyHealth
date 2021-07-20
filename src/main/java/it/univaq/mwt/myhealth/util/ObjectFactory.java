@@ -1,16 +1,18 @@
 package it.univaq.mwt.myhealth.util;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import it.univaq.mwt.myhealth.business.UserService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
+import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
+import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
+import it.univaq.mwt.myhealth.domain.Visit;
 
 public class ObjectFactory {
 	
@@ -38,13 +40,34 @@ public class ObjectFactory {
 		return exam;
 	}
 	
-	public static Reservation createReservation(LocalDate startDate, LocalDate endDate, User patient, Exam exam) {
+	public static Reservation createReservation(LocalDateTime startHour, LocalDateTime endHour, User patient, Exam exam) {
 		Reservation reservation = new Reservation();
-		reservation.setStartDate(startDate);
-		reservation.setEndDate(endDate);
+		reservation.setStartHour(startHour);
+		reservation.setEndHour(endHour);
 		reservation.setPatient(patient);
 		reservation.setExam(exam);
 		reservation.setReservationDate(LocalDate.now());
 		return reservation;
+	}
+	
+	public static Visit createVisit(LocalDateTime startHour, LocalDateTime endHour, Boolean isCompleted, Reservation reservation, Payment payment, User doctor) {
+		Visit visit = new Visit();
+		visit.setStartHour(startHour);
+		visit.setEndHour(endHour);
+		visit.setCompleted(isCompleted);
+		visit.setDoctor(doctor);
+		visit.setPayment(payment);
+		visit.setReservation(reservation);
+		return visit;
+	}
+	
+	public static Review createReview(String title, String body, int vote, Visit visit, User patient) {
+		Review review = new Review();
+		review.setTitle(title);
+		review.setBody(body);
+		review.setVote(vote);
+		review.setVisit(visit);
+		review.setPatient(patient);
+		return review;
 	}
 }
