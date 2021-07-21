@@ -25,7 +25,7 @@ public class ObjectFactory {
 		return new User(username, email, encodedPassword, role);
 	}
 	
-	public static Exam createExam(String code, int session, String type, String name, String specialization, String subSpecialization, String description, Double price) {
+	public static Exam createExam( String code, int session, String type, String name, String specialization, String subSpecialization, String description, Double price) {
 		Exam exam = new Exam();
 		exam.setCode(code);
 		exam.setDescription(description);
