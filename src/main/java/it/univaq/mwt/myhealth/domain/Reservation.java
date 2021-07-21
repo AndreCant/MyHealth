@@ -33,7 +33,7 @@ public class Reservation extends AbstractEntity implements Serializable{
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate reservationDate;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")	
 	private LocalDateTime startHour;
 	private LocalDateTime endHour;
 	

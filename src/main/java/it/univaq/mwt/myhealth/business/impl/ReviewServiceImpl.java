@@ -19,11 +19,6 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	private ReviewDao reviewDao;
 
-	@Override
-	public List<Review> findReviewsByExam(long id) throws BusinessException, DaoException {
-		return reviewDao.findReviewsByExam(id);
-	}
-
 	@Transactional
 	@Override
 	public void save(Review review) throws BusinessException {

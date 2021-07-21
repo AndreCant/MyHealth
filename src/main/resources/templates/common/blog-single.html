@@ -130,12 +130,12 @@
 				                    </div>
 				                    <ul class="pricing-content text-center list-unstyled background-white">
 				                        <li>
-				                         <input type="text"  id="picker2" class="form-control" th:field="*{startDate}" placeholder="inserisci data">				                           
+				                         <input type="text"  id="picker2" class="form-control" th:field="*{startHour}" placeholder="inserisci data">				                           
 				                           <script>
 												$(document).ready(function(){
 													         var today = new Date();
 														    $('#picker2').datetimepicker({
-														      format:"Y-m-d",
+														      format:"Y-m-d H:m",
 														      minDate: today,
 														      onSelect: function(selectedDate) {
 														       var option = this.id == "from" ? "minDate" : "maxDate",

@@ -7,8 +7,6 @@ import it.univaq.mwt.myhealth.domain.Review;
 
 public interface ReviewService {
 	
-	List<Review> findReviewsByExam(long id) throws BusinessException, DaoException;
-
 	void save(Review review) throws BusinessException;
 
 }
