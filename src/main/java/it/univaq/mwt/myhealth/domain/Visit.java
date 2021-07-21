@@ -5,9 +5,13 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+<<<<<<< HEAD
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+=======
+import javax.persistence.JoinColumn;
+>>>>>>> a26c0e56d9b307c6f8db5422b9cf7752ccb2b507
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;

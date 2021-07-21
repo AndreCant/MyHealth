@@ -11,7 +11,11 @@ import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ReservationDao;
+import it.univaq.mwt.myhealth.dao.ReviewDao;
+import it.univaq.mwt.myhealth.dao.VisitDao;
 import it.univaq.mwt.myhealth.domain.Reservation;
+import it.univaq.mwt.myhealth.domain.Review;
+import it.univaq.mwt.myhealth.domain.Visit;
 
 @Service
 @Transactional
@@ -19,6 +23,12 @@ public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
 	private ReservationDao reservationDao;
+	
+	@Autowired
+	private VisitDao visitDao;
+	
+	@Autowired
+	private ReviewDao reviewDao;
 
 	@Override
 	public List<Reservation> findAllReservations() throws BusinessException {
@@ -85,6 +95,27 @@ public class ReservationServiceImpl implements ReservationService{
 	public void saveReservations(List<Reservation> reservations) throws BusinessException {
 		try {
 			reservationDao.saveAll(reservations);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void saveVisits(List<Visit> visits) throws BusinessException {
+		try {
+			visitDao.saveAll(visits);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		
+	}
+
+	@Override
+	public void saveReviews(List<Review> reviews) throws BusinessException {
+		try {
+			reviewDao.saveAll(reviews);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());

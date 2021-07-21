@@ -22,3 +22,4 @@ spring:
 
 myhealth:
   dateformat: dd/MM/yyyy
+  datetimeformat: dd/MM/yyyy hh:mm

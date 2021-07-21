@@ -1,12 +1,17 @@
 package it.univaq.mwt.myhealth.presentation;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.connector.Request;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
@@ -17,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import antlr.collections.List;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.UserService;
@@ -26,6 +30,7 @@ import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.RoleDao;
 import it.univaq.mwt.myhealth.dao.impl.RoleDaoImpl;
 import it.univaq.mwt.myhealth.domain.Invoice;
+import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
@@ -74,13 +79,11 @@ public class TestController {
 
 	@GetMapping("/test-view")
 	public void all() {
-		User user = new User();
-		user.setUsername("admin");
-		user.setEmail("admin@test.com");
-		user.setPassword((new BCryptPasswordEncoder()).encode("admin123"));
 		try {
-			user.setRole(userService.findRoleByName("admin"));
-			userService.saveUser(user);
+			for (Review review : examService.findExamReview(Set.of((long)1))) {
+				System.out.println(review.getTitle());
+			}
+			
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

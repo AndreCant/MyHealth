@@ -1,6 +1,6 @@
 package it.univaq.mwt.myhealth.util;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +16,10 @@ import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Reservation;
+import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
+import it.univaq.mwt.myhealth.domain.Visit;
 
 @Component
 public class DataInitializer {
@@ -34,6 +36,9 @@ public class DataInitializer {
 	private List<Role> roles;
 	private List<Exam> exams;
 	private List<User> users;
+	private List<Reservation> reservations;
+	private List<Visit> visits;
+	private List<Review> reviews;
 	
 	@EventListener(ApplicationReadyEvent.class)
 	public void initialize() {
@@ -41,6 +46,8 @@ public class DataInitializer {
 		this.initUsers();
 		this.initExams();
 		this.initReservations();
+		this.initVisits();
+		this.initReviews();
 	}
 	
 	private void initRoles() {
@@ -51,7 +58,7 @@ public class DataInitializer {
 				ObjectFactory.createRole("patient", "Patient User")
 			);
 			
-			userService.saveRoles(new ArrayList<Role>(this.roles));
+			userService.saveRoles(this.roles);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
@@ -65,7 +72,7 @@ public class DataInitializer {
 				ObjectFactory.createUser("lello21", "lol@lol.com", "admin123", this.roles.get(2))
 			);
 			
-			userService.saveUsers(new ArrayList<User>(this.users));
+			userService.saveUsers(this.users);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +86,7 @@ public class DataInitializer {
 				ObjectFactory.createExam("OO-94", 1, "exam", "", "eye", "gradation", "", 70.00)
 			);
 			
-			examService.saveExams(new ArrayList<Exam>(this.exams));
+			examService.saveExams(this.exams);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
@@ -87,11 +94,38 @@ public class DataInitializer {
 	
 	public void initReservations() {
 		try {
-			reservationService.saveReservations(new ArrayList<Reservation>(List.of(
-				ObjectFactory.createReservation(LocalDate.of(2021, 7, 15), LocalDate.of(2021, 7, 15), this.users.get(2), this.exams.get(0)),
-				ObjectFactory.createReservation(LocalDate.of(2021, 7, 20), LocalDate.of(2021, 7, 20), this.users.get(2), this.exams.get(2))
-			)));
+			this.reservations = List.of(
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 15, 10, 30), LocalDateTime.of(2021, 7, 15, 11, 30), this.users.get(2), this.exams.get(0)),
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(2), this.exams.get(2))
+			);
+			
+			reservationService.saveReservations(this.reservations);
 		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initVisits() {
+		try {
+			this.visits = List.of(
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.reservations.get(0), null, this.users.get(1)),
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.reservations.get(1), null, this.users.get(1))
+			);
+			
+			reservationService.saveVisits(visits);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initReviews() {
+		try {
+			this.reviews = List.of(
+				ObjectFactory.createReview("Good!!!", "This is a review body bla bla bla hello world.", 4, this.visits.get(0), this.users.get(2))
+			);
+			
+			reservationService.saveReviews(reviews);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.business.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,9 @@ import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ExamDao;
+import it.univaq.mwt.myhealth.dao.ReviewDao;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Review;
 
 @Service
 @Transactional
@@ -18,6 +21,9 @@ public class ExamServiceImpl implements ExamService{
 	
 	@Autowired
 	private ExamDao examDao;
+	
+	@Autowired
+	private ReviewDao reviewDao;
 	
 	@Transactional(readOnly = true)
 	@Override
@@ -105,6 +111,16 @@ public class ExamServiceImpl implements ExamService{
 		try {
 			examDao.saveAll(exams);
 		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<Review> findExamReview(Set<Long> examIds) throws BusinessException {
+		try {
+			return reviewDao.findReviewsByExamIds(examIds);
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
