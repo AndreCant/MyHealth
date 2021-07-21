@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
@@ -69,5 +70,18 @@ public class ObjectFactory {
 		review.setVisit(visit);
 		review.setPatient(patient);
 		return review;
+	}
+	
+	public static Invoice createInvoice(int numbPayments, int tax, int code, Double totalPrice) {
+		Double totalTax = (totalPrice / 100) * tax;
+		
+		Invoice invoice = new Invoice();
+		invoice.setNumbPayments(numbPayments);
+		invoice.setTax(tax);
+		invoice.setCode(code);
+		invoice.setTotalPrice(totalPrice);
+		invoice.setIssueDate(LocalDate.now());
+		invoice.setFinalPrice(totalPrice + totalTax);
+		return invoice;
 	}
 }

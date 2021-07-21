@@ -3,13 +3,10 @@ package it.univaq.mwt.myhealth.configuration;
 import java.util.Properties;
 import javax.sql.DataSource;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import it.univaq.mwt.myhealth.util.DataInitializer;
 
 @Profile("dev")
 @Configuration
@@ -30,7 +27,7 @@ public class DevDataConfig{
     public Properties jpaProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.hbm2ddl.auto", "create-drop");
-        properties.put("hibernate.hbm2ddl.import_files", "data.sql");
+        properties.put("hibernate.ogm.datastore.create_database", true);
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         properties.put("hibernate.enable_lazy_load_no_trans", "true");
         properties.put("hibernate.show_sql", "true");

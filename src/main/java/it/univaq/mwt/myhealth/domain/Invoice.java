@@ -3,7 +3,10 @@ package it.univaq.mwt.myhealth.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,17 +20,19 @@ import lombok.Setter;
 public class Invoice implements Serializable{
 	
 	@Id
-    protected String index;
+    private String index;
     
     @Version
-    protected long version;
+    private long version;
     
 	private static final long serialVersionUID = 1L;
-	
+
+	private int code;
 	private int numbPayments;
 	private int tax;
-	private int code;
 	private Double totalPrice;
 	private Double finalPrice;
 	private LocalDate issueDate;
+	private Long payment_id;
+	
 }

@@ -2,17 +2,20 @@ package it.univaq.mwt.myhealth.dao;
 
 import java.util.List;
 
+import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.domain.Invoice;
 
 public interface InvoiceDao {
 	
-	public List<Invoice> findAll();
+	public List<Invoice> findAll() throws DaoException;
 	
-	public Invoice findById(Long uid);
+	public Invoice findById(Long uid) throws DaoException;
    
-	public void save(Invoice invoice);
+	public void save(Invoice invoice) throws DaoException;
  
-	public void update(Invoice invoice);
+	public void update(Invoice invoice) throws DaoException;
   
-	public void delete(Long uid);
+	public void delete(Long uid) throws DaoException;
+	
+	public void saveAll(List<Invoice> invoices) throws DaoException;
 }

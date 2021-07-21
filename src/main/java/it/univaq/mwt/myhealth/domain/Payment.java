@@ -26,8 +26,6 @@ public class Payment extends AbstractEntity implements Serializable{
 	private boolean isPaid;
 	private int tax;
 	private Double finalPrice;
-	private String invoice; //to verify, ex id to mongo
-	
 	
 	@OneToMany(mappedBy = "payment")
     @JsonManagedReference

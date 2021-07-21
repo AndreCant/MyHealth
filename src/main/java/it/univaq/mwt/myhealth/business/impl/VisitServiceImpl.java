@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
+import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.VisitDao;
 import it.univaq.mwt.myhealth.domain.Visit;
 
@@ -33,7 +34,12 @@ public class VisitServiceImpl implements VisitService{
 
 	@Override
 	public Visit findById(Long id) throws BusinessException {
-		return visitDao.findById(id);
+		try {
+			return visitDao.findById(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override

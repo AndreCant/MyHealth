@@ -18,10 +18,10 @@ import lombok.Setter;
 public class Paycheck implements Serializable{
 	
 	@Id
-    protected String index;
+    private String index;
     
     @Version
-    protected long version;
+    private long version;
     
 	private static final long serialVersionUID = 1L;
 	
