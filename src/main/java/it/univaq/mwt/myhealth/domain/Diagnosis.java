@@ -24,7 +24,6 @@ public class Diagnosis extends AbstractEntity implements Serializable{
 	private String title;
 	private String description;
 	
-	
 	@OneToMany(mappedBy = "diagnosis")
     @JsonManagedReference
 	private List<MedicineDiagnosis> medicineDiagnosis;
@@ -32,6 +31,4 @@ public class Diagnosis extends AbstractEntity implements Serializable{
 	@OneToMany(mappedBy = "diagnosis")
     @JsonManagedReference
 	private List<Visit> visits;
-	
-	public Diagnosis() {}
 }

@@ -17,4 +17,6 @@ public interface FrontOfficeService {
 	FrontOffice findById(long id) throws BusinessException;
 	
 	FrontOffice findByName (String name) throws BusinessException;
+	
+	void saveFrontOffices(List<FrontOffice> frontOffices) throws BusinessException;
 }

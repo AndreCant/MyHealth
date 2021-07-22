@@ -2,17 +2,19 @@ package it.univaq.mwt.myhealth.business.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.univaq.mwt.myhealth.business.FrontOfficeService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
-import it.univaq.mwt.myhealth.dao.ExamDao;
 import it.univaq.mwt.myhealth.dao.FrontOfficeDao;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
 
 @Service
+@Transactional
 public class FrontOfficeServiceImpl implements FrontOfficeService{
 	
 	@Autowired
@@ -54,6 +56,16 @@ public class FrontOfficeServiceImpl implements FrontOfficeService{
 	public FrontOffice findByName(String name) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void saveFrontOffices(List<FrontOffice> frontOffices) throws BusinessException {
+		try {
+			frontOfficeDao.saveAll(frontOffices);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 }

@@ -10,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.PaymentDao;
 import it.univaq.mwt.myhealth.dao.ReservationDao;
 import it.univaq.mwt.myhealth.dao.ReviewDao;
 import it.univaq.mwt.myhealth.dao.VisitDao;
+import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.Visit;
@@ -25,10 +27,10 @@ public class ReservationServiceImpl implements ReservationService{
 	private ReservationDao reservationDao;
 	
 	@Autowired
-	private VisitDao visitDao;
+	private ReviewDao reviewDao;
 	
 	@Autowired
-	private ReviewDao reviewDao;
+	private PaymentDao paymentDao;
 
 	@Override
 	public List<Reservation> findAllReservations() throws BusinessException {
@@ -102,21 +104,20 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public void saveVisits(List<Visit> visits) throws BusinessException {
-		try {
-			visitDao.saveAll(visits);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new BusinessException(e.getMessage());
-		}
-		
-	}
-
-	@Override
 	public void saveReviews(List<Review> reviews) throws BusinessException {
 		try {
 			reviewDao.saveAll(reviews);
 		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void savePayments(List<Payment> payments) throws BusinessException {
+		try {
+			paymentDao.saveAll(payments);
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}

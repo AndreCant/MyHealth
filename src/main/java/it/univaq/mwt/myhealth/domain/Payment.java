@@ -27,10 +27,6 @@ public class Payment extends AbstractEntity implements Serializable{
 	private int tax;
 	private Double finalPrice;
 	
-	@OneToMany(mappedBy = "payment")
-    @JsonManagedReference
-    private List<Convention> convention;
-	
 	@OneToOne
 	private Visit visit;
 		

@@ -16,4 +16,6 @@ public interface FrontOfficeDao{
 	public void update(FrontOffice frontOffice)  throws DaoException;
   
 	public void delete(Long uid)  throws DaoException;
+	
+	public void saveAll(List<FrontOffice> frontOffices) throws DaoException;
 }

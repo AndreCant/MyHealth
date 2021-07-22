@@ -9,13 +9,18 @@ import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.InvoiceDao;
+import it.univaq.mwt.myhealth.dao.PaycheckDao;
 import it.univaq.mwt.myhealth.domain.Invoice;
+import it.univaq.mwt.myhealth.domain.Paycheck;
 
 @Service
 public class DocumentServiceImpl implements DocumentService{
 	
 	@Autowired
 	private InvoiceDao invoiceDao;
+	
+	@Autowired
+	private PaycheckDao paycheckDao;
 
 	@Override
 	public void saveInvoice(Invoice invoice) throws BusinessException{
@@ -47,4 +52,23 @@ public class DocumentServiceImpl implements DocumentService{
 		}
 	}
 
+	@Override
+	public List<Paycheck> findAllPaychecks() throws BusinessException {
+		try {
+			return paycheckDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void savePaychecks(List<Paycheck> paychecks) throws BusinessException {
+		try {
+			paycheckDao.saveAll(paychecks);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

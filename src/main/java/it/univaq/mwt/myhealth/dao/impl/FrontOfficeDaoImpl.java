@@ -21,7 +21,7 @@ public class FrontOfficeDaoImpl implements FrontOfficeDao{
 
 	@Override
 	public List<FrontOffice> findAll(){
-		return entityManager.createQuery("FROM Exam").getResultList();
+		return entityManager.createQuery("FROM FrontOffice").getResultList();
 	}
 
 	@Override
@@ -45,5 +45,12 @@ public class FrontOfficeDaoImpl implements FrontOfficeDao{
 	public void delete(Long uid) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void saveAll(List<FrontOffice> frontOffices) throws DaoException {
+		for (FrontOffice frontOffice : frontOffices) {
+			entityManager.persist(frontOffice);
+		}
 	}
 }

@@ -58,10 +58,6 @@ public class User extends AbstractEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "patient")
     @JsonManagedReference
-    private List<PatientConvention> patientConventions;
-	
-	@OneToMany(mappedBy = "patient")
-    @JsonManagedReference
     private List<Reservation> reservations;
 	
 	@OneToMany(mappedBy = "patient")

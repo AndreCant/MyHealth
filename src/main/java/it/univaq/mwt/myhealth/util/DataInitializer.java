@@ -1,22 +1,31 @@
 package it.univaq.mwt.myhealth.util;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.ExamService;
+import it.univaq.mwt.myhealth.business.FrontOfficeService;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
+import it.univaq.mwt.myhealth.domain.AnnualBudget;
+import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Expense;
+import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Invoice;
+import it.univaq.mwt.myhealth.domain.Medicine;
+import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
+import it.univaq.mwt.myhealth.domain.Paycheck;
+import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.Role;
@@ -30,6 +39,9 @@ public class DataInitializer {
 	@Autowired ExamService examService;
 	@Autowired ReservationService reservationService;
 	@Autowired DocumentService documentService;
+	@Autowired VisitService visitService;
+	@Autowired FrontOfficeService frontOfficeService;
+	@Autowired AdministrationService administrationService;
 	
 	private List<Role> roles;
 	private List<Exam> exams;
@@ -38,6 +50,14 @@ public class DataInitializer {
 	private List<Visit> visits;
 	private List<Review> reviews;
 	private List<Invoice> invoices;
+	private List<Payment> payments;
+	private List<Paycheck> paychecks;
+	private List<Diagnosis> diagnosis;
+	private List<Medicine> medicines;
+	private List<MedicineDiagnosis> medicineDiagnosis;
+	private List<FrontOffice> frontOffices;
+	private List<AnnualBudget> annualBudgets;
+	private List<Expense> expenses;
 	
 	@EventListener(ApplicationReadyEvent.class)
 	public void initialize() {
@@ -45,9 +65,17 @@ public class DataInitializer {
 		this.initUsers();
 		this.initExams();
 		this.initReservations();
+		this.initPayments();
+		this.initDiagnosis();
 		this.initVisits();
 		this.initReviews();
 		this.initInvoices();
+		this.initPaychecks();
+		this.initMedicines();
+		this.initMedicineDiagnosis();
+		this.initFrontOffices();
+		this.initAnnualBudgets();
+		this.initExpenses();
 	}
 	
 	private void initRoles() {
@@ -105,14 +133,40 @@ public class DataInitializer {
 		}
 	}
 	
+	public void initPayments() {
+		try {
+			this.payments = List.of(
+				ObjectFactory.createPayment(89.99, 10, false, 22),
+				ObjectFactory.createPayment(45.99, 0, true, 4)
+			);
+			
+			reservationService.savePayments(this.payments);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initDiagnosis() {
+		try {
+			this.diagnosis = List.of(
+				ObjectFactory.createDiagnosis("AA-00", "Diagnosis Visit 1", "This is diagnosis 1 description!"),
+				ObjectFactory.createDiagnosis("AK-47", "Diagnosis Visit 2", "This is diagnosis 2 description!")
+			);
+			
+			visitService.saveDiagnosis(this.diagnosis);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void initVisits() {
 		try {
 			this.visits = List.of(
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.reservations.get(0), null, this.users.get(1)),
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.reservations.get(1), null, this.users.get(1))
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.reservations.get(0), this.payments.get(0), this.users.get(1), this.diagnosis.get(0)),
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.reservations.get(1), this.payments.get(1), this.users.get(1), this.diagnosis.get(1))
 			);
 			
-			reservationService.saveVisits(visits);
+			visitService.saveVisits(visits);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -147,4 +201,88 @@ public class DataInitializer {
 			e.printStackTrace();
 		}
 	}
+	
+	public void initPaychecks() {
+		try {
+			List<Paycheck> paychecks = documentService.findAllPaychecks();
+			
+			if (paychecks == null || paychecks.isEmpty()) {
+				this.paychecks = List.of(
+					ObjectFactory.createPaycheck("Pippo", "Franco", 12345, "N26-A", 2021, 7, 20, "This is a fake Paycheck!", 4523.58, 38.59)
+				);
+					
+				documentService.savePaychecks(this.paychecks);
+			}else {
+				this.paychecks = paychecks;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initMedicines() {
+		try {
+			this.medicines = List.of(
+				ObjectFactory.createMedicine("DFL", "Deflan", "Deflazacort", "Medicine Description!!!", 30.0),
+				ObjectFactory.createMedicine("ARM", "Armisarte", "Pemetrexed", "Medicine Description!!!", 25.0),
+				ObjectFactory.createMedicine("VNL", "Venolen", "Troxerutina", "Medicine Description!!!", 300.0),
+				ObjectFactory.createMedicine("DFR", "Dificlir", "Fidaxomicina", "Medicine Description!!!", 200.0)
+			);
+			
+			visitService.saveMedicines(this.medicines);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initMedicineDiagnosis() {
+		try {
+			this.medicineDiagnosis = List.of(
+				ObjectFactory.createMedicineDiagnosis(this.medicines.get(0), this.diagnosis.get(0)),
+				ObjectFactory.createMedicineDiagnosis(this.medicines.get(1), this.diagnosis.get(1)),
+				ObjectFactory.createMedicineDiagnosis(this.medicines.get(3), this.diagnosis.get(1))
+			);
+			
+			visitService.saveMedicineDiagnosis(this.medicineDiagnosis);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initFrontOffices() {
+		try {
+			this.frontOffices = List.of(
+				ObjectFactory.createFrontOffice("Office Name", 1)
+			);
+			
+			frontOfficeService.saveFrontOffices(this.frontOffices);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initAnnualBudgets() {
+		try {
+			this.annualBudgets = List.of(
+				ObjectFactory.createAnnualBudget(895263.59, 7859256.55, 100000.0, 2021, false)
+			);
+			
+			administrationService.saveAnnualBudgets(this.annualBudgets);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initExpenses() {
+		try {
+			this.expenses = List.of(
+				ObjectFactory.createExpense("OM-01", "Ordinary maintenance", "Expence description", 4956.55, this.frontOffices.get(0), this.annualBudgets.get(0))
+			);
+			
+			administrationService.saveExpenses(this.expenses);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

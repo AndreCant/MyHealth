@@ -25,9 +25,12 @@ public class Paycheck implements Serializable{
     
 	private static final long serialVersionUID = 1L;
 	
+	private String name;
+	private String surname;
+	private Integer register;
 	private String code;
-	private Year year;
-	private Month month;
+	private Integer year;
+	private Integer month;
 	private int days;
 	private String description;
 	private Double grossSalary;

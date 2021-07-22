@@ -3,6 +3,7 @@ package it.univaq.mwt.myhealth.business;
 import java.util.List;
 
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
+import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.Visit;
@@ -23,7 +24,7 @@ public interface ReservationService {
 	
 	void saveReservations(List<Reservation> reservations) throws BusinessException;
 	
-	void saveVisits(List<Visit> visits) throws BusinessException;
-	
 	void saveReviews(List<Review> reviews) throws BusinessException;
+	
+	void savePayments(List<Payment> payments) throws BusinessException;
 }

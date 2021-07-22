@@ -1,13 +1,21 @@
 package it.univaq.mwt.myhealth.util;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import it.univaq.mwt.myhealth.domain.AnnualBudget;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Expense;
+import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Invoice;
+import it.univaq.mwt.myhealth.domain.Medicine;
+import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
+import it.univaq.mwt.myhealth.domain.Paycheck;
 import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
@@ -51,7 +59,20 @@ public class ObjectFactory {
 		return reservation;
 	}
 	
-	public static Visit createVisit(LocalDateTime startHour, LocalDateTime endHour, Boolean isCompleted, Reservation reservation, Payment payment, User doctor) {
+	public static Payment createPayment(Double price, int discount, boolean isPaid, int tax) {
+		Double totDiscount = discount > 0 ? (price / 100) * discount : 0;
+		Double totTax = (price / 100) * tax;
+		
+		Payment payment = new Payment();
+		payment.setPrice(price);
+		payment.setDiscount(discount);
+		payment.setPaid(isPaid);
+		payment.setTax(tax);
+		payment.setFinalPrice(price - totDiscount + totTax);
+		return payment;
+	}
+	
+	public static Visit createVisit(LocalDateTime startHour, LocalDateTime endHour, boolean isCompleted, Reservation reservation, Payment payment, User doctor, Diagnosis diagnosis) {
 		Visit visit = new Visit();
 		visit.setStartHour(startHour);
 		visit.setEndHour(endHour);
@@ -59,6 +80,7 @@ public class ObjectFactory {
 		visit.setDoctor(doctor);
 		visit.setPayment(payment);
 		visit.setReservation(reservation);
+		visit.setDiagnosis(diagnosis);
 		return visit;
 	}
 	
@@ -81,7 +103,80 @@ public class ObjectFactory {
 		invoice.setCode(code);
 		invoice.setTotalPrice(totalPrice);
 		invoice.setIssueDate(LocalDate.now());
-		invoice.setFinalPrice(totalPrice + totalTax);
+		invoice.setFinalPrice(BigDecimal.valueOf(totalPrice + totalTax).setScale(2, RoundingMode.HALF_UP).doubleValue());
 		return invoice;
 	}
+	
+	public static Paycheck createPaycheck(String name, String surname, Integer register, String code, Integer year, Integer month, int days, String description, Double grossSalary, Double totalTax) {
+		Double tax = (grossSalary / 100) * totalTax;
+		
+		Paycheck paycheck = new Paycheck();
+		paycheck.setName(name);
+		paycheck.setSurname(surname);
+		paycheck.setRegister(register);
+		paycheck.setCode(code);
+		paycheck.setYear(year);
+		paycheck.setMonth(month);
+		paycheck.setDays(days);
+		paycheck.setDescription(description);
+		paycheck.setGrossSalary(grossSalary);
+		paycheck.setTotalTax(totalTax);
+		paycheck.setNetSalary(BigDecimal.valueOf(grossSalary - tax).setScale(2, RoundingMode.HALF_UP).doubleValue());
+		return paycheck;
+	}
+	
+	public static Diagnosis createDiagnosis(String code, String title, String description) {
+		Diagnosis diagnosis = new Diagnosis();
+		diagnosis.setCode(code);
+		diagnosis.setTitle(title);
+		diagnosis.setDescription(description);
+		return diagnosis;
+	}
+	
+	public static Medicine createMedicine(String code, String name, String activePrinciple, String description, Double weight) {
+		Medicine medicine = new Medicine();
+		medicine.setName(name);
+		medicine.setCode(code);
+		medicine.setActivePrinciple(activePrinciple);
+		medicine.setDescription(description);
+		medicine.setWeight(weight);
+		return medicine;
+	}
+	
+	public static MedicineDiagnosis createMedicineDiagnosis(Medicine medicine, Diagnosis diagnosis) {
+		MedicineDiagnosis medicineDiagnosis = new MedicineDiagnosis();
+		medicineDiagnosis.setMedicine(medicine);
+		medicineDiagnosis.setDiagnosis(diagnosis);
+		return medicineDiagnosis;
+	}
+	
+	public static FrontOffice createFrontOffice(String name, int number) {
+		FrontOffice frontOffice = new FrontOffice();
+		frontOffice.setName(name);
+		frontOffice.setNumber(number);
+		return frontOffice;
+	}
+	
+	public static AnnualBudget createAnnualBudget(Double totalInvoices, Double totalExpenses, Double budget, Integer year, boolean isAtLoss) {
+		AnnualBudget annualBudget = new AnnualBudget();
+		annualBudget.setTotalInvoices(totalInvoices);
+		annualBudget.setTotalExpenses(totalExpenses);
+		annualBudget.setBudget(budget);
+		annualBudget.setYear(year);
+		annualBudget.setAtLoss(isAtLoss);
+		return annualBudget;
+	}
+	
+	public static Expense createExpense(String code, String name, String description, Double total, FrontOffice frontOffice, AnnualBudget annualBudget) {
+		Expense expense = new Expense();
+		expense.setCode(code);
+		expense.setName(name);
+		expense.setDescription(description);
+		expense.setTotal(total);
+		expense.setFrontOffice(frontOffice);
+		expense.setAnnualBudget(annualBudget);
+		return expense;
+	}
+	
+	
 }

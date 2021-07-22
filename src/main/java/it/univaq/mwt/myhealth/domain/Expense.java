@@ -23,7 +23,6 @@ public class Expense extends AbstractEntity implements Serializable{
 	private String name;
 	private String description;
 	private Double total;
-	private String paycheck; //to verify, external id to mongo
 	
 	@ManyToOne
     @JsonBackReference
@@ -33,6 +32,4 @@ public class Expense extends AbstractEntity implements Serializable{
     @JsonBackReference
     private AnnualBudget annualBudget;
 	
-	
-	public Expense() {}
 }
