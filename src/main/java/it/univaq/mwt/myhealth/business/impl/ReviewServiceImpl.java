@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.business.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,17 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Autowired
 	private ReviewDao reviewDao;
+	
+	@Override
+	public List<Review> findReviewsByExamIds(Set<Long> examIds) throws BusinessException{
+		try {
+		    return reviewDao.findReviewsByExamIds(examIds);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		 
+	} 
 
 	@Transactional
 	@Override

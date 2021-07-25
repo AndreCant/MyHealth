@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout-admin/layout-admin}">
+<body>
+   <div layout:fragment="content">
+    <nav class="navbar navbar-expand-lg navbar-dark z-index-9  fixed-top" id="mainNav">
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+            <ul class="navbar-nav navbar-sidenav background-main-color admin-nav" id="admin-nav">
+                <li class="nav-item">
+                    <span class="nav-title-text">Main</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                    <a class="nav-link" href="dashboard-home.html">
+                        <i class="fas fa-fw fa-home"></i><span class="nav-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                    <a class="nav-link" href="dashboard-my-listings.html">
+                <i class="fa fa-fw fa-table"></i>
+                <span class="nav-link-text">My Listings</span>
+              </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Favorites">
+                    <a class="nav-link" href="dashboard-my-favorites.html">
+                <i class="fa fa-fw fa-heart"></i>
+                <span class="nav-link-text">My Favorites</span>
+              </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
+                    <a class="nav-link" href="dashboard-reviews.html">
+                <i class="fa fa-fw fa-star"></i>
+                <span class="nav-link-text">Reviews</span>
+              </a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-title-text">Example Pages</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
+                    <a class="nav-link" href="dashboard-bookings.html">
+                        <i class="far fa-fw fa-bookmark"></i>
+                        <span class="nav-link-text">Bookings</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
+                    <a class="nav-link active" href="dashboard-add-listing.html">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                        <span class="nav-link-text">Add Listing</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Packages">
+                    <a class="nav-link" href="dashboard-packages.html">
+                        <i class="far fa-fw fa-list-alt"></i>
+                        <span class="nav-link-text">Packages</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-title-text">User Area</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Profile">
+                    <a class="nav-link" href="dashboard-my-profile.html">
+                        <i class="fa fa-fw fa-user-circle"></i>
+                        <span class="nav-link-text">My Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sing Out">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out-alt"></i>
+                        <span class="nav-link-text">Sing Out</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid overflow-hidden">
+            <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
+                <!-- Page Title -->
+                <div id="page-title" class="padding-30px background-white full-width">
+                    <div class="container">
+                        <ol class="breadcrumb opacity-5">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Dashboard</a></li>
+                            <li class="active">Add Listing</li>
+                        </ol>
+                        <h1 class="font-weight-300">Add Listing</h1>
+                    </div>
+                </div>
+                <!-- // Page Title -->
+
+                <div class="margin-tb-45px full-width">
+                    <div class="padding-30px background-white border-radius-20 box-shadow">
+                        <h3><i class="far fa-list-alt margin-right-10px text-main-color"></i> Insert new Exam </h3>
+                        <hr>
+                        <form th:action="${#request.getRequestURI()}" method="POST" th:object="${exam}">
+                            <div class="form-group margin-bottom-20px">
+                                <label><i class="far fa-list-alt margin-right-10px"></i> Exam Name</label>
+                                <input type="text" class="form-control form-control-sm" id="ListingTitle" placeholder="exam name" th:field="*{name}">
+                            </div>
+                            <div class="form-group margin-bottom-20px">
+                            </div>
+                            <div class="form-group margin-bottom-20px">
+                                <label><i class="  margin-right-10px"></i> Code</label>
+                                <input type="text" class="form-control form-control-sm" id="ListingKeywords" placeholder="code" th:field="*{code}">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 margin-bottom-20px">
+                                    <label><i class=" margin-right-10px"></i> Price</label>
+                                    <input type="number" class="form-control form-control-sm" placeholder="price" th:field="*{price}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label><i class="fas fa-link margin-right-10px"></i> Type</label>
+                                    <input type="text" class="form-control form-control-sm" placeholder="type exam" th:field="*{type}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label><i class="fas fa-info margin-right-10px"></i> Description</label>
+                                    <input type="text" class="form-control form-control-sm" placeholder="description" th:field="*{description}">
+                                </div>
+                            </div>
+                           <button type="submit" class="btn btn-lg border-2  btn-primary btn-block border-radius-15 padding-15px box-shadow">Add Listing</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid-->
+        <!-- /.content-wrapper-->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+          <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="page-login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+</body>
+
+</html>

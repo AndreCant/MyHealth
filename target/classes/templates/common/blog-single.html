@@ -115,7 +115,7 @@
                         <hr>                       
                         <div class="post-tags" style="width: 100%;">
 				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%;">
-				            <form action="#" th:action="@{${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
+				            <form action="#" th:action="@{'/common/exams/exam/'+ ${exam.name} + '/' + ${exam.id}}" method="POST" th:object="${reservation}" id="reservationForm">
 				               <div class="pricing hover-effect">
 				                    <div class="pricing-head text-center" style="background:white;">
 				                        <h3 class="font-weight-700 padding-40px background-main-color margin-0px text-white">
@@ -164,28 +164,12 @@
                             <hr>
 
                             <ul class="commentlist padding-0px margin-0px list-unstyled text-grey-3">
-                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px" th:each="singleReview : ${reviews}">
                                     <img src="assets/img/testimonial-1.png" class="float-left margin-right-20px border-radius-60 margin-bottom-20px" alt="">
                                     <div class="margin-left-85px">
-                                        <a class="d-inline-block text-dark text-medium margin-right-20px" href="#">Bakhita alrawi </a>
+                                          <label>voto</label> <p th:text="${singleReview.vote}"></p>
                                         <span class="text-extra-small">Date :  <a href="#" class="text-main-color">July 15, 2016</a></span>
-                                        <p class="margin-top-15px text-grey-2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
-                                    </div>
-                                </li>
-                                <li class="border-bottom-1 border-grey-1 margin-left-55px margin-bottom-20px">
-                                    <img src="assets/img/testimonial-2.png" class="float-left margin-right-20px border-radius-60 margin-bottom-20px" alt="">
-                                    <div class="margin-left-85px">
-                                        <a class="d-inline-block text-dark text-medium margin-right-20px" href="#">Rabie Elkheir </a>
-                                        <span class="text-extra-small">Date :  <a href="#" class="text-main-color">July 15, 2016</a></span>
-                                        <p class="margin-top-15px text-grey-2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
-                                    </div>
-                                </li>
-                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
-                                    <img src="assets/img/testimonial-3.png" class="float-left margin-right-20px border-radius-60 margin-bottom-20px" alt="">
-                                    <div class="margin-left-85px">
-                                        <a class="d-inline-block text-dark text-medium margin-right-20px" href="#">Adel Alsaeed </a>
-                                        <span class="text-extra-small">Date :  <a href="#" class="text-main-color">July 15, 2016</a></span>
-                                        <p class="margin-top-15px text-grey-2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+                                        <p class="margin-top-15px text-grey-2" th:text="${singleReview.body}">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
                                     </div>
                                 </li>
                             </ul>
@@ -196,19 +180,19 @@
                         <div class="padding-30px background-white border-radius-10">
                             <h4><i class="fas fa-comment-alt margin-right-10px text-main-color"></i> Add Comment</h4>
                             <hr>
-                            <form th:action="@{${exam.name} + '/review'}" method="POST" th:object="${review}">
+                            <form th:action="@{'/common/exams/exam/' + ${exam.name} + '/review'}" method="POST" th:object="${review}">
                                 <div class="form-row">
               
                                     <div class="form-group col-md-3">
                                         <label>voto</label>
-                                        <input type="number" class="form-control" th:field="*{vote}" placeholder="inserisci voto" max="10">
+                                        <input type="number" class="form-control" th:field="*{vote}" placeholder="inserisci voto" min="1" max="10">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Comment :</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1"  th:field="*{body}" rows="3" placeholder="Comment"></textarea>
                                 </div>
-                                <button type="submit"class="btn-sm btn-lg btn-block background-main-color text-white text-center font-weight-bold text-uppercase border-radius-10 padding-10px">Add Now !</button>
+                                <button type="submit" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px;">Add Now !</button>
                             </form>
                         </div>
                     </div>

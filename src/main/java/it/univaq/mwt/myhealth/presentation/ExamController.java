@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.presentation;
 
 import java.security.Principal;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,19 +51,21 @@ public class ExamController {
 
 
 	
-	@GetMapping(value="/exams/exam/{name}")
-	public String exam (Model model,@PathVariable("name") String name) throws BusinessException, DaoException {
+	@GetMapping(value="/exams/exam/{name}/{id}")
+	public String exam (Model model,@PathVariable("name") String name,@PathVariable("id") Long id) throws BusinessException, DaoException {
 		Reservation reservation = new Reservation();
 		Review review = new Review();
-		//model.addAttribute("reviews", reviewService.findReviewsByExam(id));
+		HashSet<Long> reviews = new HashSet<Long>();
+		reviews.add(id);
+		model.addAttribute("reviews", reviewService.findReviewsByExamIds(reviews));
 		model.addAttribute("review", review);
 		model.addAttribute("exam", examService.findByName(name));	
 		model.addAttribute("reservation", reservation);	
 		return "/common/blog-single";
 	}
 	
-	@PostMapping(value="/exams/exam/{name}")
-	public String reservation (Model model, @PathVariable("name") String name,@ModelAttribute("reservation") Reservation reservation, Principal user) throws BusinessException {
+	@PostMapping(value="/exams/exam/{name}/{id}")
+	public String reservation (Model model, @PathVariable("name") String name, @PathVariable("id") Long id, @ModelAttribute("reservation") Reservation reservation, Principal user) throws BusinessException {
 		    if (user != null) 
 		    {		    	
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -73,7 +76,7 @@ public class ExamController {
 		    reservation.setExam(exam);
 		    reservation.setFrontOffice(frontOffice);
 			reservationService.save(reservation);
-			return "redirect:/common/exams/exam/{name}";
+			return "redirect:/common/exams/exam/{name}/{id}";
 		  }else {
 			  return "redirect:/common/signIn";
 		  }
@@ -85,10 +88,7 @@ public class ExamController {
 		review.setPatient(userService.findUserByUsername(currentUserName));
 		reviewService.save(review);
 		model.addAttribute("exam",examService.findByName(name));
-		return "redirect:/common/exams/exam/{name}";
-			
+		return "redirect:/common/exams";			
 	}
-	
-	
 	
 }
