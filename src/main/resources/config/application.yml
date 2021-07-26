@@ -12,7 +12,7 @@ spring:
     #serialization:
       #write-dates-as-timestamps: true
   messages:
-    basename: i18n/common, i18n/myhealth
+    basename: i18n/myhealth
     encoding: UTF-8
     use-code-as-default-message: true
   main:    allow-bean-definition-overriding: true
