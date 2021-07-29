@@ -51,12 +51,12 @@ public class ExamController {
 
 
 	
-	@GetMapping(value="/exams/exam/{name}/{id}")
-	public String exam (Model model,@PathVariable("name") String name,@PathVariable("id") Long id) throws BusinessException, DaoException {
+	@GetMapping(value="/exams/exam/{name}")
+	public String exam (Model model,@PathVariable("name") String name) throws BusinessException, DaoException {
 		Reservation reservation = new Reservation();
 		Review review = new Review();
 		HashSet<Long> reviews = new HashSet<Long>();
-		reviews.add(id);
+		reviews.add(examService.findByName(name).getId());
 		model.addAttribute("reviews", reviewService.findReviewsByExamIds(reviews));
 		model.addAttribute("review", review);
 		model.addAttribute("exam", examService.findByName(name));	
@@ -64,19 +64,18 @@ public class ExamController {
 		return "/common/blog-single";
 	}
 	
-	@PostMapping(value="/exams/exam/{name}/{id}")
-	public String reservation (Model model, @PathVariable("name") String name, @PathVariable("id") Long id, @ModelAttribute("reservation") Reservation reservation, Principal user) throws BusinessException {
+	@PostMapping(value="/exams/exam/{name}")
+	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation, Principal user) throws BusinessException {
 		    if (user != null) 
-		    {		    	
+		    {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
 		    FrontOffice frontOffice = frontOfficeService.findById(1);
 		    reservation.setPatient(userService.findUserByUsername(currentUserName));
-		    reservation.setFrontOffice(frontOffice);
 		    reservation.setExam(exam);
 		    reservation.setFrontOffice(frontOffice);
 			reservationService.save(reservation);
-			return "redirect:/common/exams/exam/{name}/{id}";
+			return "redirect:/common/exams/exam/{name}";
 		  }else {
 			  return "redirect:/common/signIn";
 		  }
