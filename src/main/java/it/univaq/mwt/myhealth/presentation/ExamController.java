@@ -61,13 +61,11 @@ public class ExamController {
 		model.addAttribute("review", review);
 		model.addAttribute("exam", examService.findByName(name));	
 		model.addAttribute("reservation", reservation);	
-		return "/public/blog-single";
+		return "/public/singleExam";
 	}
 	
 	@PostMapping(value="/exams/exam/{name}")
-	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation, Principal user) throws BusinessException {
-		    if (user != null) 
-		    {			    
+	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation) throws BusinessException {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
 		    FrontOffice frontOffice = frontOfficeService.findById(1);
@@ -76,9 +74,6 @@ public class ExamController {
 		    reservation.setFrontOffice(frontOffice);
 			reservationService.save(reservation);
 			return "redirect:/common/exams/exam/{name}";
-		  }else {
-			  return "redirect:/common/signIn";
-		  }
 	}
 	
 	@PostMapping(value="/exams/exam/{name}/review")
