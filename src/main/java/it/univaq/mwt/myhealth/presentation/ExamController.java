@@ -61,7 +61,7 @@ public class ExamController {
 		model.addAttribute("review", review);
 		model.addAttribute("exam", examService.findByName(name));	
 		model.addAttribute("reservation", reservation);	
-		return "/common/blog-single";
+		return "/public/blog-single";
 	}
 	
 	@PostMapping(value="/exams/exam/{name}")

@@ -24,7 +24,7 @@ public class ExamsController {
 	@GetMapping(value="/exams")
 	public String exams (Model model) throws BusinessException {
 		model.addAttribute("exams", examService.findAllExams());	
-		return "/common/exams";
+		return "/public/exams";
 	}
 
 }
