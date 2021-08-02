@@ -24,7 +24,7 @@ public class AddExamController {
 	public String addExam(Model model) {
 		Exam exam = new Exam();
 		model.addAttribute("exam",exam);	
-		return "common/admin/dashboardAddExam";		
+		return "private/admin/dashboardAddExam";		
 	}
 	
 	@PostMapping (value="/addExam")

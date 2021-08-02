@@ -1,9 +1,14 @@
 package it.univaq.mwt.myhealth.presentation;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,7 +22,7 @@ import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.User;
 
 @Controller
-@RequestMapping("common")
+@RequestMapping("auth")
 public class AuthController {
 	
 	@Autowired
@@ -25,24 +30,33 @@ public class AuthController {
 	
 	@GetMapping(value="signIn")
 	public String signIn() {
-		return "common/signIn";
+		return "public/signIn";
 	}
 	
 	@GetMapping(value="signUp")
 	public String signUp(Model model) {
 		model.addAttribute("user", new User());
-		return "common/signUp";
+		return "public/signUp";
 	}
 	
 	@PostMapping(value="signUp")
 	public String createUser(@Valid @ModelAttribute("user") User user, Errors errors) throws BusinessException{
 		if (errors.hasErrors()) {
-			return "common/signUp";
+			return "public/signUp";
 		}
 		user.setPassword((new BCryptPasswordEncoder()).encode(user.getPassword()));
 		user.setRole(userService.findRoleByName("patient"));
 		userService.saveUser(user);
 
+		return "redirect:/home";
+	}
+	
+	@GetMapping(value="logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		if (authentication != null) new SecurityContextLogoutHandler().logout(request, response, authentication);
+		
 		return "redirect:/home";
 	}
 }
