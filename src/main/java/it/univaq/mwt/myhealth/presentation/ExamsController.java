@@ -15,13 +15,13 @@ import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Exam;
 
 @Controller
-@RequestMapping("common")
+@RequestMapping("exams")
 public class ExamsController {
 		
 	@Autowired
 	private ExamService examService;
 	
-	@GetMapping(value="/exams")
+	@GetMapping(value="")
 	public String exams (Model model) throws BusinessException {
 		model.addAttribute("exams", examService.findAllExams());	
 		return "/public/exams";

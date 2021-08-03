@@ -48,7 +48,7 @@ public class AuthController {
 		user.setRole(userService.findRoleByName("patient"));
 		userService.saveUser(user);
 
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	
 	@GetMapping(value="logout")
@@ -57,6 +57,6 @@ public class AuthController {
 		
 		if (authentication != null) new SecurityContextLogoutHandler().logout(request, response, authentication);
 		
-		return "redirect:/home";
+		return "redirect:/";
 	}
 }

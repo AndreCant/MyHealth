@@ -115,7 +115,7 @@
                         <hr>                       
                         <div class="post-tags" style="width: 100%;">
 				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%;">
-				            <form action="#" th:action="@{'/common/exams/exam/'+ ${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
+				            <form action="#" th:action="@{'/exam/'+ ${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
 				               <div class="pricing hover-effect">
 				                    <div class="pricing-head text-center" style="background:white;">
 				                        <h3 class="font-weight-700 padding-40px background-main-color margin-0px text-white">
@@ -180,7 +180,7 @@
                         <div class="padding-30px background-white border-radius-10">
                             <h4><i class="fas fa-comment-alt margin-right-10px text-main-color"></i> Add Comment</h4>
                             <hr>
-                            <form th:action="@{'/common/exams/exam/' + ${exam.name} + '/review'}" method="POST" th:object="${review}">
+                            <form th:action="@{'/exam/' + ${exam.name} + '/review'}" method="POST" th:object="${review}">
                                 <div class="form-row">
               
                                     <div class="form-group col-md-3">

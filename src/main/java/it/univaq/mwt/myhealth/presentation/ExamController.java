@@ -28,7 +28,7 @@ import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
 
 @Controller
-@RequestMapping("common")
+@RequestMapping("exam")
 public class ExamController {
 	
 	@Autowired
@@ -51,7 +51,7 @@ public class ExamController {
 
 
 	
-	@GetMapping(value="/exams/exam/{name}")
+	@GetMapping(value="/{name}")
 	public String exam (Model model,@PathVariable("name") String name) throws BusinessException, DaoException {
 		Reservation reservation = new Reservation();
 		Review review = new Review();
@@ -64,7 +64,7 @@ public class ExamController {
 		return "/public/singleExam";
 	}
 	
-	@PostMapping(value="/exams/exam/{name}")
+	@PostMapping(value="/{name}")
 	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation) throws BusinessException {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
@@ -73,16 +73,16 @@ public class ExamController {
 		    reservation.setExam(exam);
 		    reservation.setFrontOffice(frontOffice);
 			reservationService.save(reservation);
-			return "redirect:/common/exams/exam/{name}";
+			return "redirect:/exam/{name}";
 	}
 	
-	@PostMapping(value="/exams/exam/{name}/review")
+	@PostMapping(value="/{name}/review")
 	public String review (Model model,@PathVariable("name") String name, @ModelAttribute("review") Review review) throws BusinessException {
 	    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		review.setPatient(userService.findUserByUsername(currentUserName));
 		reviewService.save(review);
 		model.addAttribute("exam",examService.findByName(name));
-		return "redirect:/common/exams";			
+		return "redirect:/exam/{name}";			
 	}
 	
 }

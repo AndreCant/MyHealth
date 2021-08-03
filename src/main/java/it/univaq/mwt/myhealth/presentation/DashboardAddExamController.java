@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("admin")
-public class AddExamController {
+public class DashboardAddExamController {
 	
 	@Autowired
 	private ExamService examService;
