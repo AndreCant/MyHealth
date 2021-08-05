@@ -3,156 +3,68 @@
 	  xmlns:th="http://www.thymeleaf.org"
 	  layout:decorate="~{layout/layout}">
 
-
-<!-- Mirrored from nilethemes.com/html/tabib/map-grid-layout.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:50:44 GMT -->
-
 <body>
+	
     <div layout:fragment="content">
+    <script th:inline="javascript">
+		$(document).ready(function () {
+		    $('#navExams').append('<ul id="nav" class="pagination pagination-md "></ul>');  
+		    var rowsShown = 4;  
+		    var rowsTotal = $('#data .exam').length;  
+		    console.log(rowsTotal);
+		    var numPages = rowsTotal/rowsShown; 
+		    
+		    if(numPages > 1) {
+				$('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="0" tabindex="-1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>');
+			 	for (i = 0;i < numPages;i++) {  
+			        var pageNum = i + 1;
+			        $('#nav').append ('<li class="page-item"><a href="javascript::" class="page-link" rel="'+i+'">'+pageNum+'</a></li> ');  
+			    }
+			    $('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="'+(numPages-1)+'"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>');
+			    
+			    $('#data .exam').hide();  
+			    $('#data .exam').slice (0, rowsShown).show();  
+			    $('#nav a:first').addClass('active');  
+			    $('#nav a').bind('click', function() {  
+				$('#nav a').removeClass('active');  
+			   	$(this).addClass('active');  
+			        var currPage = $(this).attr('rel');  
+			        var startItem = currPage * rowsShown;  
+			        var endItem = startItem + rowsShown;  
+			        $('#data .exam').css('opacity','0.0').hide().slice(startItem, endItem).  
+			        css('display','table-row').animate({opacity:1}, 300);  
+			    }); 
+			}
+		    
+		});
+	</script>
+	
     <div class="row no-gutters">
-        <div class="col-lg-6">
-            <div class="map-distributors-in hight-full">
-                <div id="map-distributors">
-                    <script>
-                        $(function() {
-                            $("#map-distributors").goMap({
-                                zoom: 6,
-                                maptype: 'ROADMAP',
-                                markers: [
-
-                                    {
-                                        address: '39.605247,-104.615413',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-1.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px"><a class="text-dark" href="#"> name </a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-
-                                    {
-                                        address: '40.295850, -101.956722',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-2.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px" ><a class="text-dark"  href="#"></a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-                                    {
-                                        address: '41.491692, -108.153011',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-3.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px" ><a class="text-dark"  href="#"></a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-
-                                    {
-                                        address: '38.272239, -101.275570',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-3.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px" ><a class="text-dark" href="#"></a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-                                    {
-                                        address: '40.896473, -96.353695',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-3.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px"><a class="text-dark" href="#"></a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-                                    {
-                                        address: '41.343395, -99.341976',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-4.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px"><a class="text-dark"  href="#"></a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-                                    {
-                                        address: '36.420822, -101.758968',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-5.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px"><a class="text-dark"  href="#">Alrayan Eye Clinic</a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-                                    {
-                                        address: '37.822350, -113.558284',
-                                        icon: 'assets/img/icon_marker_1.png',
-                                        html: '<div class="background-white width-250px"> <div class="item-thumbnail gradient"> <a href="#"><img src="assets/img/clinic-6.jpg" alt=""></a> </div> <div class="padding-top-20px padding-lr-20px"> <div class="z-index-2 position-relative"> <h5 class="margin-bottom-20px"><a class="text-dark" href="#">Alrayan Eye Clinic</a></h5> <div class="rating clearfix"> <span class="float-left text-grey-2"><i class="far fa-map"></i> California</span> <ul class="float-right"> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li class="active"></li> <li></li> </ul> </div> </div> </div> </div> </div>'
-                                    },
-
-
-
-                                ],
-                                hideByClick: true
-                            });
-                            $("#default").click(function() {
-                                $("#dump").html($.dump($.goMap.getMarkers()));
-                            });
-                            $("#clearall").click(function() {
-                                $.goMap.clearMarkers();
-                            });
-                            $("#json").click(function() {
-                                $("#dump").html($.goMap.getMarkers("json"));
-                            });
-                            $("#data").click(function() {
-                                $("#dump").html($.goMap.getMarkers("data"));
-                            });
-
-                            $('.gm-style-iw').parent().css('width', 'auto');
-
-
-                        });
-
-                    </script>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="padding-45px">
-
-                <!-- Listing Search -->
-                <div class="listing-search">
-                    <form class="row no-gutters">
-                        <div class="col-md-4 col-6">
-                            <div class="keywords">
-                                <input class="listing-form first" type="text" placeholder="Keywords..." value="">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-6">
-                            <div class="categories dropdown">
-                                <a class="listing-form d-block" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Categories</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                    <button class="dropdown-item text-up-small" type="button">Doctors</button>
-                                    <button class="dropdown-item text-up-small" type="button">Clinics</button>
-                                    <button class="dropdown-item text-up-small" type="button">Pharmacies</button>
-                                    <button class="dropdown-item text-up-small" type="button">Labs</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-6">
-                            <a class="listing-bottom background-dark box-shadow" href="#">Search Now</a>
-                        </div>
-                    </form>
-                </div>
-                <!-- // Listing Search -->
-
-                <hr>
-                <div class="float-left">14 Results Found</div>
-                <div class="float-right">
-                    <a href="map-list-layout.html" class="d-inline-block margin-right-15px"><i class="fas fa-list-ul"></i></a>
-                    <a href="map-grid-layout.html" class="text-main-color"><i class="fas fa-th-large"></i></a>
-                </div>
+    	<div class="col-lg-2"></div>
+        <div class="col-lg-8">
+        	<div id="page-title" class="padding-top-20px gradient-white">
+		        <div class="container">
+		            <h2 class="font-weight-100" th:text="${type}">[[#{exams.title}]]</h2>
+		        </div>
+		    </div>
+            <hr>
+            <div class="text-center">
+	            
+                <div class="float-left padding-left-15px" th:text="${exams.size()}"></div>
+                <div class="float-left padding-left-15px">&ensp;[[#{exams.results}]]</div>
+                <div th:text="${type}" class="float-right padding-right-15px"></div>
                 <div class="clearfix"></div>
                 <hr>
 
-                <div class="row">
-                    <!-- clinic -->
-                    <div class="col-md-6 margin-bottom-45px" th:each="exam : ${exams}">
+                <div id="data" class="row">
+                    <div class="col-md-3 margin-bottom-45px exam" th:each="exam : ${exams}">
                         <div class="background-white thum-hover box-shadow hvr-float">
                             <div class="item-thumbnail background-white">
                                 <a href="#"><img src="assets/img/clinic-1.jpg" alt=""></a>
                             </div>
-                            <div class="padding-30px">
-                                <h5 class="margin-bottom-20px"><a class="text-dark" th:text="${exam.name}" th:href="@{'/exam/' + ${exam.name}}">Alrayan Eye Clinic</a></h5>
+                            <div class="padding-20px">
+                                <h5 class="margin-bottom-20px"><a class="text-dark" th:text="${exam.name}" th:href="@{'/exam/' + ${exam.name}}"></a></h5>
                                 <div class="rating clearfix">
-                                    <span class="float-left text-grey-2"><i class="far fa-map"></i></span>
                                     <ul class="float-right">
                                         <li class="active"></li>
                                         <li class="active"></li>
@@ -173,21 +85,18 @@
                 </div>
                 <!-- // row -->
                 
-                <ul class="pagination pagination-md ">
-                    <li class="page-item disabled"><a class="page-link rounded-0" href="#" tabindex="-1">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link rounded-0" href="#">Next</a></li>
-                </ul>
-
+                <div class="row">
+                	<div class="col-md-4"></div>
+                	<div class="col-md-4" id="navExams"></div>
+                	<div class="col-md-4"></div>
+                </div>
             </div>
         </div>
+        <div class="col-lg-2"></div>
     </div>
 
   </div>
+  
+  	
 </body>
-
-
-<!-- Mirrored from nilethemes.com/html/tabib/map-grid-layout.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:50:45 GMT -->
 </html>

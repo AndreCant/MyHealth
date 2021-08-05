@@ -95,9 +95,9 @@ public class DataInitializer {
 	private void initUsers() {
 		try {
 			this.users = List.of(
-				ObjectFactory.createUser("andrea95", "and@and.it", "admin123", this.roles.get(0)),
-				ObjectFactory.createUser("umberto355", "umb@umb.com", "admin123", this.roles.get(1)),
-				ObjectFactory.createUser("lello21", "lol@lol.com", "admin123", this.roles.get(2))
+				ObjectFactory.createUser("andrea95", "and@and.it", "admin123", this.roles.get(0), "Andrea", "Cantagallo", 0),
+				ObjectFactory.createUser("umberto355", "umb@umb.com", "admin123", this.roles.get(1), "Umberto", "La Barbera", 12345),
+				ObjectFactory.createUser("lello21", "lol@lol.com", "admin123", this.roles.get(2), "Pippo", "Franco", 0)
 			);
 			
 			userService.saveUsers(this.users);

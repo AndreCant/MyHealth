@@ -31,9 +31,13 @@ public class ObjectFactory {
 		return new Role(name, description);
 	}
 	
-	public static User createUser(String username, String email, String password, Role role) {
+	public static User createUser(String username, String email, String password, Role role, String name, String surname, int register) {
 		String encodedPassword = (new BCryptPasswordEncoder()).encode(password);
-		return new User(username, email, encodedPassword, role);
+		User user = new User(username, email, encodedPassword, role);
+		user.setName(name);
+		user.setSurname(surname);
+		if(register != 0) user.setRegister(register);
+		return user;
 	}
 	
 	public static Exam createExam( String code, int session, String type, String name, String specialization, String subSpecialization, String description, Double price) {

@@ -21,9 +21,24 @@ public class ExamsController {
 	@Autowired
 	private ExamService examService;
 	
-	@GetMapping(value="")
+	@GetMapping(value="/")
+	public String all (Model model) throws BusinessException {
+		model.addAttribute("exams", examService.findAllExams());
+		model.addAttribute("type", "All Exams");
+		return "/public/exams";
+	}
+	
+	@GetMapping(value="/exam")
 	public String exams (Model model) throws BusinessException {
-		model.addAttribute("exams", examService.findAllExams());	
+		model.addAttribute("exams", examService.findExamsByType("exam"));
+		model.addAttribute("type", "Specific Exams");
+		return "/public/exams";
+	}
+	
+	@GetMapping(value="/path")
+	public String paths (Model model) throws BusinessException {
+		model.addAttribute("exams", examService.findExamsByType("rehabilitation path"));
+		model.addAttribute("type", "Rehabilitation Paths");
 		return "/public/exams";
 	}
 
