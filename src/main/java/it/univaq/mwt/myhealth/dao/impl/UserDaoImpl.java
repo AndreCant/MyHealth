@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.UserDao;
 import it.univaq.mwt.myhealth.domain.User;
 
@@ -54,6 +55,12 @@ public class UserDaoImpl implements UserDao{
 		for (User user : users) {
 			entityManager.persist(user);
 		}
+	}
+
+	@Override
+	public List<User> findByRole(long role) throws DaoException {
+		List<User> users = entityManager.createQuery("FROM User where role_id = :role", User.class).setParameter("role", role).getResultList();
+		return  users;
 	}
 	
 }

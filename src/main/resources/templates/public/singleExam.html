@@ -71,7 +71,7 @@
 				                    </ul>
 				                    <div class="pricing-footer" style="height:50px;">
 				                        <button type="submit" sec:authorize="isAuthenticated()" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px;"> Prenota</button>
-				                        <a th:href="@{'/auth/signIn'}" sec:authorize="!isAuthenticated()" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px;"> Accedi Per Prenotare</a>
+				                        <a th:href="@{'/auth/signIn'}" sec:authorize="!isAuthenticated()" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:30px; font-family: 'Roboto', sans-serif; text-decoration: none;"> <center style="color:white; font-size:17px; margin-top:10px;">Accedi Per Prenotare</center></a>
 				                    </div>
 				               </div>
 				             </form>
@@ -114,7 +114,7 @@
                                     <label>Comment :</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1"  th:field="*{body}" rows="3" placeholder="Comment"></textarea>
                                 </div>
-                                <button type="submit" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px;">Add Now !</button>
+                                <button type="submit" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px; height:40px; border-radius:20px;">Add Now !</button>
                             </form>
                         </div>
                     </div>
