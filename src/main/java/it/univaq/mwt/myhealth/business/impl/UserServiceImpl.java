@@ -115,5 +115,15 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public List<User> findUserByRole(long role) throws BusinessException {
+		try {
+			return userDao.findByRole(role);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
 	
 }

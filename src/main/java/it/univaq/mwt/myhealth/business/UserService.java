@@ -20,6 +20,8 @@ public interface UserService {
 	
 	User findUserByUsername(String username) throws BusinessException;
 	
+	List<User> findUserByRole(long role) throws BusinessException;
+	
 	void saveRole(Role role) throws BusinessException;
 	
 	void saveRoles(List<Role> roles) throws BusinessException;
