@@ -12,6 +12,7 @@ import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Expense;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
+import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Medicine;
 import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
@@ -182,5 +183,11 @@ public class ObjectFactory {
 		return expense;
 	}
 	
-	
+	public static Image createImage(String name, String url, Exam exam) {
+		Image image = new Image();
+		image.setName(name);
+		image.setUrl(url);
+		image.setExam(exam);
+		return image;
+	}
 }

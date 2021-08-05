@@ -11,8 +11,10 @@ import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.dao.ExamDao;
+import it.univaq.mwt.myhealth.dao.ImageDao;
 import it.univaq.mwt.myhealth.dao.ReviewDao;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Review;
 
 @Service
@@ -24,6 +26,9 @@ public class ExamServiceImpl implements ExamService{
 	
 	@Autowired
 	private ReviewDao reviewDao;
+	
+	@Autowired
+	private ImageDao imageDao;
 	
 	@Transactional(readOnly = true)
 	@Override
@@ -121,6 +126,16 @@ public class ExamServiceImpl implements ExamService{
 		try {
 			return reviewDao.findReviewsByExamIds(examIds);
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void saveImages(List<Image> images) throws BusinessException {
+		try {
+			imageDao.saveAll(images);
+		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}

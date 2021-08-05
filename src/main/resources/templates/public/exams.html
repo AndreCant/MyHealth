@@ -60,7 +60,7 @@
                     <div class="col-md-3 margin-bottom-45px exam" th:each="exam : ${exams}">
                         <div class="background-white thum-hover box-shadow hvr-float">
                             <div class="item-thumbnail background-white">
-                                <a href="#"><img src="assets/img/clinic-1.jpg" alt=""></a>
+                                <a href="#"><img th:if="${!exam.getImages().isEmpty()}" th:src="${exam.getImages().get(0).getUrl()}" alt=""></a>
                             </div>
                             <div class="padding-20px">
                                 <h5 class="margin-bottom-20px"><a class="text-dark" th:text="${exam.name}" th:href="@{'/exam/' + ${exam.name}}"></a></h5>

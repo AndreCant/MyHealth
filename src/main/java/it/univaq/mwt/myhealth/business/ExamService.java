@@ -5,6 +5,7 @@ import java.util.Set;
 
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Review;
 
 public interface ExamService {
@@ -28,4 +29,6 @@ public interface ExamService {
 	void saveExams(List<Exam> exams) throws BusinessException;
 	
 	List<Review> findExamReview(Set<Long> examIds) throws BusinessException;
+	
+	void saveImages(List<Image> images) throws BusinessException;
 }

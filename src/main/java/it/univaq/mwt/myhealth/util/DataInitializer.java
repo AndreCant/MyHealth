@@ -21,6 +21,7 @@ import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Expense;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
+import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Medicine;
 import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
@@ -44,6 +45,7 @@ public class DataInitializer {
 	@Autowired AdministrationService administrationService;
 	
 	private List<Role> roles;
+	private List<Image> images;
 	private List<Exam> exams;
 	private List<User> users;
 	private List<Reservation> reservations;
@@ -76,6 +78,7 @@ public class DataInitializer {
 		this.initFrontOffices();
 		this.initAnnualBudgets();
 		this.initExpenses();
+		this.initImages();
 	}
 	
 	private void initRoles() {
@@ -280,6 +283,18 @@ public class DataInitializer {
 			);
 			
 			administrationService.saveExpenses(this.expenses);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initImages() {
+		try {
+			this.images = List.of(
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0))
+			);
+			
+			examService.saveImages(images);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
