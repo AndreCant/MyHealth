@@ -1,8 +1,10 @@
 package it.univaq.mwt.myhealth.domain;
 
+import java.awt.TextArea;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,6 +30,7 @@ public class Exam extends AbstractEntity implements Serializable{
 	private String name;
 	private String specialization;
 	private String subSpecialization;
+	@Column(length = 10000)
 	private String description;
 	private Double price;
 	
