@@ -27,6 +27,13 @@ public class UserDaoImpl implements UserDao{
 	public User findById(Long uid) {
 		return (User) entityManager.find(User.class, uid);
 	}
+	
+	@Override
+	public User findByName (String name) {
+		List<User> users = entityManager.createQuery("FROM User where name = :name", User.class).setParameter("name", name).getResultList();
+		if(!users.isEmpty()) return users.get(0);
+		return null;
+	}
 
 	@Override
 	public void save(User user) {

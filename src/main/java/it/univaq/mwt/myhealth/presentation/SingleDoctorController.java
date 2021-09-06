@@ -20,7 +20,7 @@ public class SingleDoctorController {
 	
 	@GetMapping("/{name}")
 	public String doctor (Model model, @PathVariable("name") String name) throws BusinessException {		
-		model.addAttribute("doctor", userService.findUserByUsername( name));
+		model.addAttribute("doctor", userService.findByName( name));
 		return "public/singleDoctor";
 	}
 
