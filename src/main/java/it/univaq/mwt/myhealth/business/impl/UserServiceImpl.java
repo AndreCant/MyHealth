@@ -34,6 +34,17 @@ public class UserServiceImpl implements UserService{
 			throw new BusinessException(e.getMessage());
 		}
 	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findByName(String name) throws BusinessException {
+		try {
+			return userDao.findByName(name);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 	
 	@Transactional(readOnly = true)
 	@Override

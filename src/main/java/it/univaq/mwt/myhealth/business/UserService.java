@@ -27,5 +27,7 @@ public interface UserService {
 	void saveRoles(List<Role> roles) throws BusinessException;
 	
 	Role findRoleByName(String name) throws BusinessException;
+
+	User findByName(String name) throws BusinessException;
 	
 }

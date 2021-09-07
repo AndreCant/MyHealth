@@ -13,6 +13,8 @@ public interface UserDao {
 	
 	public User findByUsername(String username) throws DaoException;
    
+	public User findByName(String name) throws DaoException;
+
 	public void save(User user) throws DaoException;
 	
 	public void saveAll(List<User> users) throws DaoException;
