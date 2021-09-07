@@ -7,27 +7,16 @@
 
     <div id="page-title" class="padding-tb-30px gradient-white">
         <div class="container">
-            <h1 class="font-weight-300">Esame</h1>
+            <h1 th:text="${exam.name}" class="font-weight-300"></h1>
         </div>
     </div>
 
     <div>
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-8">
-                    <div class="border-radius-10 background-white  margin-bottom-35px padding-30px">
-                        <h2 th:text="${exam.name}"><i class="fas fa-file-alt margin-right-10px text-main-color" ></i> Esame</h2>
-                        <hr>
-
-                        <div class="meta">
-                            <span class="margin-right-20px text-extra-small">By :  <a href="#">admin</a></span>
-                            <span class="margin-right-20px text-extra-small">Date :  <a href="#">December 27, 2017</a></span>
-                        </div>
-                        <hr>
-
-                        <div class="thumbnail margin-bottom-20px"><img src="https://lh3.googleusercontent.com/proxy/IYRntXNcKQQGLIOuJie77Y76d5zzRTtgxSmMz_REfWQ-ITA10tPbzO2eWyYTq8tr8uNPlm1nBWrFHm_ymIyEcjYeip_VyQ7FTzpNwd49nrdvjT4EPHQE0rEEfYY" alt=""></div>
-                        <div class="entry-content">
+                    <div class="border-radius-10 background-white">
+                        <div class="entry-content px-5">
                             <p th:text="${exam.description}"></p>
                         </div>
                         <!-- .entry-content -->
@@ -38,51 +27,52 @@
 				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%;">
 				            <form action="#" th:action="@{'/exam/'+ ${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
 				               <div class="pricing hover-effect">
-				                    <div class="pricing-head text-center" style="background:white;">
-				                        <h3 class="font-weight-700 padding-40px background-main-color margin-0px text-white">
-				                            <span class=" z-index-2 position-relative d-block">
-				                                    Prenota<span class="d-block text-small font-weight-300"> </span>
-				                            </span>
-				                        </h3>
-				                        <h2 class="background-grey-1 margin-0px padding-15px">
+				                            <h4> Costo visita</h4>
+				                    <div class="pricing-head text-center" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:30px;">
+				                        <h2 class="margin-0px padding-15px">
 				                            <i class="text-up-small">$</i><span class="text-up-small" th:text="${exam.price}"></span>
-				                            <span class="d-block text-small">Costo visita </span>
 				                        </h2>
 				                    </div>
-				                    <ul class="pricing-content text-center list-unstyled background-white">
-				                        <li>
-				                         <input type="text"  id="picker2" class="form-control" th:field="*{startHour}" placeholder="inserisci data">				                           
-				                           <script>
-												$(document).ready(function(){
-													         var today = new Date();
-														    $('#picker2').datetimepicker({
-														      format:"Y-m-d H:m",
-														      minDate: today,
-														      onSelect: function(selectedDate) {
-														       var option = this.id == "from" ? "minDate" : "maxDate",
-																            instance = $(this).data("datepicker"),
-																            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-																        dates.not(this).datepicker("option", option, date);
-															  }
-															})
-														});
-											</script>			                          
-										</li>
-				                    </ul>
+				                    
+				                    <input type="text"  id="picker2" class="form-control" th:field="*{startHour}" placeholder="inserisci data">				                           
+			                           <script>
+											$(document).ready(function(){
+												         var today = new Date();
+													    $('#picker2').datetimepicker({
+													      format:"Y-m-d H:m",
+													      minDate: today,
+													      onSelect: function(selectedDate) {
+													       var option = this.id == "from" ? "minDate" : "maxDate",
+															            instance = $(this).data("datepicker"),
+															            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+															        dates.not(this).datepicker("option", option, date);
+														  }
+														})
+													});
+										</script>		
+											
+				                    
 				                    <div class="pricing-footer" style="height:50px;">
 				                        <button type="submit" sec:authorize="isAuthenticated()" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px;"> Prenota</button>
 				                        <a th:href="@{'/auth/signIn'}" sec:authorize="!isAuthenticated()" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:30px; font-family: 'Roboto', sans-serif; text-decoration: none;"> <center style="color:white; font-size:17px; margin-top:10px;">Accedi Per Prenotare</center></a>
 				                    </div>
 				               </div>
 				             </form>
+				             
+				             <div class="item-thumbnail mb-5">
+		                        <a href="#" class="text-center m-0"><img th:if="${!exam.getImages().isEmpty()}" th:src="${exam.getImages().get(0).getUrl()}" alt=""></a>
+		                    </div>
 				          </div>
 				        
                        </div>
                     </div>
+                </div>
 
-                    <div class="margin-bottom-30px">
-                        <div class="padding-30px background-white border-radius-10">
-                            <h4><i class="fas fa-comment-alt margin-right-10px text-main-color"></i> Comments (3)</h4>
+                <div class="col-lg-4">
+					<div class="margin-bottom-30px">
+                        <div class="px-3 background-white border-radius-10">
+                            <h4 ><i class="fas fa-comment-alt margin-right-10px text-main-color"></i>Reviews <span th:text="${'(' + reviews.size() + ')'}"></span></h4>
+                            
                             <hr>
 
                             <ul class="commentlist padding-0px margin-0px list-unstyled text-grey-3">
@@ -97,9 +87,9 @@
                             </ul>
                         </div>
                     </div>
-
-                    <div class="margin-bottom-30px">
-                        <div class="padding-30px background-white border-radius-10">
+                    
+                    <!--<div class="margin-bottom-30px">
+                        <div class="px-3 background-white border-radius-10">
                             <h4><i class="fas fa-comment-alt margin-right-10px text-main-color"></i> Add Comment</h4>
                             <hr>
                             <form th:action="@{'/exam/' + ${exam.name} + '/review'}" method="POST" th:object="${review}">
@@ -117,58 +107,7 @@
                                 <button type="submit" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px; height:40px; border-radius:20px;">Add Now !</button>
                             </form>
                         </div>
-                    </div>
-                    
-                </div>
-
-                <div class="col-lg-4">
-
-                    <div class="margin-bottom-30px">
-                        <div class="padding-30px background-white border-radius-10">
-                            <h4><i class="fas fa-search margin-right-10px text-main-color"></i> Search</h4>
-                            <hr>
-                            <div class="input-group mb-3">
-                                <input type="text" value="Search..." class="form-control border-radius-0">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary text-white background-main-color border-radius-0" type="button">Search</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="widget widget_categories">
-                        <div class="margin-bottom-30px">
-                            <div class="padding-30px background-white border-radius-10">
-                                <h4><i class="far fa-folder-open margin-right-10px text-main-color"></i> Categories</h4>
-                                <hr>
-                                <ul>
-                                    <li><a href="#">Tech</a></li>
-                                    <li><a href="#">Gallary</a></li>
-                                    <li><a href="#">UI Design </a></li>
-                                    <li><a href="#">Shop</a></li>
-                                    <li><a href="#">Wordpress  </a></li>
-                                    <li><a href="#">Cultur</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="widget widget_categories">
-                        <div class="margin-bottom-30px">
-                            <div class="padding-30px background-white border-radius-10">
-                                <h4><i class="fab fa-instagram margin-right-10px text-main-color"></i> Instagram</h4>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-6 margin-bottom-20px"><a href="#"><img class="border-radius-10" src="assets/img/instagram-1.jpg" alt=""></a></div>
-                                    <div class="col-6 margin-bottom-20px"><a href="#"><img class="border-radius-10" src="assets/img/instagram-2.jpg" alt=""></a></div>
-                                    <div class="col-6 margin-bottom-20px"><a href="#"><img class="border-radius-10" src="assets/img/instagram-3.jpg" alt=""></a></div>
-                                    <div class="col-6 margin-bottom-20px"><a href="#"><img class="border-radius-10" src="assets/img/instagram-4.jpg" alt=""></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    </div>-->
                 </div>
             </div>
         </div>
