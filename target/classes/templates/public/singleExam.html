@@ -5,7 +5,7 @@
 <body>
    <div layout:fragment="content">
 
-    <div id="page-title" class="padding-tb-30px gradient-white">
+    <div id="page-title" class="py-5 gradient-white">
         <div class="container">
             <h1 th:text="${exam.name}" class="font-weight-300"></h1>
         </div>
@@ -16,54 +16,57 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="border-radius-10 background-white">
-                        <div class="entry-content px-5">
-                            <p th:text="${exam.description}"></p>
-                        </div>
-                        <!-- .entry-content -->
-
-                        <!-- Post tags -->
                         <hr>                       
-                        <div class="post-tags" style="width: 100%;">
+                        <div class="post-tags mb-5" style="width: 100%;">
 				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%;">
-				            <form action="#" th:action="@{'/exam/'+ ${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
+				          
+				          	<div class="item-thumbnail col-lg-8 mr-3 mb-4">
+                        		<a href="#" class="text-center m-0"><img th:if="${!exam.getImages().isEmpty()}" th:src="${exam.getImages().get(0).getUrl()}" alt=""></a>
+                    		</div>
+                    		
+                    		<div class="item-thumbnail col-lg-4 mr-3 mb-4"></div>
+                    		
+                    		<div class="entry-content px-5 col-lg-12">
+	                            <p th:text="${exam.description}"></p>
+                        	</div>
+				          	
+				            <form class="col-lg-12 mt-5" action="#" th:action="@{'/exam/'+ ${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
 				               <div class="pricing hover-effect">
-				                            <h4> Costo visita</h4>
-				                    <div class="pricing-head text-center" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:30px;">
-				                        <h2 class="margin-0px padding-15px">
-				                            <i class="text-up-small">$</i><span class="text-up-small" th:text="${exam.price}"></span>
-				                        </h2>
-				                    </div>
-				                    
-				                    <input type="text"  id="picker2" class="form-control" th:field="*{startHour}" placeholder="inserisci data">				                           
-			                           <script>
-											$(document).ready(function(){
-												         var today = new Date();
-													    $('#picker2').datetimepicker({
-													      format:"Y-m-d H:m",
-													      minDate: today,
-													      onSelect: function(selectedDate) {
-													       var option = this.id == "from" ? "minDate" : "maxDate",
-															            instance = $(this).data("datepicker"),
-															            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-															        dates.not(this).datepicker("option", option, date);
-														  }
-														})
-													});
-										</script>		
-											
-				                    
-				                    <div class="pricing-footer" style="height:50px;">
-				                        <button type="submit" sec:authorize="isAuthenticated()" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px;"> Prenota</button>
-				                        <a th:href="@{'/auth/signIn'}" sec:authorize="!isAuthenticated()" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:30px; font-family: 'Roboto', sans-serif; text-decoration: none;"> <center style="color:white; font-size:17px; margin-top:10px;">Accedi Per Prenotare</center></a>
-				                    </div>
-				               </div>
+				               		<div class="row mb-5">
+			               				<div class="col-lg-4 d-flex justify-content-center align-items-center">
+			               					<h3 class="m-0">[[#{exam.price}]]: <span th:text="${exam.price}"></span> €</h3>
+			               				</div>
+			               				
+			               				<div class="col-lg-4 d-flex justify-content-center align-items-center">
+			               					<input sec:authorize="!isAuthenticated()" type="text" th:attr="placeholder=#{exam.date}" class="form-control" disabled>	
+			               					<input sec:authorize="isAuthenticated()" type="text" id="picker2" class="form-control" th:field="*{startHour}" th:attr="placeholder=#{exam.date}">				                           
+					                           <script>
+													$(document).ready(function(){
+														         var today = new Date();
+															    $('#picker2').datetimepicker({
+															      format:"Y-m-d H:m",
+															      minDate: today,
+															      onSelect: function(selectedDate) {
+															       var option = this.id == "from" ? "minDate" : "maxDate",
+																	            instance = $(this).data("datepicker"),
+																	            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+																	        dates.not(this).datepicker("option", option, date);
+																  }
+																})
+															});
+												</script>
+			               				</div>
+			               				
+				               			<div class="col-lg-4 d-flex justify-content-center align-items-center px-5">
+						                    <div class="pricing-footer rounded-3" style="height:50px;width:100%;">
+						                        <button type="submit" sec:authorize="isAuthenticated()" style="width:100%; background:#00b0ff; color:white; height:100%; font-size:17px; border-color:transparent; border-radius: 5px"> [[#{exam.book}]]</button>
+						                        <a th:href="@{'/auth/signIn'}" sec:authorize="!isAuthenticated()" style="width:100%; background:#00b0ff; color:white; height:100%; font-size:30px; font-family: 'Roboto', sans-serif; text-decoration: none;border-radius: 5px"> <center style="color:white; font-size:17px; margin-top:10px;">[[#{exam.login}]]</center></a>
+						                    </div>
+				               			</div>
+		               				</div>
+		               			</div>
 				             </form>
-				             
-				             <div class="item-thumbnail mb-5">
-		                        <a href="#" class="text-center m-0"><img th:if="${!exam.getImages().isEmpty()}" th:src="${exam.getImages().get(0).getUrl()}" alt=""></a>
-		                    </div>
 				          </div>
-				        
                        </div>
                     </div>
                 </div>
