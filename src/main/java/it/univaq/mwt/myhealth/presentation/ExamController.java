@@ -26,6 +26,7 @@ import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
+import it.univaq.mwt.myhealth.util.Utility;
 
 @Controller
 @RequestMapping("exam")
@@ -68,7 +69,7 @@ public class ExamController {
 	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation) throws BusinessException {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
-		    FrontOffice frontOffice = frontOfficeService.findById(1);
+		    FrontOffice frontOffice = frontOfficeService.findById(Utility.getRandomNumberInRange(1, 5));
 		    reservation.setPatient(userService.findUserByUsername(currentUserName));
 		    reservation.setExam(exam);
 		    reservation.setFrontOffice(frontOffice);

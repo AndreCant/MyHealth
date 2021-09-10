@@ -18,21 +18,20 @@
                     <div class="border-radius-10 background-white">
                         <hr>                       
                         <div class="post-tags mb-5" style="width: 100%;">
-				          <div class="col-lg-12 col-md-1  col-sm-10 sm-mb-40px w-100"  style="width:100%;">
-				          
-				          	<div class="item-thumbnail col-lg-8 mr-3 mb-4">
-                        		<a href="#" class="text-center m-0"><img th:if="${!exam.getImages().isEmpty()}" th:src="${exam.getImages().get(0).getUrl()}" alt=""></a>
-                    		</div>
-                    		
-                    		<div class="item-thumbnail col-lg-4 mr-3 mb-4"></div>
-                    		
-                    		<div class="entry-content px-5 col-lg-12">
-	                            <p th:text="${exam.description}"></p>
-                        	</div>
 				          	
-				            <form class="col-lg-12 mt-5" action="#" th:action="@{'/exam/'+ ${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
-				               <div class="pricing hover-effect">
-				               		<div class="row mb-5">
+	                       <div class="row mr-3 mb-4">
+	                       		<div class="item-thumbnail col-sm" style="height: 100%;">
+	                        		<a href="#" class="text-center m-0"><img th:if="${!exam.getImages().isEmpty()}" th:src="${exam.getImages().get(0).getUrl()}" alt=""></a>
+	                    		</div>
+	                    		
+	                    		<div class="entry-content col-sm" style="height: 100%;">
+		                            <p th:text="${exam.description}"></p>
+	                        	</div>
+	                       </div>
+				          	
+                        	<div class="row item-thumbnail m-5">
+					            <form class="col-sm" th:action="@{'/exam/'+ ${exam.name}}" method="POST" th:object="${reservation}" id="reservationForm">
+				               		<div class="row mb-5 pricing hover-effect">
 			               				<div class="col-lg-4 d-flex justify-content-center align-items-center">
 			               					<h3 class="m-0">[[#{exam.price}]]: <span th:text="${exam.price}"></span> €</h3>
 			               				</div>
@@ -64,9 +63,8 @@
 						                    </div>
 				               			</div>
 		               				</div>
-		               			</div>
-				             </form>
-				          </div>
+					             </form>
+				          	</div>
                        </div>
                     </div>
                 </div>
@@ -74,43 +72,30 @@
                 <div class="col-lg-4">
 					<div class="margin-bottom-30px">
                         <div class="px-3 background-white border-radius-10">
-                            <h4 ><i class="fas fa-comment-alt margin-right-10px text-main-color"></i>Reviews <span th:text="${'(' + reviews.size() + ')'}"></span></h4>
+                            <h4 ><i class="fas fa-comment-alt margin-right-10px text-main-color"></i>[[#{exam.reviews}]] <span th:text="${'(' + reviews.size() + ')'}"></span></h4>
                             
                             <hr>
 
-                            <ul class="commentlist padding-0px margin-0px list-unstyled text-grey-3">
+                            <ul class="padding-0px margin-0px list-unstyled text-grey-3">
                                 <li class="border-bottom-1 border-grey-1 margin-bottom-20px" th:each="singleReview : ${reviews}">
-                                    <img src="assets/img/testimonial-1.png" class="float-left margin-right-20px border-radius-60 margin-bottom-20px" alt="">
-                                    <div class="margin-left-85px">
-                                          <label>voto</label> <p th:text="${singleReview.vote}"></p>
-                                        <span class="text-extra-small">Date :  <a href="#" class="text-main-color">July 15, 2016</a></span>
-                                        <p class="margin-top-15px text-grey-2" th:text="${singleReview.body}">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
-                                    </div>
+                                    <!--<img src="assets/img/testimonial-1.png" class="float-left margin-right-20px border-radius-60 margin-bottom-20px" alt="">-->
+                                    
+                                	<a href="#" class="text-main-color mb-1" th:text="${singleReview.patient.username}"></a>
+                                	<div class="rating clearfix mt-3">
+                                        <ul class="float-left">
+                                            <li th:class="${singleReview.vote > 0 ? 'active' : ''}"></li>
+                                            <li th:class="${singleReview.vote > 1 ? 'active' : ''}"></li>
+                                            <li th:class="${singleReview.vote > 2 ? 'active' : ''}"></li>
+                                            <li th:class="${singleReview.vote > 3 ? 'active' : ''}"></li>
+                                            <li th:class="${singleReview.vote > 4 ? 'active' : ''}"></li>
+                                        </ul>
+                                	</div>
+                                	<p class="mt-3" th:text="${singleReview.title}"></p>	
+                                    <p class="mt-3 text-grey-2" th:text="${singleReview.body}"></p>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    
-                    <!--<div class="margin-bottom-30px">
-                        <div class="px-3 background-white border-radius-10">
-                            <h4><i class="fas fa-comment-alt margin-right-10px text-main-color"></i> Add Comment</h4>
-                            <hr>
-                            <form th:action="@{'/exam/' + ${exam.name} + '/review'}" method="POST" th:object="${review}">
-                                <div class="form-row">
-              
-                                    <div class="form-group col-md-3">
-                                        <label>voto</label>
-                                        <input type="number" class="form-control" th:field="*{vote}" placeholder="inserisci voto" min="1" max="10">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Comment :</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1"  th:field="*{body}" rows="3" placeholder="Comment"></textarea>
-                                </div>
-                                <button type="submit" style="width:100%; border:none; background:#00b0ff; color:white; height:100%; font-size:17px; height:40px; border-radius:20px;">Add Now !</button>
-                            </form>
-                        </div>
-                    </div>-->
                 </div>
             </div>
         </div>

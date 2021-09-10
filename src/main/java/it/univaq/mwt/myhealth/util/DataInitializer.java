@@ -112,7 +112,7 @@ public class DataInitializer {
 	private void initExams() {
 		try {
 			this.exams = List.of(
-				ObjectFactory.createExam("AB-01", 1, "exam", "ECG", "cardiology", "ECG", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec. Imperdiet massa tincidunt nunc pulvinar. Risus nullam eget felis eget nunc lobortis. In hendrerit gravida rutrum quisque non tellus. Habitant morbi tristique senectus et netus. Libero volutpat sed cras ornare. Curabitur gravida arcu ac tortor dignissim convallis aenean. Integer malesuada nunc vel risus commodo.", 38.99),
+				ObjectFactory.createExam("AB-01", 1, "exam", "ECG", "cardiology", "ECG", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 38.99),
 				ObjectFactory.createExam("CG-31", 10, "rehabilitation path", "scoliosis", "physiotherapy", "scoliosis", "", 989.99),
 				ObjectFactory.createExam("OO-94", 1, "exam", "", "eye", "gradation", "", 70.00)
 			);
@@ -255,7 +255,11 @@ public class DataInitializer {
 	public void initFrontOffices() {
 		try {
 			this.frontOffices = List.of(
-				ObjectFactory.createFrontOffice("Office Name", 1)
+				ObjectFactory.createFrontOffice("Office 1", 1),
+				ObjectFactory.createFrontOffice("Office 2", 2),
+				ObjectFactory.createFrontOffice("Office 3", 3),
+				ObjectFactory.createFrontOffice("Office 4", 4),
+				ObjectFactory.createFrontOffice("Office 5", 5)
 			);
 			
 			frontOfficeService.saveFrontOffices(this.frontOffices);
