@@ -81,62 +81,64 @@
                     <div class="col-md-4">
                         <div class="padding-15px background-white">
                             <a href="#" class="d-block margin-bottom-10px"><img src="assets/img/profile-img.png" alt=""></a>
-                            <a href="#" class="btn btn-sm  text-white background-main-color btn-block">Upload Image</a>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="row">
+                        <style>
+                        .campi{
+						border: 1px solid black;
+						background-color:white;	
+						border-radius: 5px;	
+						}
+						
+						h6{
+							padding-top:5px;
+						}
+                        </style>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> User Name</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="Salim Aldosery">
+                                <label ><i  class="far fa-user margin-right-10px"></i> User Name</label>
+                                <div class="campi">
+                                	<center><h6  th:text="${doctor.name}">kokok</h6></center>
+                                </div>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="fas fa-lock margin-right-10px"></i> Password</label>
-                                <input type="password" class="form-control form-control-sm">
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.name}">kokok</h6></center>
+                                </div>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="info@yourname.com">
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.email}">kokok</h6></center>
+                                </div>
                             </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-mobile-alt margin-right-10px"></i> Phone</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="002229456987">
+                            <div class="col-md-6" sec:authorize="hasRole('doctor')" >
+                                <label><i class="fas fa-info margin-right-10px"></i> Specialization</label>
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.specilization}">kokok</h6></center>
+                                </div>
+                            </div>
+                             <div class="col-md-6">
+                                <label><i class="fas fa-info margin-right-10px"></i> Username</label>
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <label><i class="fas fa-link margin-right-10px"></i> Website</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="www.your-site.com">
+                                <label><i class="fas fa-info margin-right-10px"></i> Date of birth</label>
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <label><i class="fas fa-info margin-right-10px"></i> Description</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="description">
+                                <label><i class="fas fa-info margin-right-10px"></i> Fiscal Code</label>
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                </div>
                             </div>
                         </div>
-                        <hr class="margin-tb-40px">
-                        <div class="row">
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-facebook margin-right-10px"></i> Facebook</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.facebook.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-twitter margin-right-10px"></i> Twitter</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.twitter.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-youtube margin-right-10px"></i> Youtube</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.youtube.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-google-plus-g margin-right-10px"></i> Google Pluse</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.google-plus.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-whatsapp margin-right-10px"></i> Whatsapp</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.whatsapp.com">
-                            </div>
-
-                        </div>
-                        <a href="#" class="btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</a>
-
                     </div>
                 </div>
 

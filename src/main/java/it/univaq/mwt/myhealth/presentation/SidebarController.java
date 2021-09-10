@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 
 @Controller
 @RequestMapping("doctor")
-public class DoctorProfile {
+public class SidebarController {
 
 	@Autowired
 	private UserService userService;
@@ -19,7 +20,8 @@ public class DoctorProfile {
 	@GetMapping(value="")
 	public String doctor (Model model) throws BusinessException
 	{
-		model.addAttribute("doctor", userService.findUserByRole(2));
+	    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("doctor", userService.findUserByUsername(currentUserName));
 		return "private/doctor/doctorProfile"; 
 	}
 	
