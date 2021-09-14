@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import antlr.collections.List;
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Exam;
 
 @Controller

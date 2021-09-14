@@ -3,7 +3,6 @@ package it.univaq.mwt.myhealth.business;
 import java.util.List;
 import java.util.Set;
 
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Review;

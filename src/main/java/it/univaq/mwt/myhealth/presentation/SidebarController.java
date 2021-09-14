@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.UserService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 
 @Controller
 @RequestMapping("private")

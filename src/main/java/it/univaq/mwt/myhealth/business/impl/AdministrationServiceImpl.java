@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.univaq.mwt.myhealth.business.AdministrationService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.dao.AnnualBudgetDao;
+import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.ExpenseDao;
 import it.univaq.mwt.myhealth.domain.AnnualBudget;
 import it.univaq.mwt.myhealth.domain.Expense;

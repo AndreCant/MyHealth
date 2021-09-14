@@ -49,7 +49,6 @@ public class User extends AbstractEntity implements Serializable{
 	private int register;
 	private String specialization;
 	private String skills;
-	private Blob curriculum;
 	private String gender;
 	
 	@ManyToOne

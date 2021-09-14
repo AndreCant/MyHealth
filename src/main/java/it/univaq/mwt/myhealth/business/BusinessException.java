@@ -1,4 +1,4 @@
-package it.univaq.mwt.myhealth.business.exceptions;
+package it.univaq.mwt.myhealth.business;
 
 public class BusinessException extends Exception{
 	

@@ -7,9 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.FrontOfficeService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.FrontOfficeDao;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
 

@@ -12,60 +12,60 @@
             <div class="form-output">
 
                 <form th:action="${#request.getRequestURI()}" th:object="${user}" method="post">
-                	<h1 class="text-center pb-3">Sign UP</h1>
+                	<h1 class="text-center pb-3">[[#{signUp.title}]]</h1>
                 	
                 	<div class="or"></div>
                 	
-                	<p class="text-center pb-3">Do you have an account? <a href="page-login.html"> Sing in !</a> </p>
+                	<p class="text-center pb-3">[[#{signUp.yesAccount}]] <a href="page-login.html"> [[#{signUp.login}]]</a> </p>
                 	
                 	<div class="form-row">
                 		<div class="form-group label-floating col-md-6">
 	                        <label class="control-label">Username</label>
-	                        <input class="form-control" th:field="*{username}" placeholder="Username" type="text">
+	                        <input class="form-control" th:field="*{username}" placeholder="Username" type="text" required>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-6">
-	                        <label class="control-label">Email Address</label>
-	                        <input class="form-control" th:field="*{email}" placeholder="Email Address" type="email">
+	                        <label class="control-label">Email</label>
+	                        <input class="form-control" th:field="*{email}" placeholder="Email" type="email" required>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-12">
 	                        <label class="control-label" >Password</label>
-	                        <input class="form-control" th:field="*{password}" placeholder="Password" type="password">
+	                        <input class="form-control" th:field="*{password}" placeholder="Password" type="password" required>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-6">
-	                        <label class="control-label">Name</label>
-	                        <input class="form-control" th:field="*{name}" placeholder="Name" type="text">
+	                        <label class="control-label">[[#{signUp.name}]]</label>
+	                        <input class="form-control" th:field="*{name}" th:attr="placeholder=#{signUp.name}" type="text" required>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-6">
-	                        <label class="control-label">Surname</label>
-	                        <input class="form-control" th:field="*{surname}" placeholder="Surname" type="text">
+	                        <label class="control-label">[[#{signUp.surname}]]</label>
+	                        <input class="form-control" th:field="*{surname}" th:attr="placeholder=#{signUp.surname}" type="text" required>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-6">
-	                        <label class="control-label">Date of birth</label>
-	                        <input class="form-control" th:field="*{dateOfBirth}" type="date">
+	                        <label class="control-label">[[#{signUp.date}]]</label>
+	                        <input class="form-control" th:field="*{dateOfBirth}" type="date" required>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating is-select col-md-6">
-	                        <label class="control-label">Gender</label>
-	                        <select class="selectpicker form-control" th:field="*{gender}">
-								<option value="M">Male</option>
-								<option value="F">Female</option>
+	                        <label class="control-label">[[#{signUp.gender}]]</label>
+	                        <select class="selectpicker form-control" th:field="*{gender}" style="height: 50px;">
+								<option value="M">[[#{signUp.male}]]</option>
+								<option value="F">[[#{signUp.female}]]</option>
 							</select>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-12">
-	                        <label class="control-label">Fiscal Code</label>
-	                        <input class="form-control" th:field="*{fiscalCode}" placeholder="Fiscal Code" type="text">
+	                        <label class="control-label">[[#{signUp.fiscalCode}]]</label>
+	                        <input class="form-control" th:field="*{fiscalCode}" th:attr="placeholder=#{signUp.fiscalCode}" type="text" required>
 	                    </div> 
                 	</div>
                 	
 					<div class="or"></div>
 					
-                    <button type="submit" class="btn btn-md btn-primary full-width">Sign up !</button>
+                    <button type="submit" class="btn btn-md btn-primary full-width">[[#{signUp.go}]]</button>
                 </form>
 
             </div>

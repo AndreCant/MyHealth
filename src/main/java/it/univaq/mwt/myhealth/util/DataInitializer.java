@@ -1,5 +1,6 @@
 package it.univaq.mwt.myhealth.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,13 +10,13 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import it.univaq.mwt.myhealth.business.AdministrationService;
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.FrontOfficeService;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.AnnualBudget;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
@@ -98,9 +99,9 @@ public class DataInitializer {
 	private void initUsers() {
 		try {
 			this.users = List.of(
-				ObjectFactory.createUser("andrea95", "and@and.it", "admin123", this.roles.get(0), "Andrea", "Cantagallo", 0),
-				ObjectFactory.createUser("umberto355", "umb@umb.com", "admin123", this.roles.get(1), "Umberto", "La Barbera", 12345),
-				ObjectFactory.createUser("lello21", "lol@lol.com", "admin123", this.roles.get(2), "Pippo", "Franco", 0)
+				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "Java, Javascript, Excel", this.roles.get(0)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
+				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", true, this.roles.get(2))
 			);
 			
 			userService.saveUsers(this.users);

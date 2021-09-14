@@ -1,4 +1,4 @@
-package it.univaq.mwt.myhealth.business.exceptions;
+package it.univaq.mwt.myhealth.dao;
 
 public class DaoException extends Exception{
 

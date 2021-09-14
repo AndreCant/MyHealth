@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import it.univaq.mwt.myhealth.business.BusinessException;
+import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.business.impl.UserServiceImpl;
 import it.univaq.mwt.myhealth.domain.AnnualBudget;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;
@@ -32,13 +35,36 @@ public class ObjectFactory {
 		return new Role(name, description);
 	}
 	
-	public static User createUser(String username, String email, String password, Role role, String name, String surname, int register) {
+	private static User createUser(String username, String email, String password, Role role, String name, String surname, LocalDate dateOfBirth, String gender) {
 		String encodedPassword = (new BCryptPasswordEncoder()).encode(password);
 		User user = new User(username, email, encodedPassword, role);
 		user.setName(name);
 		user.setSurname(surname);
-		if(register != 0) user.setRegister(register);
+		user.setDateOfBirth(dateOfBirth);
+		user.setGender(gender);
 		return user;
+	}
+	
+	public static User createAdmin(String username, String email, String password, String name, String surname, int register, LocalDate dateOfBirth, String gender, String skills, Role role) throws BusinessException {
+		User admin = createUser(username, email, password, role, name, surname, dateOfBirth, gender);
+		admin.setRegister(register);
+		admin.setSkills(skills);
+		return admin;
+	}
+	
+	public static User createDoctor(String username, String email, String password, String name, String surname, int register, LocalDate dateOfBirth, String gender, String skills, String specialization, boolean hasVisitToComplete, Role role) throws BusinessException {
+		User doctor = createUser(username, email, password, role, name, surname, dateOfBirth, gender);
+		doctor.setRegister(register);
+		doctor.setSkills(skills);
+		doctor.setSpecialization(specialization);
+		doctor.setHasVisitToComplete(hasVisitToComplete);
+		return doctor;
+	}
+	
+	public static User createPatient(String username, String email, String password, String name, String surname, LocalDate dateOfBirth, String gender, boolean hasVisitToComplete, Role role) throws BusinessException {
+		User patient = createUser(username, email, password, role, name, surname, dateOfBirth, gender);
+		patient.setHasVisitToComplete(hasVisitToComplete);
+		return patient;
 	}
 	
 	public static Exam createExam( String code, int session, String type, String name, String specialization, String subSpecialization, String description, Double price) {

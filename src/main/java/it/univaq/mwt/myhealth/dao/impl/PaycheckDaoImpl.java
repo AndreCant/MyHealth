@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.PaycheckDao;
 import it.univaq.mwt.myhealth.dao.repository.PaycheckRepository;
 import it.univaq.mwt.myhealth.domain.Paycheck;

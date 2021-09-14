@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.MedicineDiagnosisDao;
 import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
 

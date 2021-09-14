@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.UserService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.RoleDao;
 import it.univaq.mwt.myhealth.dao.UserDao;
 import it.univaq.mwt.myhealth.domain.Role;

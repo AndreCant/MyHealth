@@ -2,8 +2,7 @@ package it.univaq.mwt.myhealth.business;
 
 import java.util.List;
 
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
 
 public interface FrontOfficeService {

@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.UserService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
+import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.RoleDao;
 import it.univaq.mwt.myhealth.dao.impl.RoleDaoImpl;
 import it.univaq.mwt.myhealth.domain.Invoice;

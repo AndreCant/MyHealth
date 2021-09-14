@@ -5,8 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -17,8 +21,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.UserService;
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.User;
 
 @Controller
@@ -27,6 +31,9 @@ public class AuthController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@GetMapping(value="signIn")
 	public String signIn() {
@@ -41,12 +48,17 @@ public class AuthController {
 	
 	@PostMapping(value="signUp")
 	public String createUser(@Valid @ModelAttribute("user") User user, Errors errors) throws BusinessException{
+		
 		if (errors.hasErrors()) {
 			return "public/signUp";
 		}
 		user.setPassword((new BCryptPasswordEncoder()).encode(user.getPassword()));
 		user.setRole(userService.findRoleByName("patient"));
 		userService.saveUser(user);
+		
+		UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
+        if (usernamePasswordAuthenticationToken.isAuthenticated())  SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
 		return "redirect:/";
 	}

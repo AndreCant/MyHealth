@@ -2,7 +2,6 @@ package it.univaq.mwt.myhealth.dao;
 
 import java.util.List;
 
-import it.univaq.mwt.myhealth.business.exceptions.DaoException;
 import it.univaq.mwt.myhealth.domain.Reservation;
 
 public interface ReservationDao {

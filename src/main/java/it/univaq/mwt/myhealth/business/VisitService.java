@@ -2,7 +2,6 @@ package it.univaq.mwt.myhealth.business;
 
 import java.util.List;
 
-import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Medicine;
 import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
