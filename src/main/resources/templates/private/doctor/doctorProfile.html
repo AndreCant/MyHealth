@@ -97,45 +97,61 @@
 						}
                         </style>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label ><i  class="far fa-user margin-right-10px"></i> User Name</label>
+                                <label ><i  class="far fa-user margin-right-10px"></i>  Name</label>
                                 <div class="campi">
                                 	<center><h6  th:text="${doctor.name}">kokok</h6></center>
                                 </div>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-lock margin-right-10px"></i> Password</label>
+                                <label><i class="far fa-user margin-right-10px"></i> Surname</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.name}">kokok</h6></center>
+                                	<center><h6 th:text="${doctor.surname}">kokok</h6></center>
                                 </div>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="far fa-user margin-right-10px"></i> Username</label>
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                </div>
+                            </div>
+                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
                                 <div class="campi">
                                 	<center><h6 th:text="${doctor.email}">kokok</h6></center>
                                 </div>
                             </div>
-                            <div class="col-md-6" sec:authorize="hasRole('doctor')" >
-                                <label><i class="fas fa-info margin-right-10px"></i> Specialization</label>
+                             <div class="col-md-6 margin-bottom-20px">
+                                <label ><i  class="fa fa-code margin-right-10px"></i>  Fiscal Code</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.specilization}">kokok</h6></center>
+                                	<center><h6  th:text="${doctor.fiscalCode}">kokok</h6></center>
                                 </div>
                             </div>
-                             <div class="col-md-6">
-                                <label><i class="fas fa-info margin-right-10px"></i> Username</label>
+                            <div class="col-md-6 margin-bottom-20px" sec:authorize="hasRole(doctor)">
+                                <label><i class="fas fa-file-certificate margin-right-10px"></i> Specilization</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                	<center><h6  th:text="${doctor.specilization}">kokok</h6></center>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <label><i class="fas fa-info margin-right-10px"></i> Date of birth</label>
+            				<div class="col-md-6 margin-bottom-20px" sec:authorize="hasRole(doctor)">
+                                <label><i class="fas fa-lock margin-right-10px"></i> Curriculum</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                	<center><h6 th:text="${doctor.curriculum}">kokok</h6></center>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <label><i class="fas fa-info margin-right-10px"></i> Fiscal Code</label>
+                              <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fas fa-lock margin-right-10px"></i> Date Of Birth</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                	<center><h6 th:text="${doctor.dateOfBirth}">kokok</h6></center>
+                                </div>
+                            </div>
+            				<div class="col-md-6 margin-bottom-20px"  sec:authorize="hasRole(user, doctor)">
+                                <label><i class="fas fa-lock margin-right-10px"></i> Has Visit to complete</label>
+                               <input type="checkbox"> 
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fas fa-mars-double margin-right-10px"></i> Gender</label>
+                                <div class="campi">
+                                	<center><h6 th:text="${doctor.gender}">kokok</h6></center>
                                 </div>
                             </div>
                         </div>
@@ -146,37 +162,6 @@
         </div>
         <!-- /.container-fluid-->
         <!-- /.content-wrapper-->
-        <footer class="sticky-footer">
-            <div class="container">
-                <div class="text-center">
-                    <span>© 2018 tabib Health Directory | All Right Reserved <a class="text-grey-2 margin-left-15px" href="https://themeforest.net/user/nile-theme/portfolio" target="_blank">Powered by : Nile Theme</a></span>
-                </div>
-            </div>
-        </footer>
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-          <i class="fa fa-angle-up"></i>
-        </a>
-        <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="page-login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   </div>
 </body>
 
 

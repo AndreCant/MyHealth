@@ -11,7 +11,7 @@ import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.exceptions.BusinessException;
 
 @Controller
-@RequestMapping("doctor")
+@RequestMapping("private")
 public class SidebarController {
 
 	@Autowired
@@ -20,7 +20,8 @@ public class SidebarController {
 	@GetMapping(value="")
 	public String doctor (Model model) throws BusinessException
 	{
-	    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+	
+		String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("doctor", userService.findUserByUsername(currentUserName));
 		return "private/doctor/doctorProfile"; 
 	}
