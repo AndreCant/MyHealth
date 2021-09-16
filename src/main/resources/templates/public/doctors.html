@@ -4,18 +4,45 @@
 	  layout:decorate="~{layout/layout}">
 <body>
   <div layout:fragment="content">
+  <script th:inline="javascript">
+		$(document).ready(function () {
+		    $('#navExams').append('<ul id="nav" class="pagination pagination-md "></ul>');  
+		    var rowsShown = 4;  
+		    var rowsTotal = $('#data .exam').length;  
+		    console.log(rowsTotal);
+		    var numPages = rowsTotal/rowsShown; 
+		    
+		    if(numPages > 1) {
+				$('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="0" tabindex="-1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>');
+			 	for (i = 0;i < numPages;i++) {  
+			        var pageNum = i + 1;
+			        $('#nav').append ('<li class="page-item"><a href="javascript::" class="page-link" rel="'+i+'">'+pageNum+'</a></li> ');  
+			    }
+			    $('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="'+(numPages-1)+'"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>');
+			    
+			    $('#data .exam').hide();  
+			    $('#data .exam').slice (0, rowsShown).show();  
+			    $('#nav a:first').addClass('active');  
+			    $('#nav a').bind('click', function() {  
+				$('#nav a').removeClass('active');  
+			   	$(this).addClass('active');  
+			        var currPage = $(this).attr('rel');  
+			        var startItem = currPage * rowsShown;  
+			        var endItem = startItem + rowsShown;  
+			        $('#data .exam').css('opacity','0.0').hide().slice(startItem, endItem).  
+			        css('display','table-row').animate({opacity:1}, 300);  
+			    }); 
+			}
+		    
+		});
+	</script>
+	
      <div id="page-title" class="padding-tb-30px gradient-white">
         <div class="container">
-            <ol class="breadcrumb opacity-5">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active">Doctors List</li>
-            </ol>
-            <h1 class="font-weight-300">Doctors List</h1>
+            <h1 class="font-weight-300">[[#{doctors.title}]]</h1>
         </div>
     </div>
-
-
+    
     <div class="margin-tb-30px">
         <div class="container">
             <div class="row">
@@ -24,36 +51,26 @@
                     <div class="row">
 
                         <!-- Doctor -->
-                        <div class="col-lg-4 col-md-6 hvr-bob margin-bottom-45px">
+                        <div class="col-md-4 col-md-6 hvr-bob margin-bottom-45px">
                             <div class="background-white box-shadow" th:each= "doctor : ${doctors}">
                                 <div class="thum">
-                                    <a th:href="@{'/doctors/'+ ${doctor.name}}"><img th:src="@{/dist/img/doctor-1.jpg}" alt=""></a>
+                                    <a ><img th:src="@{/dist/img/doctor-1.jpg}" alt=""></a>
                                 </div>
                                 <div class="padding-30px">
-                                    <span class="text-grey-2">Internal</span>
-                                    <h5 class="margin-tb-15px" th:text="${doctor.username}"><a class="text-dark" href="#">Dr. Shahrzat Moh</a></h5>
-                                    <div class="rating clearfix">
-                                        <ul class="float-left">
-                                            <li class="active"></li>
-                                            <li class="active"></li>
-                                            <li class="active"></li>
-                                            <li class="active"></li>
-                                            <li></li>
-                                        </ul>
-                                    </div>
+                                    <span class="text-grey-2" th:text="${doctor.specialization}"></span>
+                                    <a class="text-dark" th:href="@{'/doctors/'+ ${doctor.name}}"><h5 class="margin-tb-15px" th:text="${doctor.name + ' ' + doctor.surname}"></h5></a>
                                 </div>
                             </div>
                         </div>
-                        <!-- // Doctor -->
+                        
+                        
                     </div>
                     
-                    <ul class="pagination pagination-md ">
-                        <li class="page-item disabled"><a class="page-link rounded-0" href="#" tabindex="-1">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link rounded-0" href="#">Next</a></li>
-                    </ul>
+                    <div class="row">
+	                	<div class="col-md-4"></div>
+	                	<div class="col-md-4" id="navExams"></div>
+	                	<div class="col-md-4"></div>
+                	</div>
 
                 </div>
                 <div class="col-lg-4">
@@ -61,18 +78,7 @@
             </div>
         </div>
     </div>
-
-    <script src="assets/js/sticky-sidebar.js"></script>
-    <script src="assets/js/YouTubePopUp.jquery.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/imagesloaded.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
   </div>
 </body>
 
-
-<!-- Mirrored from nilethemes.com/html/tabib/doctor-layout-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:50:56 GMT -->
 </html>
