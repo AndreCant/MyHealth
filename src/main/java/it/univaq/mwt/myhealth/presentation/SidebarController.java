@@ -17,6 +17,7 @@ import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
+import it.univaq.mwt.myhealth.business.auth.UserDetailsImpl;
 import it.univaq.mwt.myhealth.domain.AbstractEntity;
 import it.univaq.mwt.myhealth.domain.User;
 
@@ -44,9 +45,12 @@ public class SidebarController {
 	
 
 	@GetMapping(value="/ListReservation")
-	public String ListReservation (Model model, Principal principal ) throws BusinessException
+	public String ListReservation (Model model) throws BusinessException
 	{
-		model.addAttribute("visits", visitService.findByDoctor(((AbstractEntity) principal).getId()));		 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		User user = userService.findUserByUsername(userDetails.getUsername());
+     	model.addAttribute("visits", visitService.findByDoctor(user.getId()));		 
 		return "private/doctor/dashboardMyListings"; 		
 	}
 	
