@@ -126,16 +126,10 @@
                                 	<center><h6  th:text="${doctor.fiscalCode}">kokok</h6></center>
                                 </div>
                             </div>
-                            <div class="col-md-6 margin-bottom-20px" sec:authorize="hasRole(doctor)">
+                            <div class="col-md-6 margin-bottom-20px" sec:authorize="hasRole('doctor')">
                                 <label><i class="fas fa-file-certificate margin-right-10px"></i> Specilization</label>
                                 <div class="campi">
-                                	<center><h6  th:text="${doctor.specilization}">kokok</h6></center>
-                                </div>
-                            </div>
-            				<div class="col-md-6 margin-bottom-20px" sec:authorize="hasRole(doctor)">
-                                <label><i class="fas fa-lock margin-right-10px"></i> Curriculum</label>
-                                <div class="campi">
-                                	<center><h6 th:text="${doctor.curriculum}">kokok</h6></center>
+                                	<center><h6  th:text="${doctor.specialization}">kokok</h6></center>
                                 </div>
                             </div>
                               <div class="col-md-6 margin-bottom-20px">
@@ -144,7 +138,7 @@
                                 	<center><h6 th:text="${doctor.dateOfBirth}">kokok</h6></center>
                                 </div>
                             </div>
-            				<div class="col-md-6 margin-bottom-20px"  sec:authorize="hasRole(user, doctor)">
+            				<div class="col-md-6 margin-bottom-20px"  sec:authorize="hasRole('doctor') || hasRole('patient')">
                                 <label><i class="fas fa-lock margin-right-10px"></i> Has Visit to complete</label>
                                <input type="checkbox"> 
                             </div>

@@ -1,8 +1,11 @@
 package it.univaq.mwt.myhealth.presentation;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.AbstractEntity;
+import it.univaq.mwt.myhealth.domain.User;
 
 @Controller
 @RequestMapping("private")
@@ -40,10 +44,9 @@ public class SidebarController {
 	
 
 	@GetMapping(value="/ListReservation")
-	public String ListReservation (Model model, Authentication authentication ) throws BusinessException
+	public String ListReservation (Model model, Principal principal ) throws BusinessException
 	{
-		//Long authentication =  authentication.getId();
-		//model.addAttribute("visits", visitService.findByDoctor(authentication));		 
+		model.addAttribute("visits", visitService.findByDoctor(((AbstractEntity) principal).getId()));		 
 		return "private/doctor/dashboardMyListings"; 		
 	}
 	
