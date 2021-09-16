@@ -52,10 +52,21 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 	}
 
+	
 	@Override
 	public Reservation findReservationById(Long uid) throws BusinessException {
 		try {
 			return reservationDao.findById(uid);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+	
+	@Override
+	public List<Reservation> findReservationByExam(Long uid) throws BusinessException {
+		try {
+			return reservationDao.findReservationByExam(uid);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
@@ -122,4 +133,6 @@ public class ReservationServiceImpl implements ReservationService{
 			throw new BusinessException(e.getMessage());
 		}
 	}
+
+
 }

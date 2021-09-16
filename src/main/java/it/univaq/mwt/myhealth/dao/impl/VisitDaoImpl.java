@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.VisitDao;
+import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.dao.VisitDao;
 import it.univaq.mwt.myhealth.domain.Visit;
@@ -49,6 +50,20 @@ public class VisitDaoImpl implements VisitDao{
 		for (Visit visit : visits) {
 			entityManager.persist(visit);
 		}
+	}
+
+	@Override
+	public List<Visit> findByReservation(Long id) throws DaoException {
+		return (List<Visit>) entityManager.createQuery("FROM Visit WHERE reservation_id = :id", Visit.class)
+		        .setParameter("id", id)
+		        .getResultList();
+	}
+
+	@Override
+	public List<Visit> findByDoctor(Long id) throws DaoException {
+		return (List<Visit>) entityManager.createQuery("FROM Visit WHERE doctor_id = :id", Visit.class)
+		        .setParameter("id", id)
+		        .getResultList();
 	}
 
 }

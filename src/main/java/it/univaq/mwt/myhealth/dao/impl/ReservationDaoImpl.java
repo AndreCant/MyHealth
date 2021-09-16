@@ -47,6 +47,13 @@ public class ReservationDaoImpl implements ReservationDao{
 		        .setParameter("patientId", patientId)
 		        .getResultList();
 	}
+	
+	@Override
+	public List<Reservation> findReservationByExam(Long examId) throws DaoException {
+		return (List<Reservation>) entityManager.createQuery("FROM Reservation WHERE exam_id = :examId", Reservation.class)
+		        .setParameter("examId", examId)
+		        .getResultList();
+	}
 
 	@Override
 	public void saveAll(List<Reservation> reservations) throws DaoException {

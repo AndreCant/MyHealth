@@ -10,6 +10,10 @@ import it.univaq.mwt.myhealth.domain.Visit;
 public interface VisitService {
 	
 	List<Visit> findAllUsers() throws BusinessException;
+	
+	List<Visit> findByReservation(Long id) throws BusinessException;
+	
+	List<Visit> findByDoctor(Long id) throws BusinessException;
 	   
 	void saveVisit(Visit visit) throws BusinessException;
 	
