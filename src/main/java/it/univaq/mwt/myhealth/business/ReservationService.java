@@ -10,9 +10,9 @@ import it.univaq.mwt.myhealth.domain.Visit;
 public interface ReservationService {
 	
 	List<Reservation> findAllReservations() throws BusinessException;
-	
+		
 	List<Reservation> findReservationsByPatient(Long patientId) throws BusinessException;
-	
+		
 	Reservation findReservationById(Long uid) throws BusinessException;
 	   
 	void save(Reservation reservation) throws BusinessException;
@@ -26,4 +26,7 @@ public interface ReservationService {
 	void saveReviews(List<Review> reviews) throws BusinessException;
 	
 	void savePayments(List<Payment> payments) throws BusinessException;
+
+	List<Reservation> findReservationByExam(Long uid) throws BusinessException;
+	
 }
