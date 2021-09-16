@@ -99,14 +99,14 @@ public class DataInitializer {
 	private void initUsers() {
 		try {
 			this.users = List.of(
-				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "Java, Javascript, Excel", this.roles.get(0)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", true, this.roles.get(2))
+				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "GYZDMH59D63C829U", "Java, Javascript, Excel", this.roles.get(0)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
+				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829U", true, this.roles.get(2))
 			);
 			
 			userService.saveUsers(this.users);

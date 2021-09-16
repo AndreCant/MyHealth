@@ -6,9 +6,9 @@
   <div layout:fragment="content">
   <script th:inline="javascript">
 		$(document).ready(function () {
-		    $('#navExams').append('<ul id="nav" class="pagination pagination-md "></ul>');  
+		    $('#navDoctors').append('<ul id="nav" class="pagination pagination-md "></ul>');  
 		    var rowsShown = 4;  
-		    var rowsTotal = $('#data .exam').length;  
+		    var rowsTotal = $('#data .doctor').length;  
 		    console.log(rowsTotal);
 		    var numPages = rowsTotal/rowsShown; 
 		    
@@ -20,8 +20,8 @@
 			    }
 			    $('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="'+(numPages-1)+'"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>');
 			    
-			    $('#data .exam').hide();  
-			    $('#data .exam').slice (0, rowsShown).show();  
+			    $('#data .doctor').hide();  
+			    $('#data .doctor').slice (0, rowsShown).show();  
 			    $('#nav a:first').addClass('active');  
 			    $('#nav a').bind('click', function() {  
 				$('#nav a').removeClass('active');  
@@ -29,7 +29,7 @@
 			        var currPage = $(this).attr('rel');  
 			        var startItem = currPage * rowsShown;  
 			        var endItem = startItem + rowsShown;  
-			        $('#data .exam').css('opacity','0.0').hide().slice(startItem, endItem).  
+			        $('#data .doctor').css('opacity','0.0').hide().slice(startItem, endItem).  
 			        css('display','table-row').animate({opacity:1}, 300);  
 			    }); 
 			}
@@ -46,13 +46,11 @@
     <div class="margin-tb-30px">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-
-                    <div class="row">
-
+                <div class="col-lg-12">
+                    <div class="row" id="data">
                         <!-- Doctor -->
-                        <div class="col-md-4 col-md-6 hvr-bob margin-bottom-45px">
-                            <div class="background-white box-shadow" th:each= "doctor : ${doctors}">
+                        <div class="col-lg-3 col-md-6 hvr-bob margin-bottom-45px doctor" th:each= "doctor : ${doctors}">
+                            <div class="background-white box-shadow">
                                 <div class="thum">
                                     <a ><img th:src="@{/dist/img/doctor-1.jpg}" alt=""></a>
                                 </div>
@@ -66,10 +64,10 @@
                         
                     </div>
                     
-                    <div class="row">
-	                	<div class="col-md-4"></div>
-	                	<div class="col-md-4" id="navExams"></div>
-	                	<div class="col-md-4"></div>
+                    <div class="row text-center">
+	                	<div class="col-lg-4"></div>
+	                	<div class="col-lg-4" id="navDoctors"></div>
+	                	<div class="col-lg-4"></div>
                 	</div>
 
                 </div>
