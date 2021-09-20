@@ -18,16 +18,15 @@ public class AdminController {
 	private UserService userService;
 	
 	@GetMapping(value="/profile")
-	public String admin (Model model) throws BusinessException
+	public String profile (Model model) throws BusinessException
 	{	
 		String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("user", userService.findUserByUsername(currentUserName));
 		return "private/admin/myProfile"; 
 	}
 	
-	@GetMapping(value="")
-	public String test () throws BusinessException
-	{	
-		return "public/exams";
+	@GetMapping(value="/users")
+	public String users () throws BusinessException{	
+		return "private/admin/users";
 	}
 }
