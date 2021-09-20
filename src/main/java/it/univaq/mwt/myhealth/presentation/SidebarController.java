@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.presentation;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,7 @@ import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.business.auth.UserDetailsImpl;
 import it.univaq.mwt.myhealth.domain.AbstractEntity;
 import it.univaq.mwt.myhealth.domain.User;
+import it.univaq.mwt.myhealth.domain.Visit;
 
 @Controller
 @RequestMapping("private")
@@ -50,6 +52,7 @@ public class SidebarController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		User user = userService.findUserByUsername(userDetails.getUsername());
+		List<Visit> visit = visitService.findByDoctor(user.getId());
      	model.addAttribute("visits", visitService.findByDoctor(user.getId()));		 
 		return "private/doctor/dashboardMyListings"; 		
 	}
