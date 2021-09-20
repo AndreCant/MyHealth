@@ -24,8 +24,8 @@ import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.domain.Visit;
 
 @Controller
-@RequestMapping("private")
-public class SidebarController {
+@RequestMapping("doctor")
+public class DoctorController {
 
 	@Autowired
 	private UserService userService;
@@ -37,17 +37,17 @@ public class SidebarController {
 	@Autowired
 	private VisitService visitService;
 	
-	@GetMapping(value="")
+	@GetMapping(value="/profile")
 	public String doctor (Model model) throws BusinessException
 	{	
 		String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.addAttribute("doctor", userService.findUserByUsername(currentUserName));
+		model.addAttribute("user", userService.findUserByUsername(currentUserName));
 		return "private/doctor/doctorProfile"; 
 	}
 	
 
-	@GetMapping(value="/ListReservation")
-	public String ListReservation (Model model) throws BusinessException
+	@GetMapping(value="/listReservation")
+	public String listReservation (Model model) throws BusinessException
 	{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
