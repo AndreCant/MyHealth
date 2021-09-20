@@ -14,6 +14,8 @@ public class UserDetailsImpl implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private static final String ROLE_PREFIX = "ROLE_";
+	
 	private User user;
 
 	public UserDetailsImpl(User user) {
@@ -24,7 +26,7 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
-		result.add(new SimpleGrantedAuthority(user.getRole().getName()));
+		result.add(new SimpleGrantedAuthority(ROLE_PREFIX + user.getRole().getName()));
 		return result;
 	}
 

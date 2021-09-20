@@ -2,7 +2,6 @@
 <html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  xmlns:th="http://www.thymeleaf.org"
 	  layout:decorate="~{layout-admin/layout-admin}">
-<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:02 GMT -->
 <body>
  <div layout:fragment="content">
     <div class="content-wrapper">
@@ -11,12 +10,7 @@
                 <!-- Page Title -->
                 <div id="page-title" class="padding-30px background-white full-width">
                     <div class="container">
-                        <ol class="breadcrumb opacity-5">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li class="active">My Profile</li>
-                        </ol>
-                        <h1 class="font-weight-300">My Profile</h1>
+                        <h1 class="font-weight-300">[[#{profile.title}]]</h1>
                     </div>
                 </div>
                 <!-- // Page Title -->
@@ -43,43 +37,43 @@
                             <div class="col-md-6 margin-bottom-20px">
                                 <label ><i  class="far fa-user margin-right-10px"></i>  Name</label>
                                 <div class="campi">
-                                	<center><h6  th:text="${doctor.name}">kokok</h6></center>
+                                	<center><h6  th:text="${user.name}">kokok</h6></center>
                                 </div>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> Surname</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.surname}">kokok</h6></center>
+                                	<center><h6 th:text="${user.surname}">kokok</h6></center>
                                 </div>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> Username</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.username}">kokok</h6></center>
+                                	<center><h6 th:text="${user.username}">kokok</h6></center>
                                 </div>
                             </div>
                              <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.email}">kokok</h6></center>
+                                	<center><h6 th:text="${user.email}">kokok</h6></center>
                                 </div>
                             </div>
                              <div class="col-md-6 margin-bottom-20px">
                                 <label ><i  class="fa fa-code margin-right-10px"></i>  Fiscal Code</label>
                                 <div class="campi">
-                                	<center><h6  th:text="${doctor.fiscalCode}">kokok</h6></center>
+                                	<center><h6  th:text="${user.fiscalCode}">kokok</h6></center>
                                 </div>
                             </div>
                             <div class="col-md-6 margin-bottom-20px" sec:authorize="hasRole('doctor')">
                                 <label><i class="fas fa-file-certificate margin-right-10px"></i> Specilization</label>
                                 <div class="campi">
-                                	<center><h6  th:text="${doctor.specialization}">kokok</h6></center>
+                                	<center><h6  th:text="${user.specialization}">kokok</h6></center>
                                 </div>
                             </div>
                               <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="fas fa-lock margin-right-10px"></i> Date Of Birth</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.dateOfBirth}">kokok</h6></center>
+                                	<center><h6 th:text="${user.dateOfBirth}">kokok</h6></center>
                                 </div>
                             </div>
             				<div class="col-md-6 margin-bottom-20px"  sec:authorize="hasRole('doctor') || hasRole('patient')">
@@ -89,7 +83,7 @@
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="fas fa-mars-double margin-right-10px"></i> Gender</label>
                                 <div class="campi">
-                                	<center><h6 th:text="${doctor.gender}">kokok</h6></center>
+                                	<center><h6 th:text="${user.gender}">kokok</h6></center>
                                 </div>
                             </div>
                         </div>
@@ -98,10 +92,5 @@
 
             </div>
         </div>
-        <!-- /.container-fluid-->
-        <!-- /.content-wrapper-->
 </body>
-
-
-<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:03 GMT -->
 </html>

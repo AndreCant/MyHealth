@@ -35,7 +35,7 @@ import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
 @Controller
-@RequestMapping("test")
+@RequestMapping("private/test")
 public class TestController {
 	
 	@Autowired

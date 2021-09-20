@@ -26,10 +26,13 @@
                         <a sec:authorize="!isAuthenticated()" th:href="@{'/auth/signIn'}" class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5"><i class="fa fa-fw fa-user"></i>  Login</a>
 						<a sec:authorize="isAuthenticated()" th:href="@{'/auth/logout'}" class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5"><i class="fa fa-fw fa-sign-out-alt"></i>  Logout</a>                    
                         
-                        <a sec:authorize="hasAuthority('admin') || hasAuthority('doctor')" th:href="@{'/private'}" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
+                        <a sec:authorize="hasRole('admin')" th:href="@{'/admin/profile'}" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
                           <i class="fa fa-fw fa-lock mr-1"></i>  [[#{nav.reserved}]]
                         </a>
-                        <a sec:authorize="hasAuthority('patient')" href="#" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
+                        <a sec:authorize="hasRole('doctor')" th:href="@{'/doctor/profile'}" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
+                          <i class="fa fa-fw fa-lock mr-1"></i>  [[#{nav.reserved}]]
+                        </a>
+                        <a sec:authorize="hasRole('patient')" href="#" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
                           <i class="fas fa-fw fa-user mr-1"></i>  [[#{nav.reserved}]]
                         </a>
                     </div>
