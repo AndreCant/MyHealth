@@ -7,30 +7,15 @@
 
             <ul class="navbar-nav navbar-sidenav background-main-color admin-nav" id="admin-nav">
                 <li class="nav-item">
-                    <span class="nav-title-text">Main</span>
+                    <span class="nav-title-text">Setup</span>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="dashboard-home.html">
-                        <i class="fas fa-fw fa-home"></i><span class="nav-link-text">Dashboard</span>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                    <a class="nav-link" th:href="@{'/admin/users'}">
+                        <i class="fas fa-fw fa-user"></i><span class="nav-link-text">[[#{leftNav.users}]]</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
-                    <a class="nav-link" href="dashboard-my-listings.html">
-                <i class="fa fa-fw fa-table"></i>
-                <span class="nav-link-text">My Listings</span>
-              </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Favorites">
-                    <a class="nav-link active" href="dashboard-my-favorites.html">
-                <i class="fa fa-fw fa-heart"></i>
-                <span class="nav-link-text">My Favorites</span>
-              </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
-                    <a class="nav-link" href="dashboard-reviews.html">
-                <i class="fa fa-fw fa-star"></i>
-                <span class="nav-link-text">Reviews</span>
-              </a>
+              
+              
                 </li>
                 <li class="nav-item">
                     <span class="nav-title-text">Example Pages</span>
