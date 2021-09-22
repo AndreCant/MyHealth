@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout/layout}">
+<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:02 GMT -->
+<body>
+ <div layout:fragment="content">
+  
+    <div class="content-wrapper">
+        <div class="container-fluid overflow-hidden">
+            <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
+                <!-- Page Title -->
+                <div id="page-title" class="padding-30px background-white full-width">
+                    <div class="container">
+                        <h1 class="font-weight-300">My Profile</h1>
+                    </div>
+                </div>
+                <!-- // Page Title -->
+
+                <div class="row margin-tb-45px full-width">
+                    <div class="col-md-4">
+                        <div class="padding-15px background-white">
+                            <a href="#" class="d-block margin-bottom-10px"><img src="assets/img/profile-img.png" alt=""></a>
+                            <a href="#" class="btn btn-sm  text-white background-main-color btn-block">Upload Image</a>
+                        </div>
+                    </div>
+                    <div class="col-md-8" id="father">
+                  
+                        <div class="row" >
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="far fa-user margin-right-10px"></i> User Name</label>
+                                <input id="updateInput" type="text" class="form-control form-control-sm" disabled placeholder="Salim Aldosery">
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fas fa-lock margin-right-10px"></i> Password</label>
+                                <input id="updateInput" type="password" class="form-control form-control-sm bello" disabled>
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
+                                <input id="updateInput" type="text" class="form-control form-control-sm bello" placeholder="info@yourname.com" disabled>
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fas fa-mobile-alt margin-right-10px"></i> Phone</label>
+                                <input id="updateInput" type="text" class="form-control form-control-sm bello" placeholder="002229456987" disabled>
+                            </div>
+                
+                        </div>
+                        <hr class="margin-tb-40px">
+                        <button id="umberto" href="#" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>
+						<button id="" href="#" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Submit</button>
+                    </div>
+                      <script> 
+                    let divFather = document.getElementById("father");
+                    let button2 = document.createElement("button");
+                   let inputs =  document.getElementsByClassName("form-control form-control-sm bello");
+                   let button = document.getElementById("umberto");
+                   button2.addAttribute("class")
+                  button.addEventListener("click", ()=>{
+						for(let i = 0; i < inputs.length; i++){
+							inputs[i].removeAttribute('disabled');
+						  }
+						 divFather.appendChild(button2) 
+						  
+						});
+                    </script>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.container-fluid-->
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <span>© 2018 tabib Health Directory | All Right Reserved <a class="text-grey-2 margin-left-15px" href="https://themeforest.net/user/nile-theme/portfolio" target="_blank">Powered by : Nile Theme</a></span>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+          <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="page-login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</body>
+
+
+<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:03 GMT -->
+</html>
