@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout-admin/layout-admin}">
+<body>
+	<div layout:fragment="content">
+		
+	    <div class="content-wrapper">
+	        <div class="container-fluid overflow-hidden">
+	            <div class="row margin-lr-10px">
+	                <div class="margin-tb-45px full-width">
+	                    <div class="padding-30px background-white border-radius-20 box-shadow">
+	                    	<div class="row">
+		                        <h1 class="col pl-4"><i class="far fa-user margin-right-10px text-main-color"></i> [[#{users.title}]]</h1>
+		                        <div class="col pr-4">
+			                        <a href="#" class="float-right btn btn-app"><i class="fa fa-plus margin-right-10px"></i> [[#{users.add}]]</a>
+		                        </div>
+	                    	</div>
+	                        <hr>
+	                        <div class="card card-info">
+								<!--<div class="card-header"><h3 class="card-title" th:text="#{ssd.titolo}"></h3></div>
+								<form th:action="${#request.getRequestURI()}" th:object="${ssd}" class="form-horizontal" method="post">
+								  <input type="hidden" th:field="*{id}"/>
+								  <div class="card-body">
+									<div class="form-group row">
+										<label for="codice" class="col-sm-2 col-form-label" th:text="#{ssd.codice}"></label>
+										<div class="col-sm-6">
+											<input type="text" th:field="*{codice}" class="form-control"/>
+											<span th:if="${#fields.hasErrors('codice')}" th:each="err: ${#fields.errors('codice')}" th:utext="${err}"></span>
+										</div>
+									</div>	  	               
+									<div class="form-group row">
+										<label for="denominazione" class="col-sm-2 col-form-label" th:text="#{ssd.denominazione}"></label>
+										<div class="col-sm-6">
+											<input type="text" th:field="*{denominazione}" class="form-control"/>
+						   					<span th:if="${#fields.hasErrors('denominazione')}" th:each="err: ${#fields.errors('denominazione')}" th:utext="${err}"></span>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="areassd" class="col-sm-2 col-form-label" th:text="#{ssd.area}"></label>
+										<div class="col-sm-6">
+										<select id="areassd_select2" th:field="*{areaSSD.id}" class="form-control">
+											<option th:each="areassd : ${areessd}" th:value="${areassd.id}" th:text="${areassd.denominazione}"></option>
+										</select>
+										</div>
+									</div>	
+								  </div>
+								  <div class="card-footer">
+									<button type="submit" class="btn btn-info" th:text="#{${#request.getRequestURI().endsWith('delete')? 'common.delete' : 'common.submit'}}"></button>
+									<a href="#" th:href="@{/ssds/list}" class="btn btn-default float-right" th:text="#{common.cancel}"></a>	
+								  </div>
+								</form>
+							</div>-->
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>
