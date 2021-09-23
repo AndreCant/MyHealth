@@ -25,42 +25,53 @@
                         </div>
                     </div>
                     <div class="col-md-8" id="father">
-                  
+                  	<form method="PUT" th:action="${#request.getRequestURI()}" th:object="${user}">
                         <div class="row" >
+                         <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="far fa-user margin-right-10px"></i> Name</label>
+                                <input id="updateInput"  type="text" class="form-control form-control-sm" th:placeholder="${user.name}" placeholder="002229456987" disabled>
+                            </div>
+                            
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> User Name</label>
-                                <input id="updateInput" type="text" class="form-control form-control-sm" disabled placeholder="Salim Aldosery">
+                                <label><i class="far fa-user margin-right-10px"></i> Surname</label>
+                                <input id="updateInput" type="text"  class="form-control form-control-sm" th:placeholder="${user.surname}" placeholder="info@yourname.com" disabled>
+                            </div>     
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="far fa-user margin-right-10px"></i> UserName</label>
+                                <input id="updateInput"  th:field="*{username}" type="text" class="form-control form-control-sm bello" disabled th:placeholder="${user.username}" placeholder="">
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-lock margin-right-10px"></i> Password</label>
-                                <input id="updateInput" type="password" class="form-control form-control-sm bello" disabled>
+                                <label><i class="far fa-envelope-open margin-right-10px"></i> Gender</label>
+                                <div> </div>
+										  <select class="form-control form-control-sm bello" id="gender" name="gender" style="width: 65px; height: 30px;" disabled>
+										    <option value="">M</option>
+										    <option value="">F</option>										   
+										  </select>
                             </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fa fa-birthday-cake margin-right-10px"></i> Date Of Birth</label>
+                                <input id="updateInput"  th:field="*{dateOfBirth}" type="text" class="form-control form-control-sm bello" th:placeholder="${user.dateOfBirth}" placeholder="002229456987" disabled>
+                            </div>
+                            
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
-                                <input id="updateInput" type="text" class="form-control form-control-sm bello" placeholder="info@yourname.com" disabled>
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-mobile-alt margin-right-10px"></i> Phone</label>
-                                <input id="updateInput" type="text" class="form-control form-control-sm bello" placeholder="002229456987" disabled>
-                            </div>
-                
+                                <input id="updateInput" th:field="*{email}" type="text" class="form-control form-control-sm bello" th:placeholder="${user.email}" placeholder="info@yourname.com" disabled>
+                            </div>                         
                         </div>
                         <hr class="margin-tb-40px">
-                        <button id="umberto" href="#" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>
-						<button id="" href="#" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Submit</button>
+						<button  id="bottonSubmit" style="top: 31px; position:relative; left: 300px" type="submit" hidden  class=" btn btn-md padding-lr-25px text-white background-main-color btn-inline-block">Submit</button>
+						</form>	
+			            <button id="umberto"  class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>
                     </div>
                       <script> 
-                    let divFather = document.getElementById("father");
-                    let button2 = document.createElement("button");
                    let inputs =  document.getElementsByClassName("form-control form-control-sm bello");
                    let button = document.getElementById("umberto");
-                   button2.addAttribute("class")
+                   let buttonSubmit = document.getElementById("bottonSubmit")
                   button.addEventListener("click", ()=>{
 						for(let i = 0; i < inputs.length; i++){
 							inputs[i].removeAttribute('disabled');
-						  }
-						 divFather.appendChild(button2) 
-						  
+						  }	
+						 buttonSubmit.removeAttribute('hidden');			  
 						});
                     </script>
                 </div>

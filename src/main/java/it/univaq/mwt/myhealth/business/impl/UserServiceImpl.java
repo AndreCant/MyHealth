@@ -136,5 +136,15 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public User findUserById(long id) throws BusinessException {
+		try {
+			return userDao.findUserById(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
 	
 }

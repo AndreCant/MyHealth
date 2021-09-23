@@ -23,4 +23,6 @@ public interface UserDao {
 	public void delete(Long uid) throws DaoException;
 	
 	public List<User> findByRole (long role) throws DaoException;
+
+	public User findUserById(long id) throws DaoException;
 }

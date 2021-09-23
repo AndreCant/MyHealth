@@ -29,4 +29,5 @@ public interface UserService {
 
 	User findByName(String name) throws BusinessException;
 	
+	User findUserById (long id) throws BusinessException;
 }
