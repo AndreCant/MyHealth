@@ -34,14 +34,23 @@ public class PatientController {
    {	
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
-		model.addAttribute("user", userService.findUserByUsername(userDetails.getUsername()));
+		User user = userService.findUserByUsername(userDetails.getUsername());
+		model.addAttribute("user", user);
+		 System.out.println(user.toString()+ "user");	    
+		 System.out.println(userDetails.getUsername()+ "username");	    
 		return "private/patient/myProfile"; 
    }
    
  
-   @PutMapping(value="/profile")
+   @PostMapping(value="/profile")
    public String changeProfile (@Valid @ModelAttribute("user") User user, Errors errors ) throws BusinessException {
-	    userService.updateUser(user);
+	   if (!errors.hasErrors()) {
+	   System.out.println(user.getId() + "id");	    
+	   userService.updateUser(user);
+	   } else {
+		   System.out.println( "errore");	    
+
+	   }
 		return "private/patient/myProfile";
    }
 }

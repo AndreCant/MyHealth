@@ -5,7 +5,14 @@
 <!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:02 GMT -->
 <body>
  <div layout:fragment="content">
-  
+   <script th:inline="javascript"> 
+                 function disabledInput (){
+					document.querySelectorAll('.disabled').forEach(element =>{
+						element.removeAttribute('disabled');
+					})
+					document.querySelector('#bottonSubmit').removeAttribute('hidden');
+				 }
+   </script>
     <div class="content-wrapper">
         <div class="container-fluid overflow-hidden">
             <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
@@ -25,94 +32,49 @@
                         </div>
                     </div>
                     <div class="col-md-8" id="father">
-                  	<form method="PUT" th:action="${#request.getRequestURI()}" th:object="${user}">
+                  	<form method="POST"  th:object="${user}">
                         <div class="row" >
+                        <input type="hidden" th:field="*{id}">
                          <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> Name</label>
-                                <input id="updateInput"  type="text" class="form-control form-control-sm" th:placeholder="${user.name}" placeholder="002229456987" disabled>
-                            </div>
-                            
+                                <input  th:field="*{name}"  type="text" class="disabled form-control form-control-sm"  disabled>
+                            </div>                           
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> Surname</label>
-                                <input id="updateInput" type="text"  class="form-control form-control-sm" th:placeholder="${user.surname}" placeholder="info@yourname.com" disabled>
+                                <input th:field="*{surname}"  type="text"  class=" disabled form-control form-control-sm"  disabled>
                             </div>     
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> UserName</label>
-                                <input id="updateInput"  th:field="*{username}" type="text" class="form-control form-control-sm bello" disabled th:placeholder="${user.username}" placeholder="">
+                                <input  th:field="*{username}" type="text" class="disabled form-control form-control-sm bello" disabled >
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Gender</label>
                                 <div> </div>
-										  <select class="form-control form-control-sm bello" id="gender" name="gender" style="width: 65px; height: 30px;" disabled>
-										    <option value="">M</option>
-										    <option value="">F</option>										   
-										  </select>
+							    <select th:field="*{gender}" class="disabled form-control form-control-sm bello" id="gender" name="gender" style="width: 65px; height: 30px;" disabled>
+								   <option value="">M</option>
+								   <option value="">F</option>										   
+								</select>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="fa fa-birthday-cake margin-right-10px"></i> Date Of Birth</label>
-                                <input id="updateInput"  th:field="*{dateOfBirth}" type="text" class="form-control form-control-sm bello" th:placeholder="${user.dateOfBirth}" placeholder="002229456987" disabled>
+                                <input   th:field="*{dateOfBirth}" type="text" class="disabled form-control form-control-sm bello"   disabled>
                             </div>
                             
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
-                                <input id="updateInput" th:field="*{email}" type="text" class="form-control form-control-sm bello" th:placeholder="${user.email}" placeholder="info@yourname.com" disabled>
+                                <input th:field="*{email}" type="text" class="disabled form-control form-control-sm bello"  disabled>
                             </div>                         
                         </div>
                         <hr class="margin-tb-40px">
 						<button  id="bottonSubmit" style="top: 31px; position:relative; left: 300px" type="submit" hidden  class=" btn btn-md padding-lr-25px text-white background-main-color btn-inline-block">Submit</button>
 						</form>	
-			            <button id="umberto"  class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>
-                    </div>
-                      <script> 
-                   let inputs =  document.getElementsByClassName("form-control form-control-sm bello");
-                   let button = document.getElementById("umberto");
-                   let buttonSubmit = document.getElementById("bottonSubmit")
-                  button.addEventListener("click", ()=>{
-						for(let i = 0; i < inputs.length; i++){
-							inputs[i].removeAttribute('disabled');
-						  }	
-						 buttonSubmit.removeAttribute('hidden');			  
-						});
-                    </script>
-                </div>
-
-            </div>
-        </div>
-        <!-- /.container-fluid-->
-        <!-- /.content-wrapper-->
-        <footer class="sticky-footer">
-            <div class="container">
-                <div class="text-center">
-                    <span>© 2018 tabib Health Directory | All Right Reserved <a class="text-grey-2 margin-left-15px" href="https://themeforest.net/user/nile-theme/portfolio" target="_blank">Powered by : Nile Theme</a></span>
-                </div>
-            </div>
-        </footer>
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-          <i class="fa fa-angle-up"></i>
-        </a>
-        <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="page-login.html">Logout</a>
-                    </div>
+                    </div>                   			            
+                    <button onclick="disabledInput()" type="button" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>            
                 </div>
             </div>
         </div>
     </div>
    </div>
+      
 </body>
-
-
-<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:03 GMT -->
 </html>
