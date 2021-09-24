@@ -38,6 +38,7 @@ public class PatientController {
  
    @PostMapping(value="/profile")
    public String changeProfile (@Valid @ModelAttribute("user") User user, Errors errors ) throws BusinessException {
+	   System.out.print(user.getRole());
 	   if (!errors.hasErrors()) {
 		   userService.updateUser(user);
 	   }
