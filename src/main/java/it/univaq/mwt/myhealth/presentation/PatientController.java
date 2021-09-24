@@ -20,14 +20,10 @@ import org.springframework.validation.Errors;
 
 @Controller
 @RequestMapping("patient")
-
-
 public class PatientController {
 
 	@Autowired
-	private UserService userService;
-
-		
+	private UserService userService;	
 		
    @GetMapping(value="/profile")
    public String admin (Model model) throws BusinessException
@@ -35,9 +31,7 @@ public class PatientController {
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
 		User user = userService.findUserByUsername(userDetails.getUsername());
-		model.addAttribute("user", user);
-		 System.out.println(user.toString()+ "user");	    
-		 System.out.println(userDetails.getUsername()+ "username");	    
+		model.addAttribute("user", user);	      
 		return "private/patient/myProfile"; 
    }
    
@@ -45,12 +39,8 @@ public class PatientController {
    @PostMapping(value="/profile")
    public String changeProfile (@Valid @ModelAttribute("user") User user, Errors errors ) throws BusinessException {
 	   if (!errors.hasErrors()) {
-	   System.out.println(user.getId() + "id");	    
-	   userService.updateUser(user);
-	   } else {
-		   System.out.println( "errore");	    
-
+		   userService.updateUser(user);
 	   }
-		return "private/patient/myProfile";
+	   return "redirect:/patient/profile";
    }
 }
