@@ -18,7 +18,7 @@
 	                    	<div class="row">
 		                        <h1 class="col pl-4"><i class="far fa-user margin-right-10px text-main-color"></i> [[#{users.title}]]</h1>
 		                        <div class="col pr-4">
-			                        <a href="#" class="float-right btn btn-app"><i class="fa fa-plus margin-right-10px"></i> [[#{users.add}]]</a>
+			                        <a th:href="@{/admin/user/create}" class="float-right btn btn-app"><i class="fa fa-plus margin-right-10px"></i> [[#{users.add}]]</a>
 		                        </div>
 	                    	</div>
 	                        <hr>
@@ -45,7 +45,7 @@
 													<td th:text="${user.surname}"></td>
 													<td th:text="${user.role.name}"></td>
 													<td class="text-center"><a th:href="@{/admin/user/delete(id=${user.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
-													<td class="text-center"><a th:href="@{/admin/user/delete(id=${user.id})}" th:attr="title=#{users.edit}"><i class='fa fa-edit'></i></a></td>
+													<td class="text-center"><a th:href="@{/admin/user/update(id=${user.id})}" th:attr="title=#{users.edit}"><i class='fa fa-edit'></i></a></td>
 												</tr>
 										</table>
 									</div>

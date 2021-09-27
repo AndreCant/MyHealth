@@ -4,6 +4,25 @@
 	  layout:decorate="~{layout-admin/layout-admin}">
 <body>
 	<div layout:fragment="content">
+		<script th:inline="javascript">
+			$(document).ready(function() {
+				var isCreation = [[${#request.getRequestURI().endsWith('create')? true : false}]];
+				if (isCreation) {
+					$("#selectRole").change(event => {
+						if(event.target.value === 'doctor') {
+							$('.specialization').each((key, value) => {
+								value.removeAttribute('hidden');
+							});
+						}else{
+							$('#specialization').val(null);
+							$('.specialization').each((key, value) => {
+								value.setAttribute('hidden', true);
+							});
+						}
+					});	
+				}
+			});
+		</script>
 		
 	    <div class="content-wrapper">
 	        <div class="container-fluid overflow-hidden">
@@ -11,46 +30,103 @@
 	                <div class="margin-tb-45px full-width">
 	                    <div class="padding-30px background-white border-radius-20 box-shadow">
 	                    	<div class="row">
-		                        <h1 class="col pl-4"><i class="far fa-user margin-right-10px text-main-color"></i> [[#{users.title}]]</h1>
-		                        <div class="col pr-4">
-			                        <a href="#" class="float-right btn btn-app"><i class="fa fa-plus margin-right-10px"></i> [[#{users.add}]]</a>
-		                        </div>
+		                        <h1 class="col pl-4" th:text="#{${#request.getRequestURI().endsWith('update')? 'userForm.titleUpdate' : 'userForm.titleCreate'}}"><i class="far fa-user margin-right-10px text-main-color"></i> </h1>
 	                    	</div>
 	                        <hr>
 	                        <div class="card card-info">
-								<!--<div class="card-header"><h3 class="card-title" th:text="#{ssd.titolo}"></h3></div>
-								<form th:action="${#request.getRequestURI()}" th:object="${ssd}" class="form-horizontal" method="post">
-								  <input type="hidden" th:field="*{id}"/>
+	                        	<div th:if="${#request.getRequestURI().endsWith('update')}" class="card-header">
+	                        		<h3 class="card-title pt-2" th:text="#{${roleName == 'admin' ? 'role.admin' : (roleName == 'doctor' ? 'role.doctor' : 'role.patient')}}"></h3>
+                        		</div>
+	                        		
+								<form th:action="${#request.getRequestURI()}" th:object="${user}" class="form-horizontal" method="post">
+							  	  <input th:if="${#request.getRequestURI().endsWith('update')}" type="hidden" th:field="*{id}"/>
 								  <div class="card-body">
-									<div class="form-group row">
-										<label for="codice" class="col-sm-2 col-form-label" th:text="#{ssd.codice}"></label>
-										<div class="col-sm-6">
-											<input type="text" th:field="*{codice}" class="form-control"/>
-											<span th:if="${#fields.hasErrors('codice')}" th:each="err: ${#fields.errors('codice')}" th:utext="${err}"></span>
+									<div class="form-group row mb-3">
+										<label class="col-sm-2 col-form-label">Username</label>
+										<div class="col-sm-4">
+											<span th:if="${#request.getRequestURI().endsWith('update')}" class="form-control" th:text="${user.username}" disabled></span>
+											<input th:if="${#request.getRequestURI().endsWith('create')}" type="text" th:field="*{username}" class="form-control" required/>
+											<!--<span th:if="${#fields.hasErrors('codice')}" th:each="err: ${#fields.errors('codice')}" th:utext="${err}"></span>-->
 										</div>
-									</div>	  	               
-									<div class="form-group row">
-										<label for="denominazione" class="col-sm-2 col-form-label" th:text="#{ssd.denominazione}"></label>
-										<div class="col-sm-6">
-											<input type="text" th:field="*{denominazione}" class="form-control"/>
-						   					<span th:if="${#fields.hasErrors('denominazione')}" th:each="err: ${#fields.errors('denominazione')}" th:utext="${err}"></span>
+										
+										<label class="col-sm-2 col-form-label">Email</label>
+										<div class="col-sm-4">
+											<input type="text" th:field="*{email}" class="form-control" required/>
+										</div>
+										
+									</div>
+									<div th:if="${#request.getRequestURI().endsWith('create')}" class="form-group row mb-3">
+										<label class="col-sm-2 col-form-label">Password</label>
+										<div class="col-sm-4">
+											<input type="password" th:field="*{password}" class="form-control" required/>
 										</div>
 									</div>
-									<div class="form-group row">
-										<label for="areassd" class="col-sm-2 col-form-label" th:text="#{ssd.area}"></label>
-										<div class="col-sm-6">
-										<select id="areassd_select2" th:field="*{areaSSD.id}" class="form-control">
-											<option th:each="areassd : ${areessd}" th:value="${areassd.id}" th:text="${areassd.denominazione}"></option>
-										</select>
+									<div class="form-group row mb-3">
+										<label class="col-sm-2 col-form-label">[[#{userForm.role}]]</label>
+										<div class="col-sm-4">
+											<select class="selectpicker form-control" name="roleName" id="selectRole">
+												<option th:value="admin" th:attr="selected=${roleName == 'admin'}">[[#{role.admin}]]</option>
+												<option th:value="doctor" th:attr="selected=${roleName == 'doctor'}">[[#{role.doctor}]]</option>
+												<option th:if="${#request.getRequestURI().endsWith('update')}" th:value="patient" th:attr="selected=${roleName == 'patient'}">[[#{role.patient}]]</option>
+											</select>
 										</div>
-									</div>	
+										
+										<label class="col-sm-2 col-form-label specialization" hidden="${roleName!='doctor'}">[[#{userForm.specialization}]]</label>
+										<div class="col-sm-4 specialization" hidden="${roleName!='doctor'}">
+											<input type="text" th:field="*{specialization}" class="form-control" id="specialization"/>
+										</div>
+									</div>
+									<div class="form-group row mb-3">
+										<label class="col-sm-2 col-form-label">[[#{userForm.name}]]</label>
+										<div class="col-sm-4">
+											<input type="text" th:field="*{name}" class="form-control"/>
+										</div>
+										
+										<label class="col-sm-2 col-form-label">[[#{userForm.surname}]]</label>
+										<div class="col-sm-4">
+											<input type="text" th:field="*{surname}" class="form-control"/>
+										</div>
+									</div>
+									<div class="form-group row mb-3">
+										<label class="col-sm-2 col-form-label">[[#{userForm.dateOfBirth}]]</label>
+										<div class="col-sm-4">
+											<input type="date" th:field="*{dateOfBirth}" class="form-control"/>
+										</div>
+										
+										<label class="col-sm-2 col-form-label">[[#{userForm.gender}]]</label>
+										<div class="col-sm-4">
+											<select class="selectpicker form-control" th:field="*{gender}">
+												<option value="M">[[#{signUp.male}]]</option>
+												<option value="F">[[#{signUp.female}]]</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group row mb-3">
+										<label class="col-sm-2 col-form-label">[[#{userForm.fiscalCode}]]</label>
+										<div class="col-sm-4">
+											<input type="text" th:field="*{fiscalCode}" class="form-control"/>
+										</div>
+									</div>
+									<div class="form-group row mb-3">
+										<label class="col-sm-2 col-form-label">[[#{userForm.register}]]</label>
+										<div class="col-sm-4">
+											<input type="text" th:field="*{register}" class="form-control"/>
+										</div>
+										
+										<label class="col-sm-2 col-form-label">[[#{userForm.skills}]]</label>
+										<div class="col-sm-4">
+											<textarea th:field="*{skills}" rows="" class="form-control"/>
+										</div>
+										
+									</div>
+									
 								  </div>
-								  <div class="card-footer">
-									<button type="submit" class="btn btn-info" th:text="#{${#request.getRequestURI().endsWith('delete')? 'common.delete' : 'common.submit'}}"></button>
-									<a href="#" th:href="@{/ssds/list}" class="btn btn-default float-right" th:text="#{common.cancel}"></a>	
+								  <div class="card-footer pb-5">
+									<button type="submit" class="btn btn-info float-right" th:text="#{${#request.getRequestURI().endsWith('update')? 'userForm.update' : 'userForm.add'}}" style="cursor: pointer;"></button>
+									<a href="#" th:href="@{/admin/users}" class="btn btn-default float-right pr-3" th:text="#{userForm.cancel}"></a>	
 								  </div>
 								</form>
-							</div>-->
+							</div>
 	                    </div>
 	                </div>
 	            </div>

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.domain.User;
+import it.univaq.mwt.myhealth.util.Utility;
 
 @Controller
 @RequestMapping("auth")
@@ -52,7 +53,7 @@ public class AuthController {
 		if (errors.hasErrors()) {
 			return "public/signUp";
 		}
-		user.setPassword((new BCryptPasswordEncoder()).encode(user.getPassword()));
+		user.setPassword(Utility.encodePassword(user.getPassword()));
 		user.setRole(userService.findRoleByName("patient"));
 		userService.saveUser(user);
 		

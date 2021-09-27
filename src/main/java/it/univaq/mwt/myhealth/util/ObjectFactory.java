@@ -36,7 +36,7 @@ public class ObjectFactory {
 	}
 	
 	private static User createUser(String username, String email, String password, Role role, String name, String surname, LocalDate dateOfBirth, String gender, String fiscalCode) {
-		String encodedPassword = (new BCryptPasswordEncoder()).encode(password);
+		String encodedPassword = Utility.encodePassword(password);
 		User user = new User(username, email, encodedPassword, role);
 		user.setName(name);
 		user.setSurname(surname);
