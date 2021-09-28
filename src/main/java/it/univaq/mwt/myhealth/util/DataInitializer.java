@@ -46,7 +46,8 @@ public class DataInitializer {
 	@Autowired AdministrationService administrationService;
 	
 	private List<Role> roles;
-	private List<Image> images;
+	private List<Image> imagesUser;
+	private List<Image> imagesExam;
 	private List<Exam> exams;
 	private List<User> users;
 	private List<Reservation> reservations;
@@ -65,6 +66,7 @@ public class DataInitializer {
 	@EventListener(ApplicationReadyEvent.class)
 	public void initialize() {
 		this.initRoles();
+		this.initUserImages();
 		this.initUsers();
 		this.initExams();
 		this.initReservations();
@@ -79,7 +81,7 @@ public class DataInitializer {
 		this.initFrontOffices();
 		this.initAnnualBudgets();
 		this.initExpenses();
-		this.initImages();
+		this.initExamImages();
 	}
 	
 	private void initRoles() {
@@ -99,14 +101,10 @@ public class DataInitializer {
 	private void initUsers() {
 		try {
 			this.users = List.of(
-				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "GYZDMH59D63C829U", "Java, Javascript, Excel", this.roles.get(0)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1)),
-				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829U", true, this.roles.get(2))
+				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "GYZDMH59D63C829U", "Java, Javascript, Excel", this.roles.get(0), this.imagesUser.get(0)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), this.imagesUser.get(1)),
+				ObjectFactory.createDoctor("doctorTest", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), null),
+				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829U", true, this.roles.get(2), this.imagesUser.get(2))
 			);
 			
 			userService.saveUsers(this.users);
@@ -298,16 +296,31 @@ public class DataInitializer {
 		}
 	}
 	
-	public void initImages() {
+	public void initUserImages() {
 		try {
-			this.images = List.of(
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0))
+			this.imagesUser = List.of(
+				ObjectFactory.createImage("Admin img", "/dist/img/instagram-4.jpg", null),
+				ObjectFactory.createImage("Doctor img", "/dist/img/instagram-2.jpg", null),
+				ObjectFactory.createImage("Patient img", "/dist/img/instagram-3.jpg", null)
 			);
 			
-			examService.saveImages(images);
+			examService.saveImages(this.imagesUser);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void initExamImages() {
+		try {
+			this.imagesExam = List.of(
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0))
+			);
+			
+			examService.saveImages(this.imagesExam);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 }

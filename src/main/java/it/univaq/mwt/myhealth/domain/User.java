@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -66,6 +67,9 @@ public class User extends AbstractEntity implements Serializable{
 	@OneToMany(mappedBy = "doctor")
     @JsonManagedReference
     private List<Visit> visits;
+	
+	@OneToOne
+	private Image image;
 	
 	public User(String username, String email, String password, Role role) {
 		this.username = username;

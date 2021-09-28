@@ -35,7 +35,7 @@ public class ObjectFactory {
 		return new Role(name, description);
 	}
 	
-	private static User createUser(String username, String email, String password, Role role, String name, String surname, LocalDate dateOfBirth, String gender, String fiscalCode) {
+	private static User createUser(String username, String email, String password, Role role, String name, String surname, LocalDate dateOfBirth, String gender, String fiscalCode, Image image) {
 		String encodedPassword = Utility.encodePassword(password);
 		User user = new User(username, email, encodedPassword, role);
 		user.setName(name);
@@ -43,18 +43,19 @@ public class ObjectFactory {
 		user.setDateOfBirth(dateOfBirth);
 		user.setGender(gender);
 		user.setFiscalCode(fiscalCode);
+		user.setImage(image);
 		return user;
 	}
 	
-	public static User createAdmin(String username, String email, String password, String name, String surname, int register, LocalDate dateOfBirth, String gender, String fiscalCode, String skills, Role role) throws BusinessException {
-		User admin = createUser(username, email, password, role, name, surname, dateOfBirth, gender, fiscalCode);
+	public static User createAdmin(String username, String email, String password, String name, String surname, int register, LocalDate dateOfBirth, String gender, String fiscalCode, String skills, Role role, Image image) throws BusinessException {
+		User admin = createUser(username, email, password, role, name, surname, dateOfBirth, gender, fiscalCode, image);
 		admin.setRegister(register);
 		admin.setSkills(skills);
 		return admin;
 	}
 	
-	public static User createDoctor(String username, String email, String password, String name, String surname, int register, LocalDate dateOfBirth, String gender, String fiscalCode, String skills, String specialization, boolean hasVisitToComplete, Role role) throws BusinessException {
-		User doctor = createUser(username, email, password, role, name, surname, dateOfBirth, gender, fiscalCode);
+	public static User createDoctor(String username, String email, String password, String name, String surname, int register, LocalDate dateOfBirth, String gender, String fiscalCode, String skills, String specialization, boolean hasVisitToComplete, Role role, Image image) throws BusinessException {
+		User doctor = createUser(username, email, password, role, name, surname, dateOfBirth, gender, fiscalCode, image);
 		doctor.setRegister(register);
 		doctor.setSkills(skills);
 		doctor.setSpecialization(specialization);
@@ -62,8 +63,8 @@ public class ObjectFactory {
 		return doctor;
 	}
 	
-	public static User createPatient(String username, String email, String password, String name, String surname, LocalDate dateOfBirth, String gender, String fiscalCode, boolean hasVisitToComplete, Role role) throws BusinessException {
-		User patient = createUser(username, email, password, role, name, surname, dateOfBirth, gender, fiscalCode);
+	public static User createPatient(String username, String email, String password, String name, String surname, LocalDate dateOfBirth, String gender, String fiscalCode, boolean hasVisitToComplete, Role role, Image image) throws BusinessException {
+		User patient = createUser(username, email, password, role, name, surname, dateOfBirth, gender, fiscalCode, image);
 		patient.setHasVisitToComplete(hasVisitToComplete);
 		return patient;
 	}
