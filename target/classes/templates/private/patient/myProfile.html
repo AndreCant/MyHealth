@@ -35,7 +35,6 @@
                   	<form method="POST"  th:object="${user}">
                         <div class="row" >
                         <input type="hidden" th:field="*{id}">
-                        <input type="hidden" th:field="*{version}">
                          <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> Name</label>
                                 <input  th:field="*{name}"  type="text" class="disabled form-control form-control-sm"  disabled>
@@ -46,13 +45,13 @@
                             </div>     
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> UserName</label>
-                                <input  th:field="*{username}" type="text" class="disabled form-control form-control-sm bello" disabled >
+                                <input  th:field="*{username}" type="text" class=" form-control form-control-sm bello" disabled >
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Gender</label>
                                 <div> </div>
-							    <select th:field="*{gender}" class="disabled form-control form-control-sm bello" id="gender" name="gender" style="width: 65px; height: 30px;" disabled>
-								   <option value="">M</option>
+							    <select  class="disabled form-control form-control-sm bello" id="gender" name="gender" style="width: 65px; height: 30px;" disabled>
+								   <option th:field="*{gender}" value="">M</option>
 								   <option value="">F</option>										   
 								</select>
                             </div>
@@ -60,7 +59,6 @@
                                 <label><i class="fa fa-birthday-cake margin-right-10px"></i> Date Of Birth</label>
                                 <input   th:field="*{dateOfBirth}" type="text" class="disabled form-control form-control-sm bello"   disabled>
                             </div>
-                            
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
                                 <input th:field="*{email}" type="text" class="disabled form-control form-control-sm bello"  disabled>
@@ -69,8 +67,8 @@
                         <hr class="margin-tb-40px">
 						<button  id="bottonSubmit" style="top: 31px; position:relative; left: 300px" type="submit" hidden  class=" btn btn-md padding-lr-25px text-white background-main-color btn-inline-block">Submit</button>
 						</form>	
+					    <button onclick="disabledInput()" type="button" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>            
                     </div>                   			            
-                    <button onclick="disabledInput()" type="button" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>            
                 </div>
             </div>
         </div>
