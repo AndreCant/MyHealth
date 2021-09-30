@@ -130,8 +130,8 @@ public class DataInitializer {
 	public void initReservations() {
 		try {
 			this.reservations = List.of(
-				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 15, 10, 30), LocalDateTime.of(2021, 7, 15, 11, 30), this.users.get(2), this.exams.get(0)),
-				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(2), this.exams.get(2))
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 15, 10, 30), LocalDateTime.of(2021, 7, 15, 11, 30), this.users.get(3), this.exams.get(0)),
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(3), this.exams.get(2))
 			);
 			
 			reservationService.saveReservations(this.reservations);
