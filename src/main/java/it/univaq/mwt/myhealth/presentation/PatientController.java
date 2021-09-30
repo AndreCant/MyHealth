@@ -46,11 +46,8 @@ public class PatientController {
  
    @PostMapping(value="/profile")
    public String changeProfile (@Valid @ModelAttribute("user") User user, Errors errors ) throws BusinessException {
-<<<<<<< Updated upstream
-	   System.out.print(user.getRole());
-=======
+		
 		User currentUser = userService.findUserById(user.getId());
->>>>>>> Stashed changes
 	   if (!errors.hasErrors()) {
 		   currentUser.setEmail(user.getEmail());
 		   currentUser.setName(user.getName());
