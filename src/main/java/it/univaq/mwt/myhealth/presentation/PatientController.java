@@ -10,11 +10,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.UserService;
@@ -67,6 +71,14 @@ public class PatientController {
 		List<Reservation> reservation = reservationService.findReservationsByPatient(user.getId());
 		model.addAttribute("reservations", reservation);
 		return "private/patient/dashboardMyListings"; 
+   }
+   
+   @GetMapping(value="/reservations/{id}")
+   public String deleteReservation (@PathVariable("id") Long id) throws BusinessException
+   {	
+	   System.out.println("sono entrato");
+	   reservationService.delete(id);	  
+	   return "redirect: "; 
    }
    
    
