@@ -5,9 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
+import org.hibernate.Cache;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,8 +30,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
+import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.User;
+import it.univaq.mwt.myhealth.util.ObjectFactory;
 import it.univaq.mwt.myhealth.util.Utility;
 
 @Controller
@@ -34,6 +43,9 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ExamService examService;
 	
 	@GetMapping(value="/profile")
 	public String profile (Model model) throws BusinessException
@@ -96,28 +108,41 @@ public class AdminController {
 	}
 	
 	@PostMapping("/uploadImage")
-    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) throws BusinessException{
-
-        // check if file is empty
+    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId, RedirectAttributes attributes) throws BusinessException{
+		System.out.println("userId: " + userId);
         if (file.isEmpty()) {
 //            attributes.addFlashAttribute("message", "Please select a file to upload.");
             return "redirect:/";
         }
-
-        // normalize the file path
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-        // save the file on the local file system
-        try {
-            Path path = Paths.get("./uploads" + fileName);
-            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
+        
+        String fileName = file.getOriginalFilename();
+        int indexExtension = fileName.lastIndexOf('.');
+        
+        if (indexExtension > 0) {
+        	User user = userService.findUserById(Long.valueOf(userId));
+            String fileExtension = fileName.substring(indexExtension + 1);
+            String newFileName = user.getUsername() + "." + fileExtension;
+            
+            try {
+            	Path totalPath = Paths.get("src", "main", "resources", "static", "uploads", "users", newFileName);
+            	Path partialPath = Paths.get("uploads", "users", newFileName);
+            	Files.deleteIfExists(totalPath);
+            	Files.copy(file.getInputStream(), totalPath, StandardCopyOption.REPLACE_EXISTING);
+            	
+            	Image image = ObjectFactory.createImage(newFileName, "\\" + partialPath.toString(), null);
+            	examService.saveImages(List.of(image));
+            	user.setImage(image);
+            	userService.updateUser(user);
+            	
+            } catch (IOException e) {
+            	e.printStackTrace();
+            }
         }
+
 
         // return success response
 //        attributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
 
-        return "redirect:/admin/users";
+        return "redirect:/admin/user/update?id=" + userId;
     }
 }

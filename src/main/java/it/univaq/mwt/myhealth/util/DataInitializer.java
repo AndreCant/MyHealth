@@ -65,23 +65,35 @@ public class DataInitializer {
 	
 	@EventListener(ApplicationReadyEvent.class)
 	public void initialize() {
-		this.initRoles();
-		this.initUserImages();
-		this.initUsers();
-		this.initExams();
-		this.initReservations();
-		this.initPayments();
-		this.initDiagnosis();
-		this.initVisits();
-		this.initReviews();
-		this.initInvoices();
-		this.initPaychecks();
-		this.initMedicines();
-		this.initMedicineDiagnosis();
-		this.initFrontOffices();
-		this.initAnnualBudgets();
-		this.initExpenses();
-		this.initExamImages();
+		
+		if (this.isEmptyDB()) {
+			this.initRoles();
+			this.initUserImages();
+			this.initUsers();
+			this.initExams();
+			this.initReservations();
+			this.initPayments();
+			this.initDiagnosis();
+			this.initVisits();
+			this.initReviews();
+			this.initInvoices();
+			this.initPaychecks();
+			this.initMedicines();
+			this.initMedicineDiagnosis();
+			this.initFrontOffices();
+			this.initAnnualBudgets();
+			this.initExpenses();
+			this.initExamImages();
+		}
+	}
+	
+	private Boolean isEmptyDB(){
+		try {
+			return userService.findAllUsers().isEmpty();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			return true;
+		}
 	}
 	
 	private void initRoles() {
