@@ -4,6 +4,7 @@ import java.awt.TextArea;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -20,10 +21,10 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table(name = "exam")
-public class Exam extends AbstractEntity implements Serializable{
-	
+public class Exam extends AbstractEntity implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private String code;
 	private int session;
 	private String type;
@@ -33,12 +34,12 @@ public class Exam extends AbstractEntity implements Serializable{
 	@Column(length = 10000)
 	private String description;
 	private Double price;
-	
-	@OneToMany(mappedBy = "exam")
-    @JsonManagedReference
-    private List<Reservation> reservations;
-	
-	@OneToMany(mappedBy = "exam")
-    @JsonManagedReference
+
+	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Reservation> reservations;
+
+	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Image> images;
 }

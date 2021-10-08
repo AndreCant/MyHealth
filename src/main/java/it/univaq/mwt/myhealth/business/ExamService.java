@@ -30,4 +30,6 @@ public interface ExamService {
 	List<Review> findExamReview(Set<Long> examIds) throws BusinessException;
 	
 	void saveImages(List<Image> images) throws BusinessException;
+	
+	void updateImage(Image image) throws BusinessException;
 }

@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.util.ObjectFactory;
@@ -111,7 +112,6 @@ public class AdminController {
     public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId, RedirectAttributes attributes) throws BusinessException{
 		System.out.println("userId: " + userId);
         if (file.isEmpty()) {
-//            attributes.addFlashAttribute("message", "Please select a file to upload.");
             return "redirect:/";
         }
         
@@ -139,10 +139,69 @@ public class AdminController {
             }
         }
 
-
-        // return success response
-//        attributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
-
         return "redirect:/admin/user/update?id=" + userId;
     }
+	
+	@GetMapping(value="/exams")
+	public String exams (Model model) throws BusinessException{	
+		model.addAttribute("exams", examService.findAllExams());
+		return "private/admin/exams";
+	}
+	
+	@GetMapping(value="/exam/delete")
+	public String deleteExam (@RequestParam("id") Long id, Model model) throws BusinessException{	
+		examService.delete(id);
+		return "redirect:/admin/exams";
+	}
+	
+	@GetMapping(value="/exam/create")
+	public String createExam (Model model) throws BusinessException{
+		model.addAttribute("exam", new Exam());
+		model.addAttribute("typeName", "");
+		model.addAttribute("imgUrl", "");
+		return "private/admin/examForm";
+	}
+	
+	@PostMapping(value="/exam/create")
+	public String createExamPost (@Valid @ModelAttribute("exam") Exam exam, @ModelAttribute("typeName") String typeName, @ModelAttribute("imgUrl") String imgUrl, Errors errors) throws BusinessException{
+		exam.setType(Utility.getExamType(typeName));
+		examService.save(exam);
+		Image image = ObjectFactory.createImage(null, imgUrl, exam);
+    	examService.saveImages(List.of(image));
+		return "redirect:/admin/exams";
+	}
+	
+	@GetMapping(value="/exam/update")
+	public String updateExam (@RequestParam("id") Long id, Model model) throws BusinessException{
+		Exam exam = examService.findById(id);
+		model.addAttribute("exam", exam);
+		model.addAttribute("typeName", Utility.getExamType(exam.getType()));
+		
+		String imageUrl = exam.getImages() != null && !exam.getImages().isEmpty() ? exam.getImages().get(0).getUrl() : "";
+		model.addAttribute("imgUrl", imageUrl);
+		return "private/admin/examForm";
+	}
+	
+	@PostMapping(value="/exam/update")
+	public String updateExamPost (@Valid @ModelAttribute("exam") Exam exam, @ModelAttribute("typeName") String typeName, @ModelAttribute("imgUrl") String imgUrl, Errors errors) throws BusinessException{
+		Exam currentExam = examService.findById(exam.getId());
+		currentExam.setCode(exam.getCode());
+		currentExam.setName(exam.getName());
+		currentExam.setType(Utility.getExamType(typeName));
+		currentExam.setPrice(exam.getPrice());
+		currentExam.setSpecialization(exam.getSpecialization());
+		currentExam.setSubSpecialization(exam.getSubSpecialization());
+		currentExam.setSession(exam.getSession());
+		currentExam.setDescription(exam.getDescription());
+		examService.update(currentExam);
+
+		if (currentExam.getImages() == null || currentExam.getImages().isEmpty()) {
+	    	examService.saveImages(List.of(ObjectFactory.createImage(null, imgUrl, currentExam)));
+		}else {
+			Image image = currentExam.getImages().get(0);
+			image.setUrl(imgUrl);
+			examService.updateImage(image);
+		}
+		return "redirect:/admin/exams";
+	}
 }

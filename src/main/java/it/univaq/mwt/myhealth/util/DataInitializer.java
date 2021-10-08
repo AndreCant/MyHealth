@@ -329,11 +329,11 @@ public class DataInitializer {
 		try {
 			this.imagesExam = List.of(
 				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0)),
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(1)),
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(2)),
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(3)),
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(4)),
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(5))
+				ObjectFactory.createImage("Test 2", "https://thumbs.dreamstime.com/b/physical-examination-doctor-11386688.jpg", this.exams.get(1)),
+				ObjectFactory.createImage("Test 3", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(2)),
+				ObjectFactory.createImage("Test 4", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(3)),
+				ObjectFactory.createImage("Test 5", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(4)),
+				ObjectFactory.createImage("Test 6", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(5))
 			);
 			
 			examService.saveImages(this.imagesExam);
