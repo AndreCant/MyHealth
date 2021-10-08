@@ -130,7 +130,10 @@ public class DataInitializer {
 			this.exams = List.of(
 				ObjectFactory.createExam("AB-01", 1, "exam", "ECG", "cardiology", "ECG", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 38.99),
 				ObjectFactory.createExam("CG-31", 10, "rehabilitation path", "scoliosis", "physiotherapy", "scoliosis", "", 989.99),
-				ObjectFactory.createExam("OO-94", 1, "exam", "", "eye", "gradation", "", 70.00)
+				ObjectFactory.createExam("OO-94", 1, "exam", "Esame Cardiaco", "eye", "gradation", "", 5.00),
+				ObjectFactory.createExam("O3-94", 1, "exam", "Esame Spalla", "eye", "gradation", "", 170.00),
+				ObjectFactory.createExam("O3-94", 1, "exam", "Addominoplatica", "eye", "plastica", "", 49.00),
+				ObjectFactory.createExam("O3-60", 1, "rehabilitation path", "Percorso Riabilitativo", "eye", "gradation", "", 5170.00)
 			);
 			
 			examService.saveExams(this.exams);
@@ -325,7 +328,12 @@ public class DataInitializer {
 	public void initExamImages() {
 		try {
 			this.imagesExam = List.of(
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0))
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0)),
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(1)),
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(2)),
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(3)),
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(4)),
+				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(5))
 			);
 			
 			examService.saveImages(this.imagesExam);

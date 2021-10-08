@@ -26,7 +26,8 @@ public class DevDataConfig{
     @Bean
     public Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.hbm2ddl.auto", "update"); //create-drop
+        properties.put("hibernate.hbm2ddl.auto", "update");
+//        properties.put("hibernate.hbm2ddl.auto", "create-drop");
         properties.put("hibernate.ogm.datastore.create_database", true);
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         properties.put("hibernate.enable_lazy_load_no_trans", "true");

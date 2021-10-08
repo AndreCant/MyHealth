@@ -3,6 +3,7 @@ package it.univaq.mwt.myhealth.domain;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -35,7 +36,7 @@ public class Visit extends AbstractEntity implements Serializable{
     @JsonBackReference
     private Diagnosis diagnosis;
 		
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Reservation reservation;
 
 	@OneToOne

@@ -2,6 +2,7 @@ package it.univaq.mwt.myhealth.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -31,10 +32,10 @@ public class Review extends AbstractEntity implements Serializable{
 	private String body;
 	private int vote;
 		
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Visit visit;
 		
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference 
 	private User patient;
 	
