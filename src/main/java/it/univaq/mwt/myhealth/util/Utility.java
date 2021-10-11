@@ -13,4 +13,14 @@ public class Utility {
 	public static String encodePassword(String password) {
 		return (new BCryptPasswordEncoder()).encode(password);
 	}
+	
+	public static String getExamType(String type) {
+		switch (type) {
+			case "exam": return "e";
+			case "rehabilitation path": return "r";
+			case "e": return "exam";
+			case "r": return "rehabilitation path";
+			default: return null;
+		}
+	}
 }

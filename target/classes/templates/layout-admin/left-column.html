@@ -9,12 +9,16 @@
                 <li class="nav-item">
                     <span class="nav-title-text">Setup</span>
                 </li>
-                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{users.title}]]">
                     <a class="nav-link" th:href="@{'/admin/users'}">
-                        <i class="fas fa-fw fa-user"></i><span class="nav-link-text">[[#{leftNav.users}]]</span>
+                        <i class="fas fa-fw fa-user"></i><span class="nav-link-text">[[#{users.title}]]</span>
                     </a>
                 </li>
-              
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{exams.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/exams'}">
+                        <i class="fas fa-fw fa-newspaper"></i><span class="nav-link-text">[[#{exams.title}]]</span>
+                    </a>
+                </li>
               
                 </li>
                 <li class="nav-item">

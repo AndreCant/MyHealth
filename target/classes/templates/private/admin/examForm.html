@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout-admin/layout-admin}">
+<body>
+	<div layout:fragment="content">	
+	    <div class="content-wrapper">
+	        <div class="container-fluid overflow-hidden">
+	            <div class="row margin-lr-10px">
+	                <div class="margin-tb-45px full-width">
+	                    <div class="padding-30px background-white border-radius-20 box-shadow">
+	                    	<div class="row">
+		                        <h1 class="col pl-4" th:text="#{${#request.getRequestURI().endsWith('update')? 'examForm.titleUpdate' : 'examForm.titleCreate'}}"><i class="far fa-newspaper margin-right-10px text-main-color"></i> </h1>
+	                    	</div>
+	                        <hr>
+	                        <div class="card card-info">
+	                        	<div class="row">
+	                        		<div class="col-sm-12">
+	                        			<form th:action="${#request.getRequestURI()}" th:object="${exam}" class="form-horizontal" method="post">
+										  <div class="card-body">
+									  	  	<input th:if="${#request.getRequestURI().endsWith('update')}" type="hidden" th:field="*{id}"/>
+											<div class="form-group row mb-3">
+												<label class="col-sm-2 col-form-label">[[#{exams.code}]]</label>
+												<div class="col-sm-4">
+													<input type="text" th:field="*{code}" class="form-control" required/>
+												</div>
+												
+												<label class="col-sm-2 col-form-label">[[#{exams.name}]]</label>
+												<div class="col-sm-4">
+													<input type="text" th:field="*{name}" class="form-control" required/>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<label class="col-sm-2 col-form-label">[[#{exams.type}]]</label>
+												<div class="col-sm-4">
+													<select class="selectpicker form-control" name="typeName" id="selectType">
+														<option th:value="e" th:attr="selected=${typeName == 'e'}">[[#{exam.exam}]]</option>
+														<option th:value="r" th:attr="selected=${typeName == 'r'}">[[#{exam.rPath}]]</option>
+													</select>
+												</div>
+												
+												<label class="col-sm-2 col-form-label">[[#{exam.price}]]</label>
+												<div class="col-sm-4">
+													<input type="text" th:field="*{price}" class="form-control"/>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<label class="col-sm-2 col-form-label">[[#{exams.specialization}]]</label>
+												<div class="col-sm-4">
+													<input type="text" th:field="*{specialization}" class="form-control"/>
+												</div>
+												
+												<label class="col-sm-2 col-form-label">[[#{exams.subSpecialization}]]</label>
+												<div class="col-sm-4">
+													<input type="text" th:field="*{subSpecialization}" class="form-control"/>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<label class="col-sm-2 col-form-label">[[#{exam.session}]]</label>
+												<div class="col-sm-4">
+													<input type="number" min="1" max="99" th:field="*{session}" class="form-control"/>
+												</div>
+												
+												<label class="col-sm-2 col-form-label">[[#{exam.description}]]</label>
+												<div class="col-sm-4">
+													<textarea th:field="*{description}" rows="" class="form-control"/>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<label class="col-sm-2 col-form-label">[[#{examForm.url}]]</label>
+												<div class="col-sm-10">
+													<input type="url" name="imgUrl" th:value="${imgUrl}" class="form-control"/>
+												</div>
+											</div>
+										  </div>
+										  <div class="card-footer pb-5">
+											<button type="submit" class="btn btn-primary float-right" th:text="#{${#request.getRequestURI().endsWith('update')? 'examForm.update' : 'examForm.add'}}" style="cursor: pointer;"></button>
+											<a href="#" th:href="@{/admin/exams}" class="btn btn-default float-right pr-3" th:text="#{userForm.cancel}"></a>	
+										  </div>
+										</form>
+	                        		</div>
+	                        	</div>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

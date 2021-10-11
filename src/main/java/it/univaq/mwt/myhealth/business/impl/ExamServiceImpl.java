@@ -1,5 +1,6 @@
 package it.univaq.mwt.myhealth.business.impl;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -139,5 +140,16 @@ public class ExamServiceImpl implements ExamService{
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+	}
+
+	@Override
+	public void updateImage(Image image) throws BusinessException {
+		try {
+			imageDao.update(image);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		
 	}
 }
