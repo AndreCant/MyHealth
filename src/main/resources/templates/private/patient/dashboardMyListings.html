@@ -25,21 +25,21 @@
                         <div class="float-lg-left margin-right-30px sm-mr-0px text-center sm-mt-35px">
                             <img src="assets/img/clinic-list-2.jpg" alt="">
                         </div>
-                        <div class="padding-lr-25px padding-tb-0px" >
-                           <h2 href="#" style="margin-right:20px;" class=" text-dark text-capitalize  margin-tb-15px" th:text="${reservation.exam.name}">Alrayan Eye Clinic</h2>
+                        <div style="width:100%;" class="padding-lr-0px padding-tb-0px" >
+                           <h2 href="#"  class=" text-dark text-capitalize  margin-tb-15px" th:text="${reservation.exam.name}">Alrayan Eye Clinic</h2>
                             <h2>
                             </h2>
                             <div class="row no-gutters">
-                            	<h4 class=" text-blue text-capitalize"  style="margin-left:3px;">Start Hour </h4>
+                            	<h4 class=" text-blue text-capitalize"  style="margin-left:30px;">Start Hour </h4>
                             	<h4 class=" text-red text-capitalize" style="margin-left:35px;">End Hour </h4>
                             	<h4 class=" text-info text-capitalize" style="margin-left:150px;">Date</h4>
                             	<a style="margin-left:550px; margin-top:10px;"  type="submit" class="btn btn-danger" th:href="@{'/patient/reservations/' + ${reservation.id}}">Delete</a>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-lg-6 row">
-                                    <h6 th:text="${#temporals.format(reservation.startHour,  'HH:mm')}" style="margin-left:20px; position:relative; bottom:30px;"> </h6>
+                                    <h6 th:text="${#temporals.format(reservation.startHour,  'HH:mm')}" style="margin-left:50px; position:relative; bottom:30px;"> </h6>
                                     <h6 th:text="${#temporals.format(reservation.endHour,  'HH:mm')}" style="margin-left:90px; position:relative; bottom:30px;"> </h6>
-                                    <h6 th:text="${reservation.reservationDate}" style="margin-left:365px; bottom:100px; position:relative; bottom:60px; white-space:nowrap"> </h6>
+                                    <h6 th:text="${reservation.reservationDate}" style="margin-left:390px; bottom:100px; position:relative; bottom:60px; white-space:nowrap"> </h6>
                                 </div>
                             </div>
                         </div>

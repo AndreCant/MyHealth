@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-US" mlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout/layout}">
+
+<body>
+	
+    <div layout:fragment="content">
+    <script th:inline="javascript">
+		$(document).ready(function () {
+		    $('#navExams').append('<ul id="nav" class="pagination pagination-md "></ul>');  
+		    var rowsShown = 4;  
+		    var rowsTotal = $('#data .exam').length;  
+		    console.log(rowsTotal);
+		    var numPages = rowsTotal/rowsShown; 
+		    
+		    if(numPages > 1) {
+				$('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="0" tabindex="-1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>');
+			 	for (i = 0;i < numPages;i++) {  
+			        var pageNum = i + 1;
+			        $('#nav').append ('<li class="page-item"><a href="javascript::" class="page-link" rel="'+i+'">'+pageNum+'</a></li> ');  
+			    }
+			    $('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="'+(numPages-1)+'"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>');
+			    
+			    $('#data .exam').hide();  
+			    $('#data .exam').slice (0, rowsShown).show();  
+			    $('#nav a:first').addClass('active');  
+			    $('#nav a').bind('click', function() {  
+				$('#nav a').removeClass('active');  
+			   	$(this).addClass('active');  
+			        var currPage = $(this).attr('rel');  
+			        var startItem = currPage * rowsShown;  
+			        var endItem = startItem + rowsShown;  
+			        $('#data .exam').css('opacity','0.0').hide().slice(startItem, endItem).  
+			        css('display','table-row').animate({opacity:1}, 300);  
+			    }); 
+			}
+		    
+		});
+		
+	$(document).ready(function() {
+			
+            $('.apri').click(  //agisco sul trigger
+            function(){
+			var win = $(this).parent().parent();
+			var apri = this;
+            $(win).children().show("2000");
+            $(this).hide(); 
+          	$(win).children('.chiudi').show();
+          	       	 
+            $('.chiudi').click(function(){
+		    $(this).parent('.chiudi');
+          	$(win).children('.chiudi').hide();
+		    $(win).children('#box').hide('2000');
+		    $(apri).show();
+			})
+            });
+           
+    });
+	</script>
+	
+    <div class="row no-gutters">
+    	<div class="col-lg-2"></div>
+        <div class="col-lg-8">
+        	<div id="page-title" class="padding-top-20px gradient-white">
+		        <div class="container">
+		            <h2 class="font-weight-100" ></h2>
+		        </div>
+		    </div>
+            <hr>
+            <div class="text-center">
+	            
+                <div class="float-left padding-left-15px" ></div>
+                <div class="float-left padding-left-15px"></div>
+                <div  class="float-right padding-right-15px"></div>
+                <div class="clearfix"></div>
+                <hr>
+
+                <div id="data" class="row">
+                    <div class="col-md-3 margin-bottom-45px exam">
+                        <div class="background-white thum-hover box-shadow hvr-float" th:each="reservation : ${reservations}"  >
+                        <form th:action="@{/patient/visits}" th:object="${review}" method="POST">
+                            <div class="item-thumbnail background-white">
+                                <a href="#"><img  alt=""></a>
+                            </div>
+                            <div class="padding-20px">
+                                <h5 class="margin-bottom-20px"><a class="text-dark" ></a></h5>
+                                <div class="rating clearfix">
+                                    <ul class="float-right">
+                                        <li class="active"></li>
+                                        <li class="active"></li>
+                                        <li class="active"></li>
+                                        <li class="active"></li>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="father" class=" father padding-lr-30px padding-tb-15px background-light-grey">
+                                <div class="row no-gutters">
+                                    <button style="margin-bottom:20px;" clicked=false class="btn btn-primary apri">Add a Review</button>
+                                </div>
+                                <div style="display:none" id="box">
+                                 <input th:field="*{body}" type="text" placeholder="Add a review" style="width: 450px;">
+                                 <input th:field="*{vote}" min="1" max="10" type="number" placelholder="Add a vote" style="margin-top:20px;">
+                                 <div></div>
+                                 <button style="margin-top:30px;" id="box" class="btn btn-primary">Send the review </button>
+                                </div>
+                                  <div style=" display:none; margin-top:20px;" class="chiudi background-light-grey">
+                                  <button  class="btn chiudi">Nascondi </button>
+                               </div>
+                            </div>
+                       
+                          </form>
+                        
+                        </div>
+                    </div>
+                </div>
+                <!-- // row -->
+                
+                <div class="row">
+                	<div class="col-md-4"></div>
+                	<div class="col-md-4" id="navExams"></div>
+                	<div class="col-md-4"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+
+  </div>
+  
+  	
+</body>
+</html>

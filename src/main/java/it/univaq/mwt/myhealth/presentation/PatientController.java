@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ReservationService;
+import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.domain.Reservation;
+import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
 import org.springframework.validation.Errors;
 
@@ -36,6 +38,11 @@ public class PatientController {
 
 	@Autowired
 	private ReservationService reservationService;	
+	
+
+	@Autowired
+	private ReviewService reviewService;	
+		
 		
    @GetMapping(value="/profile")
    public String admin (Model model) throws BusinessException
@@ -79,6 +86,34 @@ public class PatientController {
 	   System.out.println("sono entrato");
 	   reservationService.delete(id);	  
 	   return "redirect: "; 
+   }
+   
+   @GetMapping(value="/visits")
+   public String visitsList (Model model) throws BusinessException
+   {	
+	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
+		User user = userService.findUserByUsername(userDetails.getUsername());
+		Review review = new Review();
+		List<Reservation> reservation = reservationService.findReservationsByPatient(user.getId());
+		model.addAttribute("reservations", reservation);
+		model.addAttribute("review", review);
+		return "private/patient/visits"; 
+   }
+   
+   
+   @PostMapping(value="/visits")
+   public String insertReview (@Valid @ModelAttribute("review") Review review, Errors errors ) throws BusinessException {
+	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
+		User user = userService.findUserByUsername(userDetails.getUsername());
+	   if (!errors.hasErrors()) {
+		   review.setBody(review.getBody());
+		   review.setVote(review.getVote());
+		   review.setPatient(user);		  
+		   reviewService.save(review);
+	   }
+	   return "redirect:/patient/visits";
    }
    
    
