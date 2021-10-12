@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.DiagnosisDao;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
+import it.univaq.mwt.myhealth.domain.Exam;
 
 @Repository
 public class DiagnosisDaoImpl implements DiagnosisDao{
@@ -19,14 +20,12 @@ public class DiagnosisDaoImpl implements DiagnosisDao{
 
 	@Override
 	public List<Diagnosis> findAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Diagnosis>) entityManager.createQuery("FROM Diagnosis").getResultList();
 	}
 
 	@Override
 	public Diagnosis findById(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		return (Diagnosis) entityManager.find(Diagnosis.class, uid);
 	}
 
 	@Override
@@ -43,8 +42,7 @@ public class DiagnosisDaoImpl implements DiagnosisDao{
 
 	@Override
 	public void delete(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		
+		entityManager.remove(this.findById(uid));
 	}
 
 	@Override

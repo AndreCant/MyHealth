@@ -30,4 +30,8 @@ public interface VisitService {
 	void saveMedicines(List<Medicine> medicines) throws BusinessException;
 	
 	void saveMedicineDiagnosis(List<MedicineDiagnosis> medicineDiagnosis) throws BusinessException;
+	
+	List<Diagnosis> findAllDiagnosis() throws BusinessException;
+	
+	void deleteDiagnosis(Long id) throws BusinessException;
 }

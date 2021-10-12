@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.User;
@@ -47,6 +48,9 @@ public class AdminController {
 	
 	@Autowired
 	private ExamService examService;
+	
+	@Autowired
+	private VisitService visitService;
 	
 	@GetMapping(value="/profile")
 	public String profile (Model model) throws BusinessException
@@ -203,5 +207,17 @@ public class AdminController {
 			examService.updateImage(image);
 		}
 		return "redirect:/admin/exams";
+	}
+	
+	@GetMapping(value="/diagnosis")
+	public String diagnosis (Model model) throws BusinessException{	
+		model.addAttribute("diagnosis", visitService.findAllDiagnosis());
+		return "private/admin/diagnosis";
+	}
+	
+	@GetMapping(value="/diagnosis/delete")
+	public String deleteDiagnosis (@RequestParam("id") Long id, Model model) throws BusinessException{	
+		visitService.deleteDiagnosis(id);
+		return "redirect:/admin/diagnosis";
 	}
 }

@@ -129,4 +129,25 @@ public class VisitServiceImpl implements VisitService{
 		}
 	}
 
+	@Override
+	public List<Diagnosis> findAllDiagnosis() throws BusinessException {
+		try {
+			return diagnosisDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void deleteDiagnosis(Long id) throws BusinessException {
+		try {
+			diagnosisDao.delete(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		
+	}
+
 }
