@@ -97,13 +97,15 @@
                             </div>
                             <div id="father" class=" father padding-lr-30px padding-tb-15px background-light-grey">
                                 <div class="row no-gutters">
-                                    <button style="margin-bottom:20px;" clicked=false class="btn btn-primary apri">Add a Review</button>
+                                    <button style="margin-bottom:20px;background:#00b0ff" clicked=false  class="btn btn-primary background-second-color box-shadow apri">Add a Review</button>
                                 </div>
                                 <div style="display:none" id="box">
-                                 <input th:field="*{body}" type="text" placeholder="Add a review" style="width: 450px;">
-                                 <input th:field="*{vote}" min="1" max="10" type="number" placelholder="Add a vote" style="margin-top:20px;">
+                                <div class="form-outline">
+                                 <textarea th:field="*{body}" type="text" class="form-control" id="textAreaExample" rows="6"  placeholder="Add a review" ></textarea>
+                                 <input th:field="*{vote}" min="1" max="10" type="number" id="inputNumber1" name="inputNumber1" style="margin-top:20px; width:200px; border-radius:10px; background-color:white; text-align:center;">
+                                 </div>
                                  <div></div>
-                                 <button style="margin-top:30px;" id="box" class="btn btn-primary">Send the review </button>
+                                 <button style="margin-top:30px;background:#00b0ff;" id="box" class="btn btn-primary">Send the review </button>
                                 </div>
                                   <div style=" display:none; margin-top:20px;" class="chiudi background-light-grey">
                                   <button  class="btn chiudi">Nascondi </button>
