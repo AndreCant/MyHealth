@@ -42,7 +42,7 @@ public class Reservation extends AbstractEntity implements Serializable{
     @JsonBackReference
 	private FrontOffice frontOffice;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Visit visit;
 	
 	@ManyToOne

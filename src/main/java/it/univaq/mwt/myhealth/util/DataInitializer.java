@@ -183,9 +183,11 @@ public class DataInitializer {
 	
 	public void initVisits() {
 		try {
+			List<Reservation> res = reservationService.findAllReservations();
+			
 			this.visits = List.of(
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.reservations.get(0), this.payments.get(0), this.users.get(1), this.diagnosis.get(0)),
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.reservations.get(1), this.payments.get(1), this.users.get(1), this.diagnosis.get(1))
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, res.get(0), this.payments.get(0), this.users.get(1), this.diagnosis.get(0)),
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, res.get(1), this.payments.get(1), this.users.get(1), this.diagnosis.get(1))
 			);
 			
 			visitService.saveVisits(visits);
