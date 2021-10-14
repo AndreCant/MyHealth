@@ -6,11 +6,14 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -56,19 +59,20 @@ public class User extends AbstractEntity implements Serializable{
     @JsonBackReference
 	private Role role;
 	
-	@OneToMany(mappedBy = "patient")
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Reservation> reservations;
 	
-	@OneToMany(mappedBy = "patient")
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Review> reviews;
 	
-	@OneToMany(mappedBy = "doctor")
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Visit> visits;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "image_id")
 	private Image image;
 	
 	public User(String username, String email, String password, Role role) {
@@ -76,6 +80,10 @@ public class User extends AbstractEntity implements Serializable{
 		this.email = email;
 		this.password = password;
 		this.role = role;
+	}
+	
+	public String getFullName() {
+		return this.name + " " + this.surname;
 	}
 
 }

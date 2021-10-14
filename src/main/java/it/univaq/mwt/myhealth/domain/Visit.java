@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
+
+import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -31,19 +34,21 @@ public class Visit extends AbstractEntity implements Serializable{
 	private LocalDateTime startHour;
 	private LocalDateTime endHour;
 	private boolean isCompleted;
-		
-	@ManyToOne
-    @JsonBackReference
-    private Diagnosis diagnosis;
-		
-	@OneToOne(cascade = CascadeType.ALL)
-	private Reservation reservation;
-
-	@OneToOne
-	private Review review;
 	
-	@OneToOne
-	private Payment payment;
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "review_id")
+    private Review review;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "diagnosis_id")
+    private Diagnosis diagnosis;
+	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "visit")
+    private Reservation reservation;
 	
 	@ManyToOne
     @JsonBackReference

@@ -12,8 +12,10 @@ import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.dao.AnnualBudgetDao;
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.ExpenseDao;
+import it.univaq.mwt.myhealth.dao.PaymentDao;
 import it.univaq.mwt.myhealth.domain.AnnualBudget;
 import it.univaq.mwt.myhealth.domain.Expense;
+import it.univaq.mwt.myhealth.domain.Payment;
 
 @Service
 @Transactional
@@ -24,6 +26,9 @@ public class AdministrationServiceImpl implements AdministrationService{
 	
 	@Autowired
 	AnnualBudgetDao annualBudgetDao;
+	
+	@Autowired
+	PaymentDao paymentDao;
 
 	@Override
 	public void saveExpenses(List<Expense> expenses) throws BusinessException {
@@ -45,5 +50,15 @@ public class AdministrationServiceImpl implements AdministrationService{
 			throw new BusinessException(e.getMessage());
 		}
 		
+	}
+
+	@Override
+	public List<Payment> findAllPayments() throws BusinessException {
+		try {
+			return paymentDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 }

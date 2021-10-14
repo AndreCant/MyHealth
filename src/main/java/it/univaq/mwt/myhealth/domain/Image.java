@@ -32,6 +32,6 @@ private static final long serialVersionUID = 1L;
     @JsonBackReference
 	private Exam exam;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "image")
 	private User user;
 }

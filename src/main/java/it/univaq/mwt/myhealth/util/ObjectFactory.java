@@ -82,13 +82,14 @@ public class ObjectFactory {
 		return exam;
 	}
 	
-	public static Reservation createReservation(LocalDateTime startHour, LocalDateTime endHour, User patient, Exam exam) {
+	public static Reservation createReservation(LocalDateTime startHour, LocalDateTime endHour, User patient, Exam exam, Visit visit) {
 		Reservation reservation = new Reservation();
 		reservation.setStartHour(startHour);
 		reservation.setEndHour(endHour);
 		reservation.setPatient(patient);
 		reservation.setExam(exam);
 		reservation.setReservationDate(LocalDate.now());
+		reservation.setVisit(visit);
 		return reservation;
 	}
 	
@@ -101,28 +102,27 @@ public class ObjectFactory {
 		payment.setDiscount(discount);
 		payment.setPaid(isPaid);
 		payment.setTax(tax);
-		payment.setFinalPrice(price - totDiscount + totTax);
+		payment.setFinalPrice(BigDecimal.valueOf(price - totDiscount + totTax).setScale(2, RoundingMode.HALF_UP).doubleValue()); 
 		return payment;
 	}
 	
-	public static Visit createVisit(LocalDateTime startHour, LocalDateTime endHour, boolean isCompleted, Reservation reservation, Payment payment, User doctor, Diagnosis diagnosis) {
+	public static Visit createVisit(LocalDateTime startHour, LocalDateTime endHour, boolean isCompleted, User doctor, Review review, Diagnosis diagnosis, Payment payment) {
 		Visit visit = new Visit();
 		visit.setStartHour(startHour);
 		visit.setEndHour(endHour);
 		visit.setCompleted(isCompleted);
 		visit.setDoctor(doctor);
-		visit.setPayment(payment);
-		visit.setReservation(reservation);
+		visit.setReview(review);
 		visit.setDiagnosis(diagnosis);
+		visit.setPayment(payment);
 		return visit;
 	}
 	
-	public static Review createReview(String title, String body, int vote, Visit visit, User patient) {
+	public static Review createReview(String title, String body, int vote, User patient) {
 		Review review = new Review();
 		review.setTitle(title);
 		review.setBody(body);
 		review.setVote(vote);
-		review.setVisit(visit);
 		review.setPatient(patient);
 		return review;
 	}

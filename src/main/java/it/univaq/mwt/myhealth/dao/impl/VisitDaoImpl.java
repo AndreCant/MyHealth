@@ -22,8 +22,7 @@ public class VisitDaoImpl implements VisitDao{
 
 	@Override
 	public List<Visit> findAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Visit>) entityManager.createQuery("FROM Visit").getResultList();
 	}
 
 	@Override

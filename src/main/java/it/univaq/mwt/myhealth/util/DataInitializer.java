@@ -50,8 +50,8 @@ public class DataInitializer {
 	private List<Image> imagesExam;
 	private List<Exam> exams;
 	private List<User> users;
-	private List<Reservation> reservations;
 	private List<Visit> visits;
+	private List<Reservation> reservations;
 	private List<Review> reviews;
 	private List<Invoice> invoices;
 	private List<Payment> payments;
@@ -71,11 +71,11 @@ public class DataInitializer {
 			this.initUserImages();
 			this.initUsers();
 			this.initExams();
-			this.initReservations();
 			this.initPayments();
 			this.initDiagnosis();
-			this.initVisits();
 			this.initReviews();
+			this.initVisits();
+			this.initReservations();
 			this.initInvoices();
 			this.initPaychecks();
 			this.initMedicines();
@@ -145,10 +145,11 @@ public class DataInitializer {
 	public void initReservations() {
 		try {
 			this.reservations = List.of(
-				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 15, 10, 30), LocalDateTime.of(2021, 7, 15, 11, 30), this.users.get(3), this.exams.get(0)),
-				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(3), this.exams.get(2))
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 15, 10, 30), LocalDateTime.of(2021, 7, 15, 11, 30), this.users.get(3), this.exams.get(0), this.visits.get(0)),
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(3), this.exams.get(2), this.visits.get(1))
 			);
-			
+			this.visits.get(0).setReservation(this.reservations.get(0));
+			this.visits.get(1).setReservation(this.reservations.get(1));
 			reservationService.saveReservations(this.reservations);
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -183,11 +184,9 @@ public class DataInitializer {
 	
 	public void initVisits() {
 		try {
-			List<Reservation> res = reservationService.findAllReservations();
-			
 			this.visits = List.of(
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, res.get(0), this.payments.get(0), this.users.get(1), this.diagnosis.get(0)),
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, res.get(1), this.payments.get(1), this.users.get(1), this.diagnosis.get(1))
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.users.get(1), this.reviews.get(0), this.diagnosis.get(0), this.payments.get(0)),
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.users.get(1), this.reviews.get(1), this.diagnosis.get(1), this.payments.get(1))
 			);
 			
 			visitService.saveVisits(visits);
@@ -199,7 +198,8 @@ public class DataInitializer {
 	public void initReviews() {
 		try {
 			this.reviews = List.of(
-				ObjectFactory.createReview("Good!!!", "This is a review body bla bla bla hello world.", 4, this.visits.get(0), this.users.get(2))
+				ObjectFactory.createReview("Good!!!", "This is a review body bla bla bla hello world.", 4, this.users.get(2)),
+				ObjectFactory.createReview("Bad Experience...", "This is a review body not ok experience.", 2, this.users.get(2))
 			);
 			
 			reservationService.saveReviews(reviews);

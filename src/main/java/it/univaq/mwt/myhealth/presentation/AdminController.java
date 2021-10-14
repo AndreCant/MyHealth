@@ -29,13 +29,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.BusinessException;
+import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Image;
+import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.util.ObjectFactory;
 import it.univaq.mwt.myhealth.util.Utility;
@@ -44,17 +47,12 @@ import it.univaq.mwt.myhealth.util.Utility;
 @RequestMapping("admin")
 public class AdminController {
 	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private ExamService examService;
-	
-	@Autowired
-	private VisitService visitService;
-	
-	@Autowired
-	private ReservationService reservationService;
+	@Autowired private UserService userService;
+	@Autowired private ExamService examService;
+	@Autowired private VisitService visitService;
+	@Autowired private ReservationService reservationService;
+	@Autowired private AdministrationService administrationService;
+	@Autowired private DocumentService documentService;
 	
 	@GetMapping(value="/profile")
 	public String profile (Model model) throws BusinessException
@@ -229,5 +227,23 @@ public class AdminController {
 	public String reservations (Model model) throws BusinessException{	
 		model.addAttribute("reservations", reservationService.findAllReservations());
 		return "private/admin/reservations";
+	}
+	
+	@GetMapping(value="/payments")
+	public String payments (Model model) throws BusinessException{	
+		model.addAttribute("payments", administrationService.findAllPayments());
+		return "private/admin/payments";
+	}
+	
+	@GetMapping(value="/visits")
+	public String visits (Model model) throws BusinessException{	
+		model.addAttribute("visits", visitService.findAllVisits());
+		return "private/admin/visits";
+	}
+	
+	@GetMapping(value="/invoices")
+	public String invoices (Model model) throws BusinessException{	
+		model.addAttribute("invoices", documentService.findAllInvoices());
+		return "private/admin/invoices";
 	}
 }

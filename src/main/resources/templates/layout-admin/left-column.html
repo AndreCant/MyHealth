@@ -26,7 +26,22 @@
                 </li>
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{reservations.title}]]">
                     <a class="nav-link" th:href="@{'/admin/reservations'}">
-                        <i class="fas fa-fw fa-heart"></i><span class="nav-link-text">[[#{reservations.title}]]</span>
+                        <i class="fas fa-fw fa-archive"></i><span class="nav-link-text">[[#{reservations.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{payments.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/payments'}">
+                        <i class="fas fa-fw fa-credit-card"></i><span class="nav-link-text">[[#{payments.title}]]</span>
+                    </a>
+                </li>
+                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{visits.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/visits'}">
+                        <i class="fas fa-fw fa-eye"></i><span class="nav-link-text">[[#{visits.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{invoices.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/invoices'}">
+                        <i class="fas fa-fw fa-sticky-note"></i><span class="nav-link-text">[[#{invoices.title}]]</span>
                     </a>
                 </li>
               

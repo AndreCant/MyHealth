@@ -150,4 +150,14 @@ public class VisitServiceImpl implements VisitService{
 		
 	}
 
+	@Override
+	public List<Visit> findAllVisits() throws BusinessException {
+		try {
+			return visitDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
 }
