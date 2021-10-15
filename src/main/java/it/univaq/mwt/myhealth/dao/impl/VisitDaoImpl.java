@@ -23,11 +23,7 @@ public class VisitDaoImpl implements VisitDao{
 
 	@Override
 	public List<Visit> findAll() throws DaoException {
-<<<<<<< Updated upstream
 		return (List<Visit>) entityManager.createQuery("FROM Visit").getResultList();
-=======
-		return  (List<Visit>) entityManager.createQuery("FROM Visit").getResultList();
->>>>>>> Stashed changes
 	}
 
 	@Override

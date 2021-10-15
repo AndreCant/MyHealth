@@ -134,7 +134,6 @@ public class VisitServiceImpl implements VisitService{
 	}
 
 	@Override
-<<<<<<< Updated upstream
 	public List<Diagnosis> findAllDiagnosis() throws BusinessException {
 		try {
 			return diagnosisDao.findAll();
@@ -156,16 +155,20 @@ public class VisitServiceImpl implements VisitService{
 	}
 
 	@Override
-	public List<Visit> findAllVisits() throws BusinessException {
-=======
+	
 	public List<Visit> findAll() throws BusinessException {
->>>>>>> Stashed changes
 		try {
 			return visitDao.findAll();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+	}
+
+	@Override
+	public List<Visit> findAllVisits() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
