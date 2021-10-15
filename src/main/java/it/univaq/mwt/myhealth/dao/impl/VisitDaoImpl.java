@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.VisitDao;
+import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.dao.VisitDao;
@@ -22,7 +23,11 @@ public class VisitDaoImpl implements VisitDao{
 
 	@Override
 	public List<Visit> findAll() throws DaoException {
+<<<<<<< Updated upstream
 		return (List<Visit>) entityManager.createQuery("FROM Visit").getResultList();
+=======
+		return  (List<Visit>) entityManager.createQuery("FROM Visit").getResultList();
+>>>>>>> Stashed changes
 	}
 
 	@Override

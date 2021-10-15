@@ -75,16 +75,15 @@
                 <div  class="float-right padding-right-15px"></div>
                 <div class="clearfix"></div>
                 <hr>
-
                 <div id="data" class="row">
-                    <div class="col-md-3 margin-bottom-45px reservation" th:each="reservation : ${reservations}">
+                    <div class="col-md-3 margin-bottom-45px reservation" th:each="reservation : ${reservations}" th:if="${reservation.visit.isCompleted} == false">
                         <div class="background-white thum-hover box-shadow hvr-float"   >
                         <form th:action="@{/patient/visits}" th:object="${review}" method="POST">
                             <div class="item-thumbnail background-white">
                                 <a href="#"><img  alt=""></a>
                             </div>
                             <div class="padding-20px">
-                                <h5 class="margin-bottom-20px"><a class="text-dark" ></a></h5>
+                                <h5 class="margin-bottom-20px" th:text="${reservation.exam.name}"><a class="text-dark" ></a></h5>
                                 <div class="rating clearfix">
                                     <ul class="float-right">
                                         <li class="active"></li>
@@ -97,11 +96,11 @@
                             </div>
                             <div id="father" class=" father padding-lr-30px padding-tb-15px background-light-grey">
                                 <div class="row no-gutters">
-                                    <button style="margin-bottom:20px;background:#00b0ff;border:none;" clicked=false  class="btn btn-primary background-second-color box-shadow apri">Add a Review</button>
+                                    <button style="margin-bottom:20px;background:#00b0ff;border:none;" clicked=false  class="btn btn-primary background-second-color box-shadow apri"  >Add a Review</button>
                                 </div>
                                 <div style="display:none" id="box">
                                 <div class="form-outline">
-                                 <textarea th:field="*{body}" type="text" class="form-control" id="textAreaExample" rows="6"  placeholder="Add a review" ></textarea>
+                                 <textarea th:field="*{body}" type="text" class="form-control" id="textAreaExample" rows="6"  placeholder="Add a review" required></textarea>
                                  <input th:field="*{vote}" min="1" max="10" type="number" id="inputNumber1" name="inputNumber1" style="margin-top:20px; width:150px; border-radius:10px; background-color:white; text-align:center;">
                                  </div>
                                  <div></div>
@@ -128,9 +127,6 @@
         </div>
         <div class="col-lg-2"></div>
     </div>
-
-  </div>
-  
-  	
+  </div>  	
 </body>
 </html>

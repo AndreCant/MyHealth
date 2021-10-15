@@ -146,5 +146,16 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public User findRandomDoctor(long id) throws BusinessException {
+		try {
+			return userDao.findRandomDoctor(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	
 	
 }

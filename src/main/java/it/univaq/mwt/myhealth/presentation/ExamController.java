@@ -26,6 +26,7 @@ import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
+import it.univaq.mwt.myhealth.domain.Visit;
 import it.univaq.mwt.myhealth.util.Utility;
 
 @Controller
@@ -55,25 +56,31 @@ public class ExamController {
 	@GetMapping(value="/{name}")
 	public String exam (Model model,@PathVariable("name") String name) throws BusinessException, DaoException {
 		Reservation reservation = new Reservation();
+		Visit visit = new Visit();
 		Review review = new Review();
 		HashSet<Long> reviews = new HashSet<Long>();
 		reviews.add(examService.findByName(name).getId());
 		model.addAttribute("reviews", reviewService.findReviewsByExamIds(reviews));
 		model.addAttribute("review", review);
+		model.addAttribute("visit", visit);
 		model.addAttribute("exam", examService.findByName(name));	
 		model.addAttribute("reservation", reservation);	
 		return "/public/singleExam";
 	}
 	
 	@PostMapping(value="/{name}")
-	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation) throws BusinessException {			    
+	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation, @ModelAttribute("visit") Visit visit) throws BusinessException {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
 		    FrontOffice frontOffice = frontOfficeService.findById(Utility.getRandomNumberInRange(1, 5));
 		    reservation.setPatient(userService.findUserByUsername(currentUserName));
 		    reservation.setExam(exam);
 		    reservation.setFrontOffice(frontOffice);
-			reservationService.save(reservation);
+		    visit.setReservation(reservation);
+		    visit.setDoctor(userService.findRandomDoctor(Utility.getRandomNumberInRange(2, 3)));
+		    reservation.setVisit(visit);
+		    visitService.saveVisit(visit);
+			reservationService.save(reservation);		
 			return "redirect:/exam/{name}";
 	}
 	

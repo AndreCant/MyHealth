@@ -18,6 +18,8 @@ import javax.validation.constraints.Null;
 
 import org.springframework.lang.Nullable;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
@@ -31,6 +33,7 @@ public class Visit extends AbstractEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")	
 	private LocalDateTime startHour;
 	private LocalDateTime endHour;
 	private boolean isCompleted;

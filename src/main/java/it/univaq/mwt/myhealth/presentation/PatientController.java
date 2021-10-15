@@ -23,9 +23,12 @@ import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.business.UserService;
+import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
+import it.univaq.mwt.myhealth.domain.Visit;
+
 import org.springframework.validation.Errors;
 
 @Controller
@@ -41,7 +44,10 @@ public class PatientController {
 	
 
 	@Autowired
-	private ReviewService reviewService;	
+	private ReviewService reviewService;
+	
+	@Autowired
+	private VisitService visitService;
 		
 		
    @GetMapping(value="/profile")
@@ -95,8 +101,8 @@ public class PatientController {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
 		User user = userService.findUserByUsername(userDetails.getUsername());
 		Review review = new Review();
-		List<Reservation> reservation = reservationService.findReservationsByPatient(user.getId());
-		model.addAttribute("reservations", reservation);
+		List<Reservation> reservations = reservationService.findReservationsByPatient(user.getId());
+		model.addAttribute("reservations", reservations);
 		model.addAttribute("review", review);
 		return "private/patient/visits"; 
    }

@@ -8,6 +8,8 @@ import it.univaq.mwt.myhealth.domain.User;
 public interface UserService {
 	
 	List<User> findAllUsers() throws BusinessException;
+	
+	User findRandomDoctor(long id) throws BusinessException;
 	   
 	void saveUser(User user) throws BusinessException;
 	

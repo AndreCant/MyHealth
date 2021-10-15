@@ -11,6 +11,8 @@ public interface VisitService {
 	
 	List<Visit> findAllUsers() throws BusinessException;
 	
+	List<Visit> findAll() throws BusinessException;
+	
 	List<Visit> findByReservation(Long id) throws BusinessException;
 	
 	List<Visit> findByDoctor(Long id) throws BusinessException;

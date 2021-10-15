@@ -75,5 +75,11 @@ public class UserDaoImpl implements UserDao{
 	public User findUserById(long id) throws DaoException {
 		return (User) entityManager.find(User.class,id);
 	}
+
+	@Override
+	public User findRandomDoctor(long id) throws DaoException {
+		User user = entityManager.createQuery("FROM User where id = :id  and role_id = 2", User.class).setParameter("id", id).getSingleResult();
+		return  user;
+	}
 	
 }
