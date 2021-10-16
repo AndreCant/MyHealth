@@ -13,24 +13,27 @@
 					document.querySelector('#bottonSubmit').removeAttribute('hidden');
 				 }
    </script>
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="margin-left:50px;">
+      <div class="container-fluid overflow-hidden">
+       <div class="row margin-tb-0px margin-lr-10px sm-mrl-0px">
         <div class="container-fluid overflow-hidden">
         <ul class="nav nav-tabs" style="margin-top:20px;">
 					  <li class="nav-item"><a class="nav-link active" href="#">Profilo</a></li>
-					  <li class="nav-item"><a class="nav-link" href="#">Visite</a></li>
+					  <li class="nav-item"><a class="nav-link" th:href="#{visits}" href="#">Visite</a></li>
 					  <li class="nav-item"><a class="nav-link" th:href="#{reservations}">Prenotazioni</a></li>
              </ul>
-            <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
+            <div class="row margin-tb-px margin-lr-10px sm-mrl-0px">
             
                 <!-- Page Title -->
-                <div id="page-title" class="padding-30px background-white full-width">
+              <div id="page-title" class="padding-30px background-white full-width box-shadow">
                     <div class="container">
+ 
                         <h1 class="font-weight-300">My Profile</h1>
                     </div>
                 </div>
                 <!-- // Page Title -->
 
-                <div class="row margin-tb-45px full-width">
+                <div class="row margin-tb-90px full-width">
                     <div class="col-md-4">
                         <div class="padding-15px background-white">
                             <a href="#" class="d-block margin-bottom-10px"><img src="assets/img/profile-img.png" alt=""></a>
@@ -80,6 +83,7 @@
         </div>
     </div>
    </div>
-      
+  </div>
+ </div>
 </body>
 </html>

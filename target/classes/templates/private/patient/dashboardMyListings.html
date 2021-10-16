@@ -8,8 +8,16 @@
     <!-- Navigation-->
     <div class="content-wrapper" style="margin-left:50px;">
         <div class="container-fluid overflow-hidden">
+       
             <div class="row margin-tb-0px margin-lr-10px sm-mrl-0px">
                 <!-- Page Title -->
+                 <div class="container-fluid overflow-hidden">
+        			<ul class="nav nav-tabs" style="margin-top:20px;">
+					  <li class="nav-item"><a class="nav-link "th:href="#{profile}">Profilo</a></li>
+					  <li class="nav-item"><a class="nav-link" th:href="#{visits}" href="#">Visite</a></li>
+					  <li class="nav-item"><a class="nav-link active" th:href="#{reservations}">Prenotazioni</a></li>
+             </ul>
+            <div class="row margin-tb-px margin-lr-10px sm-mrl-0px">
                 <div id="page-title" class="padding-30px background-white full-width box-shadow">
                     <div class="container">
  
@@ -59,7 +67,6 @@
                     <!-- //pagination -->
 
                 </div>
-
             </div>
         </div>
         <!-- /.container-fluid-->
