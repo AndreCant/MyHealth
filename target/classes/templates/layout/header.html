@@ -32,7 +32,7 @@
                         <a sec:authorize="hasRole('doctor')" th:href="@{'/doctor/profile'}" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
                           <i class="fa fa-fw fa-lock mr-1"></i>  [[#{nav.reserved}]]
                         </a>
-                        <a sec:authorize="hasRole('patient')" href="#" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
+                        <a sec:authorize="hasRole('patient')" th:href="@{'/patient/profile'}" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
                           <i class="fas fa-fw fa-user mr-1"></i>  [[#{nav.reserved}]]
                         </a>
                     </div>
