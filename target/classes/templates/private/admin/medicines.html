@@ -16,9 +16,9 @@
 	                <div class="margin-tb-45px full-width">
 	                    <div class="padding-30px background-white border-radius-20 box-shadow">
 	                    	<div class="row">
-		                        <h1 class="col pl-4"><i class="far fa-user margin-right-10px text-main-color"></i> [[#{users.title}]]</h1>
+		                        <h1 class="col pl-4"><i class="fas fa-fw fa-medkit margin-right-10px text-main-color"></i> [[#{medicines.title}]]</h1>
 		                        <div class="col pr-4">
-			                        <a th:href="@{/admin/user/create}" class="float-right btn btn-app"><i class="fa fa-plus margin-right-10px"></i> [[#{users.add}]]</a>
+			                        <a th:href="@{/admin/medicine/create}" class="float-right btn btn-app"><i class="fa fa-plus margin-right-10px"></i> [[#{medicines.add}]]</a>
 		                        </div>
 	                    	</div>
 	                        <hr>
@@ -28,24 +28,24 @@
 										<table id="table" class="table table-striped table-bordered" style="width:100%;">
 											<thead>
 												<tr>
-													<th>Username</th>
-													<th>Email</th>
-													<th>[[#{users.name}]]</th>
-													<th>[[#{users.surname}]]</th>
-													<th>[[#{users.role}]]</th>
+													<th>[[#{medicines.code}]]</th>
+													<th>[[#{medicines.name}]]</th>
+													<th>[[#{medicines.active}]]</th>
+													<th>[[#{medicines.weight}]]</th>
+													<th>[[#{medicines.description}]]</th>
 													<th></th>
 													<th></th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr th:each="user : ${users}">
-													<td th:text="${user.username}"></td>
-													<td th:text="${user.email}"></td>
-													<td th:text="${user.name}"></td>
-													<td th:text="${user.surname}"></td>
-													<td th:text="${user.role.name}"></td>
-													<td class="text-center"><a th:if="${!user.username.equals(loggedUsername)}" th:href="@{/admin/user/delete(id=${user.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
-													<td class="text-center"><a th:href="@{/admin/user/update(id=${user.id})}" th:attr="title=#{users.edit}"><i class='fa fa-edit'></i></a></td>
+												<tr th:each="medicine : ${medicines}">
+													<td th:text="${medicine.code}"></td>
+													<td th:text="${medicine.name}"></td>
+													<td th:text="${medicine.activeIngredient}"></td>
+													<td th:text="${medicine.weight}"></td>
+													<td th:text="${medicine.description}"></td>
+													<td class="text-center"><a th:href="@{/admin/medicine/delete(id=${medicine.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
+													<td class="text-center"><a th:href="@{/admin/medicine/update(id=${medicine.id})}" th:attr="title=#{users.edit}"><i class='fa fa-edit'></i></a></td>
 												</tr>
 										</table>
 									</div>

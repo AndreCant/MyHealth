@@ -8,7 +8,7 @@ public interface FrontOfficeDao{
 	
 	public List<FrontOffice> findAll() throws DaoException;
 	
-	public FrontOffice findById(long id)  throws DaoException;
+	public FrontOffice findById(Long id)  throws DaoException;
    
 	public void save(FrontOffice frontOffice)  throws DaoException;
  

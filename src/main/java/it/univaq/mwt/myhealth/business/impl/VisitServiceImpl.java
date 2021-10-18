@@ -155,7 +155,6 @@ public class VisitServiceImpl implements VisitService{
 	}
 
 	@Override
-	
 	public List<Visit> findAll() throws BusinessException {
 		try {
 			return visitDao.findAll();
@@ -164,11 +163,4 @@ public class VisitServiceImpl implements VisitService{
 			throw new BusinessException(e.getMessage());
 		}
 	}
-
-	@Override
-	public List<Visit> findAllVisits() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

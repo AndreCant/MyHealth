@@ -3,6 +3,7 @@ package it.univaq.mwt.myhealth.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,11 +23,11 @@ public class Medicine extends AbstractEntity implements Serializable{
 	
 	private String code;
 	private String name;
-	private String activePrinciple;
+	private String activeIngredient;
 	private String description;
 	private Double weight;
 	
-	@OneToMany(mappedBy = "medicine")
+	@OneToMany(mappedBy = "medicine", cascade = CascadeType.ALL)
     @JsonManagedReference
 	private List<MedicineDiagnosis> medicineDiagnosis;
 	

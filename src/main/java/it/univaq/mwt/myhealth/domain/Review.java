@@ -31,6 +31,7 @@ public class Review extends AbstractEntity implements Serializable{
 	private String title;
 	private String body;
 	private int vote;
+	private boolean isRemoved;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "review")
 	private Visit visit;

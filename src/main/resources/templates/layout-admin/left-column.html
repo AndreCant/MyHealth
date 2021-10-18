@@ -6,8 +6,21 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
 
             <ul class="navbar-nav navbar-sidenav background-main-color admin-nav" id="admin-nav">
-                <li class="nav-item">
-                    <span class="nav-title-text">Setup</span>
+            	<li class="nav-item">
+                    <span class="nav-title-text">[[#{nav.personal}]]</span>
+                </li>
+            	<li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{profile.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/profile'}">
+                        <i class="fas fa-fw fa-user-circle"></i><span class="nav-link-text">[[#{profile.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('doctor')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{profile.title}]]">
+                    <a class="nav-link" th:href="@{'/doctor/profile'}">
+                        <i class="fas fa-fw fa-user-circle"></i><span class="nav-link-text">[[#{profile.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('admin')" class="nav-item">
+                    <span class="nav-title-text">[[#{nav.setup}]]</span>
                 </li>
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{users.title}]]">
                     <a class="nav-link" th:href="@{'/admin/users'}">
@@ -19,14 +32,33 @@
                         <i class="fas fa-fw fa-newspaper"></i><span class="nav-link-text">[[#{exams.title}]]</span>
                     </a>
                 </li>
-                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{diagnosis.title}]]">
-                    <a class="nav-link" th:href="@{'/admin/diagnosis'}">
-                        <i class="fas fa-fw fa-heart"></i><span class="nav-link-text">[[#{diagnosis.title}]]</span>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{reviews.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/reviews'}">
+                        <i class="fas fa-fw fa-comment"></i><span class="nav-link-text">[[#{reviews.title}]]</span>
                     </a>
+                </li>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{medicines.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/medicines'}">
+                        <i class="fas fa-fw fa-medkit"></i><span class="nav-link-text">[[#{medicines.title}]]</span>
+                    </a>
+                </li>
+                
+                <li sec:authorize="hasRole('admin')" class="nav-item">
+                    <span class="nav-title-text">[[#{nav.patient}]]</span>
                 </li>
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{reservations.title}]]">
                     <a class="nav-link" th:href="@{'/admin/reservations'}">
                         <i class="fas fa-fw fa-archive"></i><span class="nav-link-text">[[#{reservations.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{visits.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/visits'}">
+                        <i class="fas fa-fw fa-eye"></i><span class="nav-link-text">[[#{visits.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{diagnosis.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/diagnosis'}">
+                        <i class="fas fa-fw fa-heart"></i><span class="nav-link-text">[[#{diagnosis.title}]]</span>
                     </a>
                 </li>
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{payments.title}]]">
@@ -34,60 +66,37 @@
                         <i class="fas fa-fw fa-credit-card"></i><span class="nav-link-text">[[#{payments.title}]]</span>
                     </a>
                 </li>
-                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{visits.title}]]">
-                    <a class="nav-link" th:href="@{'/admin/visits'}">
-                        <i class="fas fa-fw fa-eye"></i><span class="nav-link-text">[[#{visits.title}]]</span>
-                    </a>
+                
+                <li sec:authorize="hasRole('admin')" class="nav-item">
+                    <span class="nav-title-text">[[#{nav.administrative}]]</span>
                 </li>
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{invoices.title}]]">
                     <a class="nav-link" th:href="@{'/admin/invoices'}">
                         <i class="fas fa-fw fa-sticky-note"></i><span class="nav-link-text">[[#{invoices.title}]]</span>
                     </a>
                 </li>
-              
-                </li>
-                <li class="nav-item">
-                    <span class="nav-title-text">Example Pages</span>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
-                    <a class="nav-link" href="dashboard-bookings.html">
-                        <i class="far fa-fw fa-bookmark"></i>
-                        <span class="nav-link-text">Bookings</span>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{paychecks.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/paychecks'}">
+                        <i class="fas fa-fw fa-print"></i><span class="nav-link-text">[[#{paychecks.title}]]</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
-                    <a class="nav-link" href="dashboard-add-listing.html">
-                        <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add Listing</span>
+                
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{frontOffices.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/frontOffices'}">
+                        <i class="fas fa-fw fa-building"></i><span class="nav-link-text">[[#{frontOffices.title}]]</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Packages">
-                    <a class="nav-link" href="dashboard-packages.html">
-                        <i class="far fa-fw fa-list-alt"></i>
-                        <span class="nav-link-text">Packages</span>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{expenses.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/expenses'}">
+                        <i class="fas fa-fw fa-server"></i><span class="nav-link-text">[[#{expenses.title}]]</span>
                     </a>
                 </li>
-
-                <li class="nav-item">
-                    <span class="nav-title-text">User Area</span>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Profile">
-                    <a class="nav-link" href="dashboard-my-profile.html">
-                        <i class="fa fa-fw fa-user-circle"></i>
-                        <span class="nav-link-text">My Profile</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sing Out">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-fw fa-sign-out-alt"></i>
-                        <span class="nav-link-text">Sing Out</span>
+                <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{budgets.title}]]">
+                    <a class="nav-link" th:href="@{'/admin/budgets'}">
+                        <i class="fas fa-fw fa-university"></i><span class="nav-link-text">[[#{budgets.title}]]</span>
                     </a>
                 </li>
             </ul>
-
-
-
-
         </div>
     </nav>
   </body> 

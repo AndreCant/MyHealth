@@ -36,4 +36,8 @@ public class Paycheck implements Serializable{
 	private Double grossSalary;
 	private Double totalTax;
 	private Double netSalary;
+	
+	public String getFullName() {
+		return this.name + " " + this.surname;
+	}
 }

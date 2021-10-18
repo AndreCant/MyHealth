@@ -34,11 +34,15 @@ import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.ReservationService;
+import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Invoice;
+import it.univaq.mwt.myhealth.domain.Medicine;
+import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.util.ObjectFactory;
 import it.univaq.mwt.myhealth.util.Utility;
@@ -53,18 +57,32 @@ public class AdminController {
 	@Autowired private ReservationService reservationService;
 	@Autowired private AdministrationService administrationService;
 	@Autowired private DocumentService documentService;
+	@Autowired private ReviewService reviewService;
 	
 	@GetMapping(value="/profile")
-	public String profile (Model model) throws BusinessException
-	{	
+	public String profile (Model model) throws BusinessException{	
 		String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("user", userService.findUserByUsername(currentUserName));
 		return "private/admin/myProfile"; 
 	}
 	
+	@PostMapping(value="/profile")
+	public String updateProfile (@Valid @ModelAttribute("user") User user, Errors errors) throws BusinessException {	
+		User currentUser = userService.findUserById(user.getId());
+		currentUser.setEmail(user.getEmail());
+		currentUser.setName(user.getName());
+		currentUser.setSurname(user.getSurname());
+		currentUser.setFiscalCode(user.getFiscalCode());
+		currentUser.setGender(user.getGender());
+		currentUser.setDateOfBirth(user.getDateOfBirth());
+		userService.updateUser(currentUser);
+		return "redirect:/admin/profile";
+	}
+	
 	@GetMapping(value="/users")
 	public String users (Model model) throws BusinessException{	
 		model.addAttribute("users", userService.findAllUsers());
+		model.addAttribute("loggedUsername", SecurityContextHolder.getContext().getAuthentication().getName());
 		return "private/admin/users";
 	}
 	
@@ -116,7 +134,6 @@ public class AdminController {
 	
 	@PostMapping("/uploadImage")
     public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId, RedirectAttributes attributes) throws BusinessException{
-		System.out.println("userId: " + userId);
         if (file.isEmpty()) {
             return "redirect:/";
         }
@@ -237,7 +254,7 @@ public class AdminController {
 	
 	@GetMapping(value="/visits")
 	public String visits (Model model) throws BusinessException{	
-		model.addAttribute("visits", visitService.findAllVisits());
+		model.addAttribute("visits", visitService.findAll());
 		return "private/admin/visits";
 	}
 	
@@ -245,5 +262,123 @@ public class AdminController {
 	public String invoices (Model model) throws BusinessException{	
 		model.addAttribute("invoices", documentService.findAllInvoices());
 		return "private/admin/invoices";
+	}
+	
+	@GetMapping(value="/paychecks")
+	public String paychecks (Model model) throws BusinessException{	
+		model.addAttribute("paychecks", documentService.findAllPaychecks());
+		return "private/admin/paychecks";
+	}
+	
+	@GetMapping(value="/reviews")
+	public String reviews (Model model) throws BusinessException{	
+		model.addAttribute("reviews", reviewService.findAllReviews());
+		return "private/admin/reviews";
+	}
+	
+	@GetMapping(value="/review/delete")
+	public String reviewExam (@RequestParam("id") Long id, Model model) throws BusinessException{	
+		Review review = reviewService.findReviewById(id);
+		review.setRemoved(true);
+		reviewService.updateReview(review);
+		
+		return "redirect:/admin/reviews";
+	}
+	
+	@GetMapping(value="/medicines")
+	public String medicines (Model model) throws BusinessException{	
+		model.addAttribute("medicines", administrationService.findAllMedicines());
+		return "private/admin/medicines";
+	}
+	
+	@GetMapping(value="/medicine/delete")
+	public String deleteMedicine (@RequestParam("id") Long id, Model model) throws BusinessException{	
+		administrationService.deleteMedicine(id);
+		return "redirect:/admin/medicines";
+	}
+	
+	@GetMapping(value="/medicine/update")
+	public String updateMedicine (@RequestParam("id") Long id, Model model) throws BusinessException{
+		Medicine medicine = administrationService.findMedicineById(id);
+		model.addAttribute("medicine", medicine);
+		return "private/admin/medicineForm";
+	}
+	
+	@PostMapping(value="/medicine/update")
+	public String updateMedicinePost (@Valid @ModelAttribute("medicine") Medicine medicine, Errors errors) throws BusinessException{
+		Medicine currMedicine = administrationService.findMedicineById(medicine.getId());
+		currMedicine.setCode(medicine.getCode());
+		currMedicine.setName(medicine.getName());
+		currMedicine.setActiveIngredient(medicine.getActiveIngredient());
+		currMedicine.setWeight(medicine.getWeight());
+		currMedicine.setDescription(medicine.getDescription());
+		
+		administrationService.updateMedicine(currMedicine);
+		return "redirect:/admin/medicines";
+	}
+	
+	@GetMapping(value="/medicine/create")
+	public String createMedicine (Model model) throws BusinessException{
+		model.addAttribute("medicine", new Medicine());
+		return "private/admin/medicineForm";
+	}
+	
+	@PostMapping(value="/medicine/create")
+	public String createMedicinePost (@Valid @ModelAttribute("medicine") Medicine medicine, Errors errors) throws BusinessException{
+		administrationService.saveMedicine(medicine);
+		return "redirect:/admin/medicines";
+	}
+	
+	@GetMapping(value="/frontOffices")
+	public String frontOffices (Model model) throws BusinessException{	
+		model.addAttribute("frontOffices", administrationService.findAllFrontOffices());
+		return "private/admin/frontOffices";
+	}
+	
+	@GetMapping(value="/frontOffice/delete")
+	public String deleteFrontOffice (@RequestParam("id") Long id, Model model) throws BusinessException{	
+		administrationService.deleteFrontOffice(id);
+		return "redirect:/admin/frontOffices";
+	}
+	
+	@GetMapping(value="/frontOffice/update")
+	public String updateFrontOffice (@RequestParam("id") Long id, Model model) throws BusinessException{
+		FrontOffice frontOffice = administrationService.findFrontOfficeById(id);
+		model.addAttribute("frontOffice", frontOffice);
+		return "private/admin/frontOfficeForm";
+	}
+	
+	@PostMapping(value="/frontOffice/update")
+	public String updateFrontOfficePost (@Valid @ModelAttribute("frontOffice") FrontOffice frontOffice, Errors errors) throws BusinessException{
+		FrontOffice currFrontOffice = administrationService.findFrontOfficeById(frontOffice.getId());
+		currFrontOffice.setNumber(frontOffice.getNumber());
+		currFrontOffice.setName(frontOffice.getName());
+		
+		administrationService.updateFrontOffice(currFrontOffice);
+		return "redirect:/admin/frontOffices";
+	}
+	
+	@GetMapping(value="/frontOffice/create")
+	public String createFrontOffice (Model model) throws BusinessException{
+		model.addAttribute("frontOffice", new FrontOffice());
+		return "private/admin/frontOfficeForm";
+	}
+	
+	@PostMapping(value="/frontOffice/create")
+	public String createFrontOfficePost (@Valid @ModelAttribute("frontOffice") FrontOffice frontOffice, Errors errors) throws BusinessException{
+		administrationService.saveFrontOffices(List.of(frontOffice));
+		return "redirect:/admin/frontOffices";
+	}
+	
+	@GetMapping(value="/expenses")
+	public String expenses (Model model) throws BusinessException{	
+		model.addAttribute("expenses", administrationService.findAllExpenses());
+		return "private/admin/expenses";
+	}
+	
+	@GetMapping(value="/budgets")
+	public String budgets (Model model) throws BusinessException{	
+		model.addAttribute("budgets", administrationService.findAllAnnualBudgets());
+		return "private/admin/budgets";
 	}
 }

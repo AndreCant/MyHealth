@@ -166,11 +166,11 @@ public class ObjectFactory {
 		return diagnosis;
 	}
 	
-	public static Medicine createMedicine(String code, String name, String activePrinciple, String description, Double weight) {
+	public static Medicine createMedicine(String code, String name, String activeIngredient, String description, Double weight) {
 		Medicine medicine = new Medicine();
 		medicine.setName(name);
 		medicine.setCode(code);
-		medicine.setActivePrinciple(activePrinciple);
+		medicine.setActiveIngredient(activeIngredient);
 		medicine.setDescription(description);
 		medicine.setWeight(weight);
 		return medicine;

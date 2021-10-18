@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
-import it.univaq.mwt.myhealth.business.FrontOfficeService;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.business.UserService;
@@ -40,7 +40,7 @@ public class ExamController {
 	private ExamService examService;
 	
 	@Autowired
-	private FrontOfficeService frontOfficeService;
+	private AdministrationService administrationService;
 	
 	@Autowired
 	private ReservationService reservationService;
@@ -72,7 +72,7 @@ public class ExamController {
 	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation, @ModelAttribute("visit") Visit visit) throws BusinessException {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
-		    FrontOffice frontOffice = frontOfficeService.findById(Utility.getRandomNumberInRange(1, 5));
+		    FrontOffice frontOffice = administrationService.findFrontOfficeById((long)Utility.getRandomNumberInRange(1, 5));
 		    reservation.setPatient(userService.findUserByUsername(currentUserName));
 		    reservation.setExam(exam);
 		    reservation.setFrontOffice(frontOffice);

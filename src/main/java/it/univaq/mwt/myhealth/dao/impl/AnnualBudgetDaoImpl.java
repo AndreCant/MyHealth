@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import it.univaq.mwt.myhealth.dao.AnnualBudgetDao;
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.domain.AnnualBudget;
+import it.univaq.mwt.myhealth.domain.Exam;
 
 @Repository
 public class AnnualBudgetDaoImpl implements AnnualBudgetDao{
@@ -19,8 +20,7 @@ public class AnnualBudgetDaoImpl implements AnnualBudgetDao{
 
 	@Override
 	public List<AnnualBudget> findAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<AnnualBudget>) entityManager.createQuery("FROM AnnualBudget").getResultList();
 	}
 
 	@Override

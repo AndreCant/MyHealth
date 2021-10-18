@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
          <header th:fragment="html_header" style="padding-bottom: 50px;">
-        <div id="fixed-header-dark" class="header-output fixed-header" >
-            <div class="container header-in">
+        <div id="fixed-header-dark" class="header-output fixed-header mr-0" >
+            <div class="header-in mx-5">
                 <div class="row">
                     <div class="col-lg-2 col-md-12">
                         <a id="logo" th:href="@{'/'}" class="d-inline-block margin-tb-15px"><img th:src="@{/dist/img/logo-1.png}" alt=""></a>
-                        <a class="mobile-toggle padding-13px background-main-color" href="#"><i class="fas fa-bars"></i></a>
                     </div>
-                    <div class="col-lg-7 col-md-12 position-inherit">
-                        <ul id="menu-main" class="nav-menu float-lg-right link-padding-tb-20px">
+                    <div class="col-lg-8 col-md-12 text-center">
+                        <ul id="menu-main" class="nav-menu link-padding-tb-20px">
                             <li><a th:href="@{'/'}">[[#{nav.home}]]</a></li>
                             <li class="has-dropdown"><a href="#">[[#{nav.exams}]]</a>
                                 <ul class="sub-menu">
-                                    <li><a th:href="@{'/exams/exam'}">[[#{nav.specific}]]</a></li>
-                                    <li><a th:href="@{'/exams/path'}">[[#{nav.paths}]]</a></li>
-                                    <li><a th:href="@{'/exams/'}">[[#{nav.all}]]</a></li>
+                                    <li><a th:href="@{'/exams/exam'}" style="text-align: left;">[[#{nav.specific}]]</a></li>
+                                    <li><a th:href="@{'/exams/path'}" style="text-align: left;">[[#{nav.paths}]]</a></li>
+                                    <li><a th:href="@{'/exams/'}" style="text-align: left;">[[#{nav.all}]]</a></li>
                                 </ul>
                             </li>
                             <li><a th:href="@{'/doctors'}">[[#{nav.doctors}]]</a></li>
                         </ul>
                     </div>
-                    <div class="col-lg-3 col-md-12">
+                    <div class="col-lg-2 col-md-12">
                         <hr class="margin-bottom-0px d-block d-sm-none">
 						<a sec:authorize="isAuthenticated()" th:href="@{'/auth/logout'}" class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5"><i class="fa fa-fw fa-sign-out-alt"></i>  Logout</a>                    
                     </div>
-                    
                 </div>
-
             </div>
         </div>
     </header>

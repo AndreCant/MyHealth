@@ -2,126 +2,125 @@
 <html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  xmlns:th="http://www.thymeleaf.org"
 	  layout:decorate="~{layout-admin/layout-admin}">
-<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:02 GMT -->
 <body>
  <div layout:fragment="content">
-  
-    <div class="content-wrapper">
-        <div class="container-fluid overflow-hidden">
-            <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
-                <!-- Page Title -->
-                <div id="page-title" class="padding-30px background-white full-width">
-                    <div class="container">
-                        <ol class="breadcrumb opacity-5">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li class="active">My Profile</li>
-                        </ol>
-                        <h1 class="font-weight-300">My Profile</h1>
-                    </div>
-                </div>
-                <!-- // Page Title -->
-
-                <div class="row margin-tb-45px full-width">
-                    <div class="col-md-4">
-                        <div class="padding-15px background-white">
-                            <a href="#" class="d-block margin-bottom-10px"><img src="assets/img/profile-img.png" alt=""></a>
-                            <a href="#" class="btn btn-sm  text-white background-main-color btn-block">Upload Image</a>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> User Name</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="Salim Aldosery">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-lock margin-right-10px"></i> Password</label>
-                                <input type="password" class="form-control form-control-sm">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="info@yourname.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-mobile-alt margin-right-10px"></i> Phone</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="002229456987">
-                            </div>
-                            <div class="col-md-6">
-                                <label><i class="fas fa-link margin-right-10px"></i> Website</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="www.your-site.com">
-                            </div>
-                            <div class="col-md-6">
-                                <label><i class="fas fa-info margin-right-10px"></i> Description</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="description">
-                            </div>
-                        </div>
-                        <hr class="margin-tb-40px">
-                        <div class="row">
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-facebook margin-right-10px"></i> Facebook</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.facebook.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-twitter margin-right-10px"></i> Twitter</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.twitter.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-youtube margin-right-10px"></i> Youtube</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.youtube.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-google-plus-g margin-right-10px"></i> Google Pluse</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.google-plus.com">
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fab fa-whatsapp margin-right-10px"></i> Whatsapp</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="http://www.whatsapp.com">
-                            </div>
-
-                        </div>
-                        <a href="#" class="btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</a>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- /.container-fluid-->
-        <!-- /.content-wrapper-->
-        <footer class="sticky-footer">
-            <div class="container">
-                <div class="text-center">
-                    <span>© 2018 tabib Health Directory | All Right Reserved <a class="text-grey-2 margin-left-15px" href="https://themeforest.net/user/nile-theme/portfolio" target="_blank">Powered by : Nile Theme</a></span>
-                </div>
-            </div>
-        </footer>
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-          <i class="fa fa-angle-up"></i>
-        </a>
-        <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="page-login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<script th:inline="javascript">
+		function checkImage(event){
+			if(event.target.files.length){
+				$('#uploadButton')[0].removeAttribute('hidden');
+				$('#selectButton')[0].setAttribute('hidden', true);
+			}
+		}
+	</script>
+	
+	<style>
+      label.label input[type="file"] {
+        position: absolute;
+        top: -1000px;
+      }
+      .label {
+        cursor: pointer;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 5px;
+        background: #dddddd;
+        display: inline-block;
+      }
+      .label:hover {
+        background: #5cbd95;
+      }
+      .label:active {
+        background: #9fa1a0;
+      }
+      .label:invalid + span {
+        color: #000000;
+      }
+      .label:valid + span {
+        color: #ffffff;
+      }
+	</style>
+	
+  	<div class="content-wrapper">
+	        <div class="container-fluid overflow-hidden">
+	            <div class="row margin-lr-10px">
+	                <div class="margin-tb-45px full-width">
+	                    <div class="padding-30px background-white border-radius-20 box-shadow">
+	                    	<div class="row">
+		                        <h1 class="col pl-4"><i class="fas fa-fw fa-user-circle margin-right-10px text-main-color"></i> [[#{profile.title}]]</h1>
+	                    	</div>
+	                        <hr class="pt-3">
+	                        <div class="row">
+	                        		<div class="col-md-2" style="padding-right: 0">
+	                        			<div class="card card-info" style="height: 100%; border: none;">
+	                        				<div class="card-body">
+	                        					<img th:if="${user.image != null}" th:src="@{${user.image.url.replaceAll('\\', '/')}}" class="img-thumbnail" width="304" height="236"/>
+	                        					<img th:if="${user.image == null}" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-thumbnail" width="304" height="236"/>
+	                        					
+	                        					<form method="post" th:action="@{/admin/uploadImage}" enctype="multipart/form-data">
+								                    <div class="form-group text-center mt-3">
+								                        <label class="label" id="selectButton">
+								                        <input type="hidden" name="userId" th:value="${user.id}"/>
+														  <input type="file" name="file" class="form-control-file" id="image_uploads" accept=".jpg, .png" required onchange="checkImage(event)"/>
+														  <span>[[#{image.select}]]</span>
+														</label>
+									                    <button id="uploadButton" type="submit" class="btn btn-primary" style="cursor: pointer;" hidden>[[#{image.upload}]]</button>
+								                    </div>
+								                </form>
+	                        				</div>
+	                        			</div>
+	                        		</div>
+	                        		<form th:action="@{'/admin/profile'}" th:object="${user}" class="form-horizontal col-md-10" method="post">
+			                        	<div class="card-body">
+					                        <div class="row">
+					                        	<input type="hidden" th:field="*{id}"/>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="far fa-user margin-right-10px"></i> Username</label>
+					                                <span class="form-control form-control-sm" th:text="${user.username}" disabled></span>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
+					                                <input type="text" th:field="*{email}" class="form-control form-control-sm" required/>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-lock margin-right-10px"></i> [[#{userForm.role}]]</label>
+					                                <span class="form-control form-control-sm" th:text="${user.role.name}" disabled></span>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.fiscalCode}]]</label>
+					                                <input type="text" class="form-control form-control-sm" th:field="*{fiscalCode}">
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.name}]]</label>
+					                                <input type="text" class="form-control form-control-sm" th:field="*{name}">
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.surname}]]</label>
+					                                <input type="text" class="form-control form-control-sm" th:field="*{surname}">
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-calendar margin-right-10px"></i> [[#{userForm.dateOfBirth}]]</label>
+					                                <input type="date" class="form-control form-control-sm" th:field="*{dateOfBirth}">
+					                            </div>
+					                             <div class="col-md-6 margin-bottom-20px">
+					                             	<label><i class="fas fa-venus-mars margin-right-10px"></i> [[#{userForm.gender}]]</label>
+													<select class="selectpicker form-control form-control-sm" th:field="*{gender}">
+														<option value="M">[[#{signUp.male}]]</option>
+														<option value="F">[[#{signUp.female}]]</option>
+													</select>
+					                            </div>
+					                        </div>
+			                        	</div>
+				                        <div class="p-3">
+				                        	<button type="submit" class="btn btn-primary float-right" th:text="#{profile.update}" style="cursor: pointer;"></button>
+				                        </div>
+		                        	</form>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
    </div>
 </body>
-
-
-<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:03 GMT -->
 </html>

@@ -18,33 +18,29 @@ public class FrontOfficeDaoImpl implements FrontOfficeDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
-
 	@Override
 	public List<FrontOffice> findAll(){
 		return entityManager.createQuery("FROM FrontOffice").getResultList();
 	}
 
 	@Override
-	public FrontOffice findById(long id) {		
+	public FrontOffice findById(Long id) {		
 		return entityManager.find(FrontOffice.class, id);
 	}
 
 	@Override
 	public void save(FrontOffice frontOffice) {
-		// TODO Auto-generated method stub
-		
+		entityManager.persist(frontOffice);
 	}
 
 	@Override
 	public void update(FrontOffice frontOffice) {
-		// TODO Auto-generated method stub
-		
+		entityManager.merge(frontOffice);
 	}
 
 	@Override
 	public void delete(Long uid) {
-		// TODO Auto-generated method stub
-		
+		entityManager.remove(this.findById(uid));
 	}
 
 	@Override

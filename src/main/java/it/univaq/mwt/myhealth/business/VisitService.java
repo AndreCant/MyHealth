@@ -36,6 +36,4 @@ public interface VisitService {
 	List<Diagnosis> findAllDiagnosis() throws BusinessException;
 	
 	void deleteDiagnosis(Long id) throws BusinessException;
-	
-	List<Visit> findAllVisits() throws BusinessException;
 }

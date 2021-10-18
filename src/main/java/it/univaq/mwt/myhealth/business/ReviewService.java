@@ -11,5 +11,11 @@ public interface ReviewService {
 	void save(Review review) throws BusinessException;
 
 	List<Review> findReviewsByExamIds(Set<Long> examIds) throws BusinessException;
+	
+	List<Review> findAllReviews() throws BusinessException;
+	
+	Review findReviewById(Long id) throws BusinessException;
+	
+	void updateReview(Review review) throws BusinessException;
 
 }

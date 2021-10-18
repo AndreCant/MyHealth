@@ -44,7 +44,7 @@
 													<td th:text="${user.name}"></td>
 													<td th:text="${user.surname}"></td>
 													<td th:text="${user.role.name}"></td>
-													<td class="text-center"><a th:href="@{/admin/user/delete(id=${user.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
+													<td class="text-center"><a th:if="${!user.username.equals(loggedUsername)}" th:href="@{/admin/user/delete(id=${user.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
 													<td class="text-center"><a th:href="@{/admin/user/update(id=${user.id})}" th:attr="title=#{users.edit}"><i class='fa fa-edit'></i></a></td>
 												</tr>
 										</table>

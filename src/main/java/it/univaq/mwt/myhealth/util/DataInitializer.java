@@ -13,7 +13,6 @@ import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.ExamService;
-import it.univaq.mwt.myhealth.business.FrontOfficeService;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
@@ -42,7 +41,6 @@ public class DataInitializer {
 	@Autowired ReservationService reservationService;
 	@Autowired DocumentService documentService;
 	@Autowired VisitService visitService;
-	@Autowired FrontOfficeService frontOfficeService;
 	@Autowired AdministrationService administrationService;
 	
 	private List<Role> roles;
@@ -283,7 +281,7 @@ public class DataInitializer {
 				ObjectFactory.createFrontOffice("Office 5", 5)
 			);
 			
-			frontOfficeService.saveFrontOffices(this.frontOffices);
+			administrationService.saveFrontOffices(this.frontOffices);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

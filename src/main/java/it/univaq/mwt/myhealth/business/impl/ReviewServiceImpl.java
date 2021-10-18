@@ -42,4 +42,34 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 				
 	}
+
+	@Override
+	public List<Review> findAllReviews() throws BusinessException {
+		try {
+			return reviewDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public Review findReviewById(Long id) throws BusinessException {
+		try {
+			return reviewDao.findById(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void updateReview(Review review) throws BusinessException {
+		try {
+			reviewDao.update(review);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

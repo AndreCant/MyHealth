@@ -21,7 +21,7 @@ public class ReviewDaoImpl implements ReviewDao{
 
 	@Override
 	public List<Review> findAll() {
-		return (List<Review>) entityManager.createQuery("FROM Review").getResultList();
+		return (List<Review>) entityManager.createQuery("FROM Review WHERE isRemoved = false").getResultList();
 	}
 
 	@Override
@@ -36,8 +36,7 @@ public class ReviewDaoImpl implements ReviewDao{
 
 	@Override
 	public void update(Review review) throws DaoException {
-		// TODO Auto-generated method stub
-		
+		entityManager.merge(review);
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class ReviewDaoImpl implements ReviewDao{
 
 	public List<Review> findReviewsByExamIds(Set<Long> examIds) throws DaoException {
 		return (List<Review>) entityManager
-				.createQuery("FROM Review rev WHERE rev.visit.reservation.exam.id IN (:examIds)")
+				.createQuery("FROM Review rev WHERE rev.visit.reservation.exam.id IN (:examIds) AND isRemoved = false")
 				.setParameter("examIds", examIds).getResultList();
 	}
 

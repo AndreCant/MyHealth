@@ -16,10 +16,7 @@
 	                <div class="margin-tb-45px full-width">
 	                    <div class="padding-30px background-white border-radius-20 box-shadow">
 	                    	<div class="row">
-		                        <h1 class="col pl-4"><i class="far fa-user margin-right-10px text-main-color"></i> [[#{users.title}]]</h1>
-		                        <div class="col pr-4">
-			                        <a th:href="@{/admin/user/create}" class="float-right btn btn-app"><i class="fa fa-plus margin-right-10px"></i> [[#{users.add}]]</a>
-		                        </div>
+		                        <h1 class="col pl-4"><i class="far fa-comment margin-right-10px text-main-color"></i> [[#{reviews.title}]]</h1>
 	                    	</div>
 	                        <hr>
 	                        <div class="card">
@@ -28,24 +25,20 @@
 										<table id="table" class="table table-striped table-bordered" style="width:100%;">
 											<thead>
 												<tr>
-													<th>Username</th>
-													<th>Email</th>
-													<th>[[#{users.name}]]</th>
-													<th>[[#{users.surname}]]</th>
-													<th>[[#{users.role}]]</th>
-													<th></th>
+													<th>[[#{reviews.name}]]</th>
+													<th>[[#{reviews.titleText}]]</th>
+													<th>[[#{reviews.body}]]</th>
+													<th>[[#{reviews.vote}]]</th>
 													<th></th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr th:each="user : ${users}">
-													<td th:text="${user.username}"></td>
-													<td th:text="${user.email}"></td>
-													<td th:text="${user.name}"></td>
-													<td th:text="${user.surname}"></td>
-													<td th:text="${user.role.name}"></td>
-													<td class="text-center"><a th:if="${!user.username.equals(loggedUsername)}" th:href="@{/admin/user/delete(id=${user.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
-													<td class="text-center"><a th:href="@{/admin/user/update(id=${user.id})}" th:attr="title=#{users.edit}"><i class='fa fa-edit'></i></a></td>
+												<tr th:each="review : ${reviews}">
+													<td th:text="${review.patient.fullName}"></td>
+													<td th:text="${review.title}"></td>
+													<td th:text="${review.body}"></td>
+													<td th:text="${review.vote}"></td>
+													<td class="text-center"><a th:href="@{/admin/review/delete(id=${review.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
 												</tr>
 										</table>
 									</div>
