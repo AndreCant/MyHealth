@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,7 +39,7 @@ public class VisitDaoImpl implements VisitDao{
 
 	@Override
 	public void update(Visit visit) throws DaoException {
-		// TODO Auto-generated method stub	
+		entityManager.merge(visit);
 	}
 	
 	@Override
@@ -61,8 +62,15 @@ public class VisitDaoImpl implements VisitDao{
 
 	@Override
 	public List<Visit> findByDoctor(Long id) throws DaoException {
-		return (List<Visit>) entityManager.createQuery("FROM Visit WHERE doctor_id = :id", Visit.class)
+		return (List<Visit>) entityManager.createQuery("FROM Visit WHERE doctor_id = :id ORDER BY startHour DESC", Visit.class)
 		        .setParameter("id", id)
+		        .getResultList();
+	}
+
+	@Override
+	public List<Visit> findByDiagnosis(Long diagnosisId) throws DaoException {
+		return (List<Visit>) entityManager.createQuery("FROM Visit WHERE diagnosis_id = :diagnosisId", Visit.class)
+		        .setParameter("diagnosisId", diagnosisId)
 		        .getResultList();
 	}
 

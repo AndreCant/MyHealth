@@ -3,6 +3,7 @@ package it.univaq.mwt.myhealth.domain;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Collection;
 import java.util.List;
 
@@ -84,6 +85,10 @@ public class User extends AbstractEntity implements Serializable{
 	
 	public String getFullName() {
 		return this.name + " " + this.surname;
+	}
+	
+	public int getAge() {
+		return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
 	}
 
 }

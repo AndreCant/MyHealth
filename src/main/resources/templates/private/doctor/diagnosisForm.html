@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout-admin/layout-admin}">
+<body>
+	<div layout:fragment="content">	
+		<style>
+			.form-group.required .control-label:after { 
+			   content:"*";
+			   color:red;
+			}
+		</style>
+	    <div class="content-wrapper">
+	        <div class="container-fluid overflow-hidden">
+	            <div class="row margin-lr-10px">
+	                <div class="margin-tb-45px full-width">
+	                    <div class="padding-30px background-white border-radius-20 box-shadow">
+	                    	<div class="row">
+		                        <h1 class="col pl-4" th:text="#{diagnosis.titleCreate}"><i class="far fa-heart margin-right-10px text-main-color"></i> </h1>
+	                    	</div>
+	                        <hr>
+	                        <div class="card card-info">
+	                        	<div class="row">
+	                        		<div class="col-sm-12">
+	                        			<form th:action="@{/doctor/diagnosis/create(visitId=${visitId})}" th:object="${diagnosis}" class="form-horizontal" method="post">
+										  <div class="card-body">
+											<div class="form-group row mb-3 required">
+												<label class="col-sm-2 col-form-label control-label">[[#{diagnosis.code}]]</label>
+												<div class="col-sm-4">
+													<input type="text" th:field="*{code}" class="form-control" required/>
+												</div>
+												
+												<label class="col-sm-2 col-form-label control-label">[[#{diagnosis.title}]]</label>
+												<div class="col-sm-4">
+													<input type="text" th:field="*{title}" class="form-control" required/>
+												</div>
+											</div>
+											<div class="form-group row mb-3 required">
+												<label class="col-sm-2 col-form-label">[[#{diagnosis.medicine}]]</label>
+												<div class="col-sm-4">
+													<select class="selectpicker form-control" name="medicine" id="selectType">
+														<option th:value="0" selected>[[#{diangosis.defaultMedicine}]]</option>
+														<option th:each="medicine : ${medicines}" th:value="${medicine.id}" th:text="${medicine.name}"></option>
+													</select>
+												</div>
+												
+												<label class="col-sm-2 col-form-label control-label">[[#{diagnosis.description}]]</label>
+												<div class="col-sm-4">
+													<textarea th:field="*{description}" rows="" class="form-control"/>
+												</div>
+											</div>
+											
+										  <div class="card-footer pb-5">
+											<button type="submit" class="btn btn-primary float-right" th:text="#{diagnosis.save}" style="cursor: pointer;"></button>
+											<a href="#" th:href="@{/doctor/visits}" class="btn btn-default float-right pr-3" th:text="#{userForm.cancel}"></a>	
+										  </div>
+										</form>
+	                        		</div>
+	                        	</div>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

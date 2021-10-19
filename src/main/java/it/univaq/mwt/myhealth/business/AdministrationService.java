@@ -40,6 +40,4 @@ public interface AdministrationService {
 	
 	List<AnnualBudget> findAllAnnualBudgets() throws BusinessException;
 	
-	AnnualBudget findAnnualBudgetById() throws BusinessException;
-	
 }

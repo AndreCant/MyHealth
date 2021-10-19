@@ -71,4 +71,14 @@ public class DocumentServiceImpl implements DocumentService{
 			throw new BusinessException(e.getMessage());
 		}
 	}
+
+	@Override
+	public List<Paycheck> findPaychecksByRegister(int register) throws BusinessException {
+		try {
+			return paycheckDao.findByRegister(register);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

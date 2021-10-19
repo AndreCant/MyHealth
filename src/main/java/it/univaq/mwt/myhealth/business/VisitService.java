@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.business;
 
 import java.util.List;
+import java.util.Set;
 
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Medicine;
@@ -36,4 +37,6 @@ public interface VisitService {
 	List<Diagnosis> findAllDiagnosis() throws BusinessException;
 	
 	void deleteDiagnosis(Long id) throws BusinessException;
+	
+	List<Visit> findVisitsByDiagnosis(Long diagnosisId) throws BusinessException;
 }

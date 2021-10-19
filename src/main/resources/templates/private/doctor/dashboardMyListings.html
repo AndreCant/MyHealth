@@ -2,90 +2,66 @@
 <html lang="en-US" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  xmlns:th="http://www.thymeleaf.org"
 	  layout:decorate="~{layout-admin/layout-admin}">
-<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-listings.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:02 GMT -->
 <body>
    <div layout:fragment="content">
-    <!-- Navigation-->
     <div class="content-wrapper">
         <div class="container-fluid overflow-hidden">
-            <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
-                <!-- Page Title -->
-                <div id="page-title" class="padding-30px background-white full-width box-shadow">
-                    <div class="container">
-                        <ol class="breadcrumb opacity-5">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li class="active">My Listings</li>
-                        </ol>
-                        <h1 class="font-weight-300">My Listings</h1>
+            <div class="m-5">
+            
+                <div id="page-title" class="background-white full-width box-shadow p-3">
+                    <div class="container m-0 p-2">
+                        <h1 class="font-weight-300 m-0"><i class="fas fa-fw fa-eye margin-right-10px text-main-color"></i> [[#{visits.title}]]</h1>
                     </div>
                 </div>
-                <!-- // Page Title -->
-                <div class="margin-tb-45px" >
-                    <!-- clinic -->
-                    <div class="background-white thum-hover box-shadow hvr-float full-width margin-bottom-45px"s th:each="visit : ${visits}">
-                        <div class="float-lg-left margin-right-30px sm-mr-0px text-center sm-mt-35px">
-                            <img src="assets/img/clinic-list-2.jpg" alt="">
-                        </div>
-                        <div class="padding-lr-25px padding-tb-45px">
-                            <span class="text-grey-2"><i class="far fa-map"></i>  California</span>
-                            <h2>
-                                <a href="#" class="d-inline-block text-dark text-capitalize text-medium margin-tb-15px">Alrayan Eye Clinic</a>
-                                <a href="#" class="d-inline-block margin-lr-10px text-grey-2 text-up-small"><i class="far fa-file-alt"></i> Edit</a>
-                                <a href="#" class="d-inline-block margin-lr-10px text-grey-2 text-up-small"><i class="far fa-window-close"></i> Delete</a>
-                            </h2>
-                            <div class="row no-gutters">
-                                <div class="col-lg-6 row">
-                                    <div class="col-4"><a href="#" class="text-lime"><i class="far fa-bookmark"></i> Open Now!</a></div>
-                                    <div class="col-4 text-center"><a href="#" class="text-red"><i class="far fa-heart"></i> Save</a></div>
-                                    <div class="col-4 text-right"><a href="#" class="text-blue"><i class="far fa-hospital"></i> Hospital</a></div>
-                                </div>
+                
+                <div class="my-4 mx-1 text-center" >
+                
+                    <div class="row background-white thum-hover box-shadow hvr-float full-width mb-4" th:each="visit : ${visits}" th:attr="style=${visit.isCompleted ? 'border:3px solid #5cbd95' : 'border:3px solid #0864b2'}">
+                        <div class="padding-lr-25px py-3 row" style="text-align: left;">
+                        	<div class="col-lg-6">
+                                <span class="text-grey-2">
+	                            	<i class="far fa-calendar"></i> 
+	                                &nbsp; <strong>[[${#temporals.format(visit.startHour, 'dd-MM-yyyy')}]]</strong>
+	                            	&nbsp; &nbsp; [[#{visits.start}]]: <strong>[[${#temporals.format(visit.startHour, 'HH:mm')}]]</strong>
+	                            	&nbsp; &nbsp; [[#{visits.end}]]: <strong>[[${#temporals.format(visit.endHour, 'HH:mm')}]]</strong>
+	                            </span>
+	                            <h2 class="text-dark text-capitalize text-medium margin-tb-15px">
+									[[${visit.reservation.patient.fullName}]]
+									&nbsp; &nbsp; [[#{userForm.gender}]]: <strong>[[${visit.reservation.patient.gender}]]</strong>
+									&nbsp; &nbsp; [[#{visits.age}]]: <strong>[[${visit.reservation.patient.age}]]</strong>
+								</h2>
+								<h2 class="text-dark text-capitalize text-medium margin-tb-15px">
+									[[${visit.reservation.exam.name}]]
+								</h2>
+								<h2 class="text-dark text-capitalize text-medium margin-tb-15px">
+									[[#{visits.complete2}]] &nbsp; &nbsp; <i th:attr="class=${visit.isCompleted ? 'far fa-check-square' : 'far fa-square'}"></i> 
+								</h2>
+								<h2 class="text-dark text-capitalize text-medium margin-tb-15px">
+									[[#{diagnosis.title}]] &nbsp; &nbsp; <i th:attr="class=${visit.diagnosis != null ? 'far fa-check-square' : 'far fa-square'}"></i> 
+								</h2>
                             </div>
+                            <div class="col-lg-6">
+                            	<div class="float-right p-3">
+                            		<ul class="list-group" >
+                            			<li class="list-group-item" style="border: none;" th:if="${!visit.isCompleted}">
+		                            		<a th:href="@{/doctor/visit/complete(id=${visit.id})}" class="btn btn-primary float-right" th:text="#{visits.completeBtn}" style="cursor: pointer; width: 100%"></a>
+                            			</li>
+                            			<li class="list-group-item" style="border: none;" th:if="${visit.diagnosis == null}">
+		                            		<a th:href="@{/doctor/diagnosis/create(visitId=${visit.id})}" onMouseOut="this.style.color='black'" onMouseOver="this.style.color='white'" class="btn float-right" th:text="#{diagnosis.add}" style="cursor: pointer; width: 100%;background-color: #5cbd95;"></a>
+                            			</li>
+                            		</ul>
+                            	</div>
+                            	
+                            </div>
+                            
+                            
                         </div>
-                        <div class="clearfix"></div>
                     </div>
-                    <!-- pagination -->
-                    <ul class="pagination pagination-md ">
-                        <li class="page-item disabled"><a class="page-link rounded-0" href="#" tabindex="-1">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link rounded-0" href="#">Next</a></li>
-                    </ul>
-                    <!-- //pagination -->
-
-                </div>
-
-            </div>
-        </div>
-        <!-- /.container-fluid-->
-        <!-- /.content-wrapper-->
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-          <i class="fa fa-angle-up"></i>
-        </a>
-        <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="page-login.html">Logout</a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
    </div>
 </body>
-
-
-<!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-listings.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:02 GMT -->
 </html>
