@@ -144,7 +144,8 @@ public class DataInitializer {
 		try {
 			this.reservations = List.of(
 				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 15, 10, 30), LocalDateTime.of(2021, 7, 15, 11, 30), this.users.get(3), this.exams.get(0), this.visits.get(0)),
-				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(3), this.exams.get(2), this.visits.get(1))
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(3), this.exams.get(2), this.visits.get(1)),
+				ObjectFactory.createReservation(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 17, 30), this.users.get(3), this.exams.get(2), this.visits.get(2))
 			);
 			this.visits.get(0).setReservation(this.reservations.get(0));
 			this.visits.get(1).setReservation(this.reservations.get(1));
@@ -184,7 +185,8 @@ public class DataInitializer {
 		try {
 			this.visits = List.of(
 				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.users.get(1), this.reviews.get(0), this.diagnosis.get(0), this.payments.get(0)),
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.users.get(1), this.reviews.get(1), this.diagnosis.get(1), this.payments.get(1))
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.users.get(1), this.reviews.get(1), this.diagnosis.get(1), this.payments.get(1)),
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 10, 19, 15, 45), LocalDateTime.of(2021, 10, 19, 16, 30), false, this.users.get(1), null, null, this.payments.get(1))
 			);
 			
 			visitService.saveVisits(visits);
@@ -230,7 +232,7 @@ public class DataInitializer {
 			
 			if (paychecks == null || paychecks.isEmpty()) {
 				this.paychecks = List.of(
-					ObjectFactory.createPaycheck("Pippo", "Franco", 12345, "N26-A", 2021, 7, 20, "This is a fake Paycheck!", 4523.58, 38.59)
+					ObjectFactory.createPaycheck(this.users.get(1).getName(), this.users.get(1).getSurname(), this.users.get(1).getRegister(), "N26-A", 2021, 7, 20, "This is a fake Paycheck!", 4523.58, 38.59)
 				);
 					
 				documentService.savePaychecks(this.paychecks);

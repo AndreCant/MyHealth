@@ -27,10 +27,10 @@ public class Paycheck implements Serializable{
 	
 	private String name;
 	private String surname;
-	private Integer register;
+	private int register;
 	private String code;
-	private Integer year;
-	private Integer month;
+	private int year;
+	private int month;
 	private int days;
 	private String description;
 	private Double grossSalary;

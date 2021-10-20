@@ -19,6 +19,12 @@
                         <i class="fas fa-fw fa-user-circle"></i><span class="nav-link-text">[[#{profile.title}]]</span>
                     </a>
                 </li>
+                <li sec:authorize="hasRole('doctor')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{paychecks.title}]]">
+                    <a class="nav-link" th:href="@{'/doctor/paychecks'}">
+                        <i class="fas fa-fw fa-print"></i><span class="nav-link-text">[[#{paychecks.title}]]</span>
+                    </a>
+                </li>
+                
                 <li sec:authorize="hasRole('admin')" class="nav-item">
                     <span class="nav-title-text">[[#{nav.setup}]]</span>
                 </li>
@@ -43,7 +49,7 @@
                     </a>
                 </li>
                 
-                <li sec:authorize="hasRole('admin')" class="nav-item">
+                <li class="nav-item">
                     <span class="nav-title-text">[[#{nav.patient}]]</span>
                 </li>
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{reservations.title}]]">
@@ -56,6 +62,21 @@
                         <i class="fas fa-fw fa-eye"></i><span class="nav-link-text">[[#{visits.title}]]</span>
                     </a>
                 </li>
+                <li sec:authorize="hasRole('doctor')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{visits.title}]]">
+                    <a class="nav-link" th:href="@{'/doctor/visits'}">
+                        <i class="fas fa-fw fa-eye"></i><span class="nav-link-text">[[#{visits.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('doctor')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{patients.title}]]">
+                    <a class="nav-link" th:href="@{'/doctor/patients'}">
+                        <i class="fas fa-fw fa-user"></i><span class="nav-link-text">[[#{patients.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('doctor')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{diagnosis.title}]]">
+                    <a class="nav-link" th:href="@{'/doctor/diagnosis'}">
+                        <i class="fas fa-fw fa-heart"></i><span class="nav-link-text">[[#{diagnosis.title}]]</span>
+                    </a>
+                </li>
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{diagnosis.title}]]">
                     <a class="nav-link" th:href="@{'/admin/diagnosis'}">
                         <i class="fas fa-fw fa-heart"></i><span class="nav-link-text">[[#{diagnosis.title}]]</span>
@@ -64,6 +85,11 @@
                 <li sec:authorize="hasRole('admin')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{payments.title}]]">
                     <a class="nav-link" th:href="@{'/admin/payments'}">
                         <i class="fas fa-fw fa-credit-card"></i><span class="nav-link-text">[[#{payments.title}]]</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('doctor')" class="nav-item" data-toggle="tooltip" data-placement="right" title="[[#{medicines.title}]]">
+                    <a class="nav-link" th:href="@{'/doctor/medicines'}">
+                        <i class="fas fa-fw fa-medkit"></i><span class="nav-link-text">[[#{medicines.title}]]</span>
                     </a>
                 </li>
                 

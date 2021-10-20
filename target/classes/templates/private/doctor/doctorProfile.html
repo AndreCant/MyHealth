@@ -4,93 +4,131 @@
 	  layout:decorate="~{layout-admin/layout-admin}">
 <body>
  <div layout:fragment="content">
-    <div class="content-wrapper">
-        <div class="container-fluid overflow-hidden">
-            <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
-                <!-- Page Title -->
-                <div id="page-title" class="padding-30px background-white full-width">
-                    <div class="container">
-                        <h1 class="font-weight-300">[[#{profile.title}]]</h1>
-                    </div>
-                </div>
-                <!-- // Page Title -->
-
-                <div class="row margin-tb-45px full-width">
-                    <div class="col-md-4">
-                        <div class="padding-15px background-white">
-                            <a href="#" class="d-block margin-bottom-10px"><img src="assets/img/profile-img.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                        <style>
-                        .campi{
-						border: 1px solid black;
-						background-color:white;	
-						border-radius: 5px;	
-						}
-						
-						h6{
-							padding-top:5px;
-						}
-                        </style>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label ><i  class="far fa-user margin-right-10px"></i>  Name</label>
-                                <div class="campi">
-                                	<center><h6  th:text="${user.name}">kokok</h6></center>
-                                </div>
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> Surname</label>
-                                <div class="campi">
-                                	<center><h6 th:text="${user.surname}">kokok</h6></center>
-                                </div>
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> Username</label>
-                                <div class="campi">
-                                	<center><h6 th:text="${user.username}">kokok</h6></center>
-                                </div>
-                            </div>
-                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
-                                <div class="campi">
-                                	<center><h6 th:text="${user.email}">kokok</h6></center>
-                                </div>
-                            </div>
-                             <div class="col-md-6 margin-bottom-20px">
-                                <label ><i  class="fa fa-code margin-right-10px"></i>  Fiscal Code</label>
-                                <div class="campi">
-                                	<center><h6  th:text="${user.fiscalCode}">kokok</h6></center>
-                                </div>
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px" sec:authorize="hasRole('doctor')">
-                                <label><i class="fas fa-file-certificate margin-right-10px"></i> Specilization</label>
-                                <div class="campi">
-                                	<center><h6  th:text="${user.specialization}">kokok</h6></center>
-                                </div>
-                            </div>
-                              <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-lock margin-right-10px"></i> Date Of Birth</label>
-                                <div class="campi">
-                                	<center><h6 th:text="${user.dateOfBirth}">kokok</h6></center>
-                                </div>
-                            </div>
-            				<div class="col-md-6 margin-bottom-20px"  sec:authorize="hasRole('doctor') || hasRole('patient')">
-                                <label><i class="fas fa-lock margin-right-10px"></i> Has Visit to complete</label>
-                               <input type="checkbox"> 
-                            </div>
-                            <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fas fa-mars-double margin-right-10px"></i> Gender</label>
-                                <div class="campi">
-                                	<center><h6 th:text="${user.gender}">kokok</h6></center>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+	<script th:inline="javascript">
+		function checkImage(event){
+			if(event.target.files.length){
+				$('#uploadButton')[0].removeAttribute('hidden');
+				$('#selectButton')[0].setAttribute('hidden', true);
+			}
+		}
+	</script>
+	
+	<style>
+      label.label input[type="file"] {
+        position: absolute;
+        top: -1000px;
+      }
+      .label {
+        cursor: pointer;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 5px;
+        background: #dddddd;
+        display: inline-block;
+      }
+      .label:hover {
+        background: #5cbd95;
+      }
+      .label:active {
+        background: #9fa1a0;
+      }
+      .label:invalid + span {
+        color: #000000;
+      }
+      .label:valid + span {
+        color: #ffffff;
+      }
+	</style>
+	
+  	<div class="content-wrapper">
+	        <div class="container-fluid overflow-hidden">
+	            <div class="row margin-lr-10px">
+	                <div class="margin-tb-45px full-width">
+	                    <div class="padding-30px background-white border-radius-20 box-shadow">
+	                    	<div class="row">
+		                        <h1 class="col pl-4"><i class="fas fa-fw fa-user-circle margin-right-10px text-main-color"></i> [[#{profile.title}]]</h1>
+	                    	</div>
+	                        <hr class="pt-3">
+	                        <div class="row">
+	                        		<div class="col-md-2" style="padding-right: 0">
+	                        			<div class="card card-info" style="height: 100%; border: none;">
+	                        				<div class="card-body">
+	                        					<img th:if="${user.image != null}" th:src="@{${user.image.url.replaceAll('\\', '/')}}" class="img-thumbnail" width="304" height="236"/>
+	                        					<img th:if="${user.image == null}" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-thumbnail" width="304" height="236"/>
+	                        					
+	                        					<form method="post" th:action="@{/admin/uploadImage}" enctype="multipart/form-data">
+								                    <div class="form-group text-center mt-3">
+								                        <label class="label" id="selectButton">
+								                        <input type="hidden" name="userId" th:value="${user.id}"/>
+														  <input type="file" name="file" class="form-control-file" id="image_uploads" accept=".jpg, .png" required onchange="checkImage(event)"/>
+														  <span>[[#{image.select}]]</span>
+														</label>
+									                    <button id="uploadButton" type="submit" class="btn btn-primary" style="cursor: pointer;" hidden>[[#{image.upload}]]</button>
+								                    </div>
+								                </form>
+	                        				</div>
+	                        			</div>
+	                        		</div>
+	                        		<form th:action="@{'/doctor/profile'}" th:object="${user}" class="form-horizontal col-md-10" method="post">
+			                        	<div class="card-body">
+					                        <div class="row">
+					                        	<input type="hidden" th:field="*{id}"/>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="far fa-user margin-right-10px"></i> Username</label>
+					                                <span class="form-control form-control-sm" th:text="${user.username}" disabled></span>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
+					                                <input type="text" th:field="*{email}" class="form-control form-control-sm" required/>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-lock margin-right-10px"></i> [[#{userForm.role}]]</label>
+					                                <span class="form-control form-control-sm" th:text="${user.role.name}" disabled></span>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.fiscalCode}]]</label>
+					                                <input type="text" class="form-control form-control-sm" th:field="*{fiscalCode}">
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.name}]]</label>
+					                                <input type="text" class="form-control form-control-sm" th:field="*{name}">
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.surname}]]</label>
+					                                <input type="text" class="form-control form-control-sm" th:field="*{surname}">
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                                <label><i class="fas fa-calendar margin-right-10px"></i> [[#{userForm.dateOfBirth}]]</label>
+					                                <input type="date" class="form-control form-control-sm" th:field="*{dateOfBirth}">
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                             	<label><i class="fas fa-venus-mars margin-right-10px"></i> [[#{userForm.gender}]]</label>
+													<select class="selectpicker form-control form-control-sm" th:field="*{gender}">
+														<option value="M">[[#{signUp.male}]]</option>
+														<option value="F">[[#{signUp.female}]]</option>
+													</select>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                             	<label><i class="fas fa-bookmark margin-right-10px"></i> [[#{userForm.specialization}]]</label>
+													<span class="form-control form-control-sm" th:text="${user.specialization}" disabled></span>
+					                            </div>
+					                            <div class="col-md-6 margin-bottom-20px">
+					                             	<label><i class="fas fa-clone margin-right-10px"></i> [[#{userForm.skills}]]</label>
+													<span class="form-control form-control-sm" th:text="${user.skills}" disabled></span>
+					                            </div>
+					                        </div>
+			                        	</div>
+				                        <div class="p-3">
+				                        	<button type="submit" class="btn btn-primary float-right" th:text="#{profile.update}" style="cursor: pointer;"></button>
+				                        </div>
+		                        	</form>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+   </div>
 </body>
 </html>

@@ -16,4 +16,6 @@ public interface DocumentService {
 	List<Paycheck> findAllPaychecks() throws BusinessException;
 	
 	void savePaychecks(List<Paycheck> paychecks) throws BusinessException;
+	
+	List<Paycheck> findPaychecksByRegister(int register) throws BusinessException;
 }

@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.business.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,8 +63,12 @@ public class VisitServiceImpl implements VisitService{
 
 	@Override
 	public void updateVisit(Visit visit) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		try {
+			visitDao.update(visit);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -158,6 +163,16 @@ public class VisitServiceImpl implements VisitService{
 	public List<Visit> findAll() throws BusinessException {
 		try {
 			return visitDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<Visit> findVisitsByDiagnosis(Long diagnosisId) throws BusinessException {
+		try {
+			return visitDao.findByDiagnosis(diagnosisId);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());

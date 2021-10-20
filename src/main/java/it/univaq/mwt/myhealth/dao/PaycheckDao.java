@@ -17,4 +17,6 @@ public interface PaycheckDao {
 	public void delete(Long uid) throws DaoException;
 	
 	public void saveAll(List<Paycheck> paychecks) throws DaoException;
+
+	public List<Paycheck> findByRegister(int register) throws DaoException;
 }

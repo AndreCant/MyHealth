@@ -51,4 +51,9 @@ public class PaycheckDaoImpl implements PaycheckDao{
 		}
 	}
 
+	@Override
+	public List<Paycheck> findByRegister(int register) throws DaoException {
+		return paycheckRepository.findByRegister(register);
+	}
+
 }
