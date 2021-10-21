@@ -17,5 +17,7 @@ public interface ReviewService {
 	Review findReviewById(Long id) throws BusinessException;
 	
 	void updateReview(Review review) throws BusinessException;
+	
+	List<Review> findReviewsByDoctor(Long doctorId) throws BusinessException;
 
 }
