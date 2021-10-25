@@ -28,10 +28,12 @@ import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.DocumentService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.ReservationService;
+import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Medicine;
 import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
+import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.domain.Visit;
 import it.univaq.mwt.myhealth.util.ObjectFactory;
@@ -44,6 +46,7 @@ public class DoctorController {
 	@Autowired private VisitService visitService;
 	@Autowired private AdministrationService administrationService;
 	@Autowired private DocumentService documentService;
+	@Autowired private ReviewService reviewService;
 	
 	@GetMapping(value="/profile")
 	public String doctor (Model model) throws BusinessException
@@ -168,5 +171,28 @@ public class DoctorController {
 		User doctor = userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("paychecks", documentService.findPaychecksByRegister(doctor.getRegister()));
 		return "private/admin/paychecks";
+	}
+	
+	@GetMapping(value="/reviews")
+	public String reviews (Model model) throws BusinessException{	
+		User doctor = userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		List<Review> reviews = reviewService.findReviewsByDoctor(doctor.getId());
+		int raiting = 0;
+		int nReviews = reviews.size();
+		
+		if (nReviews > 0) {
+			int totalVotes = 0;
+			for (Review review : reviews) {
+				totalVotes += review.getVote();
+			}
+			
+			if (totalVotes > 0) {
+				raiting = (int) (totalVotes / nReviews);
+			}
+		}
+		
+		model.addAttribute("reviews", reviews);
+		model.addAttribute("raiting", raiting);
+		return "private/doctor/reviews";
 	}
 }

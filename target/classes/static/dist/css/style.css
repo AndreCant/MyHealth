@@ -36168,4 +36168,8 @@ form.dark-form ::-ms-input-placeholder {
   }
 }
 
+.table-responsive{
+	overflow-x: hidden;
+}
+
 

@@ -57,4 +57,11 @@ public class ReviewDaoImpl implements ReviewDao{
 		}
 	}
 
+	@Override
+	public List<Review> findReviewsByDoctor(Long doctorId) throws DaoException {
+		return (List<Review>) entityManager
+				.createQuery("FROM Review rev WHERE rev.visit.doctor.id = :doctorId AND isRemoved = false")
+				.setParameter("doctorId", doctorId).getResultList();
+	}
+
 }
