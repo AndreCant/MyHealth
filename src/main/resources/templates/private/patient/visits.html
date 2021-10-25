@@ -69,15 +69,15 @@
                 <!-- Page Title -->
                  <div class="container-fluid overflow-hidden">
         			<ul class="nav nav-tabs" style="margin-top:20px;">
-					  <li class="nav-item"><a class="nav-link "th:href="#{profile}">Profilo</a></li>
-					  <li class="nav-item"><a class="nav-link active" th:href="#{visits}" href="#">Visite</a></li>
-					  <li class="nav-item"><a class="nav-link " th:href="#{reservations}">Prenotazioni</a></li>
+					  <li class="nav-item"><a class="nav-link "th:href="#{profile}">[[#{patient.profile}]]</a></li>
+					  <li class="nav-item"><a class="nav-link active" th:href="#{visits}" href="#">[[#{patient.myVisits}]]</a></li>
+					  <li class="nav-item"><a class="nav-link " th:href="#{reservations}">[[#{patient.reservations}]]</a></li>
              </ul>
             <div class="row margin-tb-px margin-lr-10px sm-mrl-0px">
                 <div id="page-title" class="padding-30px background-white full-width box-shadow">
                     <div class="container">
  
-                        <h1 class="font-weight-300">My Visits</h1>
+                        <h1 class="font-weight-300">[[#{visits.patient}]]</h1>
                     </div>
                 </div>
 		   
@@ -102,7 +102,7 @@
                             </div>
                             <div id="father" class=" father padding-lr-30px padding-tb-15px background-light-grey">
                                 <div class="row no-gutters" style="margin-left:50px;">
-                                    <button style="margin-bottom:20px;background:#00b0ff;border:none;" clicked=false  class="btn btn-primary background-second-color box-shadow apri"  >Add a Review</button>
+                                    <button style="margin-bottom:20px;background:#00b0ff;border:none;" clicked=false  class="btn btn-primary background-second-color box-shadow apri"  >[[#{visit.add.review}]]</button>
                                 </div>
                                 <div style="display:none" id="box">
                                 <div class="form-outline">
@@ -110,10 +110,10 @@
                                  <input th:field="*{vote}" min="1" max="10" type="number" id="inputNumber1" name="inputNumber1" style="margin-top:20px; width:150px; border-radius:10px; background-color:white; text-align:center;">
                                  </div>
                                  <div></div>
-                                 <button style="margin-top:30px;background:#00b0ff;border:none;" id="box" class="btn btn-primary">Send the review </button>
+                                 <button style="margin-top:30px;background:#00b0ff;border:none;" id="box" class="btn btn-primary">[[#{visit.review.send}]]</button>
                                 </div>
                                   <div style=" display:none; margin-top:20px;" class="chiudi background-light-grey">
-                                  <button  class="btn chiudi">Nascondi </button>
+                                  <button  class="btn chiudi">[[#{visit.hide}]] </button>
                                </div>
                             </div>
                        

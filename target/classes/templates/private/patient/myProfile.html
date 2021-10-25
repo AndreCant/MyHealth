@@ -56,9 +56,9 @@
        <div class="row margin-tb-0px margin-lr-10px sm-mrl-0px">
         <div class="container-fluid overflow-hidden">
         <ul class="nav nav-tabs" style="margin-top:20px;">
-					  <li class="nav-item"><a class="nav-link active" href="#">Profilo</a></li>
-					  <li class="nav-item"><a class="nav-link" th:href="#{visits}" href="#">Visite</a></li>
-					  <li class="nav-item"><a class="nav-link" th:href="#{reservations}">Prenotazioni</a></li>
+					  <li class="nav-item"><a class="nav-link active" href="#">[[#{patient.profile}]]</a></li>
+					  <li class="nav-item"><a class="nav-link" th:href="#{visits}" href="#">[[#{patient.myVisits}]]</a></li>
+					  <li class="nav-item"><a class="nav-link" th:href="#{reservations}">[[#{patient.reservations}]]</a></li>
              </ul>
             <div class="row margin-tb-px margin-lr-10px sm-mrl-0px">
             
@@ -91,19 +91,19 @@
                         <div class="row" >
                         <input type="hidden" th:field="*{id}">
                          <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> Name</label>
+                                <label><i class="far fa-user margin-right-10px"></i> [[#{patient.name}]]</label>
                                 <input  th:field="*{name}"  type="text" class="disabled form-control form-control-sm"  disabled>
                             </div>                           
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> Surname</label>
+                                <label><i class="far fa-user margin-right-10px"></i> [[#{patient.surname}]]</label>
                                 <input th:field="*{surname}"  type="text"  class=" disabled form-control form-control-sm"  disabled>
                             </div>     
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-user margin-right-10px"></i> UserName</label>
+                                <label><i class="far fa-user margin-right-10px"></i> [[#{patient.username}]]</label>
                                 <input  th:field="*{username}" type="text" class=" form-control form-control-sm bello" disabled >
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-envelope-open margin-right-10px"></i> Gender</label>
+                                <label><i class="far fa-envelope-open margin-right-10px"></i> [[#{patient.gender}]]</label>
                                 <div> </div>
 							    <select  class="disabled form-control form-control-sm bello" id="gender" name="gender" style="width: 65px; height: 30px;" disabled>
 								   <option th:field="*{gender}" value="">M</option>
@@ -111,18 +111,18 @@
 								</select>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="fa fa-birthday-cake margin-right-10px"></i> Date Of Birth</label>
+                                <label><i class="fa fa-birthday-cake margin-right-10px"></i> [[#{patient.dateOfBirth}]]</label>
                                 <input   th:field="*{dateOfBirth}" type="text" class="disabled form-control form-control-sm bello"   disabled>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
+                                <label><i class="far fa-envelope-open margin-right-10px"></i> [[#{patient.email}]]</label>
                                 <input th:field="*{email}" type="text" class="disabled form-control form-control-sm bello"  disabled>
                             </div>                         
                         </div>
                         <hr class="margin-tb-40px">
 						<button  id="bottonSubmit" style="top: 31px; position:relative; left: 300px" type="submit" hidden  class=" btn btn-md padding-lr-25px text-white background-main-color btn-inline-block">Submit</button>
 						</form>	
-					    <button onclick="disabledInput()" type="button" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">Update Profile</button>            
+					    <button onclick="disabledInput()" type="button" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">[[#{patient.updateProfile}]]</button>            
                     </div>                   			            
                 </div>
             </div>

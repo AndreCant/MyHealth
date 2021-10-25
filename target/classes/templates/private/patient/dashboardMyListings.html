@@ -36,13 +36,13 @@
                             <img src="assets/img/clinic-list-2.jpg" alt="">
                         </div>
                         <div style="width:100%;" class="padding-lr-0px padding-tb-0px" >
-                           <h2 href="#"  class=" text-dark text-capitalize  margin-tb-15px" th:text="${reservation.exam.name}">Alrayan Eye Clinic</h2>
+                           <h2 href="#"  class=" text-dark text-capitalize  margin-tb-15px" th:text="${reservation.exam.name}">]</h2>
                             <h2>
                             </h2>
                             <div class="row no-gutters">
-                            	<h4 class=" text-blue text-capitalize"  style="margin-left:30px;">Start Hour </h4>
-                            	<h4 class=" text-red text-capitalize" style="margin-left:35px;">End Hour </h4>
-                            	<h4 class=" text-info text-capitalize" style="margin-left:150px;">Date</h4>
+                            	<h4 class=" text-blue text-capitalize"  style="margin-left:30px;">[[#{reservation.startHour}]] </h4>
+                            	<h4 class=" text-red text-capitalize" style="margin-left:35px;">[[#{reservation.endHour}]]</h4>
+                            	<h4 class=" text-info text-capitalize" style="margin-left:150px;">[[#{reservation.date}]]</h4>
                             	<a style="margin-left:550px; margin-top:10px;"  type="submit" class="btn btn-danger" th:href="@{'/patient/reservations/' + ${reservation.id}}">Delete</a>
                             </div>
                             <div class="row no-gutters">
