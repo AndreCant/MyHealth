@@ -6,6 +6,8 @@
 <body>
    <div layout:fragment="content">
     <!-- Navigation-->
+      
+	
     <div class="content-wrapper" style="margin-left:50px;">
         <div class="container-fluid overflow-hidden">
        
@@ -25,10 +27,10 @@
                     </div>
                 </div>
                 <!-- // Page Title -->
-                <div class="margin-tb-45px">
+                <div class="margin-tb-45px " id="data">
                     <!-- clinic -->
                    
-                    <div style="width:70%;"  class="background-white thum-hover box-shadow hvr-float full-width margin-bottom-35px"s th:each="reservation : ${reservations}">
+                    <div style="width:70%;"  class="reservation background-white thum-hover box-shadow hvr-float full-width margin-bottom-35px " th:each="reservation : ${reservations}">
                      <div >
                         <div class="float-lg-left margin-right-30px sm-mr-0px text-center sm-mt-35px">
                             <img src="assets/img/clinic-list-2.jpg" alt="">
@@ -56,15 +58,7 @@
                     </div>
                     <div>
                     </div>
-                    <!-- pagination -->
-                    <ul class="pagination pagination-md ">
-                        <li class="page-item disabled"><a class="page-link rounded-0" href="#" tabindex="-1">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link rounded-0" href="#">Next</a></li>
-                    </ul>
-                    <!-- //pagination -->
+           
 
                 </div>
             </div>

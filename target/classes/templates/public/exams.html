@@ -13,7 +13,8 @@
 		    var rowsTotal = $('#data .exam').length;  
 		    console.log(rowsTotal);
 		    var numPages = rowsTotal/rowsShown; 
-		    
+		    console.log(numPages);
+
 		    if(numPages > 1) {
 				$('#nav').append('<li class="page-item"><a class="page-link rounded-0" href="javascript::" rel="0" tabindex="-1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>');
 			 	for (i = 0;i < numPages;i++) {  
