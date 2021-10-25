@@ -113,7 +113,7 @@ public class DataInitializer {
 			this.users = List.of(
 				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "GYZDMH59D63C829U", "Java, Javascript, Excel", this.roles.get(0), this.imagesUser.get(0)),
 				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), this.imagesUser.get(1)),
-				ObjectFactory.createDoctor("doctorTest", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), null),
+				ObjectFactory.createDoctor("doctorTest", "umb2@umb.com", "admin123", "Paolo", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), null),
 				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829U", true, this.roles.get(2), this.imagesUser.get(2))
 			);
 			
@@ -186,7 +186,7 @@ public class DataInitializer {
 			this.visits = List.of(
 				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.users.get(1), this.reviews.get(0), this.diagnosis.get(0), this.payments.get(0)),
 				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.users.get(1), this.reviews.get(1), this.diagnosis.get(1), this.payments.get(1)),
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 10, 19, 15, 45), LocalDateTime.of(2021, 10, 19, 16, 30), false, this.users.get(1), null, null, this.payments.get(1))
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 10, 19, 15, 45), LocalDateTime.of(2021, 10, 19, 16, 30), false, this.users.get(1), null, null, null)
 			);
 			
 			visitService.saveVisits(visits);
