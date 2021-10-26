@@ -53,9 +53,12 @@
           	$(win).children('.chiudi').hide();
 		    $(win).children('#box').hide('2000');
 		    $(apri).show();
+		    $(this).parent('.send').click(function(){
+			$(this).remove();
+		})
 			})
             });
-           
+                       
     });
 	</script>
 	
@@ -110,7 +113,7 @@
                                  <input th:field="*{vote}" min="1" max="10" type="number" id="inputNumber1" name="inputNumber1" style="margin-top:20px; width:150px; border-radius:10px; background-color:white; text-align:center;">
                                  </div>
                                  <div></div>
-                                 <button style="margin-top:30px;background:#00b0ff;border:none;" id="box" class="btn btn-primary">[[#{visit.review.send}]]</button>
+                                 <button style="margin-top:30px;background:#00b0ff;border:none;" id="box" class="btn send btn-primary">[[#{visit.review.send}]]</button>
                                 </div>
                                   <div style=" display:none; margin-top:20px;" class="chiudi background-light-grey">
                                   <button  class="btn chiudi">[[#{visit.hide}]] </button>
