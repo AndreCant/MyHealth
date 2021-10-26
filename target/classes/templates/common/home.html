@@ -143,7 +143,7 @@
             <div class="row">
 
                 <!-- Doctor -->
-                <div class="col-lg-3 col-md-6 hvr-bob sm-mb-45px" th:each="doctor : ${doctors}">
+                <div class="col-lg-3 col-md-6 hvr-bob sm-mb-45px" th:each="doctor,i : ${doctors}" th:unless="${i.index > 4}">
                     <div class="background-white box-shadow wow fadeInUp" data-wow-delay="0.6s">
                         <div class="thum">
                             <a th:href="@{'/doctors/'+${doctor.name}}"><img th:src="@{${doctor.image.url.replaceAll('\\', '/')}}"  alt=""></a>
