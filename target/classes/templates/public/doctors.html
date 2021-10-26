@@ -52,7 +52,7 @@
                         <div class="col-lg-3 col-md-6 hvr-bob margin-bottom-45px doctor" th:each= "doctor : ${doctors}">
                             <div class="background-white box-shadow">
                                 <div class="thum">
-                                    <a ><img th:src="@{/dist/img/doctor-1.jpg}" alt=""></a>
+                                    <a th:href="@{'/doctors/'+ ${doctor.name}}"><img th:if="${doctor.image}!=null"th:src="@{${doctor.image.url.replaceAll('\\', '/')}}" alt="" style="width:100%;"></a>
                                 </div>
                                 <div class="padding-30px">
                                     <span class="text-grey-2" th:text="${doctor.specialization}"></span>

@@ -21,4 +21,9 @@ public class HomeController {
 		model.addAttribute("doctors", userService.findUserByRole(1));
 		return "common/home";
 	}
+	
+	@GetMapping("/aboutUs")
+	public String about() throws BusinessException {		
+		return "common/about";
+	}
 }
