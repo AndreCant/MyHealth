@@ -80,7 +80,7 @@
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
-					                                <input type="text" th:field="*{email}" class="form-control form-control-sm" required/>
+					                                <span class="form-control form-control-sm" th:text="${user.email}" disabled></span>
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-lock margin-right-10px"></i> [[#{userForm.role}]]</label>

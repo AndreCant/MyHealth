@@ -81,5 +81,19 @@ public class UserDaoImpl implements UserDao{
 		User user = entityManager.createQuery("FROM User where id = :id  and role_id = 2", User.class).setParameter("id", id).getSingleResult();
 		return  user;
 	}
+
+	@Override
+	public User findByEmail(String email) throws DaoException {
+		List<User> users = entityManager.createQuery("FROM User where email = :email", User.class).setParameter("email", email).getResultList();
+		if(!users.isEmpty()) return users.get(0);
+		return null;
+	}
+
+	@Override
+	public User findByFiscalCode(String fiscalCode) throws DaoException {
+		List<User> users = entityManager.createQuery("FROM User where fiscalCode = :fiscalCode", User.class).setParameter("fiscalCode", fiscalCode).getResultList();
+		if(!users.isEmpty()) return users.get(0);
+		return null;
+	}
 	
 }

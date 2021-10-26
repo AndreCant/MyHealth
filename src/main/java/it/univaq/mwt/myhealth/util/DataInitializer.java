@@ -111,10 +111,10 @@ public class DataInitializer {
 	private void initUsers() {
 		try {
 			this.users = List.of(
-				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "GYZDMH59D63C829U", "Java, Javascript, Excel", this.roles.get(0), this.imagesUser.get(0)),
-				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), this.imagesUser.get(1)),
-				ObjectFactory.createDoctor("doctorTest", "umb2@umb.com", "admin123", "Paolo", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829U", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), null),
-				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829U", true, this.roles.get(2), this.imagesUser.get(2))
+				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "GYZDMH59D63C829A", "Java, Javascript, Excel", this.roles.get(0), this.imagesUser.get(0)),
+				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829B", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), this.imagesUser.get(1)),
+				ObjectFactory.createDoctor("doctorTest", "umb2@umb.com", "admin123", "Paolo", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829C", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), null),
+				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829D", true, this.roles.get(2), this.imagesUser.get(2))
 			);
 			
 			userService.saveUsers(this.users);

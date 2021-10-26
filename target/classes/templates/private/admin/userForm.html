@@ -110,7 +110,8 @@
 												
 												<label class="col-sm-2 col-form-label">Email</label>
 												<div class="col-sm-4">
-													<input type="text" th:field="*{email}" class="form-control" required/>
+													<span th:if="${#request.getRequestURI().endsWith('update')}" class="form-control" th:text="${user.email}" disabled></span>
+													<input th:if="${#request.getRequestURI().endsWith('create')}" type="text" th:field="*{email}" class="form-control" required/>
 												</div>
 												
 											</div>

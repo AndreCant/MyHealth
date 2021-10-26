@@ -80,7 +80,7 @@
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
-					                                <input type="text" th:field="*{email}" class="form-control form-control-sm" required/>
+					                                <span class="form-control form-control-sm" th:text="${user.email}" disabled></span>
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-lock margin-right-10px"></i> [[#{userForm.role}]]</label>
@@ -88,15 +88,15 @@
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.fiscalCode}]]</label>
-					                                <input type="text" class="form-control form-control-sm" th:field="*{fiscalCode}">
+					                                <input type="text" class="form-control form-control-sm" th:field="*{fiscalCode}" minlength="3" maxlength="45" required>
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.name}]]</label>
-					                                <input type="text" class="form-control form-control-sm" th:field="*{name}">
+					                                <input type="text" class="form-control form-control-sm" th:field="*{name}" minlength="3" maxlength="25" required>
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.surname}]]</label>
-					                                <input type="text" class="form-control form-control-sm" th:field="*{surname}">
+					                                <input type="text" class="form-control form-control-sm" th:field="*{surname}" minlength="3" maxlength="25" required>
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-calendar margin-right-10px"></i> [[#{userForm.dateOfBirth}]]</label>
@@ -104,7 +104,7 @@
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                             	<label><i class="fas fa-venus-mars margin-right-10px"></i> [[#{userForm.gender}]]</label>
-													<select class="selectpicker form-control form-control-sm" th:field="*{gender}">
+													<select class="selectpicker form-control form-control-sm" th:field="*{gender}" required>
 														<option value="M">[[#{signUp.male}]]</option>
 														<option value="F">[[#{signUp.female}]]</option>
 													</select>
