@@ -26,5 +26,9 @@ public interface UserDao {
 
 	public User findUserById(long id) throws DaoException;
 
-	User findRandomDoctor(long id) throws DaoException;
+	public User findRandomDoctor(long id) throws DaoException;
+	
+	public User findByEmail(String email) throws DaoException;
+	
+	public User findByFiscalCode(String fiscalCode) throws DaoException;
 }

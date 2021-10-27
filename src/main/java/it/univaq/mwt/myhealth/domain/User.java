@@ -19,7 +19,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +33,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import it.univaq.mwt.myhealth.annotation.EmailUnique;
+import it.univaq.mwt.myhealth.annotation.FiscalCode;
+import it.univaq.mwt.myhealth.annotation.FiscalCodeUnique;
+import it.univaq.mwt.myhealth.annotation.UsernameUnique;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,14 +52,40 @@ public class User extends AbstractEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@UsernameUnique
+	@NotEmpty
+	@Size(min = 3, max = 25)
+	@Column(unique = true)
 	private String username;
+	
+	@Email
+	@EmailUnique
+	@NotEmpty
+	@Size(min = 3, max = 45)
+	@Column(unique = true)
 	private String email;
+	
+	@NotEmpty
 	private String password;
+	
+	@NotEmpty
+	@Size(min = 3, max = 25)
 	private String name;
+	
+	@NotEmpty
+	@Size(min = 3, max = 25)
 	private String surname;
+	
+	@FiscalCode
+	@FiscalCodeUnique
+	@NotEmpty
+	@Size(min = 3, max = 25)
+	@Column(unique = true)
 	private String fiscalCode;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
+	
 	private boolean hasVisitToComplete;
 	private int register;
 	private String specialization;
@@ -88,7 +124,7 @@ public class User extends AbstractEntity implements Serializable{
 	}
 	
 	public int getAge() {
-		return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
+		return this.dateOfBirth != null ? Period.between(this.dateOfBirth, LocalDate.now()).getYears() : 0;
 	}
 
 }

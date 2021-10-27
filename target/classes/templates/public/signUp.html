@@ -10,23 +10,24 @@
         <div id="log-in" class="site-form log-in-form box-shadow border-radius-10">
 
             <div class="form-output">
-
                 <form th:action="${#request.getRequestURI()}" th:object="${user}" method="post">
                 	<h1 class="text-center pb-3">[[#{signUp.title}]]</h1>
                 	
                 	<div class="or"></div>
                 	
-                	<p class="text-center pb-3">[[#{signUp.yesAccount}]] <a href="page-login.html"> [[#{signUp.login}]]</a> </p>
+                	<p class="text-center pb-3">[[#{signUp.yesAccount}]] <a href="signIn"> [[#{signUp.login}]]</a> </p>
                 	
                 	<div class="form-row">
                 		<div class="form-group label-floating col-md-6">
 	                        <label class="control-label">Username</label>
 	                        <input class="form-control" th:field="*{username}" placeholder="Username" type="text" required>
+	                        <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:each="err: ${#fields.errors('username')}" th:text="#{${err}}"></p>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-6">
 	                        <label class="control-label">Email</label>
 	                        <input class="form-control" th:field="*{email}" placeholder="Email" type="email" required>
+	                        <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:each="err: ${#fields.errors('email')}" th:text="#{${err}}"></p>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-12">
@@ -37,11 +38,13 @@
 	                    <div class="form-group label-floating col-md-6">
 	                        <label class="control-label">[[#{signUp.name}]]</label>
 	                        <input class="form-control" th:field="*{name}" th:attr="placeholder=#{signUp.name}" type="text" required>
+	                         <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:each="err: ${#fields.errors('name')}" th:text="#{${err}}"></p>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-6">
 	                        <label class="control-label">[[#{signUp.surname}]]</label>
 	                        <input class="form-control" th:field="*{surname}" th:attr="placeholder=#{signUp.surname}" type="text" required>
+	                         <p class="text-danger" th:if="${#fields.hasErrors('surname')}" th:each="err: ${#fields.errors('surname')}" th:text="#{${err}}"></p>
 	                    </div>
 	                    
 	                    <div class="form-group label-floating col-md-6">
@@ -60,6 +63,7 @@
 	                    <div class="form-group label-floating col-md-12">
 	                        <label class="control-label">[[#{signUp.fiscalCode}]]</label>
 	                        <input class="form-control" th:field="*{fiscalCode}" th:attr="placeholder=#{signUp.fiscalCode}" type="text" required>
+	                        <p class="text-danger" th:if="${#fields.hasErrors('fiscalCode')}" th:each="err: ${#fields.errors('fiscalCode')}" th:text="#{${err}}"></p>
 	                    </div> 
                 	</div>
                 	

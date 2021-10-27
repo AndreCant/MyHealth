@@ -32,4 +32,10 @@ public interface UserService {
 	User findByName(String name) throws BusinessException;
 	
 	User findUserById (long id) throws BusinessException;
+	
+	boolean existsByEmail(String email) throws BusinessException;
+	
+	boolean existsByFiscalCode(String fiscalCode) throws BusinessException;
+	
+	boolean existsByUsername(String username) throws BusinessException;
 }

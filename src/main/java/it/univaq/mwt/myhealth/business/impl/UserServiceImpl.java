@@ -156,6 +156,42 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public boolean existsByEmail(String email) throws BusinessException {
+		User user;
+		try {
+			user = userDao.findByEmail(email);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		return user != null;
+	}
+
+	@Override
+	public boolean existsByFiscalCode(String fiscalCode) throws BusinessException {
+		User user;
+		try {
+			user = userDao.findByFiscalCode(fiscalCode);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		return user != null;
+	}
+
+	@Override
+	public boolean existsByUsername(String username) throws BusinessException {
+		User user;
+		try {
+			user = userDao.findByUsername(username);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		return user != null;
+	}
+
 	
 	
 }

@@ -59,7 +59,6 @@ public class DoctorController {
 	@PostMapping(value="/profile")
 	public String updateProfile (@Valid @ModelAttribute("user") User user, Errors errors) throws BusinessException {	
 		User currentUser = userService.findUserById(user.getId());
-		currentUser.setEmail(user.getEmail());
 		currentUser.setName(user.getName());
 		currentUser.setSurname(user.getSurname());
 		currentUser.setFiscalCode(user.getFiscalCode());
