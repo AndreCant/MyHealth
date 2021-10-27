@@ -1,7 +1,11 @@
 package it.univaq.mwt.myhealth.presentation;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import antlr.collections.List;
 import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
@@ -69,19 +75,29 @@ public class ExamController {
 	}
 	
 	@PostMapping(value="/{name}")
-	public String reservation (@PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation, @ModelAttribute("visit") Visit visit) throws BusinessException {			    
+	public String reservation (Model model, @PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation, @ModelAttribute("visit") Visit visit, final RedirectAttributes redirectAttributes) throws BusinessException {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
-		    FrontOffice frontOffice = administrationService.findFrontOfficeById((long)Utility.getRandomNumberInRange(1, 5));
-		    reservation.setPatient(userService.findUserByUsername(currentUserName));
-		    reservation.setExam(exam);
-		    reservation.setFrontOffice(frontOffice);
-		    visit.setReservation(reservation);
-		    visit.setDoctor(userService.findRandomDoctor(Utility.getRandomNumberInRange(2, 3)));
-		    reservation.setVisit(visit);
-		    visitService.saveVisit(visit);
-			reservationService.save(reservation);		
-			return "redirect:/exam/{name}";
+		    ArrayList<Reservation> l =  (ArrayList<Reservation>) reservationService.findAllReservations();
+		    ArrayList<LocalDateTime> update_l = new ArrayList<>();
+		    for(int i=0; i<l.size();i++) {
+		    	update_l.add(l.get(i).getStartHour());	    	
+		    }
+		    if(!update_l.contains(reservation.getStartHour())) {
+   			 FrontOffice frontOffice = administrationService.findFrontOfficeById((long)Utility.getRandomNumberInRange(1, 5));
+   	  		    reservation.setPatient(userService.findUserByUsername(currentUserName));
+   	  		    reservation.setExam(exam);
+   	  		    reservation.setFrontOffice(frontOffice);
+   	  		    visit.setReservation(reservation);
+   	  		    visit.setDoctor(userService.findRandomDoctor(Utility.getRandomNumberInRange(2, 3)));
+   	  		    reservation.setVisit(visit);
+   	  		    visitService.saveVisit(visit);
+   	  			reservationService.save(reservation);
+   			    redirectAttributes.addFlashAttribute("message_success", "this is the message");	    	
+   	  			return "redirect:/exam/{name}";	
+   		    }            
+		    redirectAttributes.addFlashAttribute("message", "this is the message");	    	
+		    return "redirect:/exam/{name}";
 	}
 	
 	@PostMapping(value="/{name}/review")
