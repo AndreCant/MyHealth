@@ -78,7 +78,7 @@ public class ExamController {
 	public String reservation (Model model, @PathVariable("name") String name, @ModelAttribute("reservation") Reservation reservation, @ModelAttribute("visit") Visit visit, final RedirectAttributes redirectAttributes) throws BusinessException {			    
 		    String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		    Exam exam = examService.findByName(name);
-		    ArrayList<Reservation> l =  (ArrayList<Reservation>) reservationService.findAllReservations();
+		    ArrayList<Reservation> l =  (ArrayList<Reservation>) reservationService.findReservationByExam(exam.getId());
 		    ArrayList<LocalDateTime> update_l = new ArrayList<>();
 		    for(int i=0; i<l.size();i++) {
 		    	update_l.add(l.get(i).getStartHour());	    	
@@ -88,6 +88,8 @@ public class ExamController {
    	  		    reservation.setPatient(userService.findUserByUsername(currentUserName));
    	  		    reservation.setExam(exam);
    	  		    reservation.setFrontOffice(frontOffice);
+   	  		    reservation.setEndHour(reservation.getStartHour().plusMinutes(30));
+   	  		    reservation.setReservationDate(reservation.getStartHour().toLocalDate());
    	  		    visit.setReservation(reservation);
    	  		    visit.setDoctor(userService.findRandomDoctor(Utility.getRandomNumberInRange(2, 3)));
    	  		    reservation.setVisit(visit);
