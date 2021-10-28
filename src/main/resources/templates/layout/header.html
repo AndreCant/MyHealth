@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<header th:fragment="html_header" style="padding-bottom: 50px;">
+		<script type="text/javascript">
+			$(document).ready(function() {
+				
+			    $("#locales").change(function () {
+				console.log('change');
+			        var selectedOption = $('#locales').val();
+			        console.log(selectedOption);
+			        if (selectedOption != ''){
+			            window.location.replace('?lang=' + selectedOption);
+			        }
+			    });
+			});
+		</script>
+		
         <div id="fixed-header-dark" class="header-output fixed-header" >
             <div class="container header-in">
                 <div class="row">
@@ -8,7 +22,7 @@
                         <a id="logo" th:href="@{'/'}" class="d-inline-block margin-tb-15px"><img th:src="@{/dist/img/logo-1.png}" alt=""></a>
                         <a class="mobile-toggle padding-13px background-main-color" href="#"><i class="fas fa-bars"></i></a>
                     </div>
-                    <div class="col-lg-7 col-md-12 position-inherit">
+                    <div class="col-lg-5 col-md-12 position-inherit">
                         <ul id="menu-main" class="nav-menu float-lg-right link-padding-tb-20px">
                             <li><a th:href="@{'/'}">[[#{nav.home}]]</a></li>
                             <li class="has-dropdown"><a href="#">[[#{nav.exams}]]</a>
@@ -21,10 +35,15 @@
                             <li><a th:href="@{'/doctors'}">[[#{nav.doctors}]]</a></li>
                         </ul>
                     </div>
-                    <div class="col-lg-3 col-md-12">
+                    <div class="col-lg-5 col-md-12">
                         <hr class="margin-bottom-0px d-block d-sm-none">
                         <a sec:authorize="!isAuthenticated()" th:href="@{'/auth/signIn'}" class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5"><i class="fa fa-fw fa-user"></i>  Login</a>
 						<a sec:authorize="isAuthenticated()" th:href="@{'/auth/logout'}" class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5"><i class="fa fa-fw fa-sign-out-alt"></i>  Logout</a>                    
+                        
+						<select id="locales" class="border-radius-30 margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5 p-1">
+						    <option value="en" th:attr="selected=${#locale.toString() == 'en'}">English</option>
+						    <option value="it" th:attr="selected=${#locale.toString() == 'it'}">Italiano</option>
+						</select>
                         
                         <a sec:authorize="hasRole('admin')" th:href="@{'/admin/profile'}" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
                           <i class="fa fa-fw fa-lock mr-1"></i>  [[#{nav.reserved}]]
@@ -35,6 +54,9 @@
                         <a sec:authorize="hasRole('patient')" th:href="@{'/patient/profile'}" class="btn btn-sm border-radius-30 margin-tb-15px text-white background-second-color box-shadow float-right padding-lr-20px margin-left-30px">
                           <i class="fas fa-fw fa-user mr-1"></i>  [[#{nav.reserved}]]
                         </a>
+                        
+                        
+
                     </div>
                     
                 </div>
