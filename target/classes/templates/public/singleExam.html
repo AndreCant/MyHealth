@@ -3,6 +3,7 @@
 	  xmlns:th="http://www.thymeleaf.org"
 	  layout:decorate="~{layout/layout}">
 <body>
+
    <div layout:fragment="content">
 
     <div id="page-title" class="py-5 gradient-white">
@@ -10,7 +11,7 @@
             <h1 th:text="${exam.name}" class="font-weight-300"></h1>
         </div>
     </div>
-   <div th:if="${message_success}"class="alert alert-success" role="alert">
+   <div th:if="${message_success}"class="message alert alert-success" role="alert">
     Reservation added succesfully
 	</div>
     <div>
@@ -55,6 +56,12 @@
 																  }
 																})
 															});
+															
+															$(document).ready(function(){
+																setTimeout(()=>{
+																	$(".message").hide('4000');
+																},5000)
+															});
 												</script>
 			               				</div>
 			               				
@@ -66,7 +73,7 @@
 				               			</div>
 		               				</div>
 					             </form>
-					             <div th:if="${message}"class="alert alert-warning" role="alert">
+					             <div th:if="${message}"class="message alert alert-warning" role="alert">
 					              Date selected is already booked
 								</div>
 				          	</div>
