@@ -93,7 +93,7 @@
                 <div  class="row margin-top-45px">
                     <div class="col-md-3 margin-bottom-45px reservation" id="data" th:each="reservation : ${reservations}" th:if="${reservation.visit.isCompleted} == true">
                         <div class="background-white thum-hover box-shadow hvr-float"   >
-                        <form th:action="@{/patient/visits}" th:object="${review}" method="POST">
+                        <form th:action="@{'/patient/visits/' + ${reservation.visit.id}}" th:object="${review}" method="POST">
                             <div class="item-thumbnail background-white">
                                 <a href="#"><img th:if="${!reservation.exam.getImages().isEmpty()}" th:src="${reservation.exam.getImages().get(0).getUrl()}" alt=""></a>
                             </div>

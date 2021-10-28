@@ -121,15 +121,17 @@ public class PatientController {
    }
    
    
-   @PostMapping(value="/visits")
-   public String insertReview (@Valid @ModelAttribute("review") Review review, Errors errors ) throws BusinessException {
+   @PostMapping(value="/visits/{visit_id}")
+   public String insertReview (@Valid @ModelAttribute("review") Review review,@ModelAttribute("reservations") Reservation reservations, @PathVariable("visit_id") long visitId, Errors errors ) throws BusinessException {
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
 		User user = userService.findUserByUsername(userDetails.getUsername());
 	   if (!errors.hasErrors()) {
+		   Visit visit =  visitService.findById(visitId);
 		   review.setBody(review.getBody());
 		   review.setVote(review.getVote());
-		   review.setPatient(user);		  
+		   review.setPatient(user);
+		   visit.setReview(review);
 		   reviewService.save(review);
 	   }
 	   return "redirect:/patient/visits";

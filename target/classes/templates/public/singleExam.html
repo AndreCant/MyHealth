@@ -3,6 +3,7 @@
 	  xmlns:th="http://www.thymeleaf.org"
 	  layout:decorate="~{layout/layout}">
 <body>
+
    <div layout:fragment="content">
 
     <div id="page-title" class="py-5 gradient-white">
@@ -10,7 +11,9 @@
             <h1 th:text="${exam.name}" class="font-weight-300"></h1>
         </div>
     </div>
-
+   <div th:if="${message_success}"class="message alert alert-success" role="alert">
+    Reservation added succesfully
+	</div>
     <div>
         <div class="container">
             <div class="row">
@@ -38,7 +41,7 @@
 			               				
 			               				<div class="col-lg-4 d-flex justify-content-center align-items-center">
 			               					<input sec:authorize="!isAuthenticated()" type="text" th:attr="placeholder=#{exam.date}" class="form-control" disabled>	
-			               					<input sec:authorize="isAuthenticated()" type="text" id="picker2" class="form-control" th:field="*{startHour}" th:attr="placeholder=#{exam.date}">				                           
+			               					<input required sec:authorize="isAuthenticated()" type="text" id="picker2" class="form-control" th:field="*{startHour}" th:attr="placeholder=#{exam.date}">				                           
 					                           <script>
 													$(document).ready(function(){
 														         var today = new Date();
@@ -53,6 +56,12 @@
 																  }
 																})
 															});
+															
+															$(document).ready(function(){
+																setTimeout(()=>{
+																	$(".message").hide('4000');
+																},5000)
+															});
 												</script>
 			               				</div>
 			               				
@@ -64,6 +73,9 @@
 				               			</div>
 		               				</div>
 					             </form>
+					             <div th:if="${message}"class="message alert alert-warning" role="alert">
+					              Date selected is already booked
+								</div>
 				          	</div>
                        </div>
                     </div>
