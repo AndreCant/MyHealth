@@ -21,42 +21,43 @@
              </ul>
             <div class="row margin-tb-px margin-lr-10px sm-mrl-0px">
                 <div id="page-title" class="padding-30px background-white full-width box-shadow">
-                    <div class="container">
  
                         <h1 class="font-weight-300">My Listings</h1>
                     </div>
                 </div>
                 <!-- // Page Title -->
-                <div class="margin-tb-45px " id="data">
+                <div style="margin-top:30px;"id="data">
                     <!-- clinic -->
-                   
-                    <div style="width:70%;"  class="reservation background-white thum-hover box-shadow hvr-float full-width margin-bottom-35px " th:each="reservation : ${reservations}">
+                   <div class="container-fluid">
+                    <div   class="reservation background-white thum-hover box-shadow hvr-float full-width margin-bottom-35px " th:each="reservation : ${reservations}" th:if="${reservation.visit.isCompleted} != true">
                      <div >
-                        <div class="float-lg-left margin-right-30px sm-mr-0px text-center sm-mt-35px">
+                        <div class="float-lg-left margin-right-30px sm-mr-0px text-center sm">
                             <img src="assets/img/clinic-list-2.jpg" alt="">
                         </div>
-                        <div style="width:100%;" class="padding-lr-0px padding-tb-0px" >
-                           <h2 href="#"  class=" text-dark text-capitalize  margin-tb-15px" th:text="${reservation.exam.name}">]</h2>
+                        <div   class="container mr-0 ml-0" style="width:100%;" >
+                           <h2 href="#"  class=" text-dark text-capitalize mr-0 ml-0" th:text="${reservation.exam.name}"></h2>
                             <h2>
                             </h2>
-                            <div class="row no-gutters">
-                            	<h4 class=" text-blue text-capitalize"  style="margin-left:30px;">[[#{reservation.startHour}]] </h4>
-                            	<h4 class=" text-red text-capitalize" style="margin-left:35px;">[[#{reservation.endHour}]]</h4>
-                            	<h4 class=" text-info text-capitalize" style="margin-left:150px;">[[#{reservation.date}]]</h4>
-                            	<a style="margin-left:550px; margin-top:10px;"  type="submit" class="btn btn-danger" th:href="@{'/patient/reservations/' + ${reservation.id}}">Delete</a>
+                            <div class="row ">
+                            	<div class="col-md-4" style="color:#29b6f6; font-size:20px;">[[#{reservation.startHour}]] </div>
+                            	<div class="col-md-4" style="color:#e91e63 ;font-size:20px;">[[#{reservation.startHour}]]</div>
+                            	<div class="col-md-3" style="color:#00bcd4 ;font-size:20px;">[[#{reservation.date}]]</div>
+                            	<div class="col-md-1">
+                            	  <a class="col-sm-lg-2 btn btn-danger"  type="submit" th:href="@{'/patient/reservations/' + ${reservation.id}}">Delete</a>
+								</div>
                             </div>
-                            <div class="row no-gutters">
-                                <div class="col-lg-6 row">
-                                    <h6 th:text="${#temporals.format(reservation.startHour,  'HH:mm')}" style="margin-left:50px; position:relative; bottom:30px;"> </h6>
-                                    <h6 th:text="${#temporals.format(reservation.endHour,  'HH:mm')}" style="margin-left:90px; position:relative; bottom:30px;"> </h6>
-                                    <h6 th:text="${reservation.reservationDate}" style="margin-left:390px; bottom:100px; position:relative; bottom:60px; white-space:nowrap"> </h6>
-                                </div>
+                            <div class="row">
+                                
+                                   <div class="col-md-4" th:text="${#temporals.format(reservation.startHour,  'HH:mm')}"></div>
+									<div class="col-md-4" th:text="${#temporals.format(reservation.endHour,  'HH:mm')}"></div>
+                            		<div class="col-md-4" th:text="${reservation.reservationDate}"></div>
+
                             </div>
                         </div>
                         <div class="clearfix"></div>
                       </div>
                     </div>
-                    <div>
+                    </div>
                     </div>
                 </div>
             </div>

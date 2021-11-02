@@ -6,11 +6,25 @@
 <body>
  <div layout:fragment="content">
    <script th:inline="javascript"> 
+   				var clicked = false;
                  function disabledInput (){
-					document.querySelectorAll('.disabled').forEach(element =>{
+					clicked = true;
+				    var array = document.querySelectorAll('.disabled');
+				    document.querySelectorAll('.disabled').forEach(element =>{
 						element.removeAttribute('disabled');
 					})
 					document.querySelector('#bottonSubmit').removeAttribute('hidden');
+					
+					$('#update').text('Close');
+					if(clicked == true){
+						$('#update').bind('click', function() {
+							console.log(array);
+							array.forEach(element =>{
+						    element.setAttribute('disabled', true)})
+							$('#update').text('Update Profile');
+							clicked = false;
+						})
+					}
 				 }
    </script>
    <script th:inline="javascript">
@@ -112,7 +126,7 @@
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="fa fa-birthday-cake margin-right-10px"></i> [[#{patient.dateOfBirth}]]</label>
-                                <input   th:field="*{dateOfBirth}" type="text" class="disabled form-control form-control-sm bello"   disabled>
+                                <input   th:field="*{dateOfBirth}" type="date" class="disabled form-control form-control-sm bello"   disabled>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> [[#{patient.email}]]</label>
@@ -122,7 +136,7 @@
                         <hr class="margin-tb-40px">
 						<button  id="bottonSubmit" style="top: 31px; position:relative; left: 300px" type="submit" hidden  class=" btn btn-md padding-lr-25px text-white background-main-color btn-inline-block">Submit</button>
 						</form>	
-					    <button onclick="disabledInput()" type="button" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">[[#{patient.updateProfile}]]</button>            
+					    <button onclick="disabledInput()" type="button" id="update" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">[[#{patient.updateProfile}]]</button>            
                     </div>                   			            
                 </div>
             </div>
