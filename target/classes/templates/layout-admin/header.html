@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-         <header th:fragment="html_header" style="padding-bottom: 50px;">
+     <header th:fragment="html_header" style="padding-bottom: 50px;">
+     	<script type="text/javascript">
+			$(document).ready(function() {
+				
+			    $("#locales").change(function () {
+				console.log('change');
+			        var selectedOption = $('#locales').val();
+			        console.log(selectedOption);
+			        if (selectedOption != ''){
+			            window.location.replace('?lang=' + selectedOption);
+			        }
+			    });
+			});
+		</script>
+		
         <div id="fixed-header-dark" class="header-output fixed-header mr-0" >
             <div class="header-in mx-5">
                 <div class="row">
@@ -22,7 +36,12 @@
                     </div>
                     <div class="col-lg-2 col-md-12">
                         <hr class="margin-bottom-0px d-block d-sm-none">
-						<a sec:authorize="isAuthenticated()" th:href="@{'/auth/logout'}" class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5"><i class="fa fa-fw fa-sign-out-alt"></i>  Logout</a>                    
+						<a sec:authorize="isAuthenticated()" th:href="@{'/auth/logout'}" class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5"><i class="fa fa-fw fa-sign-out-alt"></i>  Logout</a>     
+						
+						<select id="locales" class="border-radius-30 px-3 margin-tb-20px d-inline-block text-up-small float-left float-lg-right ml-5">
+						    <option value="en" th:attr="selected=${#locale.toString() == 'en'}">English</option>
+						    <option value="it" th:attr="selected=${#locale.toString() == 'it'}">Italiano</option>
+						</select>               
                     </div>
                 </div>
             </div>

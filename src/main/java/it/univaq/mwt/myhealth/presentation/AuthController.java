@@ -1,5 +1,8 @@
 package it.univaq.mwt.myhealth.presentation;
 
+import java.time.LocalDate;
+import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.UserService;
@@ -44,6 +48,7 @@ public class AuthController {
 	@GetMapping(value="signUp")
 	public String signUp(Model model) {
 		model.addAttribute("user", new User());
+		
 		return "public/signUp";
 	}
 	
