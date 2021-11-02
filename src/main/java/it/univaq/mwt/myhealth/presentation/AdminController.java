@@ -69,10 +69,8 @@ public class AdminController {
 	@PostMapping(value="/profile")
 	public String updateProfile (@Valid @ModelAttribute("user") User user, Errors errors) throws BusinessException {	
 		User currentUser = userService.findUserById(user.getId());
-		currentUser.setEmail(user.getEmail());
 		currentUser.setName(user.getName());
 		currentUser.setSurname(user.getSurname());
-		currentUser.setFiscalCode(user.getFiscalCode());
 		currentUser.setGender(user.getGender());
 		currentUser.setDateOfBirth(user.getDateOfBirth());
 		userService.updateUser(currentUser);
@@ -103,11 +101,9 @@ public class AdminController {
 	@PostMapping(value="/user/update")
 	public String updateUserPost (@Valid @ModelAttribute("user") User user, @ModelAttribute("roleName") String role, Errors errors) throws BusinessException{
 		User currentUser = userService.findUserById(user.getId());
-		currentUser.setEmail(user.getEmail());
 		currentUser.setSpecialization(user.getSpecialization());
 		currentUser.setName(user.getName());
 		currentUser.setSurname(user.getSurname());
-		currentUser.setFiscalCode(user.getFiscalCode());
 		currentUser.setGender(user.getGender());
 		currentUser.setRegister(user.getRegister());
 		currentUser.setSkills(user.getSkills());

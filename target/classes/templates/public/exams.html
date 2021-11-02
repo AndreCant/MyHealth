@@ -67,11 +67,11 @@
                                 <h5 class="margin-bottom-20px"><a class="text-dark" th:text="${exam.name}" th:href="@{'/exam/' + ${exam.name}}"></a></h5>
                                 <div class="rating clearfix">
                                     <ul class="float-right">
-                                        <li class="active"></li>
-                                        <li class="active"></li>
-                                        <li class="active"></li>
-                                        <li class="active"></li>
-                                        <li></li>
+                                        <li th:class="${raiting.get(exam.id) > 0 ? 'active' : ''}"></li>
+                                        <li th:class="${raiting.get(exam.id) > 1 ? 'active' : ''}"></li>
+                                        <li th:class="${raiting.get(exam.id) > 2 ? 'active' : ''}"></li>
+                                        <li th:class="${raiting.get(exam.id) > 3 ? 'active' : ''}"></li>
+                                        <li th:class="${raiting.get(exam.id) > 4 ? 'active' : ''}"></li>
                                     </ul>
                                 </div>
                             </div>

@@ -52,11 +52,11 @@
                         <div class="col-lg-3 col-md-6 hvr-bob margin-bottom-45px doctor" th:each= "doctor : ${doctors}">
                             <div class="background-white box-shadow">
                                 <div class="thum">
-                                    <a th:href="@{'/doctors/'+ ${doctor.name}}"><img th:if="${doctor.image}!=null"th:src="@{${doctor.image.url.replaceAll('\\', '/')}}" alt="" style="width:100%;"></a>
+                                    <a th:href="@{'/doctors/'+ ${doctor.id}}"><img th:if="${doctor.image}!=null"th:src="@{${doctor.image.url.replaceAll('\\', '/')}}" alt="" style="width:100%;"></a>
                                 </div>
                                 <div class="padding-30px">
                                     <span class="text-grey-2" th:text="${doctor.specialization}"></span>
-                                    <a class="text-dark" th:href="@{'/doctors/'+ ${doctor.name}}"><h5 class="margin-tb-15px" th:text="${doctor.name + ' ' + doctor.surname}"></h5></a>
+                                    <a class="text-dark" th:href="@{'/doctors/'+ ${doctor.id}}"><h5 class="margin-tb-15px" th:text="${doctor.name + ' ' + doctor.surname}"></h5></a>
                                 </div>
                             </div>
                         </div>

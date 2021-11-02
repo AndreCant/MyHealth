@@ -1,8 +1,11 @@
 package it.univaq.mwt.myhealth.util;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import it.univaq.mwt.myhealth.domain.Review;
 
 public class Utility {
 	
@@ -22,5 +25,22 @@ public class Utility {
 			case "r": return "rehabilitation path";
 			default: return null;
 		}
+	}
+	
+	public static int getRaiting(List<Review> reviews) {
+		int raiting = 0;
+		int nReviews = reviews.size();
+		
+		if (nReviews > 0) {
+			int totalVotes = 0;
+			for (Review review : reviews) {
+				totalVotes += review.getVote();
+			}
+			
+			if (totalVotes > 0) {
+				raiting = (int) (totalVotes / nReviews);
+			}
+		}
+		return raiting;
 	}
 }

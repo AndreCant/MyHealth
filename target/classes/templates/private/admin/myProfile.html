@@ -88,7 +88,7 @@
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.fiscalCode}]]</label>
-					                                <input type="text" class="form-control form-control-sm" th:field="*{fiscalCode}">
+					                                <span class="form-control form-control-sm" th:text="${user.fiscalCode}" disabled></span>
 					                            </div>
 					                            <div class="col-md-6 margin-bottom-20px">
 					                                <label><i class="fas fa-address-card margin-right-10px"></i> [[#{userForm.name}]]</label>

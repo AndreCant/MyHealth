@@ -37,6 +37,7 @@ import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.domain.Visit;
 import it.univaq.mwt.myhealth.util.ObjectFactory;
+import it.univaq.mwt.myhealth.util.Utility;
 
 @Controller
 @RequestMapping("doctor")
@@ -61,7 +62,6 @@ public class DoctorController {
 		User currentUser = userService.findUserById(user.getId());
 		currentUser.setName(user.getName());
 		currentUser.setSurname(user.getSurname());
-		currentUser.setFiscalCode(user.getFiscalCode());
 		currentUser.setGender(user.getGender());
 		currentUser.setDateOfBirth(user.getDateOfBirth());
 		userService.updateUser(currentUser);
@@ -176,19 +176,7 @@ public class DoctorController {
 	public String reviews (Model model) throws BusinessException{	
 		User doctor = userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		List<Review> reviews = reviewService.findReviewsByDoctor(doctor.getId());
-		int raiting = 0;
-		int nReviews = reviews.size();
-		
-		if (nReviews > 0) {
-			int totalVotes = 0;
-			for (Review review : reviews) {
-				totalVotes += review.getVote();
-			}
-			
-			if (totalVotes > 0) {
-				raiting = (int) (totalVotes / nReviews);
-			}
-		}
+		int raiting = Utility.getRaiting(reviews);
 		
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("raiting", raiting);
