@@ -75,17 +75,16 @@ public class PatientController {
    }
    
  
-   @PostMapping(value="/profile")
-   public String changeProfile (@Valid @ModelAttribute("user") User user, Errors errors ) throws BusinessException {
-		
+   @PostMapping(value="/profile/update")
+   public String changeProfile (@Valid @ModelAttribute("user")  User user, Errors errors ) throws BusinessException {
+
 		User currentUser = userService.findUserById(user.getId());
-	   if (!errors.hasErrors()) {
 		   currentUser.setEmail(user.getEmail());
 		   currentUser.setName(user.getName());
 		   currentUser.setSurname(user.getSurname());
 		   currentUser.setDateOfBirth(user.getDateOfBirth());
 		   userService.updateUser(currentUser);
-	   }
+		 
 	   return "redirect:/patient/profile";
    }
    
@@ -110,7 +109,7 @@ public class PatientController {
    @GetMapping(value="/visits")
    public String visitsList (Model model) throws BusinessException
    {	
-	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
 		User user = userService.findUserByUsername(userDetails.getUsername());
 		Review review = new Review();

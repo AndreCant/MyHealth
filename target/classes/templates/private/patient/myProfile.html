@@ -5,27 +5,42 @@
 <!-- Mirrored from nilethemes.com/html/tabib/dashboard-my-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 13:51:02 GMT -->
 <body>
  <div layout:fragment="content">
-   <script th:inline="javascript"> 
-   				var clicked = false;
-                 function disabledInput (){
-					clicked = true;
-				    var array = document.querySelectorAll('.disabled');
-				    document.querySelectorAll('.disabled').forEach(element =>{
-						element.removeAttribute('disabled');
-					})
-					document.querySelector('#bottonSubmit').removeAttribute('hidden');
+   <script th:inline="javascript">
+      	    //bt1 = document.getElementById("update") 			
+		 	  //bt1.addEventListener("click", load);
+		 	 console.log($('#update').attr('clicked'));
+			function button_change (){
+   			       if($('#update').attr('clicked') == 'false'){
+							$('#update').css('width', '20%');    	    	
+						    var array = document.querySelectorAll('.disabled');
+						    document.querySelectorAll('.disabled').forEach(element =>{
+								element.removeAttribute('disabled');								
+							})
+							document.querySelector('#bottonSubmit').removeAttribute('hidden');
+					        $('#update').attr('clicked', 'true');	     
+					        $('#update').text('Close');
+					        $('#update').css('background-color', 'white');
+					        $('#bottonSubmit').css('color', 'white');    	    	    	    	
+					        $('#update').css('color', 'black');    	    	    	    	
+				 } else{
 					
-					$('#update').text('Close');
-					if(clicked == true){
-						$('#update').bind('click', function() {
-							console.log(array);
-							array.forEach(element =>{
-						    element.setAttribute('disabled', true)})
-							$('#update').text('Update Profile');
-							clicked = false;
-						})
-					}
-				 }
+					  var new_array = document.querySelectorAll('.able');
+					  document.querySelectorAll('.able').forEach(element =>{
+					element.setAttribute('disabled', true);
+			
+					})
+					document.querySelector('#bottonSubmit').setAttribute('hidden', true);
+					$('#update').text('Update Profile');
+					$('#update').attr('clicked', 'false');	     
+					$('#update').css('width', '30%');    	
+				    $('#update').css('background-color', '#00b0ff');
+    			    $('#update').css('color', 'white');    	    	    	    	
+				}	
+					          
+		     	}
+		     	
+			    
+		     				 
    </script>
    <script th:inline="javascript">
 		function checkImage(event){
@@ -100,43 +115,47 @@
 								</div>
 						   </form>
 	                </div>
-                    <div class="col-md-8" id="father">
-                  	<form method="POST"  th:object="${user}">
+                    <div class="form-output col-md-8" id="father">
+                  	<form method="POST"  th:object="${user}" th:action="@{/patient/profile/update}">
                         <div class="row" >
                         <input type="hidden" th:field="*{id}">
                          <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> [[#{patient.name}]]</label>
-                                <input  th:field="*{name}"  type="text" class="disabled form-control form-control-sm"  disabled>
+                                <input  th:field="*{name}"  type="text" class="disabled form-control form-control-sm able"  disabled>
                             </div>                           
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> [[#{patient.surname}]]</label>
-                                <input th:field="*{surname}"  type="text"  class=" disabled form-control form-control-sm"  disabled>
+                                <input th:field="*{surname}"  type="text"  class=" disabled form-control form-control-sm able"  disabled>
                             </div>     
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-user margin-right-10px"></i> [[#{patient.username}]]</label>
-                                <input  th:field="*{username}" type="text" class=" form-control form-control-sm bello" disabled >
+                                <input  th:field="*{username}"  type="text" class=" form-control form-control-sm bello able" disabled >
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
-                                <label><i class="far fa-envelope-open margin-right-10px"></i> [[#{patient.gender}]]</label>
+                                <label><i class="fa fa-venus-mars margin-right-10px"></i> [[#{patient.gender}]]</label>
                                 <div> </div>
-							    <select  class="disabled form-control form-control-sm bello" id="gender" name="gender" style="width: 65px; height: 30px;" disabled>
-								   <option th:field="*{gender}" value="">M</option>
-								   <option value="">F</option>										   
-								</select>
+                                  <select class="disabled selectpicker form-control able" th:field="*{gender}" style="height: 33px;" disabled>
+								    <option value="M">[[#{signUp.male}]]</option>
+								    <option value="F">[[#{signUp.female}]]</option>
+							      </select>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="fa fa-birthday-cake margin-right-10px"></i> [[#{patient.dateOfBirth}]]</label>
-                                <input   th:field="*{dateOfBirth}" type="date" class="disabled form-control form-control-sm bello"   disabled>
+                                <input   th:field="*{dateOfBirth}" type="date" class="disabled form-control form-control-sm bello able"   disabled>
                             </div>
                             <div class="col-md-6 margin-bottom-20px">
                                 <label><i class="far fa-envelope-open margin-right-10px"></i> [[#{patient.email}]]</label>
-                                <input th:field="*{email}" type="text" class="disabled form-control form-control-sm bello"  disabled>
+                                <input th:field="*{email}" type="email" class="disabled form-control form-control-sm bello able"  disabled>
                             </div>                         
                         </div>
-                        <hr class="margin-tb-40px">
-						<button  id="bottonSubmit" style="top: 31px; position:relative; left: 300px" type="submit" hidden  class=" btn btn-md padding-lr-25px text-white background-main-color btn-inline-block">Submit</button>
-						</form>	
-					    <button onclick="disabledInput()" type="button" id="update" class=" btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">[[#{patient.updateProfile}]]</button>            
+                        	<div class="text-center mt-2">
+
+							   <button  id="bottonSubmit"  type="submit" hidden  style="margin-top:30px; width:30%; background-color:#00b0ff;outline: none;" class="btn btn-md  padding-lr-25px ">Submit</button>
+							   </form>	
+							  <div class="text-center">
+						       	<button clicked="false" onclick="button_change()"  type="button" style="margin-top:30px;width:30%;background-color:#00b0ff;color:white;outline: none; border: 1px solid  #00b0ff" id="update" class=" btn  padding-lr-25px   ">[[#{patient.updateProfile}]]</button>
+						      </div>                     			            
+						    </div>                     			            
                     </div>                   			            
                 </div>
             </div>
