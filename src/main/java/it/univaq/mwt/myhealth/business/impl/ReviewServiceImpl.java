@@ -82,4 +82,14 @@ public class ReviewServiceImpl implements ReviewService{
 			throw new BusinessException(e.getMessage());
 		}
 	}
+
+	@Override
+	public List<Review> findReviewsByExam(Long examId) throws BusinessException {
+		try {
+			return reviewDao.findReviewsByExam(examId);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

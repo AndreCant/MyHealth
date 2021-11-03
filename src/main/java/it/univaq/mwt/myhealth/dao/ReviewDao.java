@@ -23,4 +23,6 @@ public interface ReviewDao {
 	public void saveAll(List<Review> reviews) throws DaoException;
 	
 	public List<Review> findReviewsByDoctor(Long doctorId) throws DaoException;
+	
+	public List<Review> findReviewsByExam(Long examId) throws DaoException;
 }

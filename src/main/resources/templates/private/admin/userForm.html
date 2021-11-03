@@ -105,7 +105,6 @@
 												<div class="col-sm-4">
 													<span th:if="${#request.getRequestURI().endsWith('update')}" class="form-control" th:text="${user.username}" disabled></span>
 													<input th:if="${#request.getRequestURI().endsWith('create')}" type="text" th:field="*{username}" class="form-control" required/>
-													<!--<span th:if="${#fields.hasErrors('codice')}" th:each="err: ${#fields.errors('codice')}" th:utext="${err}"></span>-->
 												</div>
 												
 												<label class="col-sm-2 col-form-label">Email</label>
@@ -164,7 +163,8 @@
 											<div class="form-group row mb-3">
 												<label class="col-sm-2 col-form-label">[[#{userForm.fiscalCode}]]</label>
 												<div class="col-sm-4">
-													<input type="text" th:field="*{fiscalCode}" class="form-control"/>
+													<span th:if="${#request.getRequestURI().endsWith('update')}" class="form-control" th:text="${user.fiscalCode}" disabled></span>
+													<input th:if="${#request.getRequestURI().endsWith('create')}" type="text" th:field="*{fiscalCode}" class="form-control" minlength="3" maxlength="45" required/>
 												</div>
 											</div>
 											<div class="form-group row mb-3">

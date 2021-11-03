@@ -53,32 +53,26 @@ public class User extends AbstractEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@UsernameUnique
-	@NotEmpty
 	@Size(min = 3, max = 25)
 	@Column(unique = true)
 	private String username;
 	
 	@Email
 	@EmailUnique
-	@NotEmpty
 	@Size(min = 3, max = 45)
 	@Column(unique = true)
 	private String email;
 	
-	@NotEmpty
 	private String password;
 	
-	@NotEmpty
 	@Size(min = 3, max = 25)
 	private String name;
 	
-	@NotEmpty
 	@Size(min = 3, max = 25)
 	private String surname;
 	
 	@FiscalCode
 	@FiscalCodeUnique
-	@NotEmpty
 	@Size(min = 3, max = 25)
 	@Column(unique = true)
 	private String fiscalCode;
