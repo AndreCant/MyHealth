@@ -90,8 +90,8 @@
                 <div class="float-left padding-left-15px"></div>
                 <div  class="float-right padding-right-15px"></div>
                 <div class="clearfix"></div>
-                <div  class="row margin-top-45px">
-                    <div class="col-md-3 margin-bottom-45px reservation" id="data" th:each="reservation : ${reservations}" th:if="${reservation.visit.isCompleted} == true">
+                <div  class="row margin-top-45px" >
+                    <div class="col-md-3 margin-bottom-45px reservation" id="data" th:each="reservation : ${reservations}" th:if="${reservation.visit.isCompleted} == true and  ${reservation.visit.review} == null" >
                         <div class="background-white thum-hover box-shadow hvr-float"   >
                         <form th:action="@{'/patient/visits/' + ${reservation.visit.id}}" th:object="${review}" method="POST">
                             <div class="item-thumbnail background-white">
@@ -111,7 +111,7 @@
                                 <div class="form-outline">
                                 <input th:field="*{title}" type="text" placeholder="Insert title" style="background-color:white; margin-bottom:20px; width:100%" required>
                                  <textarea th:field="*{body}" type="text" class="form-control" id="textAreaExample" rows="6"  placeholder="Add a review" required></textarea>
-                                 <input required th:field="*{vote}" min="1" max="10" type="number" id="inputNumber1" name="inputNumber1" style="margin-top:20px; width:150px; border-radius:10px; background-color:white; text-align:center;">
+                                 <input required th:field="*{vote}" min="1" max="5" type="number" id="inputNumber1" name="inputNumber1" style="margin-top:20px; width:150px; border-radius:10px; background-color:white; text-align:center;">
                                  </div>
                                  <div></div>
                                  <button style="margin-top:30px;background:#00b0ff;border:none;" id="box" class="btn send btn-primary">[[#{visit.review.send}]]</button>
