@@ -8,7 +8,6 @@
    <script th:inline="javascript">
       	    //bt1 = document.getElementById("update") 			
 		 	  //bt1.addEventListener("click", load);
-		 	 console.log($('#update').attr('clicked'));
 			function button_change (){
    			       if($('#update').attr('clicked') == 'false'){
 							$('#update').css('width', '20%');    	    	
@@ -58,17 +57,21 @@
       }
       .label {
         cursor: pointer;
-        border: 1px solid #cccccc;
         border-radius: 5px;
-        padding: 5px 15px;
+        border: 1px solid  #00b0ff;        
+        padding: 7px 10px;
         margin: 5px;
         width: 200px;
+        color:#b0bec5;
+        font-size:10px;
         margin-right: 70px;
-        background: #dddddd;
+        background:white;
         display: inline-block;
       }
       .label:hover {
-        background: #5cbd95;
+        background: #00b0ff;
+        color:white;
+        border:none;
       }
       .label:active {
         background: #9fa1a0;

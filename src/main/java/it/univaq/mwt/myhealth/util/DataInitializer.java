@@ -185,7 +185,7 @@ public class DataInitializer {
 		try {
 			this.visits = List.of(
 				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 20, 14, 0), LocalDateTime.of(2021, 7, 20, 14, 30), true, this.users.get(1), this.reviews.get(0), this.diagnosis.get(0), this.payments.get(0)),
-				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), false, this.users.get(1), this.reviews.get(1), this.diagnosis.get(1), this.payments.get(1)),
+				ObjectFactory.createVisit(LocalDateTime.of(2021, 7, 31, 11, 30), LocalDateTime.of(2021, 7, 20, 12, 30), true, this.users.get(1), null, this.diagnosis.get(1), this.payments.get(1)),
 				ObjectFactory.createVisit(LocalDateTime.of(2021, 10, 19, 15, 45), LocalDateTime.of(2021, 10, 19, 16, 30), false, this.users.get(1), null, null, null)
 			);
 			
