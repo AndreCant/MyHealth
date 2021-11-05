@@ -102,7 +102,8 @@ public class PatientController {
    @GetMapping(value="/reservations/{id}")
    public String deleteReservation (@PathVariable("id") Long id) throws BusinessException
    {	
-	   reservationService.delete(id);	  
+	   Reservation reservation = reservationService.findReservationById(id);
+	   visitService.deleteVisit(reservation.getVisit().getId());  
 	   return "redirect:/patient/reservations"; 
    }
    

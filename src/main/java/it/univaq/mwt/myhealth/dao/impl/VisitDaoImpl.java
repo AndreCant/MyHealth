@@ -44,7 +44,7 @@ public class VisitDaoImpl implements VisitDao{
 	
 	@Override
 	public void delete(Long uid) throws DaoException {
-		
+		entityManager.remove(this.findById(uid));
 	}
 		
 	public void saveAll(List<Visit> visits) throws DaoException {

@@ -73,8 +73,12 @@ public class VisitServiceImpl implements VisitService{
 
 	@Override
 	public void deleteVisit(Long uid) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		try {
+			visitDao.delete(uid);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override
