@@ -88,10 +88,10 @@ public class ExamController {
    	  		    reservation.setVisit(visit);
    	  		    visitService.saveVisit(visit);
    	  			reservationService.save(reservation);
-   			    redirectAttributes.addFlashAttribute("message_success", "this is the message");	    	
+   			    redirectAttributes.addFlashAttribute("message_success", "message_success");	    	
    	  			return "redirect:/exam/{name}";	
    		    }            
-		    redirectAttributes.addFlashAttribute("message", "this is the message");	    	
+		    redirectAttributes.addFlashAttribute("message_error", "this is the message");	    	
 		    return "redirect:/exam/{name}";
 	}
 	

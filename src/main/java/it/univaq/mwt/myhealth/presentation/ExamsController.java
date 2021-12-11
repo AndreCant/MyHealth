@@ -34,7 +34,7 @@ public class ExamsController {
 	public String all (Model model) throws BusinessException {
 		List<Exam> exams = examService.findAllExams();
 		model.addAttribute("exams", exams);
-		model.addAttribute("type", "All Exams");
+		model.addAttribute("type", "allExams");
 		model.addAttribute("raiting", this.setRaiting(exams));
 		return "/public/exams";
 	}
@@ -43,7 +43,7 @@ public class ExamsController {
 	public String exams (Model model) throws BusinessException {
 		List<Exam> exams = examService.findExamsByType("exam");
 		model.addAttribute("exams", exams);
-		model.addAttribute("type", "Specific Exams");
+		model.addAttribute("type", "specificExams");
 		model.addAttribute("raiting", this.setRaiting(exams));
 		return "/public/exams";
 	}
@@ -52,7 +52,7 @@ public class ExamsController {
 	public String paths (Model model) throws BusinessException {
 		List<Exam> exams = examService.findExamsByType("rehabilitation path");
 		model.addAttribute("exams", exams);
-		model.addAttribute("type", "Rehabilitation Paths");
+		model.addAttribute("type", "rehabilitationPaths");
 		model.addAttribute("raiting", this.setRaiting(exams));
 		return "/public/exams";
 	}
