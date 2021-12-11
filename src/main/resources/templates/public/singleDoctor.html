@@ -39,16 +39,16 @@
                
                 <div class="col-lg-7 col-sm-10 col-md-6">
                     <div class="background-second-color border-radius-10  text-white box-shadow  w-100 p-3">
-                        <h3 style="margin-top:0;" class=" w-100 p-3"><i class="far fa-clock margin-right-10px"></i> Work Time</h3>
+                        <h3 style="margin-top:0;" class=" w-100 p-3"><i class="far fa-clock margin-right-10px"></i> [[#{doctor.work}]]</h3>
                         <div class="padding-bottom-30px" >
                             <ul class="padding-0px margin-0px">
-                                <li class="padding-lr-30px padding-tb-10px">Monday <span class="float-right">10:00 AM - 5:00 PM</span></li>
-                                <li class="padding-lr-30px padding-tb-10px ba-2">Tuesday <span class="float-right">10:00 AM - 5:00 PM</span></li>
-                                <li class="padding-lr-30px padding-tb-10px">Wednesday <span class="float-right">10:00 AM - 5:00 PM</span></li>
-                                <li class="padding-lr-30px padding-tb-10px ba-2">Thursday <span class="float-right">10:00 AM - 5:00 PM</span></li>
-                                <li class="padding-lr-30px padding-tb-10px">Friday  <span class="float-right">10:00 AM - 5:00 PM</span></li>
-                                <li class="padding-lr-30px padding-tb-10px ba-2">Saturday  <span class="float-right">10:00 AM - 5:00 PM</span></li>
-                                <li class="padding-lr-30px padding-tb-10px">Sunday    <span class="float-right">Closed</span></li>
+                                <li class="padding-lr-30px padding-tb-10px">[[#{doctor.mon}]] <span class="float-right">10:00 AM - 5:00 PM</span></li>
+                                <li class="padding-lr-30px padding-tb-10px ba-2">[[#{doctor.tue}]] <span class="float-right">10:00 AM - 5:00 PM</span></li>
+                                <li class="padding-lr-30px padding-tb-10px">[[#{doctor.wed}]] <span class="float-right">10:00 AM - 5:00 PM</span></li>
+                                <li class="padding-lr-30px padding-tb-10px ba-2">[[#{doctor.thu}]] <span class="float-right">10:00 AM - 5:00 PM</span></li>
+                                <li class="padding-lr-30px padding-tb-10px">[[#{doctor.fri}]]  <span class="float-right">10:00 AM - 5:00 PM</span></li>
+                                <li class="padding-lr-30px padding-tb-10px ba-2">[[#{doctor.sat}]]  <span class="float-right">10:00 AM - 5:00 PM</span></li>
+                                <li class="padding-lr-30px padding-tb-10px">[[#{doctor.sun}]]    <span class="float-right">[[#{doctor.closed}]]</span></li>
                             </ul>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
             </div>
              <div class="col-lg-11  box-shadow" >
                         <div class="padding-30px background-white">
-                            <h3 th:text="${doctor.fullName + ', ' + doctor.specialization}"><i class="far fa-hospital margin-right-10px text-main-color"></i> About Clinic</h3>
+                            <h3 th:text="${doctor.fullName + ', ' + doctor.specialization}"><i class="far fa-hospital margin-right-10px text-main-color"></i> [[#{doctor.about}]]</h3>
                             <hr>
                             <p class="text-grey-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
                         </div>

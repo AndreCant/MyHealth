@@ -110,8 +110,11 @@ public class DataInitializer {
 			this.users = List.of(
 				ObjectFactory.createAdmin("andrea95", "and@and.it", "admin123", "Andrea", "Cantagallo", 99999, LocalDate.of(1995, 1, 28), "M", "GYZDMH59D63C829A", "Java, Javascript, Excel", this.roles.get(0), this.imagesUser.get(0)),
 				ObjectFactory.createDoctor("umberto355", "umb@umb.com", "admin123", "Umberto", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829B", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), this.imagesUser.get(1)),
-				ObjectFactory.createDoctor("doctorTest", "umb2@umb.com", "admin123", "Paolo", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829C", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), null),
-				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829D", true, this.roles.get(2), this.imagesUser.get(2))
+				ObjectFactory.createDoctor("doctorTest", "umb2@umb.com", "admin123", "Paola", "La Barbera", 12345, LocalDate.of(1970, 8, 31), "M", "GYZDMH59D63C829C", "Pediatric Neurology, Neuromuscular medicine", "Neurology", true, this.roles.get(1), this.imagesUser.get(3)),
+				ObjectFactory.createPatient("lello21", "lol@lol.com", "admin123", "Pippo", "Franco", LocalDate.of(1945, 11, 18), "F", "GYZDMH59D63C829D", true, this.roles.get(2), this.imagesUser.get(2)),
+				ObjectFactory.createDoctor("doctorUser", "doc@doc.com", "admin123", "Franco", "Poldi", 18598, LocalDate.of(1950, 9, 14), "M", "NYZDPH59D63C829C", "Exams", "Cardiology", true, this.roles.get(1), this.imagesUser.get(4)),
+				ObjectFactory.createDoctor("dottoressa123", "doc1@doc.com", "admin123", "Serena", "Bertelli", 56897, LocalDate.of(1990, 9, 9), "M", "NYZDPH59D63C829B", "Exams", "Fisioterapy", true, this.roles.get(1), this.imagesUser.get(5)),
+				ObjectFactory.createDoctor("doc123", "testdoc@doc.com", "admin123", "John", "Colucci", 78885, LocalDate.of(1978, 8, 15), "M", "NYZDPH49D63C829B", "Exams", "Cardiology", true, this.roles.get(1), this.imagesUser.get(6))
 			);
 			
 			userService.saveUsers(this.users);
@@ -123,12 +126,12 @@ public class DataInitializer {
 	private void initExams() {
 		try {
 			this.exams = List.of(
-				ObjectFactory.createExam("AB-01", 1, "exam", "ECG", "cardiology", "ECG", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 38.99),
-				ObjectFactory.createExam("CG-31", 10, "rehabilitation path", "scoliosis", "physiotherapy", "scoliosis", "", 989.99),
-				ObjectFactory.createExam("OO-94", 1, "exam", "Esame Cardiaco", "eye", "gradation", "", 5.00),
-				ObjectFactory.createExam("O3-94", 1, "exam", "Esame Spalla", "eye", "gradation", "", 170.00),
-				ObjectFactory.createExam("O3-94", 1, "exam", "Addominoplatica", "eye", "plastica", "", 49.00),
-				ObjectFactory.createExam("O3-60", 1, "rehabilitation path", "Percorso Riabilitativo", "eye", "gradation", "", 5170.00)
+				ObjectFactory.createExam("AB-01", 1, "exam", "ECG", "Cardiologia", "ECG", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 38.99),
+				ObjectFactory.createExam("CG-31", 10, "rehabilitation path", "Fisioterapia Scoliosi", "Fisioterapia", "Scoliosi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 989.99),
+				ObjectFactory.createExam("O3-94", 1, "exam", "Esame Spalla", "Ortopedia", "Spalla", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 170.00),
+				ObjectFactory.createExam("OO-94", 1, "exam", "Esame Cardiaco", "Cardiologia", "Cardiaco", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 5.00),
+				ObjectFactory.createExam("O3-94", 1, "rehabilitation path", "Percorso Schiena", "Fisioterapia", "Schiena", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 49.00),
+				ObjectFactory.createExam("O3-60", 1, "rehabilitation path", "Cura Artrosi", "Fisioterapia", "Artrosi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.", 170.00)
 			);
 			
 			examService.saveExams(this.exams);
@@ -300,8 +303,12 @@ public class DataInitializer {
 		try {
 			this.imagesUser = List.of(
 				ObjectFactory.createImage("Admin img", "/dist/img/instagram-4.jpg", null),
-				ObjectFactory.createImage("Doctor img", "/dist/img/instagram-2.jpg", null),
-				ObjectFactory.createImage("Patient img", "/dist/img/instagram-3.jpg", null)
+				ObjectFactory.createImage("Doctor img1", "/dist/img/instagram-2.jpg", null),
+				ObjectFactory.createImage("Patient img", "/dist/img/instagram-3.jpg", null),
+				ObjectFactory.createImage("Doctor img2", "/dist/img/doctor-1.jpg", null),
+				ObjectFactory.createImage("Doctor img3", "/dist/img/doctor-2.jpg", null),
+				ObjectFactory.createImage("Doctor img4", "/dist/img/doctor-3.jpg", null),
+				ObjectFactory.createImage("Doctor img5", "/dist/img/doctor-4.jpg", null)
 			);
 			
 			examService.saveImages(this.imagesUser);
@@ -313,12 +320,12 @@ public class DataInitializer {
 	public void initExamImages() {
 		try {
 			this.imagesExam = List.of(
-				ObjectFactory.createImage("Test 1", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0)),
-				ObjectFactory.createImage("Test 2", "https://thumbs.dreamstime.com/b/physical-examination-doctor-11386688.jpg", this.exams.get(1)),
-				ObjectFactory.createImage("Test 3", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(2)),
-				ObjectFactory.createImage("Test 4", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(3)),
-				ObjectFactory.createImage("Test 5", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(4)),
-				ObjectFactory.createImage("Test 6", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(5))
+				ObjectFactory.createImage("Cuore", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0)),
+				ObjectFactory.createImage("Scoliosi", "https://www.gruppocdc.it/media/k2/items/cache/0e09527b0f5edaa60cf5702119e6a0a2_L.webp", this.exams.get(1)),
+				ObjectFactory.createImage("Spalla", "https://spallaclinic.it/wp-content/uploads/2020/02/ort_6.jpg", this.exams.get(2)),
+				ObjectFactory.createImage("Cuore", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(3)),
+				ObjectFactory.createImage("Riab 1", "https://lh3.googleusercontent.com/proxy/k1KXic8YeJj_MKPXlodtNWTOApZO1WN9ZM6Ag4YST7HOGuv2lpvaN0gs5n3aELDu6brpjF2XdCfiJznjC4qf5SU_CcrWCGpPsl-Rr6NygB55DLoWPft9EyHRBn4CS2m-JkjnS2pwLwNks4ZHyhLTUMUwkP7nYA", this.exams.get(4)),
+				ObjectFactory.createImage("Riab 4", "https://1.bp.blogspot.com/-ElbdY7NTrLk/YGnU-GF2ykI/AAAAAAAACvg/dvielzu2rigYeClxZ32sQkPgvIAYj-UfgCLcBGAsYHQ/s360/riabilitazione%2Banziani.jpg", this.exams.get(5))
 			);
 			
 			examService.saveImages(this.imagesExam);

@@ -11,8 +11,11 @@
             <h1 th:text="${exam.name}" class="font-weight-300"></h1>
         </div>
     </div>
-   <div th:if="${message_success}"class="message alert alert-success" role="alert">
-    Reservation added succesfully
+   <div th:if="${message_success}"class="message alert alert-success mx-5" role="alert">
+    [[#{exam.succMex}]]
+	</div>
+	<div th:if="${message_error}"class="message alert alert-warning mx-5" role="alert">
+      [[#{exam.errMex}]]
 	</div>
     <div>
         <div class="container">
@@ -73,9 +76,7 @@
 				               			</div>
 		               				</div>
 					             </form>
-					             <div th:if="${message}"class="message alert alert-warning" role="alert">
-					              Date selected is already booked
-								</div>
+					             
 				          	</div>
                        </div>
                     </div>
