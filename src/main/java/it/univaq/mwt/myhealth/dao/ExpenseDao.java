@@ -8,13 +8,5 @@ public interface ExpenseDao {
 	
 	public List<Expense> findAll() throws DaoException;
 	
-	public Expense findById(Long uid) throws DaoException;
-   
-	public void save(Expense expense) throws DaoException;
- 
-	public void update(Expense expense) throws DaoException;
-  
-	public void delete(Long uid) throws DaoException;
-	
 	public void saveAll(List<Expense> expenses) throws DaoException;
 }

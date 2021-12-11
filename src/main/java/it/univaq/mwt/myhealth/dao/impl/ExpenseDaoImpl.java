@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.ExpenseDao;
-import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Expense;
 
 @Repository
@@ -18,33 +17,10 @@ public class ExpenseDaoImpl implements ExpenseDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Expense> findAll() throws DaoException {
 		return (List<Expense>) entityManager.createQuery("FROM Expense").getResultList();
-	}
-
-	@Override
-	public Expense findById(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(Expense expense) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Expense expense) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

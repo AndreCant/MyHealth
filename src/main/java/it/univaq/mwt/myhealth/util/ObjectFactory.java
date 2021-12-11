@@ -5,11 +5,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import it.univaq.mwt.myhealth.business.BusinessException;
-import it.univaq.mwt.myhealth.business.UserService;
-import it.univaq.mwt.myhealth.business.impl.UserServiceImpl;
 import it.univaq.mwt.myhealth.domain.AnnualBudget;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Exam;

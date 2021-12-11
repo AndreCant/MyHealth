@@ -3,7 +3,6 @@ package it.univaq.mwt.myhealth.presentation;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
@@ -22,7 +19,6 @@ import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.util.Utility;
-import net.bytebuddy.asm.Advice.This;
 
 @Controller
 @RequestMapping("exams")
@@ -96,7 +92,4 @@ public class ExamsController {
 		
 		return raiting;
 	}
-	
-	
-
 }

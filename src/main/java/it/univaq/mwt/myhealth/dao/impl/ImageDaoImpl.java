@@ -18,36 +18,6 @@ public class ImageDaoImpl implements ImageDao{
 	private EntityManager entityManager;
 
 	@Override
-	public List<Image> findAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image findById(long id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(Image image) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Image image) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void saveAll(List<Image> images) throws DaoException {
 		for (Image image : images) {
 			entityManager.persist(image);

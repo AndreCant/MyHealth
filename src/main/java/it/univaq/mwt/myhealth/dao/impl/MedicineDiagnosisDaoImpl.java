@@ -18,36 +18,6 @@ public class MedicineDiagnosisDaoImpl implements MedicineDiagnosisDao{
 	private EntityManager entityManager;
 
 	@Override
-	public List<MedicineDiagnosis> findAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public MedicineDiagnosis findById(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(MedicineDiagnosis medicineDiagnosis) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(MedicineDiagnosis medicineDiagnosis) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void saveAll(List<MedicineDiagnosis> medicineDiagnosis) throws DaoException {
 		for (MedicineDiagnosis currMedicineDiagnosis : medicineDiagnosis) {
 			entityManager.persist(currMedicineDiagnosis);

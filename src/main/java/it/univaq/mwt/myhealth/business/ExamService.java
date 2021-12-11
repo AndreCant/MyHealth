@@ -31,5 +31,4 @@ public interface ExamService {
 	
 	void saveImages(List<Image> images) throws BusinessException;
 	
-	void updateImage(Image image) throws BusinessException;
 }

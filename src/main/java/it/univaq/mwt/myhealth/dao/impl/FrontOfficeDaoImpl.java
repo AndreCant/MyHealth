@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.FrontOfficeDao;
-import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
 
 @Repository
@@ -18,9 +17,10 @@ public class FrontOfficeDaoImpl implements FrontOfficeDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<FrontOffice> findAll(){
-		return entityManager.createQuery("FROM FrontOffice").getResultList();
+		return (List<FrontOffice>)entityManager.createQuery("FROM FrontOffice").getResultList();
 	}
 
 	@Override

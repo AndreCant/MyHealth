@@ -1,7 +1,6 @@
 package it.univaq.mwt.myhealth.business.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +33,6 @@ public class VisitServiceImpl implements VisitService{
 	
 	@Autowired
 	private MedicineDiagnosisDao medicineDiagnosisDao;
-
-	@Override
-	public List<Visit> findAllUsers() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void saveVisit(Visit visit) throws BusinessException {

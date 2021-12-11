@@ -1,7 +1,6 @@
 package it.univaq.mwt.myhealth.dao;
 
 import java.util.List;
-import java.util.Set;
 
 import it.univaq.mwt.myhealth.domain.Visit;
 

@@ -9,10 +9,6 @@ public interface DiagnosisDao {
 	public List<Diagnosis> findAll() throws DaoException;
 	
 	public Diagnosis findById(Long uid) throws DaoException;
-   
-	public void save(Diagnosis diagnosis) throws DaoException;
- 
-	public void update(Diagnosis diagnosis) throws DaoException;
   
 	public void delete(Long uid) throws DaoException;
 	

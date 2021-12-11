@@ -22,26 +22,8 @@ public class InvoiceDaoImpl implements InvoiceDao{
 	}
 
 	@Override
-	public Invoice findById(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void save(Invoice invoice) throws DaoException {
 		invoiceRepository.save(invoice);
-	}
-
-	@Override
-	public void update(Invoice invoice) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

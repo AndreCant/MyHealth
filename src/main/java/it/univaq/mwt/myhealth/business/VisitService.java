@@ -1,7 +1,6 @@
 package it.univaq.mwt.myhealth.business;
 
 import java.util.List;
-import java.util.Set;
 
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Medicine;
@@ -9,8 +8,6 @@ import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
 import it.univaq.mwt.myhealth.domain.Visit;
 
 public interface VisitService {
-	
-	List<Visit> findAllUsers() throws BusinessException;
 	
 	List<Visit> findAll() throws BusinessException;
 	

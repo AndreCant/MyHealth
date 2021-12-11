@@ -1,11 +1,9 @@
 package it.univaq.mwt.myhealth.dao.impl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +17,7 @@ public class UserDaoImpl implements UserDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
 		return (List<User>) entityManager.createQuery("FROM User").getResultList();
