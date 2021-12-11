@@ -85,12 +85,12 @@
                 <div class="col-lg-4">
 					<div class="margin-bottom-30px">
                         <div class="px-3 background-white border-radius-10">
-                            <h4 ><i class="fas fa-comment-alt margin-right-10px text-main-color"></i>[[#{exam.reviews}]] <span th:text="${'(' + reviews.size() + ')'}"></span></h4>
+                            <h4 ><i class="fas fa-comment-alt margin-right-10px text-main-color"></i>[[#{exam.reviews}]] <span th:text="${'(' + exam.reviews.size() + ')'}"></span></h4>
                             
                             <hr>
 
                             <ul class="padding-0px margin-0px list-unstyled text-grey-3">
-                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px" th:each="singleReview : ${reviews}">
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px" th:each="singleReview : ${exam.reviews}">
                                     <!--<img src="assets/img/testimonial-1.png" class="float-left margin-right-20px border-radius-60 margin-bottom-20px" alt="">-->
                                     
                                 	<a href="#" class="text-main-color mb-1" th:text="${singleReview.patient.username}"></a>
