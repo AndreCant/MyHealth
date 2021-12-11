@@ -3,12 +3,9 @@ package it.univaq.mwt.myhealth.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +24,8 @@ public class Medicine extends AbstractEntity implements Serializable{
 	private String description;
 	private Double weight;
 	
-	@OneToMany(mappedBy = "medicine", cascade = CascadeType.ALL)
-    @JsonManagedReference
-	private List<MedicineDiagnosis> medicineDiagnosis;
+	@ManyToMany(mappedBy = "medicines")
+	private List<Diagnosis> diagnosis;
 	
 	public Medicine() {}
 }

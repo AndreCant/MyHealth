@@ -24,7 +24,6 @@ import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Medicine;
-import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
 import it.univaq.mwt.myhealth.domain.Paycheck;
 import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
@@ -56,7 +55,6 @@ public class DataInitializer {
 	private List<Paycheck> paychecks;
 	private List<Diagnosis> diagnosis;
 	private List<Medicine> medicines;
-	private List<MedicineDiagnosis> medicineDiagnosis;
 	private List<FrontOffice> frontOffices;
 	private List<AnnualBudget> annualBudgets;
 	private List<Expense> expenses;
@@ -70,14 +68,13 @@ public class DataInitializer {
 			this.initUsers();
 			this.initExams();
 			this.initPayments();
+			this.initMedicines();
 			this.initDiagnosis();
 			this.initReviews();
 			this.initVisits();
 			this.initReservations();
 			this.initInvoices();
 			this.initPaychecks();
-			this.initMedicines();
-			this.initMedicineDiagnosis();
 			this.initFrontOffices();
 			this.initAnnualBudgets();
 			this.initExpenses();
@@ -171,8 +168,8 @@ public class DataInitializer {
 	public void initDiagnosis() {
 		try {
 			this.diagnosis = List.of(
-				ObjectFactory.createDiagnosis("AA-00", "Diagnosis Visit 1", "This is diagnosis 1 description!"),
-				ObjectFactory.createDiagnosis("AK-47", "Diagnosis Visit 2", "This is diagnosis 2 description!")
+				ObjectFactory.createDiagnosis("AA-00", "Diagnosis Visit 1", "This is diagnosis 1 description!", this.medicines),
+				ObjectFactory.createDiagnosis("AK-47", "Diagnosis Visit 2", "This is diagnosis 2 description!", this.medicines)
 			);
 			
 			visitService.saveDiagnosis(this.diagnosis);
@@ -254,20 +251,6 @@ public class DataInitializer {
 			);
 			
 			visitService.saveMedicines(this.medicines);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void initMedicineDiagnosis() {
-		try {
-			this.medicineDiagnosis = List.of(
-				ObjectFactory.createMedicineDiagnosis(this.medicines.get(0), this.diagnosis.get(0)),
-				ObjectFactory.createMedicineDiagnosis(this.medicines.get(1), this.diagnosis.get(1)),
-				ObjectFactory.createMedicineDiagnosis(this.medicines.get(3), this.diagnosis.get(1))
-			);
-			
-			visitService.saveMedicineDiagnosis(this.medicineDiagnosis);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

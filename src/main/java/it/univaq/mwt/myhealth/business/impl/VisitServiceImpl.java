@@ -11,11 +11,9 @@ import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.DiagnosisDao;
 import it.univaq.mwt.myhealth.dao.MedicineDao;
-import it.univaq.mwt.myhealth.dao.MedicineDiagnosisDao;
 import it.univaq.mwt.myhealth.dao.VisitDao;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Medicine;
-import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
 import it.univaq.mwt.myhealth.domain.Visit;
 
 @Service
@@ -30,9 +28,6 @@ public class VisitServiceImpl implements VisitService{
 	
 	@Autowired
 	private MedicineDao medicineDao;
-	
-	@Autowired
-	private MedicineDiagnosisDao medicineDiagnosisDao;
 
 	@Override
 	public void saveVisit(Visit visit) throws BusinessException {
@@ -102,17 +97,6 @@ public class VisitServiceImpl implements VisitService{
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
-	}
-
-	@Override
-	public void saveMedicineDiagnosis(List<MedicineDiagnosis> medicineDiagnosis) throws BusinessException {
-		try {
-			medicineDiagnosisDao.saveAll(medicineDiagnosis);
-		} catch (DaoException e) {
-			e.printStackTrace();
-			throw new BusinessException(e.getMessage());
-		}
-		
 	}
 
 	@Override

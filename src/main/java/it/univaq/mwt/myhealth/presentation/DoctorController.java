@@ -27,11 +27,9 @@ import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Medicine;
-import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.domain.Visit;
-import it.univaq.mwt.myhealth.util.ObjectFactory;
 import it.univaq.mwt.myhealth.util.Utility;
 
 @Controller
@@ -90,15 +88,15 @@ public class DoctorController {
 	@PostMapping(value="/diagnosis/create")
 	public String updateMedicinePost (@Valid @RequestParam("visitId") Long visitId, @ModelAttribute("diagnosis") Diagnosis diagnosis, @ModelAttribute("medicine") Long medicineId, Errors errors) throws BusinessException{
 		Visit visit = visitService.findById(visitId);
-		visit.setDiagnosis(diagnosis);
-		visitService.saveDiagnosis(List.of(diagnosis));
-		visitService.updateVisit(visit);
 		
 		if (medicineId != 0) {
 			Medicine medicine = administrationService.findMedicineById(medicineId);
-			MedicineDiagnosis relation = ObjectFactory.createMedicineDiagnosis(medicine, diagnosis);
-			visitService.saveMedicineDiagnosis(List.of(relation));
+			diagnosis.setMedicines(List.of(medicine));
 		}
+		
+		visit.setDiagnosis(diagnosis);
+		visitService.saveDiagnosis(List.of(diagnosis));
+		visitService.updateVisit(visit);
 		
 		return "redirect:/doctor/visits";
 	}

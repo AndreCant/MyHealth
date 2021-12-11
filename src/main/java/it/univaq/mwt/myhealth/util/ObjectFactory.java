@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.domain.AnnualBudget;
@@ -14,7 +15,6 @@ import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Medicine;
-import it.univaq.mwt.myhealth.domain.MedicineDiagnosis;
 import it.univaq.mwt.myhealth.domain.Paycheck;
 import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
@@ -154,11 +154,12 @@ public class ObjectFactory {
 		return paycheck;
 	}
 	
-	public static Diagnosis createDiagnosis(String code, String title, String description) {
+	public static Diagnosis createDiagnosis(String code, String title, String description, List<Medicine> medicines) {
 		Diagnosis diagnosis = new Diagnosis();
 		diagnosis.setCode(code);
 		diagnosis.setTitle(title);
 		diagnosis.setDescription(description);
+		diagnosis.setMedicines(medicines);
 		return diagnosis;
 	}
 	
@@ -170,13 +171,6 @@ public class ObjectFactory {
 		medicine.setDescription(description);
 		medicine.setWeight(weight);
 		return medicine;
-	}
-	
-	public static MedicineDiagnosis createMedicineDiagnosis(Medicine medicine, Diagnosis diagnosis) {
-		MedicineDiagnosis medicineDiagnosis = new MedicineDiagnosis();
-		medicineDiagnosis.setMedicine(medicine);
-		medicineDiagnosis.setDiagnosis(diagnosis);
-		return medicineDiagnosis;
 	}
 	
 	public static FrontOffice createFrontOffice(String name, int number) {

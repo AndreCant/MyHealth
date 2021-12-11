@@ -5,11 +5,9 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +27,6 @@ public class Diagnosis extends AbstractEntity implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "review")
     private Visit visit;
 	
-	@OneToMany(mappedBy = "diagnosis", cascade = CascadeType.ALL)
-    @JsonManagedReference
-	private List<MedicineDiagnosis> medicineDiagnosis;
+	@ManyToMany
+	private List<Medicine> medicines;
 }
