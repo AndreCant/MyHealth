@@ -86,7 +86,6 @@ public class AdminController {
 	public String updateUser (@RequestParam("id") Long id, Model model) throws BusinessException{
 		User user = userService.findUserById(id);
 		model.addAttribute("user", user);
-		model.addAttribute("roleName", user.getRole().getName());
 		return "private/admin/userForm";
 	}
 	
