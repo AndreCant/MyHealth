@@ -1,8 +1,6 @@
 package it.univaq.mwt.myhealth.domain;
 
 import java.io.Serializable;
-import java.time.Month;
-import java.time.Year;
 
 import javax.persistence.Id;
 import javax.persistence.Version;

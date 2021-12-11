@@ -16,6 +16,7 @@ public class ReservationDaoImpl implements ReservationDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Reservation> findAll() {
 	   return (List<Reservation>) entityManager.createQuery("FROM Reservation").getResultList();

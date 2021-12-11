@@ -1,7 +1,6 @@
 package it.univaq.mwt.myhealth.dao.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,10 +8,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.DaoException;
-import it.univaq.mwt.myhealth.dao.VisitDao;
-import it.univaq.mwt.myhealth.domain.Exam;
-import it.univaq.mwt.myhealth.domain.Reservation;
-import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.dao.VisitDao;
 import it.univaq.mwt.myhealth.domain.Visit;
 
@@ -22,6 +17,7 @@ public class VisitDaoImpl implements VisitDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Visit> findAll() throws DaoException {
 		return (List<Visit>) entityManager.createQuery("FROM Visit").getResultList();
@@ -44,7 +40,7 @@ public class VisitDaoImpl implements VisitDao{
 	
 	@Override
 	public void delete(Long uid) throws DaoException {
-		
+		entityManager.remove(this.findById(uid));
 	}
 		
 	public void saveAll(List<Visit> visits) throws DaoException {

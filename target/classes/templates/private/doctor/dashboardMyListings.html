@@ -18,7 +18,7 @@
                 
                     <div class="row background-white thum-hover box-shadow hvr-float full-width mb-4" th:each="visit : ${visits}" th:attr="style=${visit.isCompleted ? 'border:3px solid #5cbd95' : 'border:3px solid #0864b2'}">
                         <div class="padding-lr-25px py-3 row" style="text-align: left;">
-                        	<div class="col-lg-6">
+                        	<div class="col-lg-6" th:if="${visit.reservation != null}">
                                 <span class="text-grey-2">
 	                            	<i class="far fa-calendar"></i> 
 	                                &nbsp; <strong>[[${#temporals.format(visit.startHour, 'dd-MM-yyyy')}]]</strong>

@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.MedicineDao;
-import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.Medicine;
-import it.univaq.mwt.myhealth.domain.User;
 
 @Repository
 public class MedicineDaoImpl implements MedicineDao{
@@ -19,6 +17,7 @@ public class MedicineDaoImpl implements MedicineDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Medicine> findAll() throws DaoException {
 		return (List<Medicine>) entityManager.createQuery("FROM Medicine").getResultList();

@@ -22,26 +22,8 @@ public class PaycheckDaoImpl implements PaycheckDao{
 	}
 
 	@Override
-	public Paycheck findById(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void save(Paycheck paycheck) throws DaoException {
 		paycheckRepository.save(paycheck);
-	}
-
-	@Override
-	public void update(Paycheck paycheck) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Long uid) throws DaoException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

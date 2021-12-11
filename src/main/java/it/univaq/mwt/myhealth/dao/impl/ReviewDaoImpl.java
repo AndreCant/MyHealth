@@ -1,8 +1,8 @@
 package it.univaq.mwt.myhealth.dao.impl;
 
 import java.util.List;
-
 import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import it.univaq.mwt.myhealth.dao.DaoException;
 import it.univaq.mwt.myhealth.dao.ReviewDao;
 import it.univaq.mwt.myhealth.domain.Review;
-import it.univaq.mwt.myhealth.domain.User;
 
 @Repository
 public class ReviewDaoImpl implements ReviewDao{
@@ -19,6 +18,7 @@ public class ReviewDaoImpl implements ReviewDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Review> findAll() {
 		return (List<Review>) entityManager.createQuery("FROM Review WHERE isRemoved = false").getResultList();
@@ -44,6 +44,8 @@ public class ReviewDaoImpl implements ReviewDao{
 		entityManager.remove(this.findById(uid));		
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<Review> findReviewsByExamIds(Set<Long> examIds) throws DaoException {
 		return (List<Review>) entityManager
 				.createQuery("FROM Review rev WHERE rev.visit.reservation.exam.id IN (:examIds) AND isRemoved = false")
@@ -57,6 +59,7 @@ public class ReviewDaoImpl implements ReviewDao{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Review> findReviewsByDoctor(Long doctorId) throws DaoException {
 		return (List<Review>) entityManager
@@ -64,6 +67,7 @@ public class ReviewDaoImpl implements ReviewDao{
 				.setParameter("doctorId", doctorId).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Review> findReviewsByExam(Long examId) throws DaoException {
 		return (List<Review>) entityManager

@@ -1,11 +1,8 @@
 package it.univaq.mwt.myhealth.presentation;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import antlr.collections.List;
 import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
@@ -56,8 +51,6 @@ public class ExamController {
 	
 	@Autowired
 	private VisitService visitService;
-
-
 	
 	@GetMapping(value="/{name}")
 	public String exam (Model model,@PathVariable("name") String name) throws BusinessException, DaoException {

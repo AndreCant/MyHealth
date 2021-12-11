@@ -1,6 +1,5 @@
 package it.univaq.mwt.myhealth.domain;
 
-import java.awt.TextArea;
 import java.io.Serializable;
 import java.util.List;
 

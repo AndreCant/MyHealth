@@ -3,10 +3,7 @@ package it.univaq.mwt.myhealth.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import org.springframework.data.mongodb.core.mapping.Document;

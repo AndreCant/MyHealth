@@ -5,7 +5,6 @@ import java.util.List;
 import it.univaq.mwt.myhealth.domain.Payment;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
-import it.univaq.mwt.myhealth.domain.Visit;
 
 public interface ReservationService {
 	

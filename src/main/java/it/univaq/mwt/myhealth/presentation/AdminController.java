@@ -7,19 +7,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
-import org.hibernate.Cache;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,7 +33,6 @@ import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Exam;
 import it.univaq.mwt.myhealth.domain.FrontOffice;
 import it.univaq.mwt.myhealth.domain.Image;
-import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Medicine;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
@@ -216,10 +208,6 @@ public class AdminController {
 
 		if (currentExam.getImages() == null || currentExam.getImages().isEmpty()) {
 	    	examService.saveImages(List.of(ObjectFactory.createImage(null, imgUrl, currentExam)));
-		}else {
-			Image image = currentExam.getImages().get(0);
-			image.setUrl(imgUrl);
-			examService.updateImage(image);
 		}
 		return "redirect:/admin/exams";
 	}

@@ -16,6 +16,7 @@ public class ExamDaoImpl implements ExamDao{
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Exam> findAll() throws DaoException {
 		return (List<Exam>) entityManager.createQuery("FROM Exam").getResultList();

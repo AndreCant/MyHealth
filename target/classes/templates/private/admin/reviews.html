@@ -36,7 +36,7 @@
 											<tbody>
 												<tr th:each="review : ${reviews}">
 													<td th:text="${review.patient.fullName}"></td>
-													<td th:text="${review.visit.reservation.exam.name}"></td>
+													<td th:text="${review.visit != null ? review.visit.reservation.exam.name : ''}"></td>
 													<td th:text="${review.title}"></td>
 													<td th:text="${review.body}"></td>
 													<td th:text="${review.vote}"></td>

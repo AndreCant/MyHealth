@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.configuration;
 
 import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;

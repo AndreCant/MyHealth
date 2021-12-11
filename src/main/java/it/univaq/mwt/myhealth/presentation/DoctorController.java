@@ -1,9 +1,7 @@
 package it.univaq.mwt.myhealth.presentation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,9 +9,7 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,9 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.DocumentService;
-import it.univaq.mwt.myhealth.business.UserService;
-import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.ReviewService;
+import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
 import it.univaq.mwt.myhealth.domain.Diagnosis;
 import it.univaq.mwt.myhealth.domain.Medicine;
@@ -71,7 +66,6 @@ public class DoctorController {
 	@GetMapping(value="/visits")
 	public String listReservation (Model model) throws BusinessException{
 		User user = userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		List<Visit> visit = visitService.findByDoctor(user.getId());
      	model.addAttribute("visits", visitService.findByDoctor(user.getId()));		 
 		return "private/doctor/dashboardMyListings"; 		
 	}
