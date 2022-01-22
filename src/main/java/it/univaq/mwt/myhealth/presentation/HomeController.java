@@ -18,7 +18,7 @@ public class HomeController {
 	
 	@GetMapping("")
 	public String home(Model model) throws BusinessException {		
-		model.addAttribute("doctors", userService.findUserByRole(1));
+		model.addAttribute("doctors", userService.findUserByRole(userService.findRoleByName("doctor").getId()));
 		return "common/home";
 	}
 	

@@ -324,7 +324,7 @@ public class DataInitializer {
 				ObjectFactory.createImage("Scoliosi", "https://www.gruppocdc.it/media/k2/items/cache/0e09527b0f5edaa60cf5702119e6a0a2_L.webp", this.exams.get(1)),
 				ObjectFactory.createImage("Spalla", "https://spallaclinic.it/wp-content/uploads/2020/02/ort_6.jpg", this.exams.get(2)),
 				ObjectFactory.createImage("Cuore", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(3)),
-				ObjectFactory.createImage("Riab 1", "https://lh3.googleusercontent.com/proxy/k1KXic8YeJj_MKPXlodtNWTOApZO1WN9ZM6Ag4YST7HOGuv2lpvaN0gs5n3aELDu6brpjF2XdCfiJznjC4qf5SU_CcrWCGpPsl-Rr6NygB55DLoWPft9EyHRBn4CS2m-JkjnS2pwLwNks4ZHyhLTUMUwkP7nYA", this.exams.get(4)),
+				ObjectFactory.createImage("Riab 1", "https://www.gruppoini.it/main/wp-content/uploads/2019/05/rieducazione-motoria-roma.jpg", this.exams.get(4)),
 				ObjectFactory.createImage("Riab 4", "https://1.bp.blogspot.com/-ElbdY7NTrLk/YGnU-GF2ykI/AAAAAAAACvg/dvielzu2rigYeClxZ32sQkPgvIAYj-UfgCLcBGAsYHQ/s360/riabilitazione%2Banziani.jpg", this.exams.get(5))
 			);
 			

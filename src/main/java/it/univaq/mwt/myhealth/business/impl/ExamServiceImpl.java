@@ -30,7 +30,6 @@ public class ExamServiceImpl implements ExamService{
 	@Autowired
 	private ImageDao imageDao;
 	
-	@Transactional(readOnly = true)
 	@Override
 	public List<Exam> findAllExams() throws BusinessException{
 		try {

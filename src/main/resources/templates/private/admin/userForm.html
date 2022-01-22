@@ -123,15 +123,15 @@
 											<div class="form-group row mb-3">
 												<label class="col-sm-2 col-form-label">[[#{userForm.role}]]</label>
 												<div class="col-sm-4">
-													<select class="selectpicker form-control" name="user.role.name" id="selectRole">
-														<option th:value="admin" th:attr="selected=${user.role.name == 'admin'}">[[#{role.admin}]]</option>
-														<option th:value="doctor" th:attr="selected=${user.role.name == 'doctor'}">[[#{role.doctor}]]</option>
-														<option th:if="${#request.getRequestURI().endsWith('update')}" th:value="patient" th:attr="selected=${user.role.name == 'patient'}">[[#{role.patient}]]</option>
+													<select class="selectpicker form-control" name="roleName" id="selectRole">
+														<option th:value="admin" th:attr="selected=${roleName == 'admin'}">[[#{role.admin}]]</option>
+														<option th:value="doctor" th:attr="selected=${roleName == 'doctor'}">[[#{role.doctor}]]</option>
+														<option th:if="${#request.getRequestURI().endsWith('update')}" th:value="patient" th:attr="selected=${roleName == 'patient'}">[[#{role.patient}]]</option>
 													</select>
 												</div>
 												
-												<label class="col-sm-2 col-form-label specialization" hidden="${user.role.name != 'doctor'}">[[#{userForm.specialization}]]</label>
-												<div class="col-sm-4 specialization" hidden="${user.role.name != 'doctor'}">
+												<label class="col-sm-2 col-form-label specialization" hidden="${roleName!='doctor'}">[[#{userForm.specialization}]]</label>
+												<div class="col-sm-4 specialization" hidden="${roleName!='doctor'}">
 													<input type="text" th:field="*{specialization}" class="form-control" id="specialization"/>
 												</div>
 											</div>

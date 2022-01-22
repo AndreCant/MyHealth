@@ -6,8 +6,19 @@
 
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>it.univaq.mwt.myhealth.domain.AnnualBudget</class>
+        <class>it.univaq.mwt.myhealth.domain.Diagnosis</class>
+        <class>it.univaq.mwt.myhealth.domain.Exam</class>
+        <class>it.univaq.mwt.myhealth.domain.Expense</class>
+        <class>it.univaq.mwt.myhealth.domain.FrontOffice</class>
+        <class>it.univaq.mwt.myhealth.domain.Image</class>
+        <class>it.univaq.mwt.myhealth.domain.Medicine</class>
+        <class>it.univaq.mwt.myhealth.domain.Payment</class>
+        <class>it.univaq.mwt.myhealth.domain.Reservation</class>
+        <class>it.univaq.mwt.myhealth.domain.Review</class>
+        <class>it.univaq.mwt.myhealth.domain.Role</class>
         <class>it.univaq.mwt.myhealth.domain.User</class>
-        <class>it.univaq.mwt.myhealth.domain.Invoice</class>
+        <class>it.univaq.mwt.myhealth.domain.Visit</class>
     </persistence-unit>
 
 </persistence>

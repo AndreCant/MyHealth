@@ -1,10 +1,5 @@
 package it.univaq.mwt.myhealth.presentation;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -21,22 +16,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
-import it.univaq.mwt.myhealth.business.ExamService;
 import it.univaq.mwt.myhealth.business.ReservationService;
 import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.business.VisitService;
-import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Reservation;
 import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.domain.Visit;
-import it.univaq.mwt.myhealth.util.ObjectFactory;
 
 @Controller
 @RequestMapping("patient")
@@ -53,9 +42,6 @@ public class PatientController {
 
 	@Autowired
 	private VisitService visitService;
-
-	@Autowired
-	private ExamService examService;
 
 	@GetMapping(value = "/profile")
 	public String admin(Model model) throws BusinessException {
@@ -125,39 +111,4 @@ public class PatientController {
 		}
 		return "redirect:/patient/visits";
 	}
-
-	@PostMapping("/uploadImage")
-	public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId,
-			RedirectAttributes attributes) throws BusinessException {
-		if (file.isEmpty()) {
-			return "redirect:/";
-		}
-
-		String fileName = file.getOriginalFilename();
-		int indexExtension = fileName.lastIndexOf('.');
-
-		if (indexExtension > 0) {
-			User user = userService.findUserById(Long.valueOf(userId));
-			String fileExtension = fileName.substring(indexExtension + 1);
-			String newFileName = user.getUsername() + "." + fileExtension;
-
-			try {
-				Path totalPath = Paths.get("src", "main", "resources", "static", "uploads", "users", newFileName);
-				Path partialPath = Paths.get("uploads", "users", newFileName);
-				Files.deleteIfExists(totalPath);
-				Files.copy(file.getInputStream(), totalPath, StandardCopyOption.REPLACE_EXISTING);
-
-				Image image = ObjectFactory.createImage(newFileName, "\\" + partialPath.toString(), null);
-				examService.saveImages(List.of(image));
-				user.setImage(image);
-				userService.updateUser(user);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return "redirect:/patient/profile";
-	}
-
 }

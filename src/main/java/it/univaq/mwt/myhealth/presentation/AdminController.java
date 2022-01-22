@@ -1,10 +1,5 @@
 package it.univaq.mwt.myhealth.presentation;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,8 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.mwt.myhealth.business.AdministrationService;
 import it.univaq.mwt.myhealth.business.BusinessException;
@@ -86,6 +79,7 @@ public class AdminController {
 	public String updateUser (@RequestParam("id") Long id, Model model) throws BusinessException{
 		User user = userService.findUserById(id);
 		model.addAttribute("user", user);
+		model.addAttribute("roleName", user.getRole().getName());
 		return "private/admin/userForm";
 	}
 	
@@ -119,39 +113,6 @@ public class AdminController {
 		return "redirect:/admin/users";
 	}
 	
-	@PostMapping("/uploadImage")
-    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId, RedirectAttributes attributes) throws BusinessException{
-        if (file.isEmpty()) {
-            return "redirect:/";
-        }
-        
-        String fileName = file.getOriginalFilename();
-        int indexExtension = fileName.lastIndexOf('.');
-        
-        if (indexExtension > 0) {
-        	User user = userService.findUserById(Long.valueOf(userId));
-            String fileExtension = fileName.substring(indexExtension + 1);
-            String newFileName = user.getUsername() + "." + fileExtension;
-            
-            try {
-            	Path totalPath = Paths.get("src", "main", "resources", "static", "uploads", "users", newFileName);
-            	Path partialPath = Paths.get("uploads", "users", newFileName);
-            	Files.deleteIfExists(totalPath);
-            	Files.copy(file.getInputStream(), totalPath, StandardCopyOption.REPLACE_EXISTING);
-            	
-            	Image image = ObjectFactory.createImage(newFileName, "\\" + partialPath.toString(), null);
-            	examService.saveImages(List.of(image));
-            	user.setImage(image);
-            	userService.updateUser(user);
-            	
-            } catch (IOException e) {
-            	e.printStackTrace();
-            }
-        }
-
-        return "redirect:/admin/user/update?id=" + userId;
-    }
-	
 	@GetMapping(value="/exams")
 	public String exams (Model model) throws BusinessException{	
 		model.addAttribute("exams", examService.findAllExams());
@@ -173,7 +134,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/exam/create")
-	public String createExamPost (@Valid @ModelAttribute("exam") Exam exam, @ModelAttribute("typeName") String typeName, @ModelAttribute("imgUrl") String imgUrl, Errors errors) throws BusinessException{
+	public String createExamPost (@ModelAttribute("exam") Exam exam, @ModelAttribute("typeName") String typeName, @ModelAttribute("imgUrl") String imgUrl) throws BusinessException{
 		exam.setType(Utility.getExamType(typeName));
 		examService.save(exam);
 		Image image = ObjectFactory.createImage(null, imgUrl, exam);
@@ -193,7 +154,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/exam/update")
-	public String updateExamPost (@Valid @ModelAttribute("exam") Exam exam, @ModelAttribute("typeName") String typeName, @ModelAttribute("imgUrl") String imgUrl, Errors errors) throws BusinessException{
+	public String updateExamPost (@ModelAttribute("exam") Exam exam, @ModelAttribute("typeName") String typeName, @ModelAttribute("imgUrl") String imgUrl) throws BusinessException{
 		Exam currentExam = examService.findById(exam.getId());
 		currentExam.setCode(exam.getCode());
 		currentExam.setName(exam.getName());
@@ -288,7 +249,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/medicine/update")
-	public String updateMedicinePost (@Valid @ModelAttribute("medicine") Medicine medicine, Errors errors) throws BusinessException{
+	public String updateMedicinePost (@ModelAttribute("medicine") Medicine medicine) throws BusinessException{
 		Medicine currMedicine = administrationService.findMedicineById(medicine.getId());
 		currMedicine.setCode(medicine.getCode());
 		currMedicine.setName(medicine.getName());
@@ -307,7 +268,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/medicine/create")
-	public String createMedicinePost (@Valid @ModelAttribute("medicine") Medicine medicine, Errors errors) throws BusinessException{
+	public String createMedicinePost (@ModelAttribute("medicine") Medicine medicine) throws BusinessException{
 		administrationService.saveMedicine(medicine);
 		return "redirect:/admin/medicines";
 	}
@@ -332,7 +293,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/frontOffice/update")
-	public String updateFrontOfficePost (@Valid @ModelAttribute("frontOffice") FrontOffice frontOffice, Errors errors) throws BusinessException{
+	public String updateFrontOfficePost (@ModelAttribute("frontOffice") FrontOffice frontOffice) throws BusinessException{
 		FrontOffice currFrontOffice = administrationService.findFrontOfficeById(frontOffice.getId());
 		currFrontOffice.setNumber(frontOffice.getNumber());
 		currFrontOffice.setName(frontOffice.getName());
@@ -348,7 +309,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/frontOffice/create")
-	public String createFrontOfficePost (@Valid @ModelAttribute("frontOffice") FrontOffice frontOffice, Errors errors) throws BusinessException{
+	public String createFrontOfficePost (@ModelAttribute("frontOffice") FrontOffice frontOffice) throws BusinessException{
 		administrationService.saveFrontOffices(List.of(frontOffice));
 		return "redirect:/admin/frontOffices";
 	}

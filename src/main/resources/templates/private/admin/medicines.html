@@ -34,7 +34,7 @@
 													<th>[[#{medicines.weight}]]</th>
 													<th>[[#{medicines.description}]]</th>
 													<th></th>
-													<th></th>
+													<!--<th></th>-->
 												</tr>
 											</thead>
 											<tbody>
@@ -44,7 +44,7 @@
 													<td th:text="${medicine.activeIngredient}"></td>
 													<td th:text="${medicine.weight}"></td>
 													<td th:text="${medicine.description}"></td>
-													<td class="text-center"><a th:href="@{/admin/medicine/delete(id=${medicine.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>
+													<!--<td class="text-center"><a th:href="@{/admin/medicine/delete(id=${medicine.id})}" th:attr="title=#{users.delete}"><i class='fa fa-trash'></i></a></td>-->
 													<td class="text-center"><a th:href="@{/admin/medicine/update(id=${medicine.id})}" th:attr="title=#{users.edit}"><i class='fa fa-edit'></i></a></td>
 												</tr>
 										</table>

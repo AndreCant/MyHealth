@@ -52,8 +52,7 @@ public class WebAppContext {
 
     @Bean
     @Autowired
-    public PlatformTransactionManager 
-        transactionManager(EntityManagerFactory emFactory) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emFactory) {
 
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(emFactory);

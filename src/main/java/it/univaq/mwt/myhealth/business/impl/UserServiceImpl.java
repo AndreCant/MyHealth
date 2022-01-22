@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private RoleDao roleDao;
 	
-	@Transactional(readOnly = true)
 	@Override
 	public List<User> findAllUsers() throws BusinessException {
 		try {
@@ -35,7 +34,6 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
-	@Transactional(readOnly = true)
 	@Override
 	public User findByName(String name) throws BusinessException {
 		try {
@@ -46,7 +44,6 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
-	@Transactional(readOnly = true)
 	@Override
 	public User findUserByUsername(String username) throws BusinessException {
 		try {
@@ -96,7 +93,6 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
-	@Transactional(readOnly = true)
 	@Override
 	public Role findRoleByName(String name) throws BusinessException {
 		try {
@@ -192,6 +188,4 @@ public class UserServiceImpl implements UserService{
 		return user != null;
 	}
 
-	
-	
 }

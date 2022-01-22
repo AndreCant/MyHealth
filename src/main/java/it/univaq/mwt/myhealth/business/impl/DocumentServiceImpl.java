@@ -2,6 +2,8 @@ package it.univaq.mwt.myhealth.business.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import it.univaq.mwt.myhealth.domain.Invoice;
 import it.univaq.mwt.myhealth.domain.Paycheck;
 
 @Service
+@Transactional
 public class DocumentServiceImpl implements DocumentService{
 	
 	@Autowired

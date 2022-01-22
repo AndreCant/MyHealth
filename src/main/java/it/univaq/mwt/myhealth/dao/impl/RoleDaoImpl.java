@@ -24,9 +24,9 @@ public class RoleDaoImpl implements RoleDao{
 
 	@Override
 	public Role findByName(String name) throws DaoException {
-		return (Role) entityManager.createQuery("FROM Role where name = :name", Role.class)
-        .setParameter("name", name)
-        .getResultList().get(0);
+		List<Role> roles = (List<Role>) entityManager.createQuery("FROM Role where name = :name", Role.class).setParameter("name", name).getResultList();
+		if(!roles.isEmpty()) return roles.get(0);
+		return null;
 	}
 
 	@Override

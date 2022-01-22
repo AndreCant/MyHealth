@@ -35,7 +35,7 @@
 											</thead>
 											<tbody>
 												<tr th:each="payment : ${payments}">
-													<td th:text="${payment.visit.reservation.patient.fullName}"></td>
+													<td th:text="${payment.visit != null && payment.visit.reservation != null ? payment.visit.reservation.patient.fullName : ''}"></td>
 													<td th:text="${payment.price + ' €'}"></td>
 													<td th:text="${payment.tax + ' %'}"></td>
 													<td th:text="${payment.discount + ' %'}"></td>

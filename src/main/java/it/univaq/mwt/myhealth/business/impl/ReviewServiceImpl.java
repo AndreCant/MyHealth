@@ -31,7 +31,6 @@ public class ReviewServiceImpl implements ReviewService{
 		 
 	} 
 
-	@Transactional
 	@Override
 	public void save(Review review) throws BusinessException {
 		try {
