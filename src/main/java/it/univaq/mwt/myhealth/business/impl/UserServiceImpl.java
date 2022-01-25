@@ -1,6 +1,7 @@
 package it.univaq.mwt.myhealth.business.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.dao.DaoException;
+import it.univaq.mwt.myhealth.dao.ImageDao;
 import it.univaq.mwt.myhealth.dao.RoleDao;
 import it.univaq.mwt.myhealth.dao.UserDao;
+import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
@@ -23,6 +26,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private RoleDao roleDao;
+	
+	@Autowired
+	private ImageDao imageDao;
 	
 	@Override
 	public List<User> findAllUsers() throws BusinessException {
@@ -186,6 +192,11 @@ public class UserServiceImpl implements UserService{
 			throw new BusinessException(e.getMessage());
 		}
 		return user != null;
+	}
+
+	@Override
+	public List<Image> findImagesByUserIds(Set<Long> ids) throws BusinessException {
+		return imageDao.findImagesByUserIds(ids);
 	}
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +31,7 @@ public class Review extends AbstractEntity implements Serializable{
 	private Visit visit;
 	
 	@ManyToOne
-    @JsonBackReference 
+    @JsonManagedReference 
 	private User patient;
 	
 	public Review() {}

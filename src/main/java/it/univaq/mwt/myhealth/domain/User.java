@@ -84,7 +84,7 @@ public class User extends AbstractEntity implements Serializable{
     private List<Reservation> reservations;
 	
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Review> reviews;
 	
 	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)

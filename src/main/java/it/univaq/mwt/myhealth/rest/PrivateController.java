@@ -1,5 +1,6 @@
 package it.univaq.mwt.myhealth.rest;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
@@ -68,6 +73,33 @@ public class PrivateController {
 			responseMap.put("message", e.getMessage());
 			return ResponseEntity.status(500).body(responseMap);
 		}
-		
 	}
+	
+	@PostMapping(value="exam/{id}")
+	public ResponseEntity<?> createReservation(@PathVariable("id") String id, @RequestParam("date") LocalDate date){
+		return null;
+	}
+	
+	@GetMapping(value="reservations")
+	public ResponseEntity<?> getReservations(){
+		return null;
+	}
+	
+	@DeleteMapping(value="reservation/{id}")
+	public ResponseEntity<?> deleteReservation(@PathVariable("id") String id){
+		return null;
+	}
+	
+	@GetMapping(value="visits")
+	public ResponseEntity<?> getVisits(){
+		return null;
+	}
+	
+	@PostMapping(value="visit/{id}/review")
+	public ResponseEntity<?> createReview(@PathVariable("id") String id){
+		return null;
+	}
+	
+	
+	
 }

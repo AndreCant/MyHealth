@@ -1,7 +1,9 @@
 package it.univaq.mwt.myhealth.business;
 
 import java.util.List;
+import java.util.Set;
 
+import it.univaq.mwt.myhealth.domain.Image;
 import it.univaq.mwt.myhealth.domain.Role;
 import it.univaq.mwt.myhealth.domain.User;
 
@@ -38,4 +40,6 @@ public interface UserService {
 	boolean existsByFiscalCode(String fiscalCode) throws BusinessException;
 	
 	boolean existsByUsername(String username) throws BusinessException;
+	
+	List<Image> findImagesByUserIds(Set<Long> ids) throws BusinessException;
 }

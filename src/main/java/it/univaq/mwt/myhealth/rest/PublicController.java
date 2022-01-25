@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.univaq.mwt.myhealth.business.BusinessException;
 import it.univaq.mwt.myhealth.business.ExamService;
+import it.univaq.mwt.myhealth.business.ReviewService;
 import it.univaq.mwt.myhealth.business.UserService;
 import it.univaq.mwt.myhealth.domain.Exam;
+import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
+import it.univaq.mwt.myhealth.rest.dto.DoctorDto;
 import it.univaq.mwt.myhealth.rest.dto.LoginDto;
 import it.univaq.mwt.myhealth.rest.dto.RegistrationDto;
 import it.univaq.mwt.myhealth.rest.jwt.JwtTokenUtil;
@@ -45,6 +50,7 @@ public class PublicController {
 	@Autowired private AuthenticationManager authenticationManager;
 	@Autowired private UserService userService;
 	@Autowired private ExamService examService;
+	@Autowired private ReviewService reviewService;
 
 	@PostMapping(value = "login")
 	public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
@@ -60,7 +66,6 @@ public class PublicController {
                 responseMap.put("token", token);
                 return ResponseEntity.ok(responseMap);
             } else {
-            	System.out.println("else");
                 responseMap.put("error", true);
                 responseMap.put("message", "Invalid Credentials");
                 return ResponseEntity.status(401).body(responseMap);
@@ -147,7 +152,7 @@ public class PublicController {
 		
 	}
 	
-	@GetMapping("exams")
+	@GetMapping(value="exams")
 	public ResponseEntity<?> getExams(@Nullable @RequestParam("type") String type){
 		Map<String, Object> responseMap = new HashMap<>();
 		
@@ -182,5 +187,96 @@ public class PublicController {
 		}
 	}
 	
-
+	@GetMapping(value="exam/{id}")
+	public ResponseEntity<?> getExam(@PathVariable("id") Long id){
+		Map<String, Object> responseMap = new HashMap<>();
+		
+		try {
+			Exam exam = examService.findById(id);
+			
+			if(exam != null) {
+				List<Review> reviews = reviewService.findReviewsByExamIds(Set.of(exam.getId()));
+				exam.setReservations(null);
+				
+				for (Review review : reviews) {
+					review.setVisit(null);
+					review.getPatient().setImage(null);
+				}
+				responseMap.put("exam", exam);
+				responseMap.put("reviews", reviews);
+				return ResponseEntity.ok(responseMap);
+			}else {
+				responseMap.put("error", true);
+				responseMap.put("message", "Not Found");
+	            return ResponseEntity.status(404).body(responseMap);
+			}
+		} catch (NumberFormatException | BusinessException e) {
+			e.printStackTrace();
+			responseMap.put("error", true);
+            responseMap.put("message", "Something went wrong");
+            return ResponseEntity.status(500).body(responseMap);
+		}
+	}
+	
+	@GetMapping(value="doctors")
+	public ResponseEntity<?> getDoctors(){
+		Map<String, Object> responseMap = new HashMap<>();
+		
+		try {
+			List<DoctorDto> doctorsDto = new ArrayList<>();
+			List<User> doctors = userService.findUserByRole(userService.findRoleByName("doctor").getId());
+			for (User user : doctors) {
+				DoctorDto dto = new DoctorDto();
+				dto.setId(user.getId());
+				dto.setName(user.getName());
+				dto.setSurname(user.getSurname());
+				dto.setSkills(user.getSkills());
+				dto.setSpecialization(user.getSpecialization());
+				dto.setUrlImage(user.getImage().getUrl());
+				dto.setGender(user.getGender());
+				dto.setAge(user.getAge());
+				doctorsDto.add(dto);
+			}
+			responseMap.put("doctors", doctorsDto);
+			return ResponseEntity.ok(responseMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+			responseMap.put("error", true);
+            responseMap.put("message", "Something went wrong");
+            return ResponseEntity.status(500).body(responseMap);
+		}
+	}
+	
+	@GetMapping(value="doctor/{id}")
+	public ResponseEntity<?> getDoctor(@PathVariable("id") Long id){
+		Map<String, Object> responseMap = new HashMap<>();
+		
+		try {
+			User doctor = userService.findUserById(id);
+			if (doctor != null && doctor.getRole().getName().equals("doctor")) {
+				DoctorDto dto = new DoctorDto();
+				dto.setId(doctor.getId());
+				dto.setName(doctor.getName());
+				dto.setSurname(doctor.getSurname());
+				dto.setSkills(doctor.getSkills());
+				dto.setSpecialization(doctor.getSpecialization());
+				dto.setUrlImage(doctor.getImage().getUrl());
+				dto.setGender(doctor.getGender());
+				dto.setAge(doctor.getAge());
+				
+				responseMap.put("doctors", dto);
+				return ResponseEntity.ok(responseMap);
+			}else {
+				responseMap.put("error", true);
+				responseMap.put("message", "Not Found");
+	            return ResponseEntity.status(404).body(responseMap);
+			}
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			responseMap.put("error", true);
+            responseMap.put("message", "Something went wrong");
+            return ResponseEntity.status(500).body(responseMap);
+		}
+	}
+	
 }
