@@ -159,4 +159,14 @@ public class VisitServiceImpl implements VisitService{
 			throw new BusinessException(e.getMessage());
 		}
 	}
+
+	@Override
+	public List<Visit> findByPatient(Long id) throws BusinessException {
+		try {
+			return visitDao.findByPatient(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

@@ -23,4 +23,6 @@ public interface VisitDao {
 	public List<Visit> findByDoctor(Long id)  throws DaoException;
 	
 	public List<Visit> findByDiagnosis(Long diagnosisId)  throws DaoException;
+	
+	public List<Visit> findByPatient(Long id) throws DaoException;
 }

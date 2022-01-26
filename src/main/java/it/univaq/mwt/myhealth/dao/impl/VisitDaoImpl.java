@@ -70,4 +70,11 @@ public class VisitDaoImpl implements VisitDao{
 		        .getResultList();
 	}
 
+	@Override
+	public List<Visit> findByPatient(Long id) throws DaoException {
+		return (List<Visit>) entityManager.createQuery("FROM Visit v WHERE v.reservation.patient.id = :id", Visit.class)
+		        .setParameter("id", id)
+		        .getResultList();
+	}
+
 }
