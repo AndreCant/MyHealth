@@ -55,7 +55,11 @@ public class PrivateController {
 		Map<String, Object> responseMap = new HashMap<>();
 		
 		try {
-			responseMap.put("user", userService.findUserByUsername(((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername()));
+			User user = userService.findUserByUsername(((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+			user.setImage(null);
+			user.setReservations(null);
+			user.setVisits(null);
+			responseMap.put("user", user);
 			return ResponseEntity.status(200).body(responseMap);
 		} catch (BusinessException e) {
 			e.printStackTrace();
