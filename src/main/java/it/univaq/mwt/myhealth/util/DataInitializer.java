@@ -303,12 +303,12 @@ public class DataInitializer {
 		try {
 			this.imagesUser = List.of(
 				ObjectFactory.createImage("Admin img", "/dist/img/instagram-4.jpg", null),
-				ObjectFactory.createImage("Doctor img1", "/dist/img/instagram-2.jpg", null),
+				ObjectFactory.createImage("Doctor img1", "https://www.fitforcommerce.com/wp-content/uploads/2014/11/DR-headshot-300x300.png", null),
 				ObjectFactory.createImage("Patient img", "/dist/img/instagram-3.jpg", null),
-				ObjectFactory.createImage("Doctor img2", "/dist/img/doctor-1.jpg", null),
-				ObjectFactory.createImage("Doctor img3", "/dist/img/doctor-2.jpg", null),
-				ObjectFactory.createImage("Doctor img4", "/dist/img/doctor-3.jpg", null),
-				ObjectFactory.createImage("Doctor img5", "/dist/img/doctor-4.jpg", null)
+				ObjectFactory.createImage("Doctor img2", "https://wishnowsugarvision.com/wp-content/uploads/Dr.-Allison-300x300-1.png", null),
+				ObjectFactory.createImage("Doctor img3", "https://www.earnthenecklace.com/wp-content/uploads/2017/04/Dr.-Nowzaradan-wiki-300x300.jpg", null),
+				ObjectFactory.createImage("Doctor img4", "https://cdn.shopify.com/s/files/1/2035/4717/products/Recommended_Photos_Samples_2_b006833d-e16e-4d55-81fd-89cd15b3c2ea_grande.jpg?v=1537237621", null),
+				ObjectFactory.createImage("Doctor img5", "https://raleighfamilydentistry.com/wp-content/uploads/2015/01/doc1-600x600.jpg", null)
 			);
 			
 			examService.saveImages(this.imagesUser);
@@ -320,10 +320,10 @@ public class DataInitializer {
 	public void initExamImages() {
 		try {
 			this.imagesExam = List.of(
-				ObjectFactory.createImage("Cuore", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(0)),
+				ObjectFactory.createImage("Cuore", "https://familydoctor.org/wp-content/uploads/2010/09/48256408_l.jpg", this.exams.get(0)),
 				ObjectFactory.createImage("Scoliosi", "https://www.gruppocdc.it/media/k2/items/cache/0e09527b0f5edaa60cf5702119e6a0a2_L.webp", this.exams.get(1)),
 				ObjectFactory.createImage("Spalla", "https://spallaclinic.it/wp-content/uploads/2020/02/ort_6.jpg", this.exams.get(2)),
-				ObjectFactory.createImage("Cuore", "https://neelimahospitals.com/wp-content/uploads/2018/02/Cardiology_image.jpg", this.exams.get(3)),
+				ObjectFactory.createImage("Cuore", "https://images.wisegeek.com/a-doctor-using-a-stethoscope-on-a-man.jpg", this.exams.get(3)),
 				ObjectFactory.createImage("Riab 1", "https://www.gruppoini.it/main/wp-content/uploads/2019/05/rieducazione-motoria-roma.jpg", this.exams.get(4)),
 				ObjectFactory.createImage("Riab 4", "https://1.bp.blogspot.com/-ElbdY7NTrLk/YGnU-GF2ykI/AAAAAAAACvg/dvielzu2rigYeClxZ32sQkPgvIAYj-UfgCLcBGAsYHQ/s360/riabilitazione%2Banziani.jpg", this.exams.get(5))
 			);
