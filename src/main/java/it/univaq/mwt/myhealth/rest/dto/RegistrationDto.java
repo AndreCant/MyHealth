@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import lombok.Setter;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class RegistrationDto extends LoginDto{
 	
 	protected String email;

@@ -36,6 +36,7 @@ import it.univaq.mwt.myhealth.domain.Review;
 import it.univaq.mwt.myhealth.domain.User;
 import it.univaq.mwt.myhealth.domain.Visit;
 import it.univaq.mwt.myhealth.rest.dto.RegistrationDto;
+import it.univaq.mwt.myhealth.rest.dto.ReservationDto;
 import it.univaq.mwt.myhealth.rest.dto.ReviewDto;
 import it.univaq.mwt.myhealth.util.Utility;
 
@@ -159,9 +160,29 @@ public class PrivateController {
 		Map<String, Object> responseMap = new HashMap<>();
 		
 		try {
+			List<ReservationDto> resDto = new ArrayList<>();
 			List<Reservation> reservations = reservationService.findReservationsByPatient(((UserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getId());
-			for (Reservation reservation : reservations) reservation.setVisit(null);
-			responseMap.put("reservations", reservations);
+			
+			for (Reservation reservation : reservations) {
+				ReservationDto dto = new ReservationDto();
+				dto.setId(reservation.getId());
+				dto.setReservationDate(reservation.getReservationDate());
+				dto.setStartHour(reservation.getStartHour());
+				dto.setEndHour(reservation.getEndHour());
+				dto.setExamName(null);
+				dto.setExamImageUrl(null);
+				
+				if(reservation.getExam() != null) {
+					dto.setExamName(reservation.getExam().getName());
+					if(reservation.getExam().getImages() != null && !reservation.getExam().getImages().isEmpty()) {
+						dto.setExamImageUrl(reservation.getExam().getImages().get(0).getUrl());
+					}
+				}
+				
+				resDto.add(dto);
+			}
+			
+			responseMap.put("reservations", resDto);
 			return ResponseEntity.ok(responseMap);
 		} catch (BusinessException e) {
 			e.printStackTrace();
